@@ -1,0 +1,68 @@
+{
+  "ddiv_version": "2.1",
+  "checkpoint_name": "benchmark_v2_1",
+  "timestamp": "2026-10-08T23:10:00+05:30",
+  "commit_hash": "f863d0438886059b42072e18f6fcc5c770b9b85e",
+  "commit_short": "f863d04",
+  "dataset": "SWE-bench Verified",
+  "dataset_path": "data/swebench/test-00000-of-00001.parquet",
+  "benchmark_manifest": "data/experiments/benchmark_v2_tasks.json",
+  "conditions": {
+    "BASELINE": {
+      "max_attempts": 1,
+      "supervisor_enabled": false,
+      "diagnosis_enabled": false,
+      "intervention_enabled": false,
+      "memory_enabled": false,
+      "trust_enabled": false
+    },
+    "RETRY_ONLY": {
+      "max_attempts": 3,
+      "supervisor_enabled": false,
+      "diagnosis_enabled": false,
+      "intervention_enabled": false,
+      "memory_enabled": false,
+      "trust_enabled": false
+    },
+    "FULL_DDIV": {
+      "max_attempts": 3,
+      "supervisor_enabled": true,
+      "diagnosis_enabled": true,
+      "intervention_enabled": true,
+      "memory_enabled": true,
+      "trust_enabled": true
+    }
+  },
+  "models": {
+    "Locator": {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite"
+    },
+    "Coder": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "Tester": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b"
+    },
+    "Supervisor": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b"
+    },
+    "TestUnderstanding": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b"
+    },
+    "PatchCritic": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b"
+    }
+  },
+  "trust_deltas": {
+    "success": 0.05,
+    "failure": -0.08,
+    "regression": -0.10
+  },
+  "frozen_guarantee": "No behavioral or code changes permitted after this checkpoint."
+}
