@@ -96,7 +96,8 @@ class StrategySelector:
                 "Ensure standard unified diff format:\n"
                 "--- a/path/to/file.py\n"
                 "+++ b/path/to/file.py\n"
-                "@@ -line,count +line,count @@\n"
+                "@@ -old_start,old_count +new_start,new_count @@\n"
+                "NEVER emit a bare '@@'. Every hunk header MUST have valid line numbers.\n"
                 "Check for proper line endings and do not wrap patch in markdown text fences."
             )
             return RecoveryAction(

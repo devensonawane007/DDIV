@@ -8,11 +8,17 @@ from pydantic import BaseModel, Field
 
 
 class MemoryRecord(BaseModel):
+    """Execution experience record stored in DDIV MemoryStore."""
+
     id: Optional[int] = None
     task_id: str
     repository: str
     issue_summary: str
     failure_type: Optional[str] = None
+    failure_evidence: List[str] = Field(default_factory=list)
+    previous_patch: str = ""
+    failed_tests: List[str] = Field(default_factory=list)
+    subsystem: Optional[str] = None
     diagnosis: Optional[str] = None
     recovery_action: Optional[str] = None
     attempt: int = 1
@@ -26,6 +32,8 @@ class MemoryRecord(BaseModel):
 
 
 class TrustEvent(BaseModel):
+    """Audit record for individual agent trust update transactions."""
+
     event_id: Optional[int] = None
     agent_id: str
     task_id: str
@@ -33,7 +41,7 @@ class TrustEvent(BaseModel):
     prior_trust: float
     posterior_trust: float
     delta: float
-    outcome: str  # "SUCCESS" or "FAILURE"
+    outcome: str  # "SUCCESS" or "FAILURE" or "REGRESSION"
     evidence_reason: str
     timestamp: float = Field(default_factory=time.time)
 

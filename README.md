@@ -114,17 +114,33 @@ $$T_{next} = \text{clip}\left(T_{current} + \Delta_{success} \cdot w - \Delta_{f
 
 ---
 
-## 6. Execution Modes & Ablation Studies
+## 6. Execution Modes & Comparative Experiment Conditions
 
-DDIV supports controlled experimental comparisons:
+DDIV supports rigorous comparative evaluation across three standardized conditions:
 
-1. `MODE=baseline`: Single-attempt pass (Locator → Coder → Tester → Verify). No retries or supervisor interventions.
-2. `MODE=ddiv`: Full DDIV loop with failure detection, diagnosis, targeted recovery ($A1 - A4$), memory, and trust.
-3. **Ablation Modes**:
-   - `recovery_only`: Targeted recovery enabled; memory and trust disabled.
-   - `memory_only`: Memory retrieval enabled; trust disabled; generic retries.
-   - `trust_only`: Trust ledger enabled; memory disabled.
-   - `full_ddiv`: All DDIV subsystems active.
+1. **`BASELINE`** (`max_attempts = 1`):
+   - Single-pass feedforward execution (`Locator` → `Coder` → `Tester` → `Verify`).
+   - Supervisor: DISABLED.
+   - Memory: DISABLED.
+   - Trust: DISABLED.
+   - Represents standard single-turn LLM code repair baselines.
+
+2. **`RETRY_ONLY`** (`max_attempts = 3`):
+   - True blind multi-attempt retry condition from a clean attempt state.
+   - Supervisor: DISABLED.
+   - Failure Diagnosis ($F1 - F4$): DISABLED.
+   - Targeted Interventions ($A1 - A4$): DISABLED.
+   - Memory Store: DISABLED.
+   - Dynamic Trust Ledger: DISABLED.
+   - After a failed attempt, workspaces are cleanly reverted to base commit and the exact same repair workflow is rerun without supervisor feedback or memory guidance, subject to identical task, model, tool, token, temperature, and timeout budgets.
+
+3. **`FULL_DDIV`** (`max_attempts = 3`):
+   - Multi-attempt repair with full DDIV closed-loop supervision.
+   - Supervisor: ENABLED.
+   - Failure Diagnosis ($F1 - F4$): ENABLED.
+   - Targeted Interventions ($A1 - A4$): ENABLED.
+   - Memory Store: ENABLED (SQLite episodic store).
+   - Dynamic Trust Ledger: ENABLED (dynamic reliability tracking).
 
 ---
 

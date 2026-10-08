@@ -32,7 +32,10 @@ class AgentExecutionResult(BaseModel, Generic[T_Output]):
     prompt_tokens: int = 0
     completion_tokens: int = 0
     total_tokens: int = 0
+    model_id: Optional[str] = None
+    provider: Optional[str] = None
     error: Optional[str] = None
+    error_code: Optional[str] = None
     success: bool = True
 
 
@@ -68,6 +71,9 @@ class BaseAgent(ABC, Generic[T_Output]):
         latency = time.time() - start_time
 
         if provider_resp.error:
+            err_code = "API_ERROR"
+            if "429" in provider_resp.error or "rate" in provider_resp.error.lower():
+                err_code = "RATE_LIMITED"
             return AgentExecutionResult(
                 task_id=metadata.task_id,
                 run_id=metadata.run_id,
@@ -75,20 +81,33 @@ class BaseAgent(ABC, Generic[T_Output]):
                 attempt=metadata.attempt,
                 raw_response=provider_resp.raw_text,
                 latency_seconds=latency,
+                prompt_tokens=provider_resp.prompt_tokens,
+                completion_tokens=provider_resp.completion_tokens,
+                total_tokens=provider_resp.total_tokens,
+                model_id=provider_resp.model_id,
+                provider=provider_resp.provider,
                 error=provider_resp.error,
+                error_code=f"{self.agent_id.upper()}_{err_code}",
                 success=False,
             )
 
         parsed_obj: Optional[T_Output] = None
         error_msg: Optional[str] = None
+        error_code: Optional[str] = None
 
-        if provider_resp.parsed_json:
+        raw_str = (provider_resp.raw_text or "").strip()
+        if not raw_str:
+            error_code = f"{self.agent_id.upper()}_EMPTY_RESPONSE"
+            error_msg = f"{self.agent_id} returned empty model response."
+        elif provider_resp.parsed_json is None:
+            error_code = f"{self.agent_id.upper()}_INVALID_JSON"
+            error_msg = f"Failed to extract valid JSON matching schema from output: {raw_str[:200]}"
+        else:
             try:
                 parsed_obj = self.output_schema.model_validate(provider_resp.parsed_json)
             except Exception as val_err:
+                error_code = f"{self.agent_id.upper()}_SCHEMA_FAILURE"
                 error_msg = f"Schema validation error: {str(val_err)}"
-        else:
-            error_msg = f"Failed to extract valid JSON matching schema from response: {provider_resp.raw_text[:200]}"
 
         confidence = getattr(parsed_obj, "confidence", 0.0) if parsed_obj else 0.0
 
@@ -104,6 +123,9 @@ class BaseAgent(ABC, Generic[T_Output]):
             prompt_tokens=provider_resp.prompt_tokens,
             completion_tokens=provider_resp.completion_tokens,
             total_tokens=provider_resp.total_tokens,
+            model_id=provider_resp.model_id,
+            provider=provider_resp.provider,
             error=error_msg,
+            error_code=error_code,
             success=(parsed_obj is not None),
         )

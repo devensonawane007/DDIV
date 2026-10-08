@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    load_dotenv(override=True)
 except ImportError:
     pass
 
@@ -19,6 +19,7 @@ class ExecutionMode(str, Enum):
     MOCK = "mock"
     BASELINE = "baseline"
     DDIV = "ddiv"
+    REAL = "real"
     # Ablation modes
     RECOVERY_ONLY = "recovery_only"
     MEMORY_ONLY = "memory_only"
@@ -26,8 +27,19 @@ class ExecutionMode(str, Enum):
     FULL_DDIV = "full_ddiv"
 
 
+# Frozen Dynamic Trust Hyperparameters
+TRUST_SUCCESS_DELTA: float = float(os.getenv("TRUST_SUCCESS_DELTA", "0.05"))
+TRUST_FAILURE_DELTA: float = float(os.getenv("TRUST_FAILURE_DELTA", "0.08"))
+TRUST_REGRESSION_DELTA: float = float(os.getenv("TRUST_REGRESSION_DELTA", "0.10"))
+
+
 class ProviderType(str, Enum):
     MOCK = "mock"
+    GEMINI = "gemini"
+    XAI = "xai"
+    GROQ = "groq"
+    OPENROUTER = "openrouter"
+    HUGGINGFACE = "huggingface"
     OPENAI_COMPATIBLE = "openai_compatible"
     ANTHROPIC = "anthropic"
     OLLAMA = "ollama"
@@ -35,12 +47,14 @@ class ProviderType(str, Enum):
 
 class AgentModelConfig(BaseModel):
     name: str
-    model: str
+    provider: str = "mock"
+    model: str = ""
     api_key: Optional[str] = None
-    temperature: float = 0.2
+    base_url: Optional[str] = None
+    temperature: float = 0.0
     max_tokens: int = 2048
-    timeout: int = 60
-    max_retries: int = 3
+    timeout: int = 120
+    max_retries: int = 2
 
 
 class DDIVConfig(BaseModel):
@@ -54,37 +68,81 @@ class DDIVConfig(BaseModel):
     locator: AgentModelConfig = Field(
         default_factory=lambda: AgentModelConfig(
             name="Locator",
-            model=os.getenv("LOCATOR_MODEL", "Qwen/Qwen2.5-Coder-7B-Instruct"),
-            api_key=os.getenv("LOCATOR_API_KEY"),
-            temperature=float(os.getenv("LOCATOR_TEMPERATURE", "0.2")),
+            provider=os.getenv("LOCATOR_PROVIDER", "gemini"),
+            model=os.getenv("LOCATOR_MODEL", ""),
+            api_key=os.getenv("GEMINI_API_KEY") or os.getenv("LOCATOR_API_KEY"),
+            base_url=os.getenv("GEMINI_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/"),
+            temperature=float(os.getenv("LOCATOR_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
             max_tokens=int(os.getenv("LOCATOR_MAX_TOKENS", "2048")),
+            timeout=int(os.getenv("MODEL_TIMEOUT_SECONDS", os.getenv("REQUEST_TIMEOUT", "120"))),
+            max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
         )
     )
     coder: AgentModelConfig = Field(
         default_factory=lambda: AgentModelConfig(
             name="Coder",
-            model=os.getenv("CODER_MODEL", "mistralai/Devstral-24B-v0.1"),
-            api_key=os.getenv("CODER_API_KEY"),
-            temperature=float(os.getenv("CODER_TEMPERATURE", "0.2")),
+            provider=os.getenv("CODER_PROVIDER", "groq"),
+            model=os.getenv("CODER_MODEL", ""),
+            api_key=os.getenv("GROQ_API_KEY") or os.getenv("XAI_API_KEY") or os.getenv("CODER_API_KEY"),
+            base_url=(
+                os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
+                if os.getenv("CODER_PROVIDER", "groq").lower() == "groq"
+                else os.getenv("XAI_BASE_URL", "https://api.x.ai/v1")
+            ),
+            temperature=float(os.getenv("CODER_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
             max_tokens=int(os.getenv("CODER_MAX_TOKENS", "4096")),
+            timeout=int(os.getenv("MODEL_TIMEOUT_SECONDS", os.getenv("REQUEST_TIMEOUT", "120"))),
+            max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
         )
     )
     tester: AgentModelConfig = Field(
         default_factory=lambda: AgentModelConfig(
             name="Tester",
-            model=os.getenv("TESTER_MODEL", "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct"),
-            api_key=os.getenv("TESTER_API_KEY"),
-            temperature=float(os.getenv("TESTER_TEMPERATURE", "0.2")),
+            provider=os.getenv("TESTER_PROVIDER", "openrouter"),
+            model=os.getenv("TESTER_MODEL", ""),
+            api_key=(
+                os.getenv("GROQ_API_KEY")
+                if os.getenv("TESTER_PROVIDER", "").lower() == "groq"
+                else (os.getenv("OPENROUTER_API_KEY") or os.getenv("TESTER_API_KEY"))
+            ),
+            base_url=(
+                os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
+                if os.getenv("TESTER_PROVIDER", "").lower() == "groq"
+                else os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+            ),
+            temperature=float(os.getenv("TESTER_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
             max_tokens=int(os.getenv("TESTER_MAX_TOKENS", "2048")),
+            timeout=int(os.getenv("MODEL_TIMEOUT_SECONDS", os.getenv("REQUEST_TIMEOUT", "120"))),
+            max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
         )
     )
     supervisor: AgentModelConfig = Field(
         default_factory=lambda: AgentModelConfig(
             name="Supervisor",
-            model=os.getenv("SUPERVISOR_MODEL", "Qwen/Qwen2.5-Coder-32B-Instruct"),
-            api_key=os.getenv("SUPERVISOR_API_KEY"),
-            temperature=float(os.getenv("SUPERVISOR_TEMPERATURE", "0.2")),
+            provider=os.getenv("SUPERVISOR_PROVIDER", "huggingface"),
+            model=os.getenv("SUPERVISOR_MODEL", ""),
+            api_key=(
+                os.getenv("GROQ_API_KEY")
+                if os.getenv("SUPERVISOR_PROVIDER", "").lower() == "groq"
+                else (
+                    os.getenv("OPENROUTER_API_KEY") or os.getenv("SUPERVISOR_API_KEY")
+                    if os.getenv("SUPERVISOR_PROVIDER", "").lower() == "openrouter"
+                    else (os.getenv("HF_TOKEN") or os.getenv("HUGGINGFACE_API_KEY") or os.getenv("SUPERVISOR_API_KEY"))
+                )
+            ),
+            base_url=(
+                os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
+                if os.getenv("SUPERVISOR_PROVIDER", "").lower() == "groq"
+                else (
+                    os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+                    if os.getenv("SUPERVISOR_PROVIDER", "").lower() == "openrouter"
+                    else os.getenv("HF_BASE_URL", "https://router.huggingface.co/v1")
+                )
+            ),
+            temperature=float(os.getenv("SUPERVISOR_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
             max_tokens=int(os.getenv("SUPERVISOR_MAX_TOKENS", "3072")),
+            timeout=int(os.getenv("MODEL_TIMEOUT_SECONDS", os.getenv("REQUEST_TIMEOUT", "120"))),
+            max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
         )
     )
 
@@ -120,16 +178,109 @@ class DDIVConfig(BaseModel):
     )
     logs_dir: Path = Field(default_factory=lambda: Path("logs/runs"))
 
+    def get_experiment_metadata(self) -> Dict[str, Any]:
+        """Return audit-safe metadata for research reproducibility (zero credentials)."""
+        return {
+            "mode": self.mode.value,
+            "experiment_name": self.experiment_name,
+            "global_parameters": {
+                "temperature": float(os.getenv("MODEL_TEMPERATURE", "0.0")),
+                "max_retries": int(os.getenv("MODEL_MAX_RETRIES", "2")),
+                "timeout_seconds": int(os.getenv("MODEL_TIMEOUT_SECONDS", "120")),
+            },
+            "agents": {
+                "Locator": {
+                    "provider": self.locator.provider,
+                    "model_id": self.locator.model,
+                    "endpoint": self.locator.base_url,
+                    "temperature": self.locator.temperature,
+                    "max_tokens": self.locator.max_tokens,
+                    "max_retries": self.locator.max_retries,
+                    "timeout": self.locator.timeout,
+                },
+                "Coder": {
+                    "provider": self.coder.provider,
+                    "model_id": self.coder.model,
+                    "endpoint": self.coder.base_url,
+                    "temperature": self.coder.temperature,
+                    "max_tokens": self.coder.max_tokens,
+                    "max_retries": self.coder.max_retries,
+                    "timeout": self.coder.timeout,
+                },
+                "Tester": {
+                    "provider": self.tester.provider,
+                    "model_id": self.tester.model,
+                    "endpoint": self.tester.base_url,
+                    "temperature": self.tester.temperature,
+                    "max_tokens": self.tester.max_tokens,
+                    "max_retries": self.tester.max_retries,
+                    "timeout": self.tester.timeout,
+                },
+                "Supervisor": {
+                    "provider": self.supervisor.provider,
+                    "model_id": self.supervisor.model,
+                    "endpoint": self.supervisor.base_url,
+                    "temperature": self.supervisor.temperature,
+                    "max_tokens": self.supervisor.max_tokens,
+                    "max_retries": self.supervisor.max_retries,
+                    "timeout": self.supervisor.timeout,
+                },
+            },
+        }
+
+    def validate_for_execution(self) -> None:
+        """Validate that all required real providers have explicit models and credentials configured."""
+        if self.mode == ExecutionMode.MOCK:
+            return
+
+        def get_key_var(prov: str, default: str) -> str:
+            p = prov.lower()
+            if p == "groq":
+                return "GROQ_API_KEY"
+            if p == "gemini":
+                return "GEMINI_API_KEY"
+            if p == "openrouter":
+                return "OPENROUTER_API_KEY"
+            if p == "huggingface":
+                return "HF_TOKEN"
+            return default
+
+        agents = [
+            ("Locator", self.locator, "LOCATOR_MODEL", get_key_var(self.locator.provider, "GEMINI_API_KEY")),
+            ("Coder", self.coder, "CODER_MODEL", get_key_var(self.coder.provider, "GROQ_API_KEY")),
+            ("Tester", self.tester, "TESTER_MODEL", get_key_var(self.tester.provider, "OPENROUTER_API_KEY")),
+            ("Supervisor", self.supervisor, "SUPERVISOR_MODEL", get_key_var(self.supervisor.provider, "OPENROUTER_API_KEY")),
+        ]
+
+        for name, cfg, model_var, key_var in agents:
+            if cfg.provider.lower() == "mock":
+                continue
+
+            if not cfg.model or cfg.model.startswith("REPLACE_") or "<" in cfg.model:
+                raise ValueError(
+                    f"Configuration Error: Missing or placeholder model ID for {name} Agent. "
+                    f"Please configure {model_var} in .env with a valid, verified model ID."
+                )
+
+            if not cfg.api_key:
+                raise ValueError(
+                    f"Configuration Error: Missing API key/token for {name} Agent ({cfg.provider}). "
+                    f"Please configure {key_var} in .env."
+                )
+
     @classmethod
     def load_from_env(cls) -> DDIVConfig:
         mode_str = os.getenv("DDIV_MODE", "mock").lower()
         provider_str = os.getenv("PROVIDER_TYPE", "mock").lower()
         api_base_url = os.getenv("API_BASE_URL", "https://api.together.xyz/v1")
 
-        try:
-            mode = ExecutionMode(mode_str)
-        except ValueError:
-            mode = ExecutionMode.MOCK
+        if mode_str == "real":
+            mode = ExecutionMode.DDIV
+        else:
+            try:
+                mode = ExecutionMode(mode_str)
+            except ValueError:
+                mode = ExecutionMode.MOCK
 
         try:
             provider_type = ProviderType(provider_str)
@@ -142,3 +293,4 @@ class DDIVConfig(BaseModel):
             provider_type=provider_type,
             api_base_url=api_base_url,
         )
+

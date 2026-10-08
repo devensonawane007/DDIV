@@ -82,6 +82,16 @@ class MemoryStore:
 
     def insert_record(self, record: MemoryRecord) -> int:
         """Insert an execution experience record."""
+        meta = dict(record.metadata or {})
+        if record.failure_evidence:
+            meta["failure_evidence"] = record.failure_evidence
+        if record.previous_patch:
+            meta["previous_patch"] = record.previous_patch
+        if record.failed_tests:
+            meta["failed_tests"] = record.failed_tests
+        if record.subsystem:
+            meta["subsystem"] = record.subsystem
+
         with self._connection() as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -105,7 +115,7 @@ class MemoryStore:
                     record.agent,
                     record.trust_before,
                     record.trust_after,
-                    json.dumps(record.metadata),
+                    json.dumps(meta),
                     record.timestamp or time.time(),
                 ),
             )
@@ -139,12 +149,17 @@ class MemoryStore:
             return cursor.lastrowid
 
     def _row_to_record(self, row: sqlite3.Row) -> MemoryRecord:
+        meta = json.loads(row["metadata"]) if row["metadata"] else {}
         return MemoryRecord(
             id=row["id"],
             task_id=row["task_id"],
             repository=row["repository"],
             issue_summary=row["issue_summary"] or "",
             failure_type=row["failure_type"],
+            failure_evidence=meta.get("failure_evidence", []),
+            previous_patch=meta.get("previous_patch", ""),
+            failed_tests=meta.get("failed_tests", []),
+            subsystem=meta.get("subsystem"),
             diagnosis=row["diagnosis"],
             recovery_action=row["recovery_action"],
             attempt=row["attempt"],
@@ -153,7 +168,7 @@ class MemoryStore:
             agent=row["agent"],
             trust_before=row["trust_before"],
             trust_after=row["trust_after"],
-            metadata=json.loads(row["metadata"]) if row["metadata"] else {},
+            metadata=meta,
             timestamp=row["timestamp"],
         )
 

@@ -18,32 +18,67 @@ class MemoryRetriever:
         task_id: str,
         repository: str,
         current_failure_candidate: Optional[str] = None,
-        max_matches: int = 3,
+        failed_tests: Optional[List[str]] = None,
+        subsystem: Optional[str] = None,
+        max_matches: int = 4,
     ) -> List[Dict[str, Any]]:
-        """Retrieve relevant past experiences for the Recovery Supervisor."""
+        """Retrieve relevant past experiences for the Recovery Supervisor prioritized by repo, failure category, test pattern, and subsystem."""
         matches: List[Dict[str, Any]] = []
+        seen_record_ids = set()
 
-        # 1. Past attempts for the current task
+        # 1. Past attempts for the current task (highest priority)
         task_records = self.store.get_records_by_task(task_id)
         if task_records:
             for r in task_records:
+                if r.id is not None:
+                    seen_record_ids.add(r.id)
                 matches.append({
                     "source": "current_task_history",
                     "attempt": r.attempt,
                     "failure_type": r.failure_type,
+                    "failed_tests": r.failed_tests,
                     "diagnosis": r.diagnosis,
                     "recovery_action": r.recovery_action,
                     "result": r.result,
                 })
 
-        # 2. If a specific failure candidate is suspected, retrieve successful past recoveries
+        # 2. Same repository records prioritized by failure category or subsystem
+        repo_records = self.store.get_records_by_repo(repository, limit=15)
+        for r in repo_records:
+            if r.task_id == task_id or (r.id is not None and r.id in seen_record_ids):
+                continue
+            
+            # Check for matches
+            is_same_fail = bool(current_failure_candidate and r.failure_type == current_failure_candidate)
+            is_same_subsystem = bool(subsystem and r.subsystem and r.subsystem.lower() == subsystem.lower())
+            has_test_overlap = bool(failed_tests and set(r.failed_tests or []).intersection(failed_tests))
+
+            if is_same_fail or is_same_subsystem or has_test_overlap:
+                if r.id is not None:
+                    seen_record_ids.add(r.id)
+                matches.append({
+                    "source": "repo_similar_experience",
+                    "task_id": r.task_id,
+                    "failure_type": r.failure_type,
+                    "failed_tests": r.failed_tests,
+                    "subsystem": r.subsystem,
+                    "recovery_action": r.recovery_action,
+                    "diagnosis": r.diagnosis,
+                    "result": r.result,
+                })
+
+        # 3. Successful recoveries for the failure candidate across repos
         if current_failure_candidate:
             successful_recoveries = self.store.get_successful_recoveries(
                 current_failure_candidate, limit=max_matches
             )
             for r in successful_recoveries:
+                if r.id is not None and r.id in seen_record_ids:
+                    continue
+                if r.id is not None:
+                    seen_record_ids.add(r.id)
                 matches.append({
-                    "source": "successful_past_recovery",
+                    "source": "cross_repo_successful_recovery",
                     "repository": r.repository,
                     "failure_type": r.failure_type,
                     "recovery_action": r.recovery_action,
@@ -51,18 +86,23 @@ class MemoryRetriever:
                     "result": "SUCCESS",
                 })
 
-        # 3. Repository-specific failure patterns
-        repo_records = self.store.get_records_by_repo(repository, limit=max_matches)
+        # 4. Fallback: repository general patterns
         for r in repo_records:
-            if r.task_id != task_id and r.failure_type:
-                matches.append({
-                    "source": "repository_pattern",
-                    "failure_type": r.failure_type,
-                    "relevant_files": r.relevant_files,
-                    "recovery_action": r.recovery_action,
-                })
+            if r.task_id == task_id or (r.id is not None and r.id in seen_record_ids):
+                continue
+            if r.id is not None:
+                seen_record_ids.add(r.id)
+            matches.append({
+                "source": "repository_pattern",
+                "failure_type": r.failure_type,
+                "relevant_files": r.relevant_files,
+                "recovery_action": r.recovery_action,
+                "diagnosis": r.diagnosis,
+                "result": r.result,
+            })
+            if len(matches) >= max_matches * 3:
+                break
 
-        # Return capped results to avoid prompt bloating
         return matches[:max_matches * 2]
 
     def format_matches_for_prompt(self, matches: List[Dict[str, Any]]) -> str:
@@ -75,7 +115,9 @@ class MemoryRetriever:
             source = m.get("source", "history")
             ftype = m.get("failure_type", "Unknown")
             action = m.get("recovery_action", "None")
-            diag = m.get("diagnosis", "")
-            lines.append(f"[{i}] ({source}) Failure: {ftype} | Strategy: {action} | Context: {diag[:120]}")
+            diag = m.get("diagnosis", "") or ""
+            ftests = m.get("failed_tests", [])
+            test_str = f" | Tests: {', '.join(ftests[:3])}" if ftests else ""
+            lines.append(f"[{i}] ({source}) Failure: {ftype}{test_str} | Action: {action} | Context: {diag[:120]}")
 
         return "\n".join(lines)

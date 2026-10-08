@@ -26,19 +26,16 @@ class PatchManager:
 
     @staticmethod
     def sanitize_patch(raw_patch: str) -> str:
-        """Strip markdown fences, leading/trailing whitespace, and normalize line endings."""
-        patch = raw_patch.strip()
-        # Remove markdown code fences if LLM wrapped it
-        if patch.startswith("```"):
-            lines = patch.splitlines()
-            if lines and lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines and lines[-1].startswith("```"):
-                lines = lines[:-1]
-            patch = "\n".join(lines).strip()
-
-        # Normalize CRLF to LF
-        patch = patch.replace("\r\n", "\n")
+        """Strip markdown fences, normalize line endings, and ensure trailing newline."""
+        if not raw_patch:
+            return ""
+        patch = raw_patch.replace("\r\n", "\n")
+        lines = patch.split("\n")
+        while lines and (not lines[0].strip() or lines[0].strip().startswith("```")):
+            lines.pop(0)
+        while lines and lines[-1].strip().startswith("```"):
+            lines.pop()
+        patch = "\n".join(lines)
         if not patch.endswith("\n"):
             patch += "\n"
         return patch
@@ -63,7 +60,7 @@ class PatchManager:
             return PatchValidationResult(
                 is_valid=False,
                 modified_files=[],
-                error_message="Patch does not match standard unified diff format (missing ---, +++, or @@ hunk headers).",
+                error_message="Patch does not match standard unified diff format (missing ---, +++, or @@ hunk headers with line numbers).",
                 sanitized_patch=patch,
             )
 
@@ -85,22 +82,31 @@ class PatchManager:
         clean_patch = self.sanitize_patch(patch_content)
         wpath = Path(workspace_path)
 
-        with tempfile.NamedTemporaryFile("w", suffix=".patch", delete=False, newline="\n") as tmp:
-            tmp.write(clean_patch)
+        with tempfile.NamedTemporaryFile("wb", suffix=".patch", delete=False) as tmp:
+            tmp.write(clean_patch.encode("utf-8"))
             tmp_path = tmp.name
 
         try:
-            # Check patch first
+            # 1. Check patch first (strict)
             check_res = self.runner.run(
                 ["git", "apply", "--check", tmp_path],
                 cwd=wpath,
             )
+            apply_flags = ["--whitespace=nowarn"]
             if not check_res.is_success:
-                return check_res
+                # 2. Check with whitespace tolerance (standard for cross-platform SWE-bench evaluation)
+                check_tol = self.runner.run(
+                    ["git", "apply", "--check", "--ignore-space-change", "--ignore-whitespace", tmp_path],
+                    cwd=wpath,
+                )
+                if check_tol.is_success:
+                    apply_flags.extend(["--ignore-space-change", "--ignore-whitespace"])
+                else:
+                    return check_res
 
             # Actually apply patch
             apply_res = self.runner.run(
-                ["git", "apply", "--whitespace=nowarn", tmp_path],
+                ["git", "apply"] + apply_flags + [tmp_path],
                 cwd=wpath,
             )
             return apply_res
@@ -113,7 +119,9 @@ class PatchManager:
     def revert_workspace(self, workspace_path: str | Path) -> CommandResult:
         """Reset workspace back to clean state."""
         wpath = Path(workspace_path)
-        # Git checkout and clean
-        res1 = self.runner.run(["git", "checkout", "--", "."], cwd=wpath)
+        # Git reset and clean
+        res1 = self.runner.run(["git", "reset", "--hard", "HEAD"], cwd=wpath)
+        if not res1.is_success:
+            res1 = self.runner.run(["git", "checkout", "--", "."], cwd=wpath)
         res2 = self.runner.run(["git", "clean", "-fd"], cwd=wpath)
         return res2 if res1.is_success else res1

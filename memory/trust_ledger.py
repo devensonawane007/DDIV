@@ -6,6 +6,7 @@ import time
 from typing import Any, Dict, List, Optional
 from memory.schemas import TrustEvent, TrustSnapshot
 from memory.memory_store import MemoryStore
+from core.config import TRUST_SUCCESS_DELTA, TRUST_FAILURE_DELTA, TRUST_REGRESSION_DELTA
 
 
 class TrustLedger:
@@ -15,12 +16,14 @@ class TrustLedger:
         self,
         memory_store: Optional[MemoryStore] = None,
         initial_trust: Optional[Dict[str, float]] = None,
-        success_reward: float = 0.05,
-        failure_penalty: float = 0.08,
+        success_reward: float = TRUST_SUCCESS_DELTA,
+        failure_penalty: float = TRUST_FAILURE_DELTA,
+        regression_penalty: float = TRUST_REGRESSION_DELTA,
     ):
         self.store = memory_store
         self.success_reward = success_reward
         self.failure_penalty = failure_penalty
+        self.regression_penalty = regression_penalty
 
         # Configurable initial baseline values
         defaults = {
@@ -52,6 +55,7 @@ class TrustLedger:
         success: bool,
         evidence_reason: str,
         weight: float = 1.0,
+        is_regression: bool = False,
     ) -> float:
         """Update trust score based on verified outcome and evidence."""
         prior = self.get_score(agent_id)
@@ -59,6 +63,9 @@ class TrustLedger:
         if success:
             delta = self.success_reward * weight
             outcome = "SUCCESS"
+        elif is_regression:
+            delta = -self.regression_penalty * weight
+            outcome = "REGRESSION"
         else:
             delta = -self.failure_penalty * weight
             outcome = "FAILURE"
