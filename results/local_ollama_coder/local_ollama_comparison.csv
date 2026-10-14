@@ -1,0 +1,10 @@
+task_id,condition,status,resolved,attempts,pass_at_1,patch_generated,patch_applied,f2p_passed,f2p_total,p2p_passed,p2p_total,execution_duration_seconds,total_tokens,prompt_tokens,completion_tokens,coder_model,failure_category
+pylint-dev__pylint-6903,baseline,COMPLETED,False,1,False,True,True,0,1,8,8,228.38,9564,8457,1107,qwen2.5-coder:7b,F2P_FAILURE
+pylint-dev__pylint-6903,retry_only,COMPLETED,False,3,False,True,True,0,0,0,0,322.97,28152,25091,3061,qwen2.5-coder:7b,ANCHOR_NOT_FOUND
+pylint-dev__pylint-6903,full_ddiv,COMPLETED,True,2,False,True,True,1,1,8,8,381.16,32760,27639,5121,qwen2.5-coder:7b,RESOLVED
+pylint-dev__pylint-4970,baseline,COMPLETED,False,1,False,True,True,0,1,0,10,131.71,9395,8140,1255,qwen2.5-coder:7b,PATCH_INVALID
+pylint-dev__pylint-4970,retry_only,COMPLETED,False,3,False,True,True,0,0,0,0,268.71,27809,24312,3497,qwen2.5-coder:7b,ANCHOR_NOT_FOUND
+pylint-dev__pylint-4970,full_ddiv,COMPLETED,False,3,False,True,False,0,0,0,0,243.74,38715,32265,6450,qwen2.5-coder:7b,PATCH_INVALID
+sympy__sympy-23413,baseline,COMPLETED,False,1,False,True,True,0,1,2,2,181.37,7612,6339,1273,qwen2.5-coder:7b,F2P_FAILURE
+sympy__sympy-23413,retry_only,COMPLETED,False,3,False,True,True,0,1,2,2,373.96,23651,19089,4562,qwen2.5-coder:7b,REPEATED_PATCH_CYCLE
+sympy__sympy-23413,full_ddiv,COMPLETED,False,3,False,False,False,0,0,0,0,441.68,33837,27628,6209,qwen2.5-coder:7b,ANCHOR_NOT_FOUND

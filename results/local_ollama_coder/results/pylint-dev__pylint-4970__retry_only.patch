@@ -1,0 +1,11 @@
+--- a/pylint/checkers/similar.py
++++ b/pylint/checkers/similar.py
+@@ -818,6 +818,8 @@
+             nb_duplicated_lines=0, percent_duplicated_lines=0
+         )
+ 
++    if self.config.min_similarity_lines == 0:
++        return
+     def process_module(self, node):
+         """process a module
+ 

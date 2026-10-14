@@ -36,12 +36,25 @@ env/
 htmlcov/
 
 # Logs & Runtime
-logs/runs/*.jsonl
-logs/runs/*.log
+logs/
 data/workspaces/
+data/repos/
+data/swebench/
 data/*.db
 data/*.sqlite
 experiments/results/runs/
+scratch/
+*.png
+*.txt
+gemini_smoke_result.json
+
+# Ignore transient experiment runs and patch files in data/experiments
+data/experiments/*
+!data/experiments/benchmark_v2_tasks.json
+!data/experiments/benchmark_v2_1/
+data/experiments/benchmark_v2_1/*
+!data/experiments/benchmark_v2_1/checkpoint.json
+!data/experiments/benchmark_v2_1/README.md
 
 # IDE
 .vscode/

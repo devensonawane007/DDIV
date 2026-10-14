@@ -1,0 +1,29 @@
+[
+  {
+    "agent": "Locator",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "prompt_tokens": 3336,
+    "completion_tokens": 132,
+    "total_tokens": 3468,
+    "latency_seconds": 5.970600605010986
+  },
+  {
+    "agent": "Coder",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 2867,
+    "completion_tokens": 847,
+    "total_tokens": 3714,
+    "latency_seconds": 2.495797872543335
+  },
+  {
+    "agent": "Tester",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 1978,
+    "completion_tokens": 463,
+    "total_tokens": 2441,
+    "latency_seconds": 1.4697575569152832
+  }
+]

@@ -1,0 +1,371 @@
+{
+  "experiment_id": "fair_pilot_v22",
+  "task_id": "pylint-dev__pylint-4970",
+  "condition": "full_ddiv",
+  "status": "ABORTED_QUOTA_EXHAUSTED",
+  "resolved": false,
+  "workflow_completed": false,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": "Supervisor",
+  "error_code": "SUPERVISOR_QUOTA_EXHAUSTED",
+  "provider_failure": {
+    "stage": "Supervisor",
+    "error_code": "SUPERVISOR_RATE_LIMITED",
+    "error_message": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198449, Requested 2234. Please try again in 4m55.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "attempt": 1,
+    "quota_exhausted": true
+  },
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.__init__",
+          "operation": "insert_after",
+          "anchor": "self.stats = None",
+          "code": "        self.disabled = self.config.min_similarity_lines <= 0",
+          "reason": "Store a flag indicating the checker is disabled when min-similarity-lines is non\u2011positive."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.set_option",
+          "operation": "replace",
+          "anchor": "self.min_lines = self.config.min_similarity_lines",
+          "code": "            self.min_lines = self.config.min_similarity_lines\n            self.disabled = self.config.min_similarity_lines <= 0",
+          "reason": "Update disabled flag whenever the option changes."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.get_map_data",
+          "operation": "replace",
+          "anchor": "return Similar.get_map_data(self)",
+          "code": "        if getattr(self, \"disabled\", False):\n            return []\n        return Similar.get_map_data(self)",
+          "reason": "Skip map\u2011reduce data collection when disabled."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.close",
+          "operation": "insert_after",
+          "anchor": "\"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"",
+          "code": "        if getattr(self, \"disabled\", False):\n            return",
+          "reason": "Avoid similarity computation and message emission when disabled."
+        }
+      ],
+      "patch_operations": [
+        "insert_after",
+        "replace",
+        "replace",
+        "insert_after"
+      ],
+      "generated_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -793,6 +793,7 @@\n             ignore_signatures=self.config.ignore_signatures,\n         )\n         self.stats = None\n+        self.disabled = self.config.min_similarity_lines <= 0\n \n     def set_option(self, optname, value, action=None, optdict=None):\n         \"\"\"method called to set an option (registered in the options list)\n@@ -802,6 +803,7 @@\n         BaseChecker.set_option(self, optname, value, action, optdict)\n         if optname == \"min-similarity-lines\":\n             self.min_lines = self.config.min_similarity_lines\n+            self.disabled = self.config.min_similarity_lines <= 0\n         elif optname == \"ignore-comments\":\n             self.ignore_comments = self.config.ignore_comments\n         elif optname == \"ignore-docstrings\":\n@@ -830,6 +832,8 @@\n \n     def close(self):\n         \"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"\n+        if getattr(self, \"disabled\", False):\n+            return\n         total = sum(len(lineset) for lineset in self.linesets)\n         duplicated = 0\n         stats = self.stats\n@@ -851,6 +855,8 @@\n \n     def get_map_data(self):\n         \"\"\"Passthru override\"\"\"\n+        if getattr(self, \"disabled\", False):\n+            return []\n         return Similar.get_map_data(self)\n \n     def reduce_map_data(self, linter, data):\n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 26.77253293991089,
+      "agent_timings": {
+        "locator": 2.0279061794281006,
+        "coder": 31.02619767189026,
+        "tester": 3.317108154296875,
+        "supervisor": 3.6041524410247803
+      },
+      "token_usage": {
+        "prompt_tokens": 9639,
+        "completion_tokens": 4002,
+        "total_tokens": 13641
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 2.0279061794281006
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2625,
+          "completion_tokens": 1212,
+          "total_tokens": 3837,
+          "latency_seconds": 6.269746541976929
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 4243,
+          "completion_tokens": 2109,
+          "total_tokens": 6352,
+          "latency_seconds": 31.02619767189026
+        },
+        {
+          "agent": "PatchCritic",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1089,
+          "completion_tokens": 521,
+          "total_tokens": 1610,
+          "latency_seconds": 2.398564338684082
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0,
+          "latency_seconds": 3.317108154296875
+        },
+        {
+          "agent": "Supervisor",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0,
+          "latency_seconds": 3.6041524410247803
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The `min-similarity-lines` option is passed directly to the `Similar` base class as `min_lines` and later used by `_compute_sims` without any special handling for the value 0. Consequently, a value of 0 is interpreted as \"report any similarity of at least 0 lines\", which matches every line and generates a flood of R0801 messages instead of disabling the check.",
+        "behavioral_contract": "The Similarity checker must report duplicate code blocks only when the configured `min-similarity-lines` is a positive integer N, meaning that only blocks of N or more lines are considered duplicates. If the configuration value is 0 (or any non\u2011positive value), the checker must be effectively disabled: it must not emit R0801 messages, must not affect statistics, and must not perform the expensive similarity computation.",
+        "expected_behavior": "When a user sets `min-similarity-lines = 0` in the pylint configuration, the checker should skip all similarity analysis and produce no R0801 messages, leaving the rest of pylint's output unchanged.",
+        "current_behavior": "With `min-similarity-lines = 0`, the checker treats every line as a duplicate, resulting in a large number of R0801 messages for essentially all code lines, contrary to the expectation that the check is disabled.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.__init__",
+          "SimilarChecker.set_option",
+          "SimilarChecker.open",
+          "SimilarChecker.process_module",
+          "SimilarChecker.close",
+          "SimilarChecker._compute_sims (inherited from Similar)",
+          "Similar.min_lines"
+        ],
+        "relevant_tests": [
+          "tests/checkers/test_similar.py",
+          "tests/checkers/test_duplicate_code.py",
+          "tests/functional/test_similar_checker.py"
+        ],
+        "required_change": "Introduce a guard that treats a non\u2011positive `min-similarity-lines` as a disable flag. For example, in `SimilarChecker.__init__` and `set_option`, store a boolean `self.disabled = self.config.min_similarity_lines <= 0`. In `close` (and any map\u2011reduce path), return early without calling `_compute_sims` when `self.disabled` is True, and ensure that statistics are left at zero. Optionally, adjust the `Similar` base class to ignore a `min_lines` of 0, but the simplest fix is to short\u2011circuit in `SimilarChecker`.",
+        "regression_risks": [
+          "If the early\u2011exit is only added in `close`, map\u2011reduce workers may still perform the heavy similarity computation, wasting resources. The fix should also bypass map\u2011reduce data collection when disabled.",
+          "Existing code that relies on the statistics `nb_duplicated_lines` and `percent_duplicated_lines` may now see them remain at their default zero values; ensure this is acceptable and documented.",
+          "Future changes that expect `self.min_lines` to always be a positive integer may need to handle the new disabled state; adding a boolean flag mitigates this risk.",
+          "Negative values for `min-similarity-lines` (unlikely but possible) should also be treated as disabled to avoid unexpected behavior."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": {
+        "approved": true,
+        "risk_level": "LOW",
+        "concerns": [
+          "The use of `getattr(self, 'disabled', False)` in `close` and `get_map_data` suggests that `disabled` might not be initialized in all code paths (e.g., if `__init__` is not called or if the object is unpickled in a way that skips `__init__`). However, since `__init__` is the standard entry point and `set_option` is called during configuration, this is a minor defensive coding choice rather than a bug.",
+          "The patch modifies `set_option` to update `self.disabled`. If `min-similarity-lines` is changed dynamically during runtime (unlikely but possible in some plugin scenarios), the state is correctly updated. However, if the option is set to 0 and then back to a positive number, the logic holds. If it's set to 0, `disabled` becomes True. If set to >0, `disabled` becomes False. This is correct.",
+          "The patch does not explicitly handle the case where `min_similarity_lines` is negative. The condition `<= 0` covers this, which is good, as negative values should also disable the check or be treated as invalid/disabled."
+        ],
+        "recommended_changes": [
+          "Consider initializing `self.disabled` in `__init__` based on the initial config value, which the patch does. This is good.",
+          "Ensure that `self.disabled` is also updated if the configuration is loaded in a way that bypasses `set_option` (though standard pylint behavior usually routes through `set_option` or `__init__`)."
+        ],
+        "reasoning": "The patch correctly addresses the issue by introducing a `disabled` flag that is set to `True` when `min_similarity_lines` is less than or equal to 0. It updates this flag in both `__init__` and `set_option` to ensure it reflects the current configuration. The `close` method, which is responsible for reporting similarities, now returns early if the checker is disabled, preventing the flood of R0801 messages. The `get_map_data` method also returns an empty list if disabled, which is appropriate for parallel processing contexts. The use of `getattr` is a safe defensive measure. The logic aligns with the desired behavior of disabling the check when the threshold is 0."
+      },
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on output tokens per minute (OTPM): Limit 1000, Requested 1004. The request's expected output tokens exceed the enforced limit; reduce max_tokens (or the request's expected output) and try again. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\", 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+      "tester_error_code": "TESTER_RATE_LIMITED",
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_error": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198449, Requested 2234. Please try again in 4m55.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+      "supervisor_error_code": "SUPERVISOR_RATE_LIMITED"
+    }
+  ],
+  "candidate_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -793,6 +793,7 @@\n             ignore_signatures=self.config.ignore_signatures,\n         )\n         self.stats = None\n+        self.disabled = self.config.min_similarity_lines <= 0\n \n     def set_option(self, optname, value, action=None, optdict=None):\n         \"\"\"method called to set an option (registered in the options list)\n@@ -802,6 +803,7 @@\n         BaseChecker.set_option(self, optname, value, action, optdict)\n         if optname == \"min-similarity-lines\":\n             self.min_lines = self.config.min_similarity_lines\n+            self.disabled = self.config.min_similarity_lines <= 0\n         elif optname == \"ignore-comments\":\n             self.ignore_comments = self.config.ignore_comments\n         elif optname == \"ignore-docstrings\":\n@@ -830,6 +832,8 @@\n \n     def close(self):\n         \"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"\n+        if getattr(self, \"disabled\", False):\n+            return\n         total = sum(len(lineset) for lineset in self.linesets)\n         duplicated = 0\n         stats = self.stats\n@@ -851,6 +855,8 @@\n \n     def get_map_data(self):\n         \"\"\"Passthru override\"\"\"\n+        if getattr(self, \"disabled\", False):\n+            return []\n         return Similar.get_map_data(self)\n \n     def reduce_map_data(self, linter, data):\n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\fair_pilot\\pylint-dev__pylint-4970__full_ddiv\\pylint-dev__pylint-4970__full_ddiv.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 107.05,
+    "input_tokens": 9639,
+    "output_tokens": 4002,
+    "total_tokens": 13641,
+    "inference_calls": 6,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 2.0279061794281006,
+      "coder": 31.02619767189026,
+      "tester": 3.317108154296875,
+      "supervisor": 3.6041524410247803
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 2.0279061794281006
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2625,
+        "completion_tokens": 1212,
+        "total_tokens": 3837,
+        "latency_seconds": 6.269746541976929
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 4243,
+        "completion_tokens": 2109,
+        "total_tokens": 6352,
+        "latency_seconds": 31.02619767189026
+      },
+      {
+        "agent": "PatchCritic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1089,
+        "completion_tokens": 521,
+        "total_tokens": 1610,
+        "latency_seconds": 2.398564338684082
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "latency_seconds": 3.317108154296875
+      },
+      {
+        "agent": "Supervisor",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "latency_seconds": 3.6041524410247803
+      }
+    ],
+    "context_characters": 7591,
+    "critic_approved": true,
+    "critic_risk_level": "LOW",
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+    "duration_seconds": 26.77,
+    "all_f2p_passed": false,
+    "all_p2p_passed": true,
+    "internal_resolved": false,
+    "fail_to_pass_results": {
+      "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero": false
+    },
+    "pass_to_pass_results": {
+      "tests/checkers/unittest_similar.py::test_ignore_comments": true,
+      "tests/checkers/unittest_similar.py::test_ignore_docstrings": true,
+      "tests/checkers/unittest_similar.py::test_ignore_imports": true,
+      "tests/checkers/unittest_similar.py::test_multiline_imports": true,
+      "tests/checkers/unittest_similar.py::test_ignore_multiline_imports": true,
+      "tests/checkers/unittest_similar.py::test_ignore_signatures_fail": true,
+      "tests/checkers/unittest_similar.py::test_ignore_signatures_pass": true,
+      "tests/checkers/unittest_similar.py::test_ignore_signatures_class_methods_fail": true,
+      "tests/checkers/unittest_similar.py::test_ignore_signatures_class_methods_pass": true,
+      "tests/checkers/unittest_similar.py::test_ignore_signatures_empty_functions_fail": true
+    }
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": {
+    "Locator": 0.87,
+    "Coder": 0.74,
+    "Tester": 0.91,
+    "Supervisor": 0.84
+  },
+  "execution_duration_seconds": 107.05,
+  "worker_pid": 18188,
+  "worker_exit_code": 3,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\fair_pilot_v22\\logs\\pylint-dev__pylint-4970__full_ddiv.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\fair_pilot\\pylint-dev__pylint-4970__full_ddiv",
+  "error_message": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198449, Requested 2234. Please try again in 4m55.056s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+  "started_at": "2026-10-12T20:56:55.552167+00:00",
+  "completed_at": "2026-10-12T20:58:42.602700+00:00"
+}

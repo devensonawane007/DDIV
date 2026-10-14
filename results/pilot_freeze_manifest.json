@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-10-13T02:40:00Z",
+  "artifacts": {
+    "results/demo_reproduction/full_ddiv.patch": {
+      "sha256": "1A926367A34E419A58087A097A7629976F984834B05EF27E0C9D35CC88B8F3B3",
+      "size_bytes": 321
+    },
+    "results/demo_reproduction/full_ddiv_result.json": {
+      "sha256": "3CE698A50AE9645F220DD8BA9231EC435E60CB50637E4352495BB708A6237B75",
+      "size_bytes": 13180
+    },
+    "results/demo_reproduction/full_ddiv_model_invocations.json": {
+      "sha256": "3A4AD090EF777A92FEC1E62CAC88187676B7BF7E3795EE116013EC598DA3E22F",
+      "size_bytes": 1141
+    },
+    "results/fair_comparison_pylint6903/baseline_result.json": {
+      "sha256": "12023495678AEC4736B91AFF0E1947141E87ECC8509ACE8DA17F7EC0F333C359",
+      "size_bytes": 7651
+    },
+    "results/fair_comparison_pylint6903/retry_only.patch": {
+      "sha256": "486D9E233EBC3FA8BAB120F4DF8B5DA53529452057DE471FDA328BEB822ABD6D",
+      "size_bytes": 430
+    },
+    "results/fair_comparison_pylint6903/retry_only_result.json": {
+      "sha256": "1B448357523D87838A3C45377022DF95FF3EC07462AE241EEF6412FEEE3800ED",
+      "size_bytes": 13707
+    },
+    "results/fair_comparison_pylint6903/full_ddiv.patch": {
+      "sha256": "1A926367A34E419A58087A097A7629976F984834B05EF27E0C9D35CC88B8F3B3",
+      "size_bytes": 321
+    },
+    "results/fair_comparison_pylint6903/full_ddiv_result.json": {
+      "sha256": "3CE698A50AE9645F220DD8BA9231EC435E60CB50637E4352495BB708A6237B75",
+      "size_bytes": 13180
+    },
+    "results/fair_pilot_v22/pilot_summary.json": {
+      "sha256": "5A935594D9049534AF03C79329C9E4CDCF415EDC3ECBFE9CFDB2507A826AD518",
+      "size_bytes": 9596
+    },
+    "results/fair_pilot_report.md": {
+      "sha256": "66A7307DF8897701FDEDD4EDC913757070C7D404AED68488F8B6D269FC836397",
+      "size_bytes": 4333
+    },
+    "results/fair_pilot_comparison.csv": {
+      "sha256": "B9156F25A3C9DA26A4639359374913DCFFF23EEA15EB7F0B80E06597CEC90960",
+      "size_bytes": 2242
+    },
+    "scripts/demo_patch_builder.py": {
+      "sha256": "41FA31023FBAD9E20E1020932B6B66119D175A069DF0DB5AE9A021B2C6F5319D",
+      "size_bytes": 13842
+    },
+    "scripts/run_fair_pilot.py": {
+      "sha256": "748B431B6C76CB3D6A1B3BBAD6C4B96381C063D5F9672AFF3ADFB4283FD3EF6E",
+      "size_bytes": 10941
+    },
+    "scripts/aggregate_fair_pilot_report.py": {
+      "sha256": "D54FE49012FAFF46FC135B172F187E84933A693AA02ABE786A78C1C9728E3AD8",
+      "size_bytes": 8175
+    },
+    "tests/test_demo_patch_builder.py": {
+      "sha256": "853015DA885676045BBCFAB2000A0A604FC3D0CD750FD2A1C66620A0D79F120A",
+      "size_bytes": 3160
+    }
+  }
+}

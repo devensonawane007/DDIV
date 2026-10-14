@@ -1,0 +1,81 @@
+{
+  "manifest_version": "1.1",
+  "timestamp": "2026-10-13T01:44:00Z",
+  "task_id": "pylint-dev__pylint-6903",
+  "repo": "pylint-dev/pylint",
+  "base_commit": "ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6",
+  "status": "FROZEN_VERIFIED",
+  "tier1_verdict": "RESOLVED_INTERNALLY",
+  "artifacts": {
+    "baseline.patch": {
+      "size_bytes": 506,
+      "sha256": "2be06d3ccfe2251bbef5ef313cf097fa19f3ba34ab7e3e5d66157511e1254a1a",
+      "path": "results/demo_run/baseline.patch"
+    },
+    "baseline_model_invocations.json": {
+      "size_bytes": 680,
+      "sha256": "cebd7db878a10675190171853bfb33acba4f5f686dd08d05c6eaf652f11480cf",
+      "path": "results/demo_run/baseline_model_invocations.json"
+    },
+    "baseline_result.json": {
+      "size_bytes": 10790,
+      "sha256": "8ccae63749c61c0cc79dde288d6c71212bb77a6a39687ba64e579121f267df15",
+      "path": "results/demo_run/baseline_result.json"
+    },
+    "ddiv.patch": {
+      "size_bytes": 343,
+      "sha256": "5ce4fee1ee552e24175b99f777432cc2ccedab81774813f0d06e68ab74230c27",
+      "path": "results/demo_run/ddiv.patch"
+    },
+    "ddiv_model_invocations.json": {
+      "size_bytes": 1143,
+      "sha256": "763e18f05aca1ca8a5ea4bbe3616ce41ae40a5c7eaea9844f82bd24bed7580d7",
+      "path": "results/demo_run/ddiv_model_invocations.json"
+    },
+    "ddiv_result.json": {
+      "size_bytes": 12987,
+      "sha256": "8bd4e08227f23269cad94ba6a0060bde0eebced843ee44f1a8fd96551001ce9e",
+      "path": "results/demo_run/ddiv_result.json"
+    },
+    "full_ddiv.patch": {
+      "size_bytes": 343,
+      "sha256": "5ce4fee1ee552e24175b99f777432cc2ccedab81774813f0d06e68ab74230c27",
+      "path": "results/demo_run/full_ddiv.patch"
+    },
+    "full_ddiv_model_invocations.json": {
+      "size_bytes": 1143,
+      "sha256": "763e18f05aca1ca8a5ea4bbe3616ce41ae40a5c7eaea9844f82bd24bed7580d7",
+      "path": "results/demo_run/full_ddiv_model_invocations.json"
+    },
+    "full_ddiv_result.json": {
+      "size_bytes": 12987,
+      "sha256": "8bd4e08227f23269cad94ba6a0060bde0eebced843ee44f1a8fd96551001ce9e",
+      "path": "results/demo_run/full_ddiv_result.json"
+    },
+    "retry.patch": {
+      "size_bytes": 391,
+      "sha256": "5316c5c845c2fbefb1dc92a43589e1babd9d38dc117eac8c283ce62e16db63a1",
+      "path": "results/demo_run/retry.patch"
+    },
+    "retry_model_invocations.json": {
+      "size_bytes": 2037,
+      "sha256": "d52e5b25224a8ed0933adfad66290ecd840d4ff7b03b8350de1291b30037904c",
+      "path": "results/demo_run/retry_model_invocations.json"
+    },
+    "retry_result.json": {
+      "size_bytes": 24093,
+      "sha256": "866f54733bfff73e419e92a44239a631681a3183d9b863c2c21fe90ebd056e88",
+      "path": "results/demo_run/retry_result.json"
+    },
+    "tier1_test_execution.log": {
+      "size_bytes": 1720,
+      "sha256": "4f97eb7f4d37595cb7711fb9f8ec14c4033605cc5da9984bc32de7699692d388",
+      "path": "results/demo_run/tier1_test_execution.log"
+    },
+    "token_latency_summary.json": {
+      "size_bytes": 1607,
+      "sha256": "3f253961c0fa2ef77ca367ce29bfd4dc108b0e3f629094d3915ff4fdf9203756",
+      "path": "results/demo_run/token_latency_summary.json"
+    }
+  }
+}

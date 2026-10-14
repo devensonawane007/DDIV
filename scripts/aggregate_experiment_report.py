@@ -39,24 +39,25 @@ def load_records_from_paths(paths: List[str]) -> List[Dict[str, Any]]:
             for item in expanded:
                 path_obj = Path(item)
                 if path_obj.is_file() and path_obj.suffix == ".json":
-                    if path_obj.name not in ("manifest.json", "summary.json"):
+                    if path_obj.name not in ("manifest.json", "summary.json") and "history" not in path_obj.parts:
                         found_files.append(path_obj)
                 elif path_obj.is_dir():
                     for json_f in path_obj.glob("**/*.json"):
-                        if json_f.name not in ("manifest.json", "summary.json"):
+                        if json_f.name not in ("manifest.json", "summary.json") and "history" not in json_f.parts:
                             found_files.append(json_f)
         else:
             path_obj = Path(p)
             if path_obj.is_file() and path_obj.suffix == ".json":
-                found_files.append(path_obj)
+                if path_obj.name not in ("manifest.json", "summary.json") and "history" not in path_obj.parts:
+                    found_files.append(path_obj)
             elif path_obj.is_dir():
                 for json_f in path_obj.glob("**/*.json"):
-                    if json_f.name not in ("manifest.json", "summary.json"):
+                    if json_f.name not in ("manifest.json", "summary.json") and "history" not in json_f.parts:
                         found_files.append(json_f)
 
     # Deduplicate paths
     unique_files = sorted(set(found_files))
-    records: List[Dict[str, Any]] = []
+    records_by_key: Dict[Tuple[str, str], Dict[str, Any]] = {}
 
     for f in unique_files:
         try:
@@ -73,11 +74,27 @@ def load_records_from_paths(paths: List[str]) -> List[Dict[str, Any]]:
                     tfd = compute_task_failure_detection(data)
                     if tfd:
                         data["failure_detection"] = tfd.model_dump()
-                records.append(data)
-        except Exception:
+
+                key = (str(data.get("task_id", "")), str(data.get("condition", "")).lower())
+                if key in records_by_key:
+                    prev_f = records_by_key[key].get("_source_file", "unknown")
+                    prev_time = records_by_key[key].get("completed_at") or ""
+                    curr_time = data.get("completed_at") or ""
+                    print(
+                        f"   [!] WARNING: Duplicate record for {key[0]} [{key[1]}]. "
+                        f"Existing: '{prev_f}', Duplicate: '{f}'. "
+                        f"Resolving by keeping most recent based on completed_at.",
+                        file=sys.stderr,
+                    )
+                    if curr_time >= prev_time:
+                        records_by_key[key] = data
+                else:
+                    records_by_key[key] = data
+        except Exception as err:
+            print(f"   [!] WARNING: Malformed or unreadable record at {f}: {err}", file=sys.stderr)
             continue
 
-    return records
+    return list(records_by_key.values())
 
 
 def group_records_by_condition(records: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
@@ -177,9 +194,13 @@ def generate_task_breakdown_table(records: List[Dict[str, Any]]) -> str:
     headers = [
         "Task ID",
         "Condition",
+        "Status",
+        "Degraded",
         "Attempts",
         "Resolved",
-        "Pass@1",
+        "Workflow Done",
+        "Patch Gen",
+        "Patch App",
         "Duration (s)",
         "Tokens",
         "Calls",
@@ -190,9 +211,13 @@ def generate_task_breakdown_table(records: List[Dict[str, Any]]) -> str:
     for r in sorted(records, key=lambda x: (x.get("task_id", ""), str(x.get("condition", "")))):
         task_id = str(r.get("task_id", ""))
         cond = str(r.get("condition", "")).upper()
+        status = str(r.get("status", "UNKNOWN"))
+        degraded = "YES" if r.get("degraded_execution") else "NO"
         attempts = str(r.get("attempts", 1))
         resolved = "YES" if r.get("resolved") else "NO"
-        pass_at_1 = "YES" if r.get("pass_at_1") else "NO"
+        wf_done = "YES" if r.get("workflow_completed") else ("NO" if r.get("workflow_completed") is not None else "-")
+        patch_gen = "YES" if r.get("patch_generated") else ("NO" if r.get("patch_generated") is not None else "-")
+        patch_app = "YES" if r.get("patch_applied") else ("NO" if r.get("patch_applied") is not None else "-")
         dur = f"{float(r.get('execution_duration_seconds', 0.0) or 0.0):.1f}"
 
         m = r.get("metrics") or {}
@@ -203,7 +228,7 @@ def generate_task_breakdown_table(records: List[Dict[str, Any]]) -> str:
         pred_f = str(fd.get("predicted_category") or "-")
         act_f = str(fd.get("actual_category") or "-")
 
-        rows.append([task_id, cond, attempts, resolved, pass_at_1, dur, tokens, calls, pred_f, act_f])
+        rows.append([task_id, cond, status, degraded, attempts, resolved, wf_done, patch_gen, patch_app, dur, tokens, calls, pred_f, act_f])
 
     col_widths = [max(len(str(item)) for item in col) for col in zip(headers, *rows)]
     header_line = " | ".join(f"{h:<{w}}" for h, w in zip(headers, col_widths))

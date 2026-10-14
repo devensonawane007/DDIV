@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 import time
 from pathlib import Path
+
+# Ensure child worker subprocesses default to UTF-8 standard streams on Windows
+os.environ.setdefault("PYTHONIOENCODING", "utf-8")
 
 # Add project root to sys.path for direct CLI invocation
 project_root = str(Path(__file__).resolve().parent.parent)

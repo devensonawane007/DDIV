@@ -1,38 +1,34 @@
 # DDIV: Detect → Diagnose → Intervene → Verify
 
-**A Multi-Agent Software Repair Framework with Explicit Failure Diagnosis, Targeted Recovery, Memory, and Dynamic Trust Management.**
+**A Multi-Agent Software Repair Framework with Explicit Failure Diagnosis, Targeted Recovery, Persistent Execution Memory, Dynamic Trust Management, and Quota-Free Local Coder Inference.**
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version: v2.2](https://img.shields.io/badge/DDIV-v2.2--frozen-green.svg)]()
+[![Tests: 100% Passed](https://img.shields.io/badge/tests-passed-brightgreen.svg)]()
 
 ---
 
 ## 1. Overview & Research Motivation
 
-Autonomous Large Language Model (LLM) agents have demonstrated substantial promise in software engineering benchmarks such as SWE-bench. However, conventional multi-agent workflows frequently suffer from cascading errors: an early fault localization mistake or a hallucinated API can propagate through downstream code generation and test stages, leading to wasted iterations, compounding misconceptions, or repetitive looping.
+Autonomous Large Language Model (LLM) agents demonstrate substantial promise in software engineering benchmarks such as SWE-bench. However, conventional multi-agent repair workflows suffer from compounding misconceptions: an early fault localization mistake or a hallucinated API can propagate through downstream code generation and test stages, leading to wasted attempts or repetitive patch cycles.
 
 **DDIV** investigates the hypothesis that a multi-agent repair workflow augmented with:
-1. **Multi-source Failure Detection** (deterministic rules + model analysis)
+1. **Multi-Source Failure Detection** (deterministic static rules + model analysis)
 2. **Explicit Failure Diagnosis** across a standardized 4-class taxonomy ($F1 - F4$)
-3. **Targeted Interventions** ($A1 - A4$) rather than random blind retries
-4. **Persistent Execution Memory** (recording historical failure patterns and successful recoveries)
-5. **Dynamic Trust Management** (evidence-based reliability tracking per agent)
+3. **Targeted Closed-Loop Interventions** ($A1 - A4$) rather than blind retries
+4. **Anti-Repetition Tracking** (`ProposalHistory`) generating hard negative prompt constraints
+5. **Empirical Failure Disambiguation** (`FailureDisambiguator`) to prevent unhelpful blame shifting
+6. **Persistent Execution Memory** (recording historical failure patterns and successful recoveries)
+7. **Dynamic Trust Management** (evidence-based reliability tracking per agent)
 
-achieves significantly higher resolution rates and repair efficiency than a conventional baseline multi-agent system operating with the **exact same underlying pretrained LLMs**.
-
----
-
-## 2. Core Research Principle: Controlled Model Allocation
-
-To ensure valid scientific attribution, **the baseline and DDIV experimental pipelines utilize the exact same underlying models**:
-
-| Agent Role | Model Architecture | Primary Responsibility | Input Context | Output Schema |
-| :--- | :--- | :--- | :--- | :--- |
-| **Agent 1: Locator** | `Qwen2.5-Coder-7B-Instruct` | Fault localization | Issue, repo structure, memory | `relevant_files`, `relevant_symbols`, `reasoning_summary`, `confidence` |
-| **Agent 2: Coder** | `Devstral Small 24B` | Patch synthesis (unified diff) | Issue, locator output, code, recovery directive | `patch`, `modified_files`, `reasoning_summary`, `confidence` |
-| **Agent 3: Tester** | `DeepSeek-Coder-V2` | Test review & regression analysis | Issue, candidate patch, code, tests | `assessment`, `suspected_failures`, `recommended_tests`, `confidence` |
-| **Agent 4: Supervisor** | `Qwen3-Coder` | Workflow supervision & recovery | Traces, test results, trust scores, memory | `should_retry`, `detected_failure`, `diagnosis`, `recovery_strategy`, `intervention_instructions` |
+achieves significantly higher resolution rates and repair efficiency than conventional baseline or blind-retry multi-agent systems operating with the **exact same underlying models and test budgets**.
 
 ---
 
-## 3. System Architecture
+## 2. DDIV v2.2 Architecture & Infrastructure
+
+DDIV v2.2 introduces local Ollama integration for the Coder agent, eliminating cloud token quota bottlenecks while preserving fair multi-agent routing.
 
 ```mermaid
 graph TD
@@ -40,229 +36,252 @@ graph TD
         Task["SWE-bench Task / Issue"]
     end
 
-    subgraph "Core 4 Agents"
-        Locator["Agent 1: Locator<br/>(Qwen2.5-Coder-7B)"]
-        Coder["Agent 2: Coder<br/>(Devstral Small 24B)"]
-        Tester["Agent 3: Tester<br/>(DeepSeek-Coder-V2)"]
-        Supervisor["Agent 4: Recovery Supervisor<br/>(Qwen3-Coder)"]
+    subgraph "Agent Allocation (v2.2)"
+        Locator["Agent 1: Locator<br/>(Gemini-3.1-Flash-Lite via Google GenAI)"]
+        Coder["Agent 2: Coder<br/>(Qwen2.5-Coder-7B via Local Ollama)"]
+        RCA["Agent 3a: TestUnderstanding / RCA<br/>(Qwen3.8-27B via Groq)"]
+        Critic["Agent 3b: PatchCritic<br/>(Qwen3.8-27B via Groq)"]
+        Tester["Agent 3c: Tester<br/>(Qwen3.8-27B via Groq)"]
+        Supervisor["Agent 4: Supervisor<br/>(Qwen3.8-27B via Groq)"]
     end
 
-    subgraph "Safe Execution & Verification"
-        Workspace["Isolated Task Workspace & Patch Manager"]
-        Runner["SWE-bench Test Runner"]
+    subgraph "Execution & Evaluation"
+        Workspace["Isolated Task Workspace<br/>(Pristine Git Sandbox)"]
+        PatchBuilder["DemoPatchBuilder<br/>(Block Indentation + AST Syntax Verification)"]
+        Runner["Two-Tier Evaluator<br/>(Internal SWE-bench Runner)"]
     end
 
-    subgraph "DDIV Engine"
-        Detector["Multi-Source Failure Detector"]
-        Diagnoser["Diagnosis Engine"]
-        Strategist["Targeted Recovery Selector (A1-A4)"]
-        Memory["SQLite Memory Store & Evidence Retrieval"]
+    subgraph "DDIV v2.2 Supervision & Recovery Engine"
+        Detector["FailureDetector<br/>(Granular Failure Type)"]
+        Disambiguator["FailureDisambiguator<br/>(Syntax vs Anchor vs File vs Regression)"]
+        History["ProposalHistory<br/>(Anti-Repetition & Negative Constraints)"]
+        Memory["SQLite Memory Store & Retrieval"]
         Trust["Dynamic Trust Ledger"]
     end
 
     Task --> Locator
     Locator --> Coder
-    Coder --> Workspace
-    Workspace --> Tester
-    Tester --> Runner
+    Coder --> PatchBuilder
+    PatchBuilder --> Workspace
+    Workspace --> Runner
     
     Runner --> Detector
-    Detector --> Diagnoser
-    Diagnoser --> Supervisor
-    Supervisor --> Strategist
-    Strategist --> Memory
-    Strategist --> Trust
-    Strategist -->|A1: Relocalize| Locator
-    Strategist -->|A2/A3/A4: Repair Patch| Coder
+    Detector --> Disambiguator
+    Disambiguator --> Supervisor
+    History --> Supervisor
+    Supervisor -->|Negative Constraints| Coder
+    Supervisor -->|Locator Guidance| Locator
     Trust -.->|Decision Support| Supervisor
+    Memory -.->|Context| Coder
 ```
 
----
+### Agent Roles & Model Routing
 
-## 4. Failure Taxonomy & Targeted Interventions
-
-DDIV defines an explicit, fixed four-class failure taxonomy ($F1 - F4$) coupled directly with targeted recovery strategies ($A1 - A4$):
-
-### Failure Taxonomy
-- **F1 — Localization Failure**: The system modified the wrong file, class, function, or symbol. Identified deterministically when modified files are disjoint from localized files or issue scope.
-- **F2 — Code / Reasoning Failure**: The correct code area was targeted, but the patch contains algorithmic errors, hallucinated APIs, or misses edge cases. Identified when patch applies cleanly but tests fail with assertion errors or regressions.
-- **F3 — Tool / Patch / Execution Failure**: Execution infrastructure or formatting failure. Identified when git patch fails validation, hunk headers are rejected, syntax errors occur, or commands time out.
-- **F4 — Coordination / Strategy Failure**: The agents converge on an ineffective strategy, thrash, or repeatedly propose identical patches across attempts.
-
-### Targeted Recovery Strategies
-- **A1 — Localization Recovery** (for $F1$): Broaden search, inspect caller/callee trees and neighboring symbols; re-run Locator with explicit failure context.
-- **A2 — Code / Reasoning Recovery** (for $F2$): Provide exact test assertion trace and failed lines to Coder; request alternative algorithmic design or edge-case handling.
-- **A3 — Execution Recovery** (for $F3$): Clean unified diff headers, fix formatting, strip markdown wrappers, and re-attempt patch application.
-- **A4 — Strategy / Coordination Recovery** (for $F4$): Ban previous patch proposals, inject prior failed attempts as anti-examples, reset reasoning paths, and consult memory.
+| Agent Role | Model Architecture | Provider / Runtime | Primary Responsibility | Output Schema |
+| :--- | :--- | :--- | :--- | :--- |
+| **Locator** | `gemini-3.1-flash-lite` | Google GenAI API | Fault localization in repo files | `relevant_files`, `relevant_symbols`, `reasoning_summary` |
+| **Coder** | `qwen2.5-coder:7b` | Local Ollama (`:11434`) | Patch synthesis (modifications or unified diff) | `modifications`, `patch`, `modified_files` |
+| **TestUnderstanding (RCA)** | `qwen/qwen3.8-27b` | Groq API | Root-cause analysis & behavioral contracts | `root_cause`, `behavioral_contract`, `required_change` |
+| **PatchCritic** | `qwen/qwen3.8-27b` | Groq API | Non-blocking pre-test advisory | `approved`, `risk_level`, `reasoning` |
+| **Tester** | `qwen/qwen3.8-27b` | Groq API | Test review & regression suspicion | `assessment`, `suspected_failures`, `recommended_tests` |
+| **Supervisor** | `qwen/qwen3.8-27b` | Groq API | Closed-loop diagnosis & targeted recovery | `should_retry`, `detected_failure`, `recovery_strategy`, `avoid_previous_mistake` |
 
 ---
 
-## 5. Dynamic Trust Ledger
+## 3. Key v2.2 Recovery Enhancements
 
-The Trust Ledger (`memory/trust_ledger.py`) maintains an auditable reliability score $T \in [0.0, 1.0]$ for each agent.
+### 3.1 Local Ollama Coder with Zero Cloud Fallback
+- Local inference at `http://localhost:11434/api/generate` enables quota-free experimentation.
+- **Strict isolation guarantee**: When `DDIV_CODER_PROVIDER=ollama`, connection or generation errors immediately halt the run with explicit error codes (`CODER_CONNECTION_REFUSED`, `CODER_TIMEOUT`, `CODER_MODEL_NOT_FOUND`). Under no circumstances is silent fallback to cloud APIs permitted.
 
-Initial default priors:
-- **Locator**: $0.87$
-- **Coder**: $0.74$
-- **Tester**: $0.91$
-- **Supervisor**: $0.84$
+### 3.2 Block-Aware Indentation Normalizer & AST Verification (`DemoPatchBuilder`)
+- Patches built from structured `CodeModification` objects (`path`, `operation`, `anchor`, `code`, `reason`) automatically calculate indentation:
+  - Inside function/class header blocks (`def ...:`, `class ...:`): indents inserted code to `anchor_indent + 4 spaces`.
+  - Under existing statements: matches the statement's indentation level.
+- Verifies Python AST syntax before emitting unified diffs.
+- Safely resolves placeholder paths (e.g., `path/to/run.py` resolves if and only if `run.py` uniquely exists in the repository).
 
-### Update Mechanism:
-$$T_{next} = \text{clip}\left(T_{current} + \Delta_{success} \cdot w - \Delta_{failure} \cdot w,\; 0.0,\; 1.0\right)$$
+### 3.3 Anti-Repetition Recovery (`ProposalHistory`)
+- Records normalized keys of all previous proposals per task.
+- When an attempt fails, `ProposalHistory` synthesizes hard negative prompt constraints:
+  ```
+  CRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:
+  - Attempt 1: Modified 'src/flask/blueprints.py' (op: replace) at anchor 'root_path=root_path,'. Result: [UNRESOLVED_ATTEMPT]. You MUST NOT generate this identical modification again.
+  ```
+- Injected directly into the next Coder prompt via `avoid_previous_mistake`.
+- Detects circular repeat proposals and triggers `REPEATED_PATCH_CYCLE` recovery.
 
-- **Decision-Support Principle**: Trust scores inform supervisor prioritization and confidence weighting, but **objective test/harness results always take absolute precedence**. Trust never overrides empirical test failures.
+### 3.4 Failure Disambiguation & Accurate Reporting (`FailureDisambiguator`)
+- Cleanly separates:
+  - `SYNTAX_ERROR_INDENTATION`: Python AST syntax or indent failure.
+  - `TARGET_FILE_NOT_FOUND`: Specified file absent from workspace.
+  - `ANCHOR_NOT_FOUND` / `ANCHOR_AMBIGUOUS`: Anchor matching issues.
+  - `REPEATED_PATCH_CYCLE`: Byte-for-byte or whitespace-equivalent proposal repetition.
+  - `P2P_REGRESSION`: Existing passing tests broken by patch.
+  - `F2P_FAILURE`: Reproduction tests not satisfied.
+- **Reporting ground truth**: Distinguishes unexecuted tests after patch application failure from 0-test denominators, formatting results as `0/N (Not Run - Apply Failed)` instead of `0/0`.
 
 ---
 
-## 6. Execution Modes & Comparative Experiment Conditions
+## 4. Experimental Conditions (1:1 Controlled Evaluation)
 
-DDIV supports rigorous comparative evaluation across three standardized conditions:
+DDIV enforces strict condition isolation across three standardized regimes:
 
 1. **`BASELINE`** (`max_attempts = 1`):
    - Single-pass feedforward execution (`Locator` → `Coder` → `Tester` → `Verify`).
-   - Supervisor: DISABLED.
-   - Memory: DISABLED.
-   - Trust: DISABLED.
-   - Represents standard single-turn LLM code repair baselines.
+   - Supervisor, RCA, Critic, Memory, Trust, and Anti-Repetition: **DISABLED**.
+   - Serves as the single-turn benchmark baseline.
 
 2. **`RETRY_ONLY`** (`max_attempts = 3`):
-   - True blind multi-attempt retry condition from a clean attempt state.
-   - Supervisor: DISABLED.
-   - Failure Diagnosis ($F1 - F4$): DISABLED.
-   - Targeted Interventions ($A1 - A4$): DISABLED.
-   - Memory Store: DISABLED.
-   - Dynamic Trust Ledger: DISABLED.
-   - After a failed attempt, workspaces are cleanly reverted to base commit and the exact same repair workflow is rerun without supervisor feedback or memory guidance, subject to identical task, model, tool, token, temperature, and timeout budgets.
+   - Blind multi-attempt retry from a clean attempt state.
+   - Workspaces cleanly reverted to pristine git base commit before each attempt.
+   - Supervisor, Diagnosis, RCA, Memory, Trust, and Anti-Repetition: **DISABLED**.
+   - Reruns the exact same repair workflow with identical budgets, testing whether extra attempts alone account for performance gains.
 
 3. **`FULL_DDIV`** (`max_attempts = 3`):
-   - Multi-attempt repair with full DDIV closed-loop supervision.
-   - Supervisor: ENABLED.
-   - Failure Diagnosis ($F1 - F4$): ENABLED.
-   - Targeted Interventions ($A1 - A4$): ENABLED.
-   - Memory Store: ENABLED (SQLite episodic store).
-   - Dynamic Trust Ledger: ENABLED (dynamic reliability tracking).
+   - Multi-attempt repair with full closed-loop supervision.
+   - Supervisor, RCA, Critic, Memory, Trust, Anti-Repetition, and Failure Disambiguation: **ENABLED**.
+   - Uses `V22SupervisedWorker` with guaranteed `try...finally` method restoration.
 
 ---
 
-## 7. Project Structure
+## 5. Repository Structure
 
 ```
 DDIV/
-├── agents/
-│   ├── base.py            # Base agent with Pydantic schemas & telemetry
-│   ├── locator.py         # Agent 1: Fault localization
-│   ├── coder.py           # Agent 2: Unified diff synthesis
-│   ├── tester.py          # Agent 3: Test review & regression analysis
-│   └── supervisor.py      # Agent 4: Supervision, classification & recovery
-├── models/
-│   ├── base.py            # Abstract ModelProvider & config schemas
-│   ├── providers.py       # OpenAI-compatible & deterministic Mock providers
-│   └── registry.py        # Model registry & provider factory
-├── core/
-│   ├── config.py          # Environment settings & experiment flags
-│   ├── state.py           # RunState and AttemptRecord serializable models
-│   ├── events.py          # Event types for state transitions
-│   └── orchestrator.py    # State machine managing Baseline & DDIV workflows
-├── memory/
-│   ├── schemas.py         # MemoryRecord and TrustEvent schemas
-│   ├── memory_store.py    # SQLite database for execution experience
-│   ├── retrieval.py       # Evidence-based query retriever
-│   └── trust_ledger.py    # Dynamic trust score management
-├── recovery/
-│   ├── failure_detector.py # Deterministic & heuristic failure detectors
-│   ├── diagnosis.py       # Synthesis of detector signals & LLM diagnosis
-│   └── strategies.py      # A1, A2, A3, A4 recovery action builders
-├── evaluation/
-│   ├── workspace.py       # Safe, isolated task workspaces
-│   ├── patch_manager.py   # Unified diff validation, apply & revert
-│   ├── command_runner.py  # Subprocess runner with timeout capture
-│   ├── swebench_loader.py # SWE-bench Verified dataset loader
-│   ├── swebench_runner.py # Verification runner & test result parser
-│   ├── benchmark.py       # Multi-task benchmark runner
-│   └── metrics.py         # Statistical metrics accumulator
-├── logging_system/
-│   └── trace_logger.py    # Structured JSONL logger & terminal summaries
-├── scripts/
-│   ├── run_task.py        # CLI to execute a single task
-│   ├── run_benchmark.py   # CLI to execute batch evaluations
-│   └── analyze_results.py # CLI to parse traces and generate tables
-├── tests/                 # Automated unit and integration test suite
-├── .env.example           # Example environment configuration
-├── requirements.txt       # Dependencies
-└── pyproject.toml         # Package definition
+├── agents/                     # [FROZEN v2.1] Core agent implementations
+│   ├── base.py                 # Agent schemas, metadata, and telemetry
+│   ├── locator.py              # Fault localization agent
+│   ├── coder.py                # Unified diff & modification synthesis
+│   ├── tester.py               # Test review agent
+│   └── supervisor.py           # Closed-loop supervision agent
+├── core/                       # Orchestration & execution framework
+│   ├── conditions.py           # ExperimentCondition enum (BASELINE, RETRY_ONLY, FULL_DDIV)
+│   ├── config.py               # Runtime configuration & provider routing
+│   ├── experiment_orchestrator.py # Multi-condition orchestrator
+│   ├── experiment_record.py    # Serializable experiment outcome records
+│   └── experiment_worker.py    # Worker executing end-to-end task runs
+├── evaluation/                 # [FROZEN v2.1] SWE-bench evaluation harness
+│   ├── command_runner.py       # Subprocess runner with timeout management
+│   ├── patch_builder.py        # Patch builder base contract
+│   ├── patch_manager.py        # Git apply, revert, and validation
+│   ├── swebench_loader.py      # SWE-bench Verified dataset loader
+│   ├── swebench_runner.py      # Internal test runner & parser
+│   └── workspace.py            # Isolated git workspace manager
+├── memory/                     # [FROZEN v2.1] Execution memory & trust
+│   ├── memory_store.py         # SQLite episodic memory store
+│   ├── retrieval.py            # Evidence-based memory retriever
+│   └── trust_ledger.py         # Dynamic trust score tracking
+├── recovery/                   # [FROZEN v2.1] Failure detection & diagnosis
+│   ├── failure_detector.py     # Deterministic & heuristic failure detectors
+│   ├── diagnosis.py            # Failure diagnosis synthesizer
+│   └── strategies.py           # Recovery action builders
+├── models/                     # [FROZEN v2.1] Model provider abstractions
+│   ├── base.py                 # Abstract ModelProvider interface
+│   └── registry.py             # Model registry & provider lookup
+├── scripts/                    # v2.2 Execution, verification & audit tools
+│   ├── demo_patch_builder.py   # Block indentation & AST syntax validator
+│   ├── launch_gate_check.py    # Pre-launch gate check with Ollama validation
+│   ├── ollama_coder_adapter.py # Local Ollama provider with zero cloud fallback
+│   ├── run_local_ollama_comparison.py # Formal 3-condition benchmark runner
+│   ├── run_v2_2_dev_validation.py     # Isolated development validation runner
+│   ├── v2_2_recovery_manager.py       # ProposalHistory, Disambiguator, V22SupervisedWorker
+│   └── verify_and_preseed_workspaces.py # Disposable workspace checkout verifier
+├── tests/                      # Automated test suites (100% passing)
+│   ├── test_demo_patch_builder.py     # Indentation & syntax tests
+│   ├── test_launch_safety.py          # Launch gate & orchestrator safety tests
+│   ├── test_ollama_provider.py        # Ollama provider contract & isolation tests
+│   └── test_v2_2_improvements.py      # Anti-repetition, disambiguation & worker tests
+├── results/                    # Research results, audits & freeze manifests
+│   └── v2_2_development/      # v2.2 Audit deliverables & verification records
+│       ├── final_blockers.md
+│       ├── final_execution_path_audit.md
+│       ├── final_preflight.json
+│       ├── final_test_report.md
+│       ├── v2_2_freeze_manifest.json
+│       └── workspace_preflight_verification.json
+└── README.md
 ```
 
 ---
 
-## 8. Installation & Setup
+## 6. Installation & Environment Setup
 
 ### Prerequisites
-- Python 3.10+
-- Git
+- **OS**: Windows 11 / Linux / macOS
+- **Python**: 3.10+ (tested on Python 3.11.9)
+- **Git**: 2.40+ (Windows: `git config --global core.longpaths true`)
+- **Ollama**: Installed and running (`ollama serve`)
+- **Model**: `ollama pull qwen2.5-coder:7b`
 
-### Installation
+### Setup
 ```bash
-git clone <repo-url>
+git clone https://github.com/devensonawane007/DDIV.git
 cd DDIV
+
 python -m venv .venv
-# On Windows:
+# Windows:
 .venv\Scripts\activate
-# On Linux/macOS:
+# Linux/macOS:
 source .venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
-### Configuration
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
-```
-Configure your model keys and API base URL in `.env`:
+### Environment Configuration
+Create a `.env` file in the repository root:
 ```env
-DDIV_MODE=ddiv
-PROVIDER_TYPE=openai_compatible
-API_BASE_URL=https://api.together.xyz/v1
-LOCATOR_API_KEY=your-api-key
-CODER_API_KEY=your-api-key
-TESTER_API_KEY=your-api-key
-SUPERVISOR_API_KEY=your-api-key
+DDIV_MODE=full_ddiv
+DDIV_CODER_PROVIDER=ollama
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=qwen2.5-coder:7b
+
+# Supporting cloud agents (Groq)
+GROQ_API_KEY=your_groq_api_key
+
+# Fault localization (Google GenAI)
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ---
 
-## 9. Quickstart & CLI Usage
+## 7. Verification & Pre-Launch Gate Checks
 
-### Running Tests
-The framework includes a comprehensive test suite (28 automated tests covering all agents, deterministic failure rules, patch management, trust updates, memory, and end-to-end recovery):
+Before initiating any benchmark runs, execute the verified pre-flight checks:
+
+### 1. Run All Automated Test Suites
 ```bash
-python -m unittest discover tests -v
+python -m pytest tests/test_v2_2_improvements.py tests/test_launch_safety.py tests/test_ollama_provider.py tests/test_demo_patch_builder.py -v
 ```
+*(All 32 test cases pass in ~160 seconds).*
 
-### Running in Deterministic Mock Mode (Zero API Cost)
-To verify the entire pipeline without API keys:
+### 2. Verify Disposable Workspaces Across All 20 Benchmark Tasks
 ```bash
-# Baseline Mode (1 attempt)
-python -m scripts.run_task --task-id mock-task-1 --mode baseline
-
-# DDIV Mode (Recovers from F2 on attempt 2)
-python -m scripts.run_task --task-id mock-task-1 --mode ddiv
+python scripts/verify_and_preseed_workspaces.py
 ```
+*(Verifies 20/20 repository checkouts at exact base commits in disposable sandboxes; dry-run validates 60 task-condition pairs with zero model invocations).*
 
-### Running Benchmark Batches
+### 3. Run Pre-Launch Gate Check for Batch N
 ```bash
-python -m scripts.run_benchmark --limit 1 --mode ddiv
+python scripts/launch_gate_check.py --batch 1 --verified-groq-available 150000
 ```
-
-### Analyzing Results
-```bash
-python -m scripts.analyze_results --logs-dir logs/runs
-```
+*(Confirms checkpoint & manifest SHA-256 hashes, frozen directory cleanliness, Windows longpaths, dataset presence, Ollama connectivity, zero cloud fallback, and Groq token capacity).*
 
 ---
 
-## 10. Research Limitations & Future Work
+## 8. Audit Deliverables & Verification Records
 
-1. **Model API Constraints**: Live evaluations on SWE-bench Verified require valid provider endpoints with sufficient rate limits and context windows.
-2. **Deterministic vs. LLM Tradeoffs**: Deterministic failure detection rules ($F3$ patch corruption, $F4$ patch looping) provide high-precision classification, while semantic logic errors ($F2$) rely partly on model reasoning.
-3. **Environment Sandboxing**: Local workspaces use ephemeral directories and git worktrees. For full multi-language benchmarks, integrating Docker container execution remains recommended for non-Python dependencies.
+The complete audit trail for DDIV v2.2 is available in `results/v2_2_development/`:
+
+- [`final_blockers.md`](results/v2_2_development/final_blockers.md): Resolution report for the 4 identified launch blockers.
+- [`final_execution_path_audit.md`](results/v2_2_development/final_execution_path_audit.md): End-to-end trace from benchmark runner to evaluation and report generation.
+- [`final_preflight.json`](results/v2_2_development/final_preflight.json): Machine-readable preflight audit (`ready_for_launch: false`, awaiting explicit authorization).
+- [`final_test_report.md`](results/v2_2_development/final_test_report.md): Consolidated test execution results across all 4 suites.
+- [`v2_2_freeze_manifest.json`](results/v2_2_development/v2_2_freeze_manifest.json): Cryptographic SHA-256 manifest of all frozen and v2.2 components.
+- [`workspace_preflight_verification.json`](results/v2_2_development/workspace_preflight_verification.json): Detailed base commit checkout records for all 20 benchmark tasks.
+
+---
+
+## 9. Current Status
+
+The implementation, hardening, method-restoration safeguards, and preflight verifications are **complete**. The framework is in a frozen state awaiting explicit user approval before launching the 5-task pilot or full 20-task benchmark.

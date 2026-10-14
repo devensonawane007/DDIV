@@ -1,0 +1,538 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "sympy__sympy-23413",
+  "condition": "retry_only",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 3,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "sympy/matrices/dense.py",
+          "target_symbol": null,
+          "operation": "replace",
+          "anchor": "def _iszero(x):",
+          "code": "def _iszero(x):\n    return x.is_zero or x == 0",
+          "reason": "The current implementation of `_iszero` may be dropping rows during the computation due to rank-deficiency checks. By modifying `_iszero` to also check if `x == 0`, we can ensure that rows are not dropped during the computation."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "--- a/sympy/matrices/dense.py\n+++ b/sympy/matrices/dense.py\n@@ -17,6 +17,7 @@\n \n \n def _iszero(x):\n+    return x.is_zero or x == 0\n     \"\"\"Returns True if x is zero.\"\"\"\n     return x.is_zero\n \n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "test_hermite_normal"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "sympy/matrices/matrices.py",
+        "sympy/matrices/matrixbase.py",
+        "sympy/matrices/dense.py"
+      ],
+      "latency_seconds": 22.682557582855225,
+      "agent_timings": {
+        "locator": 7.817476987838745,
+        "coder": 26.6107727,
+        "tester": 2.865091562271118,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 6339,
+        "completion_tokens": 1978,
+        "total_tokens": 8317
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1498,
+          "completion_tokens": 161,
+          "total_tokens": 1659,
+          "latency_seconds": 7.817476987838745
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3056,
+          "completion_tokens": 576,
+          "total_tokens": 3632,
+          "latency_seconds": 26.6107727
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1785,
+          "completion_tokens": 1241,
+          "total_tokens": 3026,
+          "latency_seconds": 2.865091562271118
+        }
+      ],
+      "context_characters": 7783,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['test_hermite_normal'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "test_hermite_normal"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Blind retry mode: rerunning repair workflow from clean attempt state without supervisor intervention.",
+      "supervisor_instructions": "",
+      "should_retry": true
+    },
+    {
+      "attempt": 2,
+      "coder_proposals": [
+        {
+          "path": "sympy/matrices/dense.py",
+          "target_symbol": null,
+          "operation": "replace",
+          "anchor": "def _iszero(x):",
+          "code": "def _iszero(x):\n    return x.is_zero and not x.has(Matrix)\n",
+          "reason": "The modified `_iszero` function will correctly identify the matrix as rank-deficient and prevent the removal of rows during the computation."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "--- a/sympy/matrices/dense.py\n+++ b/sympy/matrices/dense.py\n@@ -17,6 +17,8 @@\n \n \n def _iszero(x):\n+    return x.is_zero and not x.has(Matrix)\n+\n     \"\"\"Returns True if x is zero.\"\"\"\n     return x.is_zero\n \n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "test_hermite_normal"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "sympy/matrices/matrices.py",
+        "sympy/matrices/matrixbase.py",
+        "sympy/matrices/dense.py"
+      ],
+      "latency_seconds": 23.483951807022095,
+      "agent_timings": {
+        "locator": 7.354872941970825,
+        "coder": 24.3065818,
+        "tester": 5.0371785163879395,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 6375,
+        "completion_tokens": 1292,
+        "total_tokens": 7667
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1498,
+          "completion_tokens": 161,
+          "total_tokens": 1659,
+          "latency_seconds": 7.354872941970825
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3089,
+          "completion_tokens": 500,
+          "total_tokens": 3589,
+          "latency_seconds": 24.3065818
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1788,
+          "completion_tokens": 631,
+          "total_tokens": 2419,
+          "latency_seconds": 5.0371785163879395
+        }
+      ],
+      "context_characters": 7783,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['test_hermite_normal'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "test_hermite_normal"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Blind retry mode: rerunning repair workflow from clean attempt state without supervisor intervention.",
+      "supervisor_instructions": "",
+      "should_retry": true
+    },
+    {
+      "attempt": 3,
+      "coder_proposals": [
+        {
+          "path": "sympy/matrices/dense.py",
+          "target_symbol": null,
+          "operation": "replace",
+          "anchor": "def _iszero(x):",
+          "code": "def _iszero(x):\n    return x.is_zero and not x.has(Matrix)\n",
+          "reason": "The modified `_iszero` function will correctly identify the matrix as rank-deficient and prevent the removal of rows during the computation."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "--- a/sympy/matrices/dense.py\n+++ b/sympy/matrices/dense.py\n@@ -17,6 +17,8 @@\n \n \n def _iszero(x):\n+    return x.is_zero and not x.has(Matrix)\n+\n     \"\"\"Returns True if x is zero.\"\"\"\n     return x.is_zero\n \n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "test_hermite_normal"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "sympy/matrices/matrices.py",
+        "sympy/matrices/matrixbase.py",
+        "sympy/matrices/dense.py"
+      ],
+      "latency_seconds": 24.79531764984131,
+      "agent_timings": {
+        "locator": 25.03672170639038,
+        "coder": 25.2402605,
+        "tester": 1.8589587211608887,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 6375,
+        "completion_tokens": 1292,
+        "total_tokens": 7667
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1498,
+          "completion_tokens": 161,
+          "total_tokens": 1659,
+          "latency_seconds": 25.03672170639038
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3089,
+          "completion_tokens": 500,
+          "total_tokens": 3589,
+          "latency_seconds": 25.2402605
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1788,
+          "completion_tokens": 631,
+          "total_tokens": 2419,
+          "latency_seconds": 1.8589587211608887
+        }
+      ],
+      "context_characters": 7783,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F4",
+        "granular_failure_type": "REPEATED_PATCH_CYCLE",
+        "confidence": 0.98,
+        "evidence_reasons": [
+          "Attempt repeated identical patch proposal to attempt 2 (Hash: 793f84dc)"
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "test_hermite_normal"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Maximum attempts reached (blind retry exhausted).",
+      "supervisor_instructions": "",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "--- a/sympy/matrices/dense.py\n+++ b/sympy/matrices/dense.py\n@@ -17,6 +17,8 @@\n \n \n def _iszero(x):\n+    return x.is_zero and not x.has(Matrix)\n+\n     \"\"\"Returns True if x is zero.\"\"\"\n     return x.is_zero\n \n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\local_ollama_coder\\sympy__sympy-23413__retry_only\\sympy__sympy-23413__retry_only.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 373.96,
+    "input_tokens": 19089,
+    "output_tokens": 4562,
+    "total_tokens": 23651,
+    "inference_calls": 9,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 40.20907163619995,
+      "coder": 76.157615,
+      "tester": 9.761228799819946,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659,
+        "latency_seconds": 7.817476987838745
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3056,
+        "completion_tokens": 576,
+        "total_tokens": 3632,
+        "latency_seconds": 26.6107727
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1785,
+        "completion_tokens": 1241,
+        "total_tokens": 3026,
+        "latency_seconds": 2.865091562271118
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659,
+        "latency_seconds": 7.354872941970825
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3089,
+        "completion_tokens": 500,
+        "total_tokens": 3589,
+        "latency_seconds": 24.3065818
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1788,
+        "completion_tokens": 631,
+        "total_tokens": 2419,
+        "latency_seconds": 5.0371785163879395
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659,
+        "latency_seconds": 25.03672170639038
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3089,
+        "completion_tokens": 500,
+        "total_tokens": 3589,
+        "latency_seconds": 25.2402605
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1788,
+        "completion_tokens": 631,
+        "total_tokens": 2419,
+        "latency_seconds": 1.8589587211608887
+      }
+    ],
+    "context_characters": 7783,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+    "duration_seconds": 24.8,
+    "all_f2p_passed": false,
+    "all_p2p_passed": true,
+    "internal_resolved": false,
+    "fail_to_pass_results": {
+      "test_hermite_normal": false
+    },
+    "pass_to_pass_results": {
+      "test_smith_normal": true,
+      "test_smith_normal_deprecated": true
+    }
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 373.96,
+  "worker_pid": 23636,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\local_ollama_coder\\sympy__sympy-23413__retry_only.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\local_ollama_coder\\sympy__sympy-23413__retry_only",
+  "error_message": null,
+  "started_at": "2026-10-13T17:27:04.083372+00:00",
+  "completed_at": "2026-10-13T17:33:18.041601+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 23651,
+  "prompt_tokens": 19089,
+  "completion_tokens": 4562
+}

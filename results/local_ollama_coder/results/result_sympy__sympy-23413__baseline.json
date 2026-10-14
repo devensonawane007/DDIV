@@ -1,0 +1,239 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "sympy__sympy-23413",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "sympy/matrices/dense.py",
+          "target_symbol": null,
+          "operation": "replace",
+          "anchor": "def _iszero(x):",
+          "code": "def _iszero(x):\n    return x.is_zero and not x.is_zero",
+          "reason": "This change ensures that the `_iszero` function returns False for non-zero matrices, preventing rows from being dropped during the computation."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "--- a/sympy/matrices/dense.py\n+++ b/sympy/matrices/dense.py\n@@ -17,6 +17,7 @@\n \n \n def _iszero(x):\n+    return x.is_zero and not x.is_zero\n     \"\"\"Returns True if x is zero.\"\"\"\n     return x.is_zero\n \n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "BLOCKED",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "test_hermite_normal"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "sympy/matrices/matrices.py",
+        "sympy/matrices/matrixbase.py",
+        "sympy/matrices/dense.py"
+      ],
+      "latency_seconds": 24.644376277923584,
+      "agent_timings": {
+        "locator": 18.468249559402466,
+        "coder": 23.2774208,
+        "tester": 1.8010821342468262,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 6339,
+        "completion_tokens": 1273,
+        "total_tokens": 7612
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1498,
+          "completion_tokens": 161,
+          "total_tokens": 1659,
+          "latency_seconds": 18.468249559402466
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3056,
+          "completion_tokens": 482,
+          "total_tokens": 3538,
+          "latency_seconds": 23.2774208
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1785,
+          "completion_tokens": 630,
+          "total_tokens": 2415,
+          "latency_seconds": 1.8010821342468262
+        }
+      ],
+      "context_characters": 7783,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['test_hermite_normal'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "test_hermite_normal"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "--- a/sympy/matrices/dense.py\n+++ b/sympy/matrices/dense.py\n@@ -17,6 +17,7 @@\n \n \n def _iszero(x):\n+    return x.is_zero and not x.is_zero\n     \"\"\"Returns True if x is zero.\"\"\"\n     return x.is_zero\n \n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\local_ollama_coder\\sympy__sympy-23413__baseline\\sympy__sympy-23413__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 181.37,
+    "input_tokens": 6339,
+    "output_tokens": 1273,
+    "total_tokens": 7612,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 18.468249559402466,
+      "coder": 23.2774208,
+      "tester": 1.8010821342468262,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659,
+        "latency_seconds": 18.468249559402466
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3056,
+        "completion_tokens": 482,
+        "total_tokens": 3538,
+        "latency_seconds": 23.2774208
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1785,
+        "completion_tokens": 630,
+        "total_tokens": 2415,
+        "latency_seconds": 1.8010821342468262
+      }
+    ],
+    "context_characters": 7783,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+    "duration_seconds": 24.64,
+    "all_f2p_passed": false,
+    "all_p2p_passed": true,
+    "internal_resolved": false,
+    "fail_to_pass_results": {
+      "test_hermite_normal": false
+    },
+    "pass_to_pass_results": {
+      "test_smith_normal": true,
+      "test_smith_normal_deprecated": true
+    }
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 181.37,
+  "worker_pid": 23636,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\local_ollama_coder\\sympy__sympy-23413__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\local_ollama_coder\\sympy__sympy-23413__baseline",
+  "error_message": null,
+  "started_at": "2026-10-13T17:23:00.413051+00:00",
+  "completed_at": "2026-10-13T17:26:01.778061+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 7612,
+  "prompt_tokens": 6339,
+  "completion_tokens": 1273
+}

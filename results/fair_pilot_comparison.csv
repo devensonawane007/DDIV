@@ -1,0 +1,14 @@
+task_id,condition,run_series,status,resolved,pass_at_1,attempts,patch_generated,patch_applied,all_f2p_passed,all_p2p_passed,total_tokens,duration_seconds,verdict,failure_stage,error_code
+pylint-dev__pylint-6903,baseline,demo_fair,COMPLETED,False,False,1,False,False,False,False,9420,43.13,UNRESOLVED_INTERNALLY (Candidate patch application failed),,
+pylint-dev__pylint-6903,retry_only,demo_fair,COMPLETED,True,False,2,True,True,True,True,19923,133.77,RESOLVED_INTERNALLY,,
+pylint-dev__pylint-6903,full_ddiv,demo_fair,COMPLETED,True,True,1,True,True,True,True,15815,111.43,RESOLVED_INTERNALLY,,
+django__django-16429,baseline,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,2100,52.28,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+django__django-16429,full_ddiv,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,2100,62.66,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+django__django-16429,retry_only,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,2100,86.46,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+pylint-dev__pylint-4970,full_ddiv,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,True,True,False,True,13641,107.05,UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed),Supervisor,SUPERVISOR_QUOTA_EXHAUSTED
+pytest-dev__pytest-8399,baseline,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,1944,28.89,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+pytest-dev__pytest-8399,full_ddiv,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,1944,28.94,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+pytest-dev__pytest-8399,retry_only,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,1944,38.01,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+sympy__sympy-23413,baseline,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,1659,52.57,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+sympy__sympy-23413,full_ddiv,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,1659,67.61,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED
+sympy__sympy-23413,retry_only,pilot,ABORTED_QUOTA_EXHAUSTED,False,False,1,False,False,False,False,1659,57.73,ABORTED_QUOTA_EXHAUSTED,Coder,CODER_RATE_LIMITED

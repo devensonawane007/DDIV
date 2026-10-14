@@ -1,0 +1,10 @@
+--- a/sympy/matrices/dense.py
++++ b/sympy/matrices/dense.py
+@@ -17,6 +17,7 @@
+ 
+ 
+ def _iszero(x):
++    return x.is_zero and not x.is_zero
+     """Returns True if x is zero."""
+     return x.is_zero
+ 

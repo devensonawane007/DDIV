@@ -1,0 +1,14 @@
+--- a/pylint/checkers/similar.py
++++ b/pylint/checkers/similar.py
+@@ -831,6 +831,11 @@
+     def close(self):
+         """compute and display similarities on closing (i.e. end of parsing)"""
+         total = sum(len(lineset) for lineset in self.linesets)
++        if self.min_lines == 0:
++            # Duplicate code checking disabled via min-similarity-lines=0
++            stats["nb_duplicated_lines"] = 0
++            stats["percent_duplicated_lines"] = 0
++            return
+         duplicated = 0
+         stats = self.stats
+         for num, couples in self._compute_sims():

@@ -1,0 +1,56 @@
+[
+  {
+    "agent": "Locator",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "prompt_tokens": 1682,
+    "completion_tokens": 160,
+    "total_tokens": 1842,
+    "latency_seconds": 2.0279061794281006
+  },
+  {
+    "agent": "TestUnderstanding",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 2625,
+    "completion_tokens": 1212,
+    "total_tokens": 3837,
+    "latency_seconds": 6.269746541976929
+  },
+  {
+    "agent": "Coder",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 4243,
+    "completion_tokens": 2109,
+    "total_tokens": 6352,
+    "latency_seconds": 31.02619767189026
+  },
+  {
+    "agent": "PatchCritic",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 1089,
+    "completion_tokens": 521,
+    "total_tokens": 1610,
+    "latency_seconds": 2.398564338684082
+  },
+  {
+    "agent": "Tester",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "latency_seconds": 3.317108154296875
+  },
+  {
+    "agent": "Supervisor",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "latency_seconds": 3.6041524410247803
+  }
+]

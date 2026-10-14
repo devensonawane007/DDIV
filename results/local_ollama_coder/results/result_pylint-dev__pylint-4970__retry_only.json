@@ -1,0 +1,541 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "pylint-dev__pylint-4970",
+  "condition": "retry_only",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 3,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.process_module",
+          "operation": "insert_before",
+          "anchor": "def process_module(self, node):",
+          "code": "if self.config.min_similarity_lines == 0:\n    return\n",
+          "reason": "Insert a check at the beginning of the `process_module` method to return early if `min-similarity-lines` is set to `0`, thus disabling the duplicate code check."
+        }
+      ],
+      "patch_operations": [
+        "insert_before"
+      ],
+      "generated_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -818,6 +818,8 @@\n             nb_duplicated_lines=0, percent_duplicated_lines=0\n         )\n \n+    if self.config.min_similarity_lines == 0:\n+        return\n     def process_module(self, node):\n         \"\"\"process a module\n \n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "FAIL",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [
+        "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+      ],
+      "failed_p2p_tests": [
+        "tests/checkers/unittest_similar.py::test_ignore_comments",
+        "tests/checkers/unittest_similar.py::test_ignore_docstrings",
+        "tests/checkers/unittest_similar.py::test_ignore_imports",
+        "tests/checkers/unittest_similar.py::test_multiline_imports",
+        "tests/checkers/unittest_similar.py::test_ignore_multiline_imports",
+        "tests/checkers/unittest_similar.py::test_ignore_signatures_fail",
+        "tests/checkers/unittest_similar.py::test_ignore_signatures_pass",
+        "tests/checkers/unittest_similar.py::test_ignore_signatures_class_methods_fail",
+        "tests/checkers/unittest_similar.py::test_ignore_signatures_class_methods_pass",
+        "tests/checkers/unittest_similar.py::test_ignore_signatures_empty_functions_fail"
+      ],
+      "final_patch_correct": false,
+      "regression_detected": true,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 76.33914256095886,
+      "agent_timings": {
+        "locator": 12.515766143798828,
+        "coder": 23.3204307,
+        "tester": 1.8917384147644043,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8140,
+        "completion_tokens": 1255,
+        "total_tokens": 9395
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 12.515766143798828
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3803,
+          "completion_tokens": 403,
+          "total_tokens": 4206,
+          "latency_seconds": 23.3204307
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2655,
+          "completion_tokens": 692,
+          "total_tokens": 3347,
+          "latency_seconds": 1.8917384147644043
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "PATCH_INVALID",
+        "confidence": 0.92,
+        "evidence_reasons": [
+          "Patch introduced syntax or indentation errors into the codebase."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [
+            "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+          ],
+          "failed_p2p_tests": [
+            "tests/checkers/unittest_similar.py::test_ignore_comments",
+            "tests/checkers/unittest_similar.py::test_ignore_docstrings",
+            "tests/checkers/unittest_similar.py::test_ignore_imports",
+            "tests/checkers/unittest_similar.py::test_multiline_imports",
+            "tests/checkers/unittest_similar.py::test_ignore_multiline_imports",
+            "tests/checkers/unittest_similar.py::test_ignore_signatures_fail",
+            "tests/checkers/unittest_similar.py::test_ignore_signatures_pass",
+            "tests/checkers/unittest_similar.py::test_ignore_signatures_class_methods_fail",
+            "tests/checkers/unittest_similar.py::test_ignore_signatures_class_methods_pass",
+            "tests/checkers/unittest_similar.py::test_ignore_signatures_empty_functions_fail"
+          ],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Blind retry mode: rerunning repair workflow from clean attempt state without supervisor intervention.",
+      "supervisor_instructions": "",
+      "should_retry": true
+    },
+    {
+      "attempt": 2,
+      "coder_proposals": [
+        {
+          "path": "path/to/similar_checker.py",
+          "target_symbol": "SimilarChecker.__init__",
+          "operation": "replace",
+          "anchor": "self.min_lines = self.config.min_similarity_lines",
+          "code": "if self.config.min_similarity_lines == 0:\n    self.min_lines = float('inf')\nelse:\n    self.min_lines = self.config.min_similarity_lines",
+          "reason": "Replace the current assignment of `min_lines` with a conditional check. If `min_similarity_lines` is `0`, set `min_lines` to infinity to effectively disable the check. Otherwise, assign the value from the configuration."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.26262354850769043,
+      "agent_timings": {
+        "locator": 12.273926496505737,
+        "coder": 35.8715467,
+        "tester": 1.153235673904419,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8086,
+        "completion_tokens": 1121,
+        "total_tokens": 9207
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 12.273926496505737
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3836,
+          "completion_tokens": 680,
+          "total_tokens": 4516,
+          "latency_seconds": 35.8715467
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2568,
+          "completion_tokens": 281,
+          "total_tokens": 2849,
+          "latency_seconds": 1.153235673904419
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Blind retry mode: rerunning repair workflow from clean attempt state without supervisor intervention.",
+      "supervisor_instructions": "",
+      "should_retry": true
+    },
+    {
+      "attempt": 3,
+      "coder_proposals": [
+        {
+          "path": "path/to/similar_checker.py",
+          "target_symbol": "SimilarChecker.__init__",
+          "operation": "replace",
+          "anchor": "self.min_lines = self.config.min_similarity_lines",
+          "code": "if self.config.min_similarity_lines == 0:\n    self.min_lines = float('inf')\nelse:\n    self.min_lines = self.config.min_similarity_lines",
+          "reason": "Replace the current assignment of `min_lines` with a conditional check. If `min_similarity_lines` is `0`, set `min_lines` to infinity to effectively disable the check. Otherwise, assign the value from the configuration."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.1870591640472412,
+      "agent_timings": {
+        "locator": 10.403392791748047,
+        "coder": 37.5578942,
+        "tester": 1.067519187927246,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8086,
+        "completion_tokens": 1121,
+        "total_tokens": 9207
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 10.403392791748047
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3836,
+          "completion_tokens": 680,
+          "total_tokens": 4516,
+          "latency_seconds": 37.5578942
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2568,
+          "completion_tokens": 281,
+          "total_tokens": 2849,
+          "latency_seconds": 1.067519187927246
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Maximum attempts reached (blind retry exhausted).",
+      "supervisor_instructions": "",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -818,6 +818,8 @@\n             nb_duplicated_lines=0, percent_duplicated_lines=0\n         )\n \n+    if self.config.min_similarity_lines == 0:\n+        return\n     def process_module(self, node):\n         \"\"\"process a module\n \n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\local_ollama_coder\\pylint-dev__pylint-4970__retry_only\\pylint-dev__pylint-4970__retry_only.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": true,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 268.71,
+    "input_tokens": 24312,
+    "output_tokens": 3497,
+    "total_tokens": 27809,
+    "inference_calls": 9,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 35.19308543205261,
+      "coder": 96.7498716,
+      "tester": 4.112493276596069,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 12.515766143798828
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3803,
+        "completion_tokens": 403,
+        "total_tokens": 4206,
+        "latency_seconds": 23.3204307
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2655,
+        "completion_tokens": 692,
+        "total_tokens": 3347,
+        "latency_seconds": 1.8917384147644043
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 12.273926496505737
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3836,
+        "completion_tokens": 680,
+        "total_tokens": 4516,
+        "latency_seconds": 35.8715467
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2568,
+        "completion_tokens": 281,
+        "total_tokens": 2849,
+        "latency_seconds": 1.153235673904419
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 10.403392791748047
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3836,
+        "completion_tokens": 680,
+        "total_tokens": 4516,
+        "latency_seconds": 37.5578942
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2568,
+        "completion_tokens": 281,
+        "total_tokens": 2849,
+        "latency_seconds": 1.067519187927246
+      }
+    ],
+    "context_characters": 7591,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.19,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 268.71,
+  "worker_pid": 23636,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\local_ollama_coder\\pylint-dev__pylint-4970__retry_only.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\local_ollama_coder\\pylint-dev__pylint-4970__retry_only",
+  "error_message": null,
+  "started_at": "2026-10-13T17:12:39.051398+00:00",
+  "completed_at": "2026-10-13T17:17:07.757856+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 27809,
+  "prompt_tokens": 24312,
+  "completion_tokens": 3497
+}

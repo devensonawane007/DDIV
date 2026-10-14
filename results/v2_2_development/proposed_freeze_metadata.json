@@ -1,0 +1,86 @@
+{
+  "version": "2.2.0-rc1",
+  "freeze_status": "PROPOSED",
+  "audit_timestamp": "2026-10-14T00:45:00Z",
+  "git_metadata": {
+    "head_commit": "e8f2b065af2c55c35b1fb3fc1441f5a28662dece",
+    "branch": "master",
+    "frozen_directories": {
+      "agents/": "UNTOUCHED (0 diff lines)",
+      "recovery/": "UNTOUCHED (0 diff lines)",
+      "evaluation/": "UNTOUCHED (0 diff lines)",
+      "memory/": "UNTOUCHED (0 diff lines)",
+      "models/": "UNTOUCHED (0 diff lines)"
+    },
+    "modified_untracked_files_in_scope": [
+      "scripts/demo_patch_builder.py",
+      "scripts/ollama_coder_adapter.py",
+      "scripts/v2_2_recovery_manager.py",
+      "tests/test_v2_2_improvements.py",
+      "scripts/run_v2_2_dev_validation.py"
+    ]
+  },
+  "runtime_environment": {
+    "os": "Windows 11 (win32)",
+    "python_version": "3.11.9",
+    "pytest_version": "7.4.4",
+    "ollama_version": "0.4.x",
+    "git_core_longpaths": true
+  },
+  "cryptographic_hashes": {
+    "data/experiments/benchmark_v2_1/checkpoint.json": {
+      "sha256": "3088b7c08707b30b6b87064844c45595520a4c86c599e9b1fcb45af3b3d4e52e",
+      "status": "VERIFIED_MATCH"
+    },
+    "data/experiments/benchmark_v2_tasks.json": {
+      "sha256": "16fb9c829a2163f8187e3ffaec9cde585a843af905459a4e6467995792e2a605",
+      "status": "VERIFIED_MATCH"
+    }
+  },
+  "component_matrix_by_condition": {
+    "BASELINE": {
+      "attempts": 1,
+      "locator": "gemini-3.1-flash-lite",
+      "test_understanding": "DISABLED",
+      "coder": "qwen2.5-coder:7b (local Ollama)",
+      "patch_builder": "DemoPatchBuilder (Syntax AST-verified)",
+      "patch_critic": "DISABLED",
+      "supervisor": "DISABLED",
+      "proposal_history": "DISABLED",
+      "failure_disambiguator": "DISABLED",
+      "evaluator": "TwoTierEvaluator (Internal SWE-bench Tier-1)"
+    },
+    "RETRY_ONLY": {
+      "attempts": 3,
+      "locator": "gemini-3.1-flash-lite (Attempt 1)",
+      "test_understanding": "DISABLED",
+      "coder": "qwen2.5-coder:7b (local Ollama)",
+      "patch_builder": "DemoPatchBuilder (Syntax AST-verified)",
+      "patch_critic": "DISABLED",
+      "supervisor": "DISABLED",
+      "proposal_history": "DISABLED",
+      "failure_disambiguator": "DISABLED",
+      "evaluator": "TwoTierEvaluator (Internal SWE-bench Tier-1)"
+    },
+    "FULL_DDIV": {
+      "attempts": 3,
+      "locator": "gemini-3.1-flash-lite",
+      "test_understanding": "qwen/qwen3.8-27b (Groq API)",
+      "coder": "qwen2.5-coder:7b (local Ollama, quota-free)",
+      "patch_builder": "DemoPatchBuilder (Syntax AST-verified with block indentation & safe remapping)",
+      "patch_critic": "qwen/qwen3.8-27b (Groq API, non-blocking)",
+      "supervisor": "qwen/qwen3.8-27b (Groq API)",
+      "proposal_history": "ProposalHistory (Exact & whitespace-normalized anti-repetition tracking)",
+      "failure_disambiguator": "FailureDisambiguator (Empirical taxonomy mapping)",
+      "evaluator": "TwoTierEvaluator (Internal SWE-bench Tier-1)"
+    }
+  },
+  "verification": {
+    "unit_integration_tests_passing": 48,
+    "unit_integration_tests_total": 48,
+    "pass_rate_percentage": 100.0,
+    "pre_launch_gate_verdict": "GO",
+    "ready_for_launch": false,
+    "requires_user_approval": true
+  }
+}

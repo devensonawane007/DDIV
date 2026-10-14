@@ -1,0 +1,373 @@
+{
+  "experiment_id": "demo_run",
+  "task_id": "pylint-dev__pylint-6903",
+  "condition": "retry_only",
+  "status": "COMPLETED",
+  "resolved": true,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 2,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/lint/run.py",
+          "target_symbol": "_query_cpu",
+          "operation": "replace",
+          "anchor": "return avail_cpu",
+          "code": "if avail_cpu is not None and avail_cpu < 1:\n        avail_cpu = 1\n    return avail_cpu",
+          "reason": "Guarantee that _query_cpu never returns 0, preventing multiprocessing from receiving an invalid process count."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "*** Begin Patch\n*** Update File: pylint/lint/run.py\n@@\n-    return avail_cpu\n+    if avail_cpu is not None and avail_cpu < 1:\n+        avail_cpu = 1\n+    return avail_cpu\n*** End Patch",
+      "patch_generated": true,
+      "patch_valid": false,
+      "patch_validation_error": "Patch does not match standard unified diff format (missing ---, +++, or @@ hunk headers with line numbers).",
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/lint/run.py"
+      ],
+      "latency_seconds": 0.1362314224243164,
+      "agent_timings": {
+        "locator": 2.717130661010742,
+        "coder": 2.823779821395874,
+        "tester": 2.048393726348877,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8083,
+        "completion_tokens": 1984,
+        "total_tokens": 10067
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 3336,
+          "completion_tokens": 132,
+          "total_tokens": 3468,
+          "latency_seconds": 2.717130661010742
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2867,
+          "completion_tokens": 1090,
+          "total_tokens": 3957,
+          "latency_seconds": 2.823779821395874
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1880,
+          "completion_tokens": 762,
+          "total_tokens": 2642,
+          "latency_seconds": 2.048393726348877
+        }
+      ],
+      "context_characters": 3657,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "PATCH_INVALID",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Patch failed validation (missing @@ hunk headers, malformed diff, or empty diff)."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "UNRESOLVED_RETRY",
+      "recovery_strategy": "BLIND_RETRY",
+      "supervisor_diagnosis": "Blind retry mode: rerunning repair workflow from clean attempt state without supervisor intervention.",
+      "supervisor_instructions": "",
+      "should_retry": true
+    },
+    {
+      "attempt": 2,
+      "coder_proposals": [
+        {
+          "path": "pylint/lint/run.py",
+          "target_symbol": "_query_cpu",
+          "operation": "replace",
+          "anchor": "return avail_cpu",
+          "code": "if avail_cpu is None:\n    return None\n# Ensure at least one CPU is reported to avoid zero-process crashes\nreturn max(avail_cpu, 1)",
+          "reason": "Guarantee that _query_cpu never returns 0, preventing multiprocessing from receiving an invalid process count."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -58,7 +58,10 @@\n             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n         avail_cpu = int(cpu_shares / 1024)\n-    return avail_cpu\n+    if avail_cpu is None:\n+        return None\n+    # Ensure at least one CPU is reported to avoid zero-process crashes\n+    return max(avail_cpu, 1)\n \n \n def _cpu_count() -> int:\n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": true,
+      "verdict": "RESOLVED_INTERNALLY",
+      "f2p_passed": true,
+      "p2p_passed": true,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": true,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/lint/run.py"
+      ],
+      "latency_seconds": 54.30609726905823,
+      "agent_timings": {
+        "locator": 2.036775827407837,
+        "coder": 3.364506244659424,
+        "tester": 24.91339087486267,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8195,
+        "completion_tokens": 1661,
+        "total_tokens": 9856
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 3336,
+          "completion_tokens": 132,
+          "total_tokens": 3468,
+          "latency_seconds": 2.036775827407837
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2901,
+          "completion_tokens": 936,
+          "total_tokens": 3837,
+          "latency_seconds": 3.364506244659424
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1958,
+          "completion_tokens": 593,
+          "total_tokens": 2551,
+          "latency_seconds": 24.91339087486267
+        }
+      ],
+      "context_characters": 3657,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": false,
+        "candidate_failure_type": null,
+        "granular_failure_type": null,
+        "confidence": 1.0,
+        "evidence_reasons": [
+          "Patch applied cleanly and all test requirements verified successfully."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": true,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": true,
+          "p2p_passed": true,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null
+    }
+  ],
+  "candidate_patch": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -58,7 +58,10 @@\n             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n         avail_cpu = int(cpu_shares / 1024)\n-    return avail_cpu\n+    if avail_cpu is None:\n+        return None\n+    # Ensure at least one CPU is reported to avoid zero-process crashes\n+    return max(avail_cpu, 1)\n \n \n def _cpu_count() -> int:\n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\demo\\pylint-dev__pylint-6903__retry_only.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": true,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 133.77,
+    "input_tokens": 16278,
+    "output_tokens": 3645,
+    "total_tokens": 19923,
+    "inference_calls": 6,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 4.753906488418579,
+      "coder": 6.188286066055298,
+      "tester": 26.961784601211548,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 3336,
+        "completion_tokens": 132,
+        "total_tokens": 3468,
+        "latency_seconds": 2.717130661010742
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2867,
+        "completion_tokens": 1090,
+        "total_tokens": 3957,
+        "latency_seconds": 2.823779821395874
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1880,
+        "completion_tokens": 762,
+        "total_tokens": 2642,
+        "latency_seconds": 2.048393726348877
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 3336,
+        "completion_tokens": 132,
+        "total_tokens": 3468,
+        "latency_seconds": 2.036775827407837
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2901,
+        "completion_tokens": 936,
+        "total_tokens": 3837,
+        "latency_seconds": 3.364506244659424
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1958,
+        "completion_tokens": 593,
+        "total_tokens": 2551,
+        "latency_seconds": 24.91339087486267
+      }
+    ],
+    "context_characters": 3657,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "RESOLVED",
+    "verdict": "RESOLVED_INTERNALLY",
+    "duration_seconds": 54.31,
+    "all_f2p_passed": true,
+    "all_p2p_passed": true,
+    "internal_resolved": true,
+    "fail_to_pass_results": {
+      "tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction": true
+    },
+    "pass_to_pass_results": {
+      "tests/test_pylint_runners.py::test_runner[run_epylint]": true,
+      "tests/test_pylint_runners.py::test_runner[run_pylint]": true,
+      "tests/test_pylint_runners.py::test_runner[run_pyreverse]": true,
+      "tests/test_pylint_runners.py::test_runner[run_symilar]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_epylint]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_pylint]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_pyreverse]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_symilar]": true
+    }
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 133.77,
+  "worker_pid": 4660,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\demo\\demo_repair.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\demo",
+  "error_message": null,
+  "started_at": "2026-10-12T20:45:01.594204+00:00",
+  "completed_at": "2026-10-12T20:47:15.365929+00:00"
+}

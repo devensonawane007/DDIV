@@ -1,0 +1,12 @@
+--- a/pylint/checkers/similar.py
++++ b/pylint/checkers/similar.py
+@@ -830,6 +830,9 @@
+ 
+     def close(self):
+         """compute and display similarities on closing (i.e. end of parsing)"""
++        if self.min_lines == 0:
++            # Disabled similarity checking per configuration
++            return
+         total = sum(len(lineset) for lineset in self.linesets)
+         duplicated = 0
+         stats = self.stats

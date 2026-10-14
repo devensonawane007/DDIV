@@ -1,0 +1,764 @@
+{
+  "experiment_id": "v2_2_dev_val",
+  "task_id": "pylint-dev__pylint-4970",
+  "condition": "full_ddiv",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 3,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "path/to/similar_checker.py",
+          "target_symbol": null,
+          "operation": "insert_after",
+          "anchor": "def open(self):",
+          "code": "\n        self.linesets = []\n        self.stats = self.linter.add_stats(\n            nb_duplicated_lines=0, percent_duplicated_lines=0\n        )",
+          "reason": "Initialize the `linesets` and `stats` attributes to ensure that the similarity checker can function properly."
+        }
+      ],
+      "patch_operations": [
+        "insert_after"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.8646855354309082,
+      "agent_timings": {
+        "locator": 11.589365482330322,
+        "coder": 81.5484214,
+        "tester": 5.568829536437988,
+        "supervisor": 6.338930130004883
+      },
+      "token_usage": {
+        "prompt_tokens": 10518,
+        "completion_tokens": 3370,
+        "total_tokens": 13888
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 11.589365482330322
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2625,
+          "completion_tokens": 1127,
+          "total_tokens": 3752,
+          "latency_seconds": 6.418234348297119
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 2050,
+          "completion_tokens": 490,
+          "total_tokens": 2540,
+          "latency_seconds": 81.5484214
+        },
+        {
+          "agent": "Tester",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2393,
+          "completion_tokens": 618,
+          "total_tokens": 3011,
+          "latency_seconds": 5.568829536437988
+        },
+        {
+          "agent": "Supervisor",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 1768,
+          "completion_tokens": 975,
+          "total_tokens": 2743,
+          "latency_seconds": 6.338930130004883
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The SimilarChecker (and its base class Similar) always runs the similarity detection algorithm regardless of the value of the `min-similarity-lines` option. A value of 0 is interpreted as a threshold of zero lines, which matches every line and therefore generates a flood of R0801 messages instead of disabling the check.",
+        "behavioral_contract": "When the configuration option `min-similarity-lines` is set to 0, the similarity checker must behave as if the R0801 (duplicate code) check is disabled: no similarity messages should be emitted, and related statistics should remain zero. Any positive integer should trigger the normal duplicate\u2011code detection using that integer as the minimum number of lines required for a similarity to be reported.",
+        "expected_behavior": "Setting `min-similarity-lines = 0` in a pylint rcfile results in no R0801 messages, and the statistics `nb_duplicated_lines` and `percent_duplicated_lines` stay at 0. The checker should otherwise operate unchanged for any value > 0.",
+        "current_behavior": "With `min-similarity-lines = 0` the checker still processes all modules, treats every line as a duplicate, and emits a large number of R0801 messages, inflating the duplicate\u2011code statistics.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.__init__",
+          "SimilarChecker.set_option",
+          "SimilarChecker.open",
+          "SimilarChecker.process_module",
+          "SimilarChecker.close",
+          "Similar._compute_sims",
+          "Similar.append_stream"
+        ],
+        "relevant_tests": [
+          "tests/checkers/test_similar.py",
+          "tests/functional/test_similar_checker.py",
+          "tests/functional/test_rcfile_options.py"
+        ],
+        "required_change": "Add a guard that skips similarity processing when `self.min_lines` (derived from `min-similarity-lines`) is less than or equal to zero. This can be done at the start of `SimilarChecker.close` (and the map\u2011reduce reduction path) to return early without calling `_compute_sims` or emitting messages, and ensure the statistics remain zero. Optionally, treat a zero value as a special flag in `Similar.__init__` so that internal methods also short\u2011circuit.",
+        "regression_risks": [
+          "If the early\u2011exit guard is placed only in `close`, map\u2011reduce workers may still compute similarities and affect memory/CPU usage; the guard must also be applied in `reduce_map_data`.",
+          "Existing code that relies on the statistics fields being populated (e.g., external tools parsing pylint JSON output) must still receive the fields with zero values, not be omitted.",
+          "Negative values for `min-similarity-lines` should be handled consistently (treated as disabled) to avoid unexpected crashes.",
+          "Ensuring that the option handling in `set_option` correctly updates the internal flag when the option is changed after the checker has been opened."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "PATCH_INVALID",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py.",
+          "Disambiguated root cause: [PATCH_INVALID] PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py"
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false,
+          "disambiguated_failure_type": "PATCH_INVALID",
+          "disambiguated_explanation": "PatchBuilder failed: Target file not found in workspace: path/to/similar_checker.py"
+        }
+      },
+      "memory_retrieved": true,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "F3",
+      "recovery_strategy": "A3",
+      "supervisor_diagnosis": "The Coder produced a patch targeting an incorrect file path (path/to/similar_checker.py) which does not exist in the repository, causing a PATCH_INVALID failure (execution failure).",
+      "supervisor_instructions": "Create a new patch that modifies the existing file pylint/checkers/similar.py (the SimilarChecker implementation). The patch must be a valid unified diff and should implement the following behavior: when the configuration option 'min-similarity-lines' is set to 0, the duplicate\u2011code checker (R0801) must be effectively disabled (e.g., return early or set the similarity threshold to a value that never triggers). Ensure the diff references the correct relative path and follows proper diff syntax.\n\nDo NOT reference or use the non\u2011existent path 'path/to/similar_checker.py'. Verify the file exists in the workspace before generating the diff.",
+      "avoid_previous_mistake": "Do not target a file path that does not exist; ensure the patch applies to pylint/checkers/similar.py and that the diff format is correct.\n\nCRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:\n- Attempt 1: Modified 'path/to/similar_checker.py' (op: insert_after) at anchor 'def open(self):'. Result: [UNRESOLVED_ATTEMPT] Attempt 1 failed validation/tests.. You MUST NOT generate this identical modification again.",
+      "should_retry": true
+    },
+    {
+      "attempt": 2,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "check",
+          "operation": "insert_before",
+          "anchor": "def check(self, node):",
+          "code": "if self.config.min_similarity_lines == 0:\n    return\n",
+          "reason": "Insert a condition at the beginning of the `check` method to disable the duplicate-code checker when 'min-similarity-lines' is set to 0."
+        }
+      ],
+      "patch_operations": [
+        "insert_before"
+      ],
+      "generated_patch": "@@ -100,6 +100,10 @@ class SimilarChecker(Checker):\n     def check(self, node):\n         if self.config.min_similarity_lines == 0:\n             return\n+        # Existing code for duplicate-code checking\n+        # ...\n         # ...",
+      "patch_generated": true,
+      "patch_valid": false,
+      "patch_validation_error": "Patch does not match standard unified diff format (missing ---, +++, or @@ hunk headers with line numbers).",
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.7820558547973633,
+      "agent_timings": {
+        "locator": 11.589365482330322,
+        "coder": 168.2258098,
+        "tester": 8.48956298828125,
+        "supervisor": 6.328840494155884
+      },
+      "token_usage": {
+        "prompt_tokens": 11622,
+        "completion_tokens": 4898,
+        "total_tokens": 16520
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 11.589365482330322
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2785,
+          "completion_tokens": 1166,
+          "total_tokens": 3951,
+          "latency_seconds": 7.301042318344116
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 2050,
+          "completion_tokens": 687,
+          "total_tokens": 2737,
+          "latency_seconds": 168.2258098
+        },
+        {
+          "agent": "PatchCritic",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 932,
+          "completion_tokens": 285,
+          "total_tokens": 1217,
+          "latency_seconds": 1.35595703125
+        },
+        {
+          "agent": "Tester",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2447,
+          "completion_tokens": 1695,
+          "total_tokens": 4142,
+          "latency_seconds": 8.48956298828125
+        },
+        {
+          "agent": "Supervisor",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 1726,
+          "completion_tokens": 905,
+          "total_tokens": 2631,
+          "latency_seconds": 6.328840494155884
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The SimilarChecker forwards the configured `min-similarity-lines` value directly to the underlying `Similar` implementation without handling the special case of 0. The `Similar` algorithm interprets a threshold of 0 as \"any similarity qualifies\", causing every line to be reported as duplicate instead of disabling the check.",
+        "behavioral_contract": "When the configuration option `min-similarity-lines` is set to 0, the duplicate\u2011code checker (message R0801) must be completely disabled: no similarity messages should be emitted, and related statistics should remain at zero. Any positive integer should trigger the normal similarity detection based on that minimum line count.",
+        "expected_behavior": "With `min-similarity-lines=0` the checker should skip all similarity computation, emit no R0801 messages, and leave `nb_duplicated_lines` and `percent_duplicated_lines` at 0. With a positive value the existing behavior (detecting duplicates of at least that many lines) should remain unchanged.",
+        "current_behavior": "Setting `min-similarity-lines` to 0 causes the checker to treat every line as a duplicate, generating a large number of R0801 messages and inflating the duplicate\u2011line statistics, contrary to the intended disabling behavior.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.__init__",
+          "SimilarChecker.open",
+          "SimilarChecker.process_module",
+          "SimilarChecker.close",
+          "SimilarChecker.set_option",
+          "Similar.min_lines"
+        ],
+        "relevant_tests": [
+          "tests/checkers/test_similar.py",
+          "tests/functional/test_similar_option.py"
+        ],
+        "required_change": "Introduce a guard that treats a `min-similarity-lines` value of 0 as a disable flag. For example, store a boolean `self.disabled` (or reuse `self.min_lines`) and in `open`, `process_module`, and `close` skip all similarity collection and reporting when the value is <= 0. Ensure `set_option` updates this flag accordingly and that statistics are left at zero.",
+        "regression_risks": [
+          "If the guard is placed only in `close`, earlier stages may still allocate memory for linesets; the fix should short\u2011circuit earlier (e.g., in `open` or `append_stream`) to avoid unnecessary work.",
+          "Other parts of the map\u2011reduce pipeline (`get_map_data`, `reduce_map_data`) must respect the disabled state, otherwise they could still trigger similarity computation in parallel runs.",
+          "Changing the handling of `min_lines` must not affect the normal operation when the value is positive; tests that rely on detection of duplicates with a small positive threshold must continue to pass.",
+          "Stat collection (`nb_duplicated_lines`, `percent_duplicated_lines`) should remain present but report zero when disabled, to avoid breaking code that expects those keys."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": {
+        "approved": false,
+        "risk_level": "HIGH",
+        "concerns": [
+          "The patch contains placeholder comments ('# Existing code...', '# ...') instead of actual code, which will result in a syntax error or invalid Python file.",
+          "The patch does not show the actual implementation of the fix, only the guard clause, making it impossible to verify if the rest of the logic is preserved or correctly modified.",
+          "The diff format is suspicious; it implies the existing code was replaced by comments, which is not a valid repair strategy."
+        ],
+        "recommended_changes": [
+          "Remove the placeholder comments and ensure the patch only adds the early return guard `if self.config.min_similarity_lines == 0: return` at the beginning of the `check` method.",
+          "Verify that the rest of the `check` method remains intact and is not deleted or commented out.",
+          "Ensure the patch applies cleanly to `pylint/checkers/similar.py` without introducing syntax errors."
+        ],
+        "reasoning": "The candidate patch is invalid because it replaces existing code with placeholder comments, which would break the module. A correct patch should simply insert the early return check at the start of the `check` method without altering the subsequent logic. The current patch is a non-functional stub."
+      },
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "PATCH_INVALID",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Patch failed validation (missing @@ hunk headers, malformed diff, or empty diff).",
+          "Disambiguated root cause: [PATCH_INVALID] Patch failed validation."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false,
+          "disambiguated_failure_type": "PATCH_INVALID",
+          "disambiguated_explanation": "Patch failed validation."
+        }
+      },
+      "memory_retrieved": true,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "F3",
+      "recovery_strategy": "A3",
+      "supervisor_diagnosis": "The patch generated by the Coder was not a valid unified diff, so it could not be applied to the repository.",
+      "supervisor_instructions": "Coder, create a proper unified diff that updates the logic in pylint/checkers/similar.py (or the relevant configuration handling) so that when the option `min-similarity-lines` is set to 0, the duplicate\u2011code checker (R0801) is effectively disabled. The diff must include the standard --- and +++ file header lines and a @@ hunk header with correct line numbers. Only modify the necessary code paths; do not change unrelated sections. Ensure the diff is syntactically correct and can be applied cleanly.",
+      "avoid_previous_mistake": "Do not submit a diff lacking the required ---/+++ file headers or @@ hunk line numbers; ensure the diff follows the unified diff format exactly.\n\nCRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:\n- Attempt 1: Modified 'path/to/similar_checker.py' (op: insert_after) at anchor 'def open(self):'. Result: [UNRESOLVED_ATTEMPT] Attempt 1 failed validation/tests.. You MUST NOT generate this identical modification again.\n- Attempt 2: Modified 'pylint/checkers/similar.py' (op: insert_before) at anchor 'def check(self, node):'. Result: [UNRESOLVED_ATTEMPT] Attempt 2 failed validation/tests.. You MUST NOT generate this identical modification again.",
+      "should_retry": true
+    },
+    {
+      "attempt": 3,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": null,
+          "operation": "replace",
+          "anchor": "if self.config.min_similarity_lines == 0:",
+          "code": "if self.config.min_similarity_lines == 0:\n    return\n# Existing code for duplicate-code checking\n# ...",
+          "reason": "Replace the existing check with a return statement to skip the duplicate-code check when the threshold is set to 0."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "@@ -100,6 +100,10 @@ class SimilarChecker(Checker):\n     def check(self, node):\n         if self.config.min_similarity_lines == 0:\n             return\n+        # Existing code for duplicate-code checking\n+        # ...",
+      "patch_generated": true,
+      "patch_valid": false,
+      "patch_validation_error": "Patch does not match standard unified diff format (missing ---, +++, or @@ hunk headers with line numbers).",
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.8685145378112793,
+      "agent_timings": {
+        "locator": 11.589365482330322,
+        "coder": 124.9816069,
+        "tester": 8.226337432861328,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 9989,
+        "completion_tokens": 4440,
+        "total_tokens": 14429
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 11.589365482330322
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2831,
+          "completion_tokens": 1464,
+          "total_tokens": 4295,
+          "latency_seconds": 9.996167659759521
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 2050,
+          "completion_tokens": 498,
+          "total_tokens": 2548,
+          "latency_seconds": 124.9816069
+        },
+        {
+          "agent": "PatchCritic",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 982,
+          "completion_tokens": 430,
+          "total_tokens": 1412,
+          "latency_seconds": 41.8602499961853
+        },
+        {
+          "agent": "Tester",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2444,
+          "completion_tokens": 1888,
+          "total_tokens": 4332,
+          "latency_seconds": 8.226337432861328
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The `min-similarity-lines` option is passed directly to the `Similar` base class as `min_lines`. The similarity algorithm treats a threshold of 0 as a valid minimum, so every line matches and R0801 messages are emitted. There is no special handling to treat a value of 0 as \"disable the checker\".",
+        "behavioral_contract": "When the configuration option `min-similarity-lines` is set to 0, the `SimilarChecker` must behave as if the duplicate\u2011code check is disabled: it must not emit any R0801 messages and must report zero duplicated lines in the statistics. Any other positive integer value must retain the existing behaviour of reporting duplicates only when the similarity spans at least that many lines.",
+        "expected_behavior": "Running pylint with `--min-similarity-lines=0` (or the equivalent rcfile setting) on any code base should produce no `R0801` messages, and the statistics `nb_duplicated_lines` and `percent_duplicated_lines` should both be 0.",
+        "current_behavior": "With `min-similarity-lines=0` the checker treats every line as a duplicate, generating a large number of `R0801` messages and non\u2011zero duplication statistics.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.__init__",
+          "SimilarChecker.set_option",
+          "SimilarChecker.open",
+          "SimilarChecker.process_module",
+          "SimilarChecker.close",
+          "Similar.min_lines",
+          "Similar._compute_sims"
+        ],
+        "relevant_tests": [
+          "tests/checkers/test_similar.py",
+          "tests/checkers/test_duplicate_code.py",
+          "tests/functional/test_similar_checker.py"
+        ],
+        "required_change": "Introduce a guard that treats a `min_similarity_lines` value of 0 as disabling the duplicate\u2011code check. This can be done by adding a boolean flag (e.g., `self.disabled`) set in `__init__`/`set_option` when the option is 0, and then short\u2011circuiting the logic in `open`, `process_module`, and especially `close` so that no similarity computation or message emission occurs and the stats remain zero. Alternatively, adjust the underlying `Similar` implementation to return no results when `min_lines <= 0`.",
+        "regression_risks": [
+          "If the disabling flag is not propagated to the map\u2011reduce path, duplicate data could still be emitted in distributed runs.",
+          "Stats collection must still create the keys `nb_duplicated_lines` and `percent_duplicated_lines`; failing to do so could break tools that expect them.",
+          "Other checkers that rely on the `Similar` base class should continue to work with positive thresholds; ensure the new guard only activates for the exact value 0.",
+          "Changing the default handling of `min_lines` must not affect existing behaviour for negative values (which are currently invalid) or for the default positive value."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": {
+        "approved": false,
+        "risk_level": "HIGH",
+        "concerns": [
+          "The patch is not a valid unified diff; it lacks the required '---' and '+++' file headers and proper context lines.",
+          "The patch contains placeholder comments ('# Existing code...') instead of actual code, which would result in a syntax error or incomplete logic if applied.",
+          "The logic `if self.config.min_similarity_lines == 0: return` is placed inside the `check` method. While this might work for the specific method, it is better practice to handle this in the `__init__` or `open` method to prevent the checker from being registered or to skip processing entirely, or at least ensure it doesn't interfere with other parts of the checker's lifecycle.",
+          "The patch does not address the root cause in the `Similar` class or the configuration parsing, but rather adds a band-aid in the checker. However, given the constraints, a check in `check` is acceptable IF the diff is valid."
+        ],
+        "recommended_changes": [
+          "Generate a valid unified diff with proper headers (--- a/pylint/checkers/similar.py, +++ b/pylint/checkers/similar.py) and context lines.",
+          "Remove placeholder comments and ensure the code is syntactically correct and complete.",
+          "Consider adding the check in the `open` method or `__init__` to disable the checker more cleanly, or ensure the `check` method returns early as intended but with valid code."
+        ],
+        "reasoning": "The candidate patch is invalid because it is not a proper unified diff. It lacks the necessary file headers and context lines required for application. Additionally, it contains placeholder text which is not executable code. Even if the logic (returning early if min_similarity_lines is 0) is correct, the format is broken. The previous attempts failed due to similar issues (invalid diff format). This patch must be regenerated as a valid diff."
+      },
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "PATCH_INVALID",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Patch failed validation (missing @@ hunk headers, malformed diff, or empty diff).",
+          "Disambiguated root cause: [PATCH_INVALID] Patch failed validation."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false,
+          "disambiguated_failure_type": "PATCH_INVALID",
+          "disambiguated_explanation": "Patch failed validation."
+        }
+      },
+      "memory_retrieved": true,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Maximum attempts reached.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "@@ -100,6 +100,10 @@ class SimilarChecker(Checker):\n     def check(self, node):\n         if self.config.min_similarity_lines == 0:\n             return\n+        # Existing code for duplicate-code checking\n+        # ...",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\v2_2_dev_val\\pylint-dev__pylint-4970__full_ddiv\\pylint-dev__pylint-4970__full_ddiv.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": true,
+    "recovery_success": false,
+    "repair_time_seconds": 559.04,
+    "input_tokens": 32129,
+    "output_tokens": 12708,
+    "total_tokens": 44837,
+    "inference_calls": 16,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 34.76809644699097,
+      "coder": 374.7558381,
+      "tester": 22.284729957580566,
+      "supervisor": 12.667770624160767
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 11.589365482330322
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2625,
+        "completion_tokens": 1127,
+        "total_tokens": 3752,
+        "latency_seconds": 6.418234348297119
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 2050,
+        "completion_tokens": 490,
+        "total_tokens": 2540,
+        "latency_seconds": 81.5484214
+      },
+      {
+        "agent": "Tester",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2393,
+        "completion_tokens": 618,
+        "total_tokens": 3011,
+        "latency_seconds": 5.568829536437988
+      },
+      {
+        "agent": "Supervisor",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 1768,
+        "completion_tokens": 975,
+        "total_tokens": 2743,
+        "latency_seconds": 6.338930130004883
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 11.589365482330322
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2785,
+        "completion_tokens": 1166,
+        "total_tokens": 3951,
+        "latency_seconds": 7.301042318344116
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 2050,
+        "completion_tokens": 687,
+        "total_tokens": 2737,
+        "latency_seconds": 168.2258098
+      },
+      {
+        "agent": "PatchCritic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 932,
+        "completion_tokens": 285,
+        "total_tokens": 1217,
+        "latency_seconds": 1.35595703125
+      },
+      {
+        "agent": "Tester",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2447,
+        "completion_tokens": 1695,
+        "total_tokens": 4142,
+        "latency_seconds": 8.48956298828125
+      },
+      {
+        "agent": "Supervisor",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 1726,
+        "completion_tokens": 905,
+        "total_tokens": 2631,
+        "latency_seconds": 6.328840494155884
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 11.589365482330322
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2831,
+        "completion_tokens": 1464,
+        "total_tokens": 4295,
+        "latency_seconds": 9.996167659759521
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 2050,
+        "completion_tokens": 498,
+        "total_tokens": 2548,
+        "latency_seconds": 124.9816069
+      },
+      {
+        "agent": "PatchCritic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 982,
+        "completion_tokens": 430,
+        "total_tokens": 1412,
+        "latency_seconds": 41.8602499961853
+      },
+      {
+        "agent": "Tester",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2444,
+        "completion_tokens": 1888,
+        "total_tokens": 4332,
+        "latency_seconds": 8.226337432861328
+      }
+    ],
+    "context_characters": 7591,
+    "critic_approved": false,
+    "critic_risk_level": "HIGH",
+    "memory_retrieved": true
+  },
+  "failure_detection": {
+    "predicted_category": "F3",
+    "actual_category": "F3",
+    "precision": null,
+    "recall": null,
+    "f1": null
+  },
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.87,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": {
+    "Locator": 0.87,
+    "Coder": 0.54,
+    "Tester": 0.91,
+    "Supervisor": 0.84
+  },
+  "execution_duration_seconds": 559.278626203537,
+  "worker_pid": 6748,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\v2_2_dev_val\\pylint-dev__pylint-4970__full_ddiv.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\v2_2_dev_val\\pylint-dev__pylint-4970__full_ddiv",
+  "error_message": null,
+  "started_at": "2026-10-13T18:36:18.074936+00:00",
+  "completed_at": "2026-10-13T18:45:37.114352+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b"
+}

@@ -1,0 +1,76 @@
+{
+  "benchmark_id": "ddiv_v2_2_frozen_20_task_evaluation",
+  "preflight_generated_at": "2026-10-13T23:59:00Z",
+  "ready_for_launch": false,
+  "requires_user_approval": true,
+  "approval_status": "AWAITING_EXPLICIT_USER_APPROVAL",
+  "gate_checks": {
+    "checkpoint_sha256_verified": true,
+    "manifest_sha256_verified": true,
+    "frozen_directories_clean": true,
+    "windows_longpaths_enabled": true,
+    "dataset_parquet_present": true,
+    "pre_launch_gate_verdict": "GO"
+  },
+  "model_infrastructure": {
+    "coder_model": "qwen2.5-coder:7b",
+    "coder_provider": "ollama",
+    "coder_endpoint": "http://localhost:11434",
+    "coder_fallback": "DISABLED",
+    "ollama_status": "ACTIVE_READY",
+    "locator_provider": "google_genai",
+    "locator_model": "gemini-3.1-flash-lite",
+    "locator_status": "ACTIVE_READY",
+    "supporting_agent_provider": "groq",
+    "supporting_agent_model": "qwen/qwen3.8-27b",
+    "supporting_agent_status": "ACTIVE_READY"
+  },
+  "test_verification": {
+    "unit_integration_tests_passed": 48,
+    "unit_integration_tests_total": 48,
+    "clean_pass": true,
+    "real_repo_dev_validation": {
+      "tasks_tested": ["pylint-dev__pylint-4970", "pylint-dev__pylint-6903"],
+      "condition": "full_ddiv",
+      "status": "COMPLETED",
+      "pylint_4970": {"attempts": 3, "resolved": false, "anti_repetition_effective": true, "path_corrected": true},
+      "pylint_6903": {"attempts": 3, "resolved": false, "p2p_passed": "8/8", "f2p_passed": "0/1", "clean_apply": true}
+    }
+  },
+  "planned_matrix": {
+    "total_tasks": 20,
+    "conditions": ["baseline", "retry_only", "full_ddiv"],
+    "total_runs": 60,
+    "batches_count": 7,
+    "batches": {
+      "1": {
+        "tasks": ["pylint-dev__pylint-6903", "mwaskom__seaborn-3187", "pydata__xarray-7393"],
+        "runs": 9
+      },
+      "2": {
+        "tasks": ["astropy__astropy-8872", "astropy__astropy-14508", "psf__requests-2931"],
+        "runs": 9
+      },
+      "3": {
+        "tasks": ["pytest-dev__pytest-8399", "sympy__sympy-23413", "matplotlib__matplotlib-26342"],
+        "runs": 9
+      },
+      "4": {
+        "tasks": ["scikit-learn__scikit-learn-26323", "pydata__xarray-4966", "pylint-dev__pylint-4970"],
+        "runs": 9
+      },
+      "5": {
+        "tasks": ["sympy__sympy-13878", "django__django-16429", "sphinx-doc__sphinx-8638"],
+        "runs": 9
+      },
+      "6": {
+        "tasks": ["django__django-11141", "pytest-dev__pytest-7982", "scikit-learn__scikit-learn-13496"],
+        "runs": 9
+      },
+      "7": {
+        "tasks": ["sphinx-doc__sphinx-8269", "matplotlib__matplotlib-20676"],
+        "runs": 6
+      }
+    }
+  }
+}

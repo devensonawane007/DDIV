@@ -1,0 +1,32 @@
+======================================================================
+ TIER 1 SWE-BENCH VERIFIED TEST HARNESS EXECUTION
+ Task ID:        pylint-dev__pylint-6903
+ Workspace:      D:\PROJECTS\DDIV\data\workspaces\demo\eval_ws\pylint-dev__pylint-6903-eval
+ Return Code:    0
+ Status:         ALL TESTS PASSED
+======================================================================
+
+--- STDOUT ---
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-7.4.4, pluggy-1.6.0 -- C:\Users\deven\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe
+cachedir: .pytest_cache
+rootdir: D:\DDIV\data\workspaces\demo\eval_ws\pylint-dev__pylint-6903-eval
+configfile: setup.cfg
+plugins: anyio-4.11.0
+collecting ... collected 9 items
+
+tests/test_pylint_runners.py::test_runner[run_epylint] PASSED            [ 11%]
+tests/test_pylint_runners.py::test_runner[run_pylint] PASSED             [ 22%]
+tests/test_pylint_runners.py::test_runner[run_pyreverse] PASSED          [ 33%]
+tests/test_pylint_runners.py::test_runner[run_symilar] PASSED            [ 44%]
+tests/test_pylint_runners.py::test_runner_with_arguments[run_epylint] PASSED [ 55%]
+tests/test_pylint_runners.py::test_runner_with_arguments[run_pylint] PASSED [ 66%]
+tests/test_pylint_runners.py::test_runner_with_arguments[run_pyreverse] PASSED [ 77%]
+tests/test_pylint_runners.py::test_runner_with_arguments[run_symilar] PASSED [ 88%]
+tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction PASSED [100%]
+
+============================= 9 passed in 22.17s ==============================
+
+
+--- STDERR ---
+

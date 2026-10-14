@@ -1,0 +1,102 @@
+{
+  "results/fair_5bug_v22/comparison.csv": {
+    "sha256": "1AA7C3C6EBD39BEA577CDCDC574912102BF5FA2BEE6BBD64DF3BC980B4FFC27E",
+    "size_bytes": 3299
+  },
+  "results/fair_5bug_v22/manifest.json": {
+    "sha256": "946FB2E5E41B4036CF8C2E99B1EC9594D7892F2081B3CADB4A71A7BCF97F433A",
+    "size_bytes": 10818
+  },
+  "results/fair_5bug_v22/per_run_results.json": {
+    "sha256": "41BA615C39E9836600E5ECD10599E4F79A3DF121A6952ECD49AD42110E832CA2",
+    "size_bytes": 8284
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-4970__baseline.patch": {
+    "sha256": "3BCB9BFF7E53D23C16D89DAA1FDFD8527A1848A05CB8E10980EB9B163F1E34F9",
+    "size_bytes": 434
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-4970__baseline_model_invocations.json": {
+    "sha256": "A1043ABB6144588675173B53DFB77BD5AB407E93F26FF31DAFDDB864B6934DEB",
+    "size_bytes": 683
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-4970__full_ddiv.patch": {
+    "sha256": "07802916684DC6B4F5FD481A1D07599EDB9EEB25E6A34DA7DE499F9D355E0199",
+    "size_bytes": 439
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-4970__full_ddiv_model_invocations.json": {
+    "sha256": "C9428A33481BC02C7F15D696238BE1A833ECD01610228CA4588B47C977DEF9FA",
+    "size_bytes": 3644
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-4970__retry_only.patch": {
+    "sha256": "839FDA44D98E07DF31B8B78A3D9AEDA49836171E21CD291B852EE67CF3086C75",
+    "size_bytes": 596
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-4970__retry_only_model_invocations.json": {
+    "sha256": "F92AC139CD26D5C3948EB63011A081B53CE9FB65F5430F6481765D6E60984FA4",
+    "size_bytes": 2039
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-6903__baseline_model_invocations.json": {
+    "sha256": "E2DC6A6506F58E2C0BC3EE77FA5E41E93E6E0E6050A2E7701160798908AC863E",
+    "size_bytes": 682
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-6903__full_ddiv.patch": {
+    "sha256": "1A926367A34E419A58087A097A7629976F984834B05EF27E0C9D35CC88B8F3B3",
+    "size_bytes": 321
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-6903__full_ddiv_model_invocations.json": {
+    "sha256": "3A4AD090EF777A92FEC1E62CAC88187676B7BF7E3795EE116013EC598DA3E22F",
+    "size_bytes": 1141
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-6903__retry_only.patch": {
+    "sha256": "486D9E233EBC3FA8BAB120F4DF8B5DA53529452057DE471FDA328BEB822ABD6D",
+    "size_bytes": 430
+  },
+  "results/fair_5bug_v22/results/pylint-dev__pylint-6903__retry_only_model_invocations.json": {
+    "sha256": "A8E0F26FF1DA060227C671C50AFAD926882EF4BA8BCE03926E60285A6BB3DE25",
+    "size_bytes": 1356
+  },
+  "results/fair_5bug_v22/results/result_pylint-dev__pylint-4970__baseline.json": {
+    "sha256": "55BB02C6E731D71E86BE35628B4F9FEF257FB5B1A8A93349261EEF0466946527",
+    "size_bytes": 9612
+  },
+  "results/fair_5bug_v22/results/result_pylint-dev__pylint-4970__full_ddiv.json": {
+    "sha256": "6DA1388528C102ACFD3C41BA51F3B4A739004E01A2AB7C9A9AC0FB8E60EA3DCA",
+    "size_bytes": 36341
+  },
+  "results/fair_5bug_v22/results/result_pylint-dev__pylint-4970__retry_only.json": {
+    "sha256": "38BB98EAF3672D260E0B4F5EC89379604A4B161A5270B218426DAFF4F3FCFA4B",
+    "size_bytes": 21183
+  },
+  "results/fair_5bug_v22/results/result_pylint-dev__pylint-6903__baseline.json": {
+    "sha256": "12023495678AEC4736B91AFF0E1947141E87ECC8509ACE8DA17F7EC0F333C359",
+    "size_bytes": 7651
+  },
+  "results/fair_5bug_v22/results/result_pylint-dev__pylint-6903__full_ddiv.json": {
+    "sha256": "3CE698A50AE9645F220DD8BA9231EC435E60CB50637E4352495BB708A6237B75",
+    "size_bytes": 13180
+  },
+  "results/fair_5bug_v22/results/result_pylint-dev__pylint-6903__retry_only.json": {
+    "sha256": "1B448357523D87838A3C45377022DF95FF3EC07462AE241EEF6412FEEE3800ED",
+    "size_bytes": 13707
+  },
+  "results/fair_5bug_v22/results/result_sympy__sympy-23413__baseline.json": {
+    "sha256": "EDE8D671B84B82E1FBC0D4400372346EC285CC2733F0951CBDCA6AEA063D72F4",
+    "size_bytes": 8722
+  },
+  "results/fair_5bug_v22/results/result_sympy__sympy-23413__retry_only.json": {
+    "sha256": "D0C035E426B3C4621D0C4582DC3E47C4CCE223D78BF2750D7509EAD682873F45",
+    "size_bytes": 19403
+  },
+  "results/fair_5bug_v22/results/sympy__sympy-23413__baseline_model_invocations.json": {
+    "sha256": "7EEF9B87F19071995247F36A71B5ECB9A180A14C46872CBB53E14636892141B2",
+    "size_bytes": 681
+  },
+  "results/fair_5bug_v22/results/sympy__sympy-23413__retry_only_model_invocations.json": {
+    "sha256": "ACD3EEF9F4E4A877707BB4EA1B61F5306DD99100EEA136B15D042050B27A8E03",
+    "size_bytes": 2038
+  },
+  "results/fair_5bug_v22/summary.md": {
+    "sha256": "BA2BF165D5A315544F10ABB1B371D077ED29A87FCF18ED840451C99C2CE8C35A",
+    "size_bytes": 5412
+  }
+}

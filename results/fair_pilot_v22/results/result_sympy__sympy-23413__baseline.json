@@ -1,0 +1,176 @@
+{
+  "experiment_id": "fair_pilot_v22",
+  "task_id": "sympy__sympy-23413",
+  "condition": "baseline",
+  "status": "ABORTED_QUOTA_EXHAUSTED",
+  "resolved": false,
+  "workflow_completed": false,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": "Coder",
+  "error_code": "CODER_RATE_LIMITED",
+  "provider_failure": {
+    "stage": "Coder",
+    "error_code": "CODER_RATE_LIMITED",
+    "error_message": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199767, Requested 4983. Please try again in 34m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "attempt": 1,
+    "quota_exhausted": true
+  },
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [],
+      "patch_operations": [],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": null,
+      "coder_error_code": "CODER_RATE_LIMITED",
+      "coder_error_detail": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199767, Requested 4983. Please try again in 34m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+      "agent_apply_success": false,
+      "agent_test_status": "NOT_RUN",
+      "internal_resolved": false,
+      "verdict": "ABORTED_QUOTA_EXHAUSTED",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "sympy/matrices/matrices.py",
+        "sympy/matrices/matrixbase.py",
+        "sympy/matrices/dense.py"
+      ],
+      "latency_seconds": 0.0,
+      "agent_timings": {
+        "locator": 1.7321441173553467,
+        "coder": 3.9201934337615967,
+        "tester": 0.0,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1498,
+          "completion_tokens": 161,
+          "total_tokens": 1659,
+          "latency_seconds": 1.7321441173553467
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0,
+          "latency_seconds": 3.9201934337615967
+        }
+      ],
+      "context_characters": 7783,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": null,
+      "memory_retrieved": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\fair_pilot\\sympy__sympy-23413__baseline\\sympy__sympy-23413__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 52.57,
+    "input_tokens": 1498,
+    "output_tokens": 161,
+    "total_tokens": 1659,
+    "inference_calls": 2,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 1.7321441173553467,
+      "coder": 3.9201934337615967,
+      "tester": 0.0,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659,
+        "latency_seconds": 1.7321441173553467
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "latency_seconds": 3.9201934337615967
+      }
+    ],
+    "context_characters": 7783,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "ABORTED_QUOTA_EXHAUSTED",
+    "duration_seconds": 0.0,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 52.57,
+  "worker_pid": 18188,
+  "worker_exit_code": 3,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\fair_pilot_v22\\logs\\sympy__sympy-23413__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\fair_pilot\\sympy__sympy-23413__baseline",
+  "error_message": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m4n15dk8ekd8khpxcf13mtaq` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199767, Requested 4983. Please try again in 34m12s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+  "started_at": "2026-10-12T20:58:50.632265+00:00",
+  "completed_at": "2026-10-12T20:59:43.199573+00:00"
+}

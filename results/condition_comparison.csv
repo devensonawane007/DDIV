@@ -1,0 +1,18 @@
+experiment_id,experiment_description,condition,tasks_attempted,completed_jobs,timed_out_jobs,provider_failed_jobs,aborted_quota_jobs,valid_patches_generated,patches_applied,internal_tier1_resolved,resolution_rate_pct,total_tokens,total_runtime_seconds,avg_runtime_seconds
+dev_validation_001,dev_validation_001 (Mock Integration Test),baseline,5,5,0,0,0,0,0,0,0.0,3000,47.22,9.44
+dev_validation_001,dev_validation_001 (Mock Integration Test),full_ddiv,5,5,0,0,0,0,0,2,40.0,14600,66.19,13.24
+dev_validation_001,dev_validation_001 (Mock Integration Test),retry_only,5,5,0,0,0,0,0,0,0.0,9000,80.24,16.05
+validation_3tasks_v21_20261009,validation_3tasks_v21_20261009 (Real Providers Pilot - Groq 429),baseline,3,3,0,0,0,0,0,0,0.0,17584,431.21,143.74
+validation_3tasks_v21_20261009,validation_3tasks_v21_20261009 (Real Providers Pilot - Groq 429),full_ddiv,3,3,0,0,0,0,0,0,0.0,56007,755.41,251.8
+validation_3tasks_v21_20261009,validation_3tasks_v21_20261009 (Real Providers Pilot - Groq 429),retry_only,3,3,0,0,0,0,0,0,0.0,55855,682.57,227.52
+validation_3tasks_v21_post_provider_fix_20261012,validation_3tasks_v21_post_provider_fix_20261012 (Real Providers - Django LongPaths error),baseline,3,2,0,1,0,1,1,0,0.0,16512,182.92,60.97
+validation_3tasks_v21_post_provider_fix_20261012,validation_3tasks_v21_post_provider_fix_20261012 (Real Providers - Django LongPaths error),full_ddiv,3,2,0,1,0,2,1,0,0.0,96820,801.24,267.08
+validation_3tasks_v21_post_provider_fix_20261012,validation_3tasks_v21_post_provider_fix_20261012 (Real Providers - Django LongPaths error),retry_only,3,2,0,1,0,2,2,0,0.0,52160,421.57,140.52
+validation_3tasks_v21_django_repair_20261012,validation_3tasks_v21_django_repair_20261012 (Real Providers - Django Repaired),baseline,1,1,0,0,0,1,1,0,0.0,8544,117.27,117.27
+validation_3tasks_v21_django_repair_20261012,validation_3tasks_v21_django_repair_20261012 (Real Providers - Django Repaired),full_ddiv,1,1,0,0,0,1,1,0,0.0,50016,413.13,413.13
+validation_3tasks_v21_django_repair_20261012,validation_3tasks_v21_django_repair_20261012 (Real Providers - Django Repaired),retry_only,1,1,0,0,0,1,1,0,0.0,26529,252.93,252.93
+benchmark_v2_1_batch_1,benchmark_v2_1_batch_1 (Real Providers - Batch 1 Execution),baseline,3,3,0,0,0,1,1,0,0.0,30594,306.82,102.27
+benchmark_v2_1_batch_1,benchmark_v2_1_batch_1 (Real Providers - Batch 1 Execution),full_ddiv,3,2,0,0,1,3,2,0,0.0,160857,1124.46,374.82
+benchmark_v2_1_batch_1,benchmark_v2_1_batch_1 (Real Providers - Batch 1 Execution),retry_only,3,3,0,0,0,1,1,0,0.0,97146,668.98,222.99
+coder_ablation_v21_20261012,coder_ablation_v21_20261012 (Real Providers - Coder Ablation Full DDIV),full_ddiv_coder_a,3,3,0,0,0,2,2,0,0.0,171614,1229.64,409.88
+coder_ablation_v21_20261012,coder_ablation_v21_20261012 (Real Providers - Coder Ablation Full DDIV),full_ddiv_coder_b,3,0,0,1,2,0,0,0,0.0,127408,789.31,263.1

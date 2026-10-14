@@ -1,0 +1,83 @@
+[
+  {
+    "agent": "Locator",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "prompt_tokens": 1682,
+    "completion_tokens": 160,
+    "total_tokens": 1842,
+    "latency_seconds": 4.427704095840454
+  },
+  {
+    "agent": "Coder",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 3531,
+    "completion_tokens": 1040,
+    "total_tokens": 4571,
+    "latency_seconds": 2.8006820678710938
+  },
+  {
+    "agent": "Tester",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 2689,
+    "completion_tokens": 367,
+    "total_tokens": 3056,
+    "latency_seconds": 1.2447550296783447
+  },
+  {
+    "agent": "Locator",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "prompt_tokens": 1682,
+    "completion_tokens": 160,
+    "total_tokens": 1842,
+    "latency_seconds": 5.336302280426025
+  },
+  {
+    "agent": "Coder",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 3565,
+    "completion_tokens": 1108,
+    "total_tokens": 4673,
+    "latency_seconds": 2.9592342376708984
+  },
+  {
+    "agent": "Tester",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 2689,
+    "completion_tokens": 419,
+    "total_tokens": 3108,
+    "latency_seconds": 1.2223093509674072
+  },
+  {
+    "agent": "Locator",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "prompt_tokens": 1682,
+    "completion_tokens": 160,
+    "total_tokens": 1842,
+    "latency_seconds": 6.710729360580444
+  },
+  {
+    "agent": "Coder",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 3565,
+    "completion_tokens": 1072,
+    "total_tokens": 4637,
+    "latency_seconds": 2.8896570205688477
+  },
+  {
+    "agent": "Tester",
+    "model": "qwen/qwen3.8-27b",
+    "provider": "groq",
+    "prompt_tokens": 2727,
+    "completion_tokens": 728,
+    "total_tokens": 3455,
+    "latency_seconds": 1.852085828781128
+  }
+]

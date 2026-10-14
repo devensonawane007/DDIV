@@ -1,0 +1,222 @@
+{
+  "experiment_id": "demo_run",
+  "task_id": "pylint-dev__pylint-6903",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/lint/run.py",
+          "target_symbol": "_query_cpu",
+          "operation": "replace",
+          "anchor": "return avail_cpu",
+          "code": "if avail_cpu is not None and avail_cpu < 1:\n        avail_cpu = 1\n    return avail_cpu",
+          "reason": "Guarantee that the function never returns 0, preventing multiprocessing from receiving an invalid process count."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Patched file 'pylint/lint/run.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 63)",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/lint/run.py"
+      ],
+      "latency_seconds": 0.11199259757995605,
+      "agent_timings": {
+        "locator": 2.9084460735321045,
+        "coder": 2.6733782291412354,
+        "tester": 1.1478056907653809,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8027,
+        "completion_tokens": 1393,
+        "total_tokens": 9420
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 3336,
+          "completion_tokens": 132,
+          "total_tokens": 3468,
+          "latency_seconds": 2.9084460735321045
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2867,
+          "completion_tokens": 893,
+          "total_tokens": 3760,
+          "latency_seconds": 2.6733782291412354
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1824,
+          "completion_tokens": 368,
+          "total_tokens": 2192,
+          "latency_seconds": 1.1478056907653809
+        }
+      ],
+      "context_characters": 3657,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Patched file 'pylint/lint/run.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 63)."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\demo\\pylint-dev__pylint-6903__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 43.13,
+    "input_tokens": 8027,
+    "output_tokens": 1393,
+    "total_tokens": 9420,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 2.9084460735321045,
+      "coder": 2.6733782291412354,
+      "tester": 1.1478056907653809,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 3336,
+        "completion_tokens": 132,
+        "total_tokens": 3468,
+        "latency_seconds": 2.9084460735321045
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2867,
+        "completion_tokens": 893,
+        "total_tokens": 3760,
+        "latency_seconds": 2.6733782291412354
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1824,
+        "completion_tokens": 368,
+        "total_tokens": 2192,
+        "latency_seconds": 1.1478056907653809
+      }
+    ],
+    "context_characters": 3657,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.11,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 43.13,
+  "worker_pid": 22072,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\demo\\demo_repair.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\demo",
+  "error_message": null,
+  "started_at": "2026-10-12T20:43:52.699256+00:00",
+  "completed_at": "2026-10-12T20:44:35.834127+00:00"
+}

@@ -1,0 +1,16 @@
+task_id,condition,base_commit,status,resolved,pass_at_1,attempts,tokens,duration_seconds,patch_generated,patch_applied,f2p_passed,p2p_passed,verdict,failure_stage,error_message
+pylint-dev__pylint-6903,baseline,ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6,COMPLETED,False,False,1,9420,43.13,False,False,False,False,UNRESOLVED_INTERNALLY (Candidate patch application failed),,
+pylint-dev__pylint-6903,retry_only,ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6,COMPLETED,True,False,2,19923,133.77,True,True,True,True,RESOLVED_INTERNALLY,,
+pylint-dev__pylint-6903,full_ddiv,ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6,COMPLETED,True,True,1,15815,111.43,True,True,True,True,RESOLVED_INTERNALLY,,
+pylint-dev__pylint-4970,baseline,40cc2ffd7887959157aaf469e09585ec2be7f528,ConditionJobStatus.COMPLETED,False,False,1,9456,160.69,True,True,False,True,UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed),,
+pylint-dev__pylint-4970,retry_only,40cc2ffd7887959157aaf469e09585ec2be7f528,ConditionJobStatus.COMPLETED,False,False,3,29026,277.39,True,True,False,True,UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed),,
+pylint-dev__pylint-4970,full_ddiv,40cc2ffd7887959157aaf469e09585ec2be7f528,ConditionJobStatus.COMPLETED,False,False,3,48728,358.19,True,True,False,True,UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed),,
+sympy__sympy-23413,baseline,10de1a18a0efac0b19b611e40c928250dda688bf,ConditionJobStatus.COMPLETED,False,False,1,8965,81.78,False,False,False,False,UNRESOLVED_INTERNALLY (Candidate patch application failed),,
+sympy__sympy-23413,retry_only,10de1a18a0efac0b19b611e40c928250dda688bf,ConditionJobStatus.COMPLETED,False,False,3,26486,131.48,False,False,False,False,UNRESOLVED_INTERNALLY (Candidate patch application failed),,
+sympy__sympy-23413,full_ddiv,10de1a18a0efac0b19b611e40c928250dda688bf,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000
+pytest-dev__pytest-8399,baseline,6e7dc8bac831cd8cf7a53b08efa366bd84f0c0fe,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000
+pytest-dev__pytest-8399,retry_only,6e7dc8bac831cd8cf7a53b08efa366bd84f0c0fe,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000
+pytest-dev__pytest-8399,full_ddiv,6e7dc8bac831cd8cf7a53b08efa366bd84f0c0fe,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000
+django__django-16429,baseline,6c86495bcee22eac19d7fb040b2988b830707cbd,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000
+django__django-16429,retry_only,6c86495bcee22eac19d7fb040b2988b830707cbd,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000
+django__django-16429,full_ddiv,6c86495bcee22eac19d7fb040b2988b830707cbd,ABORTED_QUOTA_EXHAUSTED,False,False,0,0,0.0,False,False,False,False,ABORTED_QUOTA_EXHAUSTED,QUOTA_GUARD,Pre-run token budget exceeded: 167819 >= 160000

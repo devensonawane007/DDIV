@@ -29,17 +29,35 @@ class LoggerWriter:
     """Tee writer sending output to both original stream and a log file."""
 
     def __init__(self, original_stream, log_file_path: Path):
+        # Attempt UTF-8 stream reconfiguration if supported
+        if original_stream is not None and hasattr(original_stream, "reconfigure"):
+            try:
+                original_stream.reconfigure(encoding="utf-8", errors="replace")
+            except Exception:
+                pass
         self.original_stream = original_stream
         self.log_file_path = log_file_path
         self.log_file_path.parent.mkdir(parents=True, exist_ok=True)
         self.log_file = open(self.log_file_path, "a", encoding="utf-8", buffering=1)
 
     def write(self, message):
-        self.original_stream.write(message)
+        if self.original_stream is not None:
+            try:
+                self.original_stream.write(message)
+            except UnicodeEncodeError:
+                encoding = getattr(self.original_stream, "encoding", None) or "utf-8"
+                safe_msg = message.encode(encoding, errors="replace").decode(encoding)
+                self.original_stream.write(safe_msg)
+            except Exception:
+                pass
         self.log_file.write(message)
 
     def flush(self):
-        self.original_stream.flush()
+        if self.original_stream is not None and hasattr(self.original_stream, "flush"):
+            try:
+                self.original_stream.flush()
+            except Exception:
+                pass
         self.log_file.flush()
 
     def close(self):
@@ -61,6 +79,14 @@ def main():
     parser.add_argument("--dataset", type=str, default="swebench_verified", help="Dataset name")
 
     args = parser.parse_args()
+
+    # Reconfigure stdout/stderr streams to UTF-8 with replacement fallback on Windows
+    for stream in (sys.__stdout__, sys.__stderr__, sys.stdout, sys.stderr):
+        if stream is not None and hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8", errors="replace")
+            except Exception:
+                pass
 
     log_path = Path(args.log_file).resolve()
     log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -100,11 +126,13 @@ def main():
 
         print("\n" + "=" * 70)
         print(f" CHILD WORKER FINISHED: {args.task_id} [{cond.value.upper()}]")
+        print(f" Status:   {record.status.value}")
         print(f" Resolved: {record.resolved}")
         print(f" Attempts: {record.attempts}")
         print(f" Duration: {record.execution_duration_seconds:.2f}s")
         print("=" * 70)
-        sys.exit(0)
+        exit_code = record.worker_exit_code if record.worker_exit_code is not None else 0
+        sys.exit(exit_code)
 
     except Exception as exc:
         err_msg = f"Worker unhandled exception: {exc}\n{traceback.format_exc()}"

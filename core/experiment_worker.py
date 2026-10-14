@@ -44,6 +44,29 @@ from models.providers import MockModelProvider, OpenAICompatibleProvider
 from models.registry import ModelRegistry
 
 
+def _is_quota_exhausted(err_code: Optional[str], err_msg: Optional[str]) -> bool:
+    """Detect whether an error indicates hard token quota exhaustion or persistent rate limiting."""
+    if not err_code and not err_msg:
+        return False
+    combined = f"{err_code or ''} {err_msg or ''}".lower()
+    return any(k in combined for k in [
+        "rate_limit", "rate limit", "429", "tpd", "tokens per day", "quota",
+        "resource_exhausted", "quota_exceeded"
+    ])
+
+
+def _is_unrecoverable_provider_error(err_code: Optional[str], err_msg: Optional[str]) -> bool:
+    """Detect whether an error indicates unrecoverable authentication, permission, or configuration failure."""
+    if not err_code and not err_msg:
+        return False
+    combined = f"{err_code or ''} {err_msg or ''}".lower()
+    return any(k in combined for k in [
+        "401", "unauthorized", "invalid_api_key", "api_key_invalid", "authentication",
+        "403", "permission_denied", "forbidden", "access_denied",
+        "404", "model_not_found", "not_found", "not found"
+    ])
+
+
 class ExperimentWorker:
     """Executes a single (task, condition) repair attempt inside an isolated workspace."""
 
@@ -308,6 +331,15 @@ class ExperimentWorker:
         located_symbols: List[str] = []
         loc_res: Optional[AgentExecutionResult] = None
 
+        terminal_status = ConditionJobStatus.COMPLETED
+        failed_stage: Optional[str] = None
+        failed_error_code: Optional[str] = None
+        terminal_error_message: Optional[str] = None
+        provider_failure_dict: Optional[Dict[str, Any]] = None
+        applied_any_patch: bool = False
+        degraded_execution: bool = False
+        degraded_reason: Optional[str] = None
+
         # Discover repository files
         repo_files = []
         for p in agent_ws.path.glob("**/*.py"):
@@ -354,6 +386,8 @@ class ExperimentWorker:
             # 5c. Test Understanding & Root Cause Analysis (FULL_DDIV)
             rca_res = None
             rca_dict: Dict[str, Any] = {}
+            rca_error: Optional[str] = None
+            rca_error_code: Optional[str] = None
             if self.condition == ExperimentCondition.FULL_DDIV:
                 print(f"[{task.instance_id}] Running TestUnderstandingAgent (RCA)...")
                 rca_input = {
@@ -367,6 +401,10 @@ class ExperimentWorker:
                 if rca_res.success and rca_res.output:
                     rca_dict = rca_res.output.model_dump()
                     print(f"[{task.instance_id}] RCA: Contract: {rca_dict.get('behavioral_contract', '')[:90]}...")
+                else:
+                    rca_error = rca_res.error if rca_res else "TestUnderstanding execution failed"
+                    rca_error_code = getattr(rca_res, "error_code", None) or "TEST_UNDERSTANDING_ERROR"
+                    print(f"[{task.instance_id}] TestUnderstanding error: [{rca_error_code}] {rca_error}")
 
             memory_context = ""
             if self.condition.is_memory_enabled and memory_retriever:
@@ -429,6 +467,105 @@ class ExperimentWorker:
                 coder_error_code = getattr(coder_res, "error_code", None) or "CODER_ERROR"
                 coder_error_msg = coder_res.error or "Unknown Coder error"
                 print(f"[{task.instance_id}] Coder error: [{coder_error_code}] {coder_error_msg}")
+                if _is_quota_exhausted(coder_error_code, coder_error_msg):
+                    terminal_status = ConditionJobStatus.ABORTED_QUOTA_EXHAUSTED
+                    failed_stage = "Coder"
+                    failed_error_code = coder_error_code
+                    terminal_error_message = coder_error_msg
+                    provider_failure_dict = {
+                        "stage": "Coder",
+                        "error_code": coder_error_code,
+                        "error_message": coder_error_msg,
+                        "attempt": attempt,
+                        "quota_exhausted": True,
+                    }
+                elif self.condition == ExperimentCondition.BASELINE or attempt >= max_attempts:
+                    terminal_status = ConditionJobStatus.PROVIDER_ERROR
+                    failed_stage = "Coder"
+                    failed_error_code = coder_error_code
+                    terminal_error_message = coder_error_msg
+                    provider_failure_dict = {
+                        "stage": "Coder",
+                        "error_code": coder_error_code,
+                        "error_message": coder_error_msg,
+                        "attempt": attempt,
+                        "quota_exhausted": False,
+                    }
+
+            if terminal_status == ConditionJobStatus.ABORTED_QUOTA_EXHAUSTED:
+                # Immediate clean abort on hard API quota exhaustion
+                invocations = []
+                att_prompt_tokens = 0
+                att_comp_tokens = 0
+                att_total_tokens = 0
+                has_tokens = False
+
+                for ag_name, res_obj in [("Locator", loc_res), ("TestUnderstanding", rca_res), ("Coder", coder_res)]:
+                    if res_obj:
+                        invocations.append({
+                            "agent": ag_name,
+                            "model": getattr(res_obj, "model_id", "") or "",
+                            "provider": getattr(res_obj, "provider", "") or "",
+                            "prompt_tokens": res_obj.prompt_tokens,
+                            "completion_tokens": res_obj.completion_tokens,
+                            "total_tokens": res_obj.total_tokens,
+                            "latency_seconds": res_obj.latency_seconds,
+                        })
+                        if res_obj.total_tokens > 0:
+                            has_tokens = True
+                            att_prompt_tokens += res_obj.prompt_tokens
+                            att_comp_tokens += res_obj.completion_tokens
+                            att_total_tokens += res_obj.total_tokens
+
+                attempt_snapshot = {
+                    "attempt": attempt,
+                    "coder_proposals": [],
+                    "patch_operations": [],
+                    "generated_patch": "",
+                    "patch_generated": False,
+                    "patch_valid": False,
+                    "patch_validation_error": None,
+                    "coder_error_code": coder_error_code,
+                    "coder_error_detail": coder_error_msg,
+                    "agent_apply_success": False,
+                    "agent_test_status": "NOT_RUN",
+                    "internal_resolved": False,
+                    "verdict": "ABORTED_QUOTA_EXHAUSTED",
+                    "f2p_passed": False,
+                    "p2p_passed": False,
+                    "failed_f2p_tests": [],
+                    "failed_p2p_tests": [],
+                    "final_patch_correct": False,
+                    "regression_detected": False,
+                    "located_files": located_files,
+                    "latency_seconds": 0.0,
+                    "agent_timings": {
+                        "locator": loc_res.latency_seconds if loc_res else 0.0,
+                        "coder": coder_res.latency_seconds if coder_res else 0.0,
+                        "tester": 0.0,
+                        "supervisor": 0.0,
+                    },
+                    "token_usage": {
+                        "prompt_tokens": att_prompt_tokens,
+                        "completion_tokens": att_comp_tokens,
+                        "total_tokens": att_total_tokens,
+                    } if has_tokens else None,
+                    "model_invocations": invocations,
+                    "context_characters": targeted_ctx.character_size,
+                    "root_cause_analysis": rca_dict if rca_dict else None,
+                    "test_understanding_error": rca_error,
+                    "test_understanding_error_code": rca_error_code,
+                    "patch_critic": None,
+                    "patch_critic_error": None,
+                    "patch_critic_error_code": None,
+                    "tester_error": None,
+                    "tester_error_code": None,
+                    "failure_detector": None,
+                    "memory_retrieved": bool(memory_context),
+                }
+                attempt_logs.append(attempt_snapshot)
+                print(f"[{task.instance_id}] Coder hard quota exhausted: [{coder_error_code}] {coder_error_msg}. Aborting job.")
+                break
 
             if candidate_patch:
                 final_patch = candidate_patch
@@ -436,6 +573,8 @@ class ExperimentWorker:
             # 5e. Patch Critic (Non-blocking Diagnostic Advisory)
             critic_res = None
             critic_dict: Dict[str, Any] = {}
+            critic_error: Optional[str] = None
+            critic_error_code: Optional[str] = None
             if self.condition == ExperimentCondition.FULL_DDIV and candidate_patch:
                 print(f"[{task.instance_id}] Running PatchCriticAgent (non-blocking)...")
                 critic_input = {
@@ -449,6 +588,10 @@ class ExperimentWorker:
                 if critic_res.success and critic_res.output:
                     critic_dict = critic_res.output.model_dump()
                     print(f"[{task.instance_id}] PatchCritic: approved={critic_dict.get('approved')} (risk: {critic_dict.get('risk_level')})")
+                else:
+                    critic_error = critic_res.error if critic_res else "PatchCritic execution failed"
+                    critic_error_code = getattr(critic_res, "error_code", None) or "PATCH_CRITIC_ERROR"
+                    print(f"[{task.instance_id}] PatchCritic error: [{critic_error_code}] {critic_error}")
 
             # 5c. Validate Patch Structure
             val_res: PatchValidationResult = patch_mgr.validate_patch(candidate_patch)
@@ -461,12 +604,22 @@ class ExperimentWorker:
                 "candidate_patch": candidate_patch,
                 "relevant_code": source_code_context,
             }
+            tester_error: Optional[str] = None
+            tester_error_code: Optional[str] = None
             tester_res = tester.execute(tester_input, meta)
-            rec_tests = getattr(tester_res.output, "recommended_tests", []) if (tester_res and tester_res.output) else []
+            if tester_res.success and tester_res.output:
+                rec_tests = getattr(tester_res.output, "recommended_tests", [])
+            else:
+                rec_tests = []
+                tester_error = tester_res.error if tester_res else "Tester execution failed"
+                tester_error_code = getattr(tester_res, "error_code", None) or "TESTER_ERROR"
+                print(f"[{task.instance_id}] Tester error: [{tester_error_code}] {tester_error}")
             print(f"[{task.instance_id}] Tester recommended tests: {rec_tests}")
 
             # 5e. Agent Workspace Test
             agent_apply_res = patch_mgr.apply_patch(agent_ws.path, val_res.sanitized_patch if val_res.is_valid else candidate_patch)
+            if agent_apply_res.is_success:
+                applied_any_patch = True
             agent_test_res: TestExecutionResult = TestExecutionResult(passed=False, raw_stdout="", raw_stderr="Patch not applied")
             if agent_apply_res.is_success:
                 valid_targets = []
@@ -649,9 +802,17 @@ class ExperimentWorker:
                 "model_invocations": invocations,
                 "context_characters": targeted_ctx.character_size,
                 "root_cause_analysis": rca_dict if rca_dict else None,
+                "test_understanding_error": rca_error,
+                "test_understanding_error_code": rca_error_code,
                 "patch_critic": critic_dict if critic_dict else None,
+                "patch_critic_error": critic_error,
+                "patch_critic_error_code": critic_error_code,
+                "tester_error": tester_error,
+                "tester_error_code": tester_error_code,
                 "failure_detector": det_res.model_dump(),
                 "memory_retrieved": bool(memory_context),
+                "degraded_execution": degraded_execution,
+                "degraded_reason": degraded_reason if degraded_execution else None,
             }
 
             if eval_res.outcome == EvaluationOutcome.RESOLVED:
@@ -733,6 +894,108 @@ class ExperimentWorker:
                     }
                     print(f"[{task.instance_id}] Running SupervisorAgent (FULL_DDIV recovery)...")
                     sup_res = supervisor.execute(sup_input, meta)
+                    if not sup_res.success or not sup_res.output:
+                        sup_error = sup_res.error or "Unknown Supervisor error"
+                        sup_error_code = getattr(sup_res, "error_code", None) or "SUPERVISOR_ERROR"
+                        if _is_quota_exhausted(sup_error_code, sup_error):
+                            terminal_status = ConditionJobStatus.ABORTED_QUOTA_EXHAUSTED
+                            failed_stage = "Supervisor"
+                            failed_error_code = "SUPERVISOR_QUOTA_EXHAUSTED"
+                            terminal_error_message = sup_error
+                            provider_failure_dict = {
+                                "stage": "Supervisor",
+                                "error_code": sup_error_code,
+                                "error_message": sup_error,
+                                "attempt": attempt,
+                                "quota_exhausted": True,
+                            }
+                            attempt_snapshot["supervisor_error"] = sup_error
+                            attempt_snapshot["supervisor_error_code"] = sup_error_code
+                            attempt_snapshot["agent_timings"]["supervisor"] = sup_res.latency_seconds if sup_res else 0.0
+                            if sup_res:
+                                attempt_snapshot["model_invocations"].append({
+                                    "agent": "Supervisor",
+                                    "model": getattr(sup_res, "model_id", "") or "",
+                                    "provider": getattr(sup_res, "provider", "") or "",
+                                    "prompt_tokens": sup_res.prompt_tokens,
+                                    "completion_tokens": sup_res.completion_tokens,
+                                    "total_tokens": sup_res.total_tokens,
+                                    "latency_seconds": sup_res.latency_seconds,
+                                })
+                            attempt_logs.append(attempt_snapshot)
+                            print(f"[{task.instance_id}] Supervisor hard quota exhausted: [{sup_error_code}] {sup_error}. Aborting job.")
+                            break
+                        elif _is_unrecoverable_provider_error(sup_error_code, sup_error):
+                            terminal_status = ConditionJobStatus.PROVIDER_ERROR
+                            failed_stage = "Supervisor"
+                            failed_error_code = sup_error_code
+                            terminal_error_message = sup_error
+                            provider_failure_dict = {
+                                "stage": "Supervisor",
+                                "error_code": sup_error_code,
+                                "error_message": sup_error,
+                                "attempt": attempt,
+                                "quota_exhausted": False,
+                            }
+                            attempt_snapshot["supervisor_error"] = sup_error
+                            attempt_snapshot["supervisor_error_code"] = sup_error_code
+                            attempt_snapshot["agent_timings"]["supervisor"] = sup_res.latency_seconds if sup_res else 0.0
+                            if sup_res:
+                                attempt_snapshot["model_invocations"].append({
+                                    "agent": "Supervisor",
+                                    "model": getattr(sup_res, "model_id", "") or "",
+                                    "provider": getattr(sup_res, "provider", "") or "",
+                                    "prompt_tokens": sup_res.prompt_tokens,
+                                    "completion_tokens": sup_res.completion_tokens,
+                                    "total_tokens": sup_res.total_tokens,
+                                    "latency_seconds": sup_res.latency_seconds,
+                                })
+                            attempt_logs.append(attempt_snapshot)
+                            print(f"[{task.instance_id}] Supervisor unrecoverable provider error: [{sup_error_code}] {sup_error}. Aborting job.")
+                            break
+                        else:
+                            # Transient error: 1 retry after 2.0s delay
+                            print(f"[{task.instance_id}] Supervisor encountered transient error: {sup_error}. Retrying once after backoff...")
+                            time.sleep(2.0)
+                            sup_res_retry = supervisor.execute(sup_input, meta)
+                            if sup_res_retry.success and sup_res_retry.output:
+                                sup_res = sup_res_retry
+                            else:
+                                retry_error = sup_res_retry.error if sup_res_retry else "Retry failed"
+                                retry_err_code = getattr(sup_res_retry, "error_code", None) or "SUPERVISOR_ERROR"
+                                print(f"[{task.instance_id}] Supervisor retry failed: {retry_error}. Falling back to blind retry for attempt {attempt + 1}.")
+                                degraded_execution = True
+                                degraded_reason = f"Supervisor transient failure in attempt {attempt}: {sup_error} | Retry: {retry_error}"
+                                attempt_snapshot["degraded_execution"] = True
+                                attempt_snapshot["degraded_reason"] = degraded_reason
+                                attempt_snapshot["supervisor_transient_error"] = f"{sup_error} | Retry: {retry_error}"
+                                attempt_snapshot["supervisor_error"] = retry_error
+                                attempt_snapshot["supervisor_error_code"] = retry_err_code
+                                attempt_snapshot["failure_category"] = "SUPERVISOR_UNAVAILABLE_TRANSIENT"
+                                attempt_snapshot["recovery_strategy"] = "BLIND_RETRY_FALLBACK"
+                                attempt_snapshot["supervisor_diagnosis"] = "Supervisor unavailable due to transient provider error; executing clean blind retry fallback."
+                                attempt_snapshot["supervisor_instructions"] = "Supervisor unavailable due to transient provider error; executing blind attempt"
+                                attempt_snapshot["should_retry"] = True
+                                recovery_instructions = "Supervisor unavailable due to transient provider error; executing blind attempt"
+                                avoid_previous_mistake = ""
+                                prev_attempts_feedback.append(
+                                    f"Attempt {attempt} failed: tests failed. Supervisor unavailable ({retry_err_code}): executing blind attempt."
+                                )
+                                if sup_res_retry:
+                                    attempt_snapshot["agent_timings"]["supervisor"] = (sup_res.latency_seconds if sup_res else 0.0) + sup_res_retry.latency_seconds
+                                    attempt_snapshot["model_invocations"].append({
+                                        "agent": "Supervisor",
+                                        "model": getattr(sup_res_retry, "model_id", "") or "",
+                                        "provider": getattr(sup_res_retry, "provider", "") or "",
+                                        "prompt_tokens": sup_res_retry.prompt_tokens,
+                                        "completion_tokens": sup_res_retry.completion_tokens,
+                                        "total_tokens": sup_res_retry.total_tokens,
+                                        "latency_seconds": sup_res_retry.latency_seconds,
+                                    })
+                                attempt_logs.append(attempt_snapshot)
+                                attempt += 1
+                                continue
+
                     if sup_res.success and sup_res.output:
                         dec: SupervisorDecision = sup_res.output
                         print(f"[{task.instance_id}] Supervisor diagnosed {dec.detected_failure} -> strategy {dec.recovery_strategy} (retry={dec.should_retry})")
@@ -819,10 +1082,6 @@ class ExperimentWorker:
                         attempt_logs.append(attempt_snapshot)
                         if not dec.should_retry:
                             break
-                    else:
-                        attempt_snapshot["supervisor_error"] = sup_res.error
-                        attempt_logs.append(attempt_snapshot)
-                        break
                 else:
                     attempt_snapshot["supervisor_diagnosis"] = "Maximum attempts reached."
                     attempt_snapshot["should_retry"] = False
@@ -857,12 +1116,30 @@ class ExperimentWorker:
             "attempt_history": attempt_logs,
         })
 
+        # Determine exit code based on terminal status
+        if terminal_status == ConditionJobStatus.ABORTED_QUOTA_EXHAUSTED:
+            worker_exit_code = 3
+        elif terminal_status == ConditionJobStatus.PROVIDER_ERROR:
+            worker_exit_code = 2
+        elif terminal_status == ConditionJobStatus.FAILED:
+            worker_exit_code = 1
+        else:
+            worker_exit_code = 0
+
         record_obj = ExperimentConditionRecord(
             experiment_id=self.experiment_id,
             task_id=self.task_id,
             condition=self.condition,
-            status=ConditionJobStatus.COMPLETED,
+            status=terminal_status,
             resolved=is_resolved,
+            workflow_completed=(terminal_status == ConditionJobStatus.COMPLETED),
+            patch_generated=bool(final_patch.strip()),
+            patch_applied=applied_any_patch,
+            failed_stage=failed_stage,
+            error_code=failed_error_code,
+            provider_failure=provider_failure_dict,
+            degraded_execution=degraded_execution,
+            degraded_reason=degraded_reason,
             pass_at_1=task_metrics.pass_at_1,
             attempts=len(attempt_logs),
             attempt_history=attempt_logs,
@@ -874,7 +1151,7 @@ class ExperimentWorker:
                 "tier": EvaluationTier.TIER_1_INTERNAL.value,
                 "backend_name": last_eval_res.backend_name if last_eval_res else "internal_targeted_evaluator",
                 "outcome": last_eval_res.outcome.value if last_eval_res else "UNRESOLVED",
-                "verdict": last_eval_res.verdict if last_eval_res else "UNRESOLVED_INTERNALLY",
+                "verdict": last_eval_res.verdict if last_eval_res else (terminal_status.value if terminal_status != ConditionJobStatus.COMPLETED else "UNRESOLVED_INTERNALLY"),
                 "duration_seconds": round(last_eval_res.duration_seconds, 2) if last_eval_res else 0.0,
                 "all_f2p_passed": last_eval_res.details.get("all_f2p_passed", False) if last_eval_res else False,
                 "all_p2p_passed": last_eval_res.details.get("all_p2p_passed", False) if last_eval_res else False,
@@ -895,10 +1172,10 @@ class ExperimentWorker:
             trust_scores=trust_ledger.get_all_scores() if trust_ledger else None,
             execution_duration_seconds=round(total_duration, 2),
             worker_pid=os.getpid(),
-            worker_exit_code=0,
+            worker_exit_code=worker_exit_code,
             log_file_path=str(self.log_file) if self.log_file else "",
             workspace_path=str(self.workspace_root),
-            error_message=None,
+            error_message=terminal_error_message,
             started_at=start_iso,
             completed_at=completed_iso,
         )

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "manifest_id": "ddiv_v2_2_freeze_manifest",
+  "generated_at": "2026-10-14T05:25:00Z",
+  "version": "2.2.0-freeze-rc2",
+  "status": "FROZEN_ALL_BLOCKERS_RESOLVED",
+  "gate_recommendation": "READY_FOR_USER_DECISION_DO_NOT_AUTO_LAUNCH",
+  "git_environment": {
+    "head_commit": "e8f2b065af2c55c35b1fb3fc1441f5a28662dece",
+    "branch": "master",
+    "core_longpaths_enabled": true
+  },
+  "runtime_environment": {
+    "operating_system": "Windows 11 Pro (win32)",
+    "python_version": "3.11.9",
+    "pytest_version": "7.4.4",
+    "git_version": "2.51.0.windows.2",
+    "ollama_version": "0.40.3",
+    "ollama_model": "qwen2.5-coder:7b"
+  },
+  "frozen_v2_1_directory_integrity": {
+    "rule": "0 diff lines against git HEAD for frozen v2.1 subsystems",
+    "agents/": "UNTOUCHED (0 diff lines)",
+    "recovery/": "UNTOUCHED (0 diff lines)",
+    "evaluation/": "UNTOUCHED (0 diff lines)",
+    "memory/": "UNTOUCHED (0 diff lines)",
+    "models/": "UNTOUCHED (0 diff lines)",
+    "verification_command": "git diff agents recovery evaluation memory models",
+    "verified": true
+  },
+  "cryptographic_hashes": {
+    "frozen_checkpoints_and_benchmarks": {
+      "data/experiments/benchmark_v2_1/checkpoint.json": {
+        "sha256": "3088B7C08707B30B6B87064844C45595520A4C86C599E9B1FCB45AF3B3D4E52E",
+        "status": "MATCH"
+      },
+      "data/experiments/benchmark_v2_tasks.json": {
+        "sha256": "16FB9C829A2163F8187E3FFAEC9CDE585A843AF905459A4E6467995792E2A605",
+        "status": "MATCH"
+      },
+      "data/swebench/test-00000-of-00001.parquet": {
+        "sha256": "A45B1FE4E2F0C8390B2B2938AC83E92ED5979000856808F3679C07812E9E6DCD",
+        "size_bytes": 2096679,
+        "status": "VERIFIED"
+      }
+    },
+    "v2_2_source_components": {
+      "scripts/demo_patch_builder.py": {
+        "sha256": "A3A88B00778E8FBAA5E88888EE5216CEB0FD812232FB814969E3D68B679CAC41",
+        "role": "Block-aware indentation normalizer, AST syntax verification, safe placeholder path resolution"
+      },
+      "scripts/ollama_coder_adapter.py": {
+        "sha256": "0517C476F8EC2B8E9BF37D525E6C8696F0B960A92FDD90A4439AAB39545A50A6",
+        "role": "Local Ollama Coder adapter with zero cloud fallback and token accounting"
+      },
+      "scripts/v2_2_recovery_manager.py": {
+        "sha256": "411FC244D3F97CFFBC1FAFEFF7563E94D6E6930CCC7026AA230B81F22E084540",
+        "role": "ProposalHistory anti-repetition tracking, FailureDisambiguator, and V22SupervisedWorker with try/finally restoration"
+      },
+      "scripts/run_v2_2_dev_validation.py": {
+        "sha256": "CF825CFA71235E1082E07E2E9087C97DCCF5FD8A8C78155C70FE65191EA05029",
+        "role": "Isolated development validation runner importing V22SupervisedWorker"
+      },
+      "scripts/run_local_ollama_comparison.py": {
+        "sha256": "B1A21353E942CF53495CF394C1DB34CD7584B9EE4F1690C10CCE5DC3445DA4EA",
+        "role": "Comparison runner wired with V22SupervisedWorker for FULL_DDIV and FailureDisambiguator.format_test_counts()"
+      },
+      "scripts/launch_gate_check.py": {
+        "sha256": "38778B15712CFEE1075468EC398DE361A10AE79C4F77C91C87D7603BA5308B92",
+        "role": "Pre-launch gate check validating local Ollama, model presence, zero fallback, and supporting quota"
+      },
+      "scripts/verify_and_preseed_workspaces.py": {
+        "sha256": "054A48085D6A33850123AE74E9445DBFE46FCE6C3B1AAED0042D9C6CB255E537",
+        "role": "Safe disposable workspace verifier and dry-run preflight covering 20 tasks, 7 batches, 60 pairs"
+      }
+    },
+    "v2_2_test_suites": {
+      "tests/test_v2_2_improvements.py": {
+        "sha256": "15D077C477AC1AE79D105594D962223FDCD359E8CD78904894D36AE403AF47A0"
+      },
+      "tests/test_launch_safety.py": {
+        "sha256": "B23075DCC2DA666F6916A0CA95E024D210EB6C61FD80B5A84AC0B1FA581FE34D"
+      },
+      "tests/test_ollama_provider.py": {
+        "sha256": "2E3080F3316E690BC7754804704A60FB58E5CC493BA1CAF11DBCE03743D2C128"
+      },
+      "tests/test_demo_patch_builder.py": {
+        "sha256": "853015DA885676045BBCFAB2000A0A604FC3D0CD750FD2A1C66620A0D79F120A"
+      }
+    }
+  }
+}

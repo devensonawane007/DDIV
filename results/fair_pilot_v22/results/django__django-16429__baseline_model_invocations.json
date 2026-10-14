@@ -1,0 +1,20 @@
+[
+  {
+    "agent": "Locator",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "prompt_tokens": 1969,
+    "completion_tokens": 131,
+    "total_tokens": 2100,
+    "latency_seconds": 1.8192319869995117
+  },
+  {
+    "agent": "Coder",
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq",
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "latency_seconds": 4.00269341468811
+  }
+]

@@ -19,6 +19,8 @@ class ConditionJobStatus(str, Enum):
     COMPLETED = "COMPLETED"
     FAILED = "FAILED"
     TIMEOUT = "TIMEOUT"
+    PROVIDER_ERROR = "PROVIDER_ERROR"
+    ABORTED_QUOTA_EXHAUSTED = "ABORTED_QUOTA_EXHAUSTED"
 
 
 class ExperimentConditionRecord(BaseModel):
@@ -29,6 +31,14 @@ class ExperimentConditionRecord(BaseModel):
     condition: ExperimentCondition
     status: ConditionJobStatus
     resolved: bool = False
+    workflow_completed: bool = False
+    patch_generated: bool = False
+    patch_applied: bool = False
+    failed_stage: Optional[str] = None
+    error_code: Optional[str] = None
+    provider_failure: Optional[Dict[str, Any]] = None
+    degraded_execution: bool = False
+    degraded_reason: Optional[str] = None
     attempts: int = 0
     attempt_history: List[Dict[str, Any]] = Field(default_factory=list)
     candidate_patch: str = ""

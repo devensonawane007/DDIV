@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "benchmark_id": "ddiv_v2_2_frozen_20_task_evaluation",
+  "audit_version": "2.2.0-freeze-rc2",
+  "preflight_generated_at": "2026-10-14T05:25:00Z",
+  "ready_for_launch": false,
+  "requires_user_approval": true,
+  "approval_status": "READY_FOR_USER_REVIEW_BENCHMARK_NOT_LAUNCHED",
+  "recommendation": "AWAITING_USER_BENCHMARK_APPROVAL",
+  "blockers_summary": [],
+  "blockers_resolution": {
+    "blocker_1_runner_wiring": "RESOLVED: V22SupervisedWorker wired for FULL_DDIV with try/finally method restoration",
+    "blocker_2_gate_check": "RESOLVED: scripts/launch_gate_check.py updated for local Ollama and Groq supporting agents",
+    "blocker_3_report_denominators": "RESOLVED: FailureDisambiguator.format_test_counts formats unapplied patches as 0/N (Not Run - Apply Failed)",
+    "blocker_4_workspace_checkouts": "RESOLVED: scripts/verify_and_preseed_workspaces.py verified all 20 base commits in disposable workspaces"
+  },
+  "gate_checks": {
+    "checkpoint_sha256_verified": true,
+    "manifest_sha256_verified": true,
+    "dataset_parquet_verified": true,
+    "frozen_directories_clean": true,
+    "windows_longpaths_enabled": true,
+    "formal_runner_uses_v2_2_components": true,
+    "three_conditions_fairly_wired": true,
+    "test_reporting_handles_unapplied_patches": true,
+    "coder_zero_fallback_verified": true,
+    "all_20_workspaces_verified": true,
+    "dry_run_preflight_all_60_pairs_valid": true,
+    "final_gate_verdict": "READY_FOR_USER_DECISION"
+  },
+  "matrix_specification": {
+    "total_tasks": 20,
+    "conditions": [
+      "baseline",
+      "retry_only",
+      "full_ddiv"
+    ],
+    "total_planned_runs": 60,
+    "attempt_limits": {
+      "baseline": 1,
+      "retry_only": 3,
+      "full_ddiv": 3
+    },
+    "batch_count": 7,
+    "batches": {
+      "1": {
+        "tasks": [
+          "pylint-dev__pylint-6903",
+          "mwaskom__seaborn-3187",
+          "pydata__xarray-7393"
+        ],
+        "runs": 9
+      },
+      "2": {
+        "tasks": [
+          "astropy__astropy-8872",
+          "astropy__astropy-14508",
+          "psf__requests-2931"
+        ],
+        "runs": 9
+      },
+      "3": {
+        "tasks": [
+          "pytest-dev__pytest-8399",
+          "sympy__sympy-23413",
+          "matplotlib__matplotlib-26342"
+        ],
+        "runs": 9
+      },
+      "4": {
+        "tasks": [
+          "scikit-learn__scikit-learn-26323",
+          "pydata__xarray-4966",
+          "pylint-dev__pylint-4970"
+        ],
+        "runs": 9
+      },
+      "5": {
+        "tasks": [
+          "sympy__sympy-13878",
+          "django__django-16429",
+          "sphinx-doc__sphinx-8638"
+        ],
+        "runs": 9
+      },
+      "6": {
+        "tasks": [
+          "django__django-11141",
+          "pytest-dev__pytest-7982",
+          "scikit-learn__scikit-learn-13496"
+        ],
+        "runs": 9
+      },
+      "7": {
+        "tasks": [
+          "sphinx-doc__sphinx-8269",
+          "matplotlib__matplotlib-20676"
+        ],
+        "runs": 6
+      }
+    }
+  },
+  "model_infrastructure": {
+    "coder": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "endpoint": "http://localhost:11434/api/generate",
+      "status": "ACTIVE_VERIFIED",
+      "quota_dependence": "NONE (Local Inference)",
+      "fallback_policy": "DISABLED (Zero Fallback)"
+    },
+    "locator": {
+      "provider": "google_genai",
+      "model": "gemini-3.1-flash-lite",
+      "status": "ACTIVE_VERIFIED",
+      "quota_dependence": "LOW_VOLUME"
+    },
+    "supporting_agents": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b",
+      "agents": [
+        "TestUnderstanding",
+        "Supervisor",
+        "PatchCritic",
+        "Tester"
+      ],
+      "status": "ACTIVE_VERIFIED",
+      "quota_dependence": "~114k tokens per 9-run batch (operator-reported dashboard confirmation)"
+    }
+  },
+  "test_evidence": {
+    "tests_v2_2_improvements_passed": 10,
+    "tests_launch_safety_passed": 9,
+    "tests_ollama_provider_passed": 10,
+    "tests_demo_patch_builder_passed": 3,
+    "workspace_checkouts_verified": "20/20",
+    "dry_run_preflight_pairs_verified": "60/60",
+    "models_invoked_during_preflight": 0,
+    "candidate_patches_generated_during_preflight": 0
+  },
+  "safety_confirmation": {
+    "formal_60_run_benchmark_launched": false,
+    "historical_results_preserved": true
+  }
+}

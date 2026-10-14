@@ -79,20 +79,34 @@ class DDIVConfig(BaseModel):
         )
     )
     coder: AgentModelConfig = Field(
-        default_factory=lambda: AgentModelConfig(
-            name="Coder",
-            provider=os.getenv("CODER_PROVIDER", "groq"),
-            model=os.getenv("CODER_MODEL", ""),
-            api_key=os.getenv("GROQ_API_KEY") or os.getenv("XAI_API_KEY") or os.getenv("CODER_API_KEY"),
-            base_url=(
-                os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
-                if os.getenv("CODER_PROVIDER", "groq").lower() == "groq"
-                else os.getenv("XAI_BASE_URL", "https://api.x.ai/v1")
-            ),
-            temperature=float(os.getenv("CODER_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
-            max_tokens=int(os.getenv("CODER_MAX_TOKENS", "4096")),
-            timeout=int(os.getenv("MODEL_TIMEOUT_SECONDS", os.getenv("REQUEST_TIMEOUT", "120"))),
-            max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
+        default_factory=lambda: (
+            AgentModelConfig(
+                name="Coder",
+                provider="ollama",
+                model=os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b"),
+                api_key="ollama",
+                base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+                temperature=float(os.getenv("CODER_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
+                max_tokens=int(os.getenv("CODER_MAX_TOKENS", "4096")),
+                timeout=int(os.getenv("OLLAMA_TIMEOUT_SECONDS", "240")),
+                max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
+            )
+            if os.getenv("DDIV_CODER_PROVIDER", "").lower() == "ollama"
+            else AgentModelConfig(
+                name="Coder",
+                provider=os.getenv("CODER_PROVIDER", "groq"),
+                model=os.getenv("CODER_MODEL", ""),
+                api_key=os.getenv("GROQ_API_KEY") or os.getenv("XAI_API_KEY") or os.getenv("CODER_API_KEY"),
+                base_url=(
+                    os.getenv("GROQ_BASE_URL", "https://api.groq.com/openai/v1")
+                    if os.getenv("CODER_PROVIDER", "groq").lower() == "groq"
+                    else os.getenv("XAI_BASE_URL", "https://api.x.ai/v1")
+                ),
+                temperature=float(os.getenv("CODER_TEMPERATURE", os.getenv("MODEL_TEMPERATURE", "0.0"))),
+                max_tokens=int(os.getenv("CODER_MAX_TOKENS", "4096")),
+                timeout=int(os.getenv("MODEL_TIMEOUT_SECONDS", os.getenv("REQUEST_TIMEOUT", "120"))),
+                max_retries=int(os.getenv("MODEL_MAX_RETRIES", os.getenv("MAX_RETRIES", "2"))),
+            )
         )
     )
     tester: AgentModelConfig = Field(
@@ -262,6 +276,9 @@ class DDIVConfig(BaseModel):
                     f"Please configure {model_var} in .env with a valid, verified model ID."
                 )
 
+            if cfg.provider.lower() == "ollama":
+                continue
+
             if not cfg.api_key:
                 raise ValueError(
                     f"Configuration Error: Missing API key/token for {name} Agent ({cfg.provider}). "
@@ -286,6 +303,13 @@ class DDIVConfig(BaseModel):
             provider_type = ProviderType(provider_str)
         except ValueError:
             provider_type = ProviderType.MOCK
+
+        if os.getenv("DDIV_CODER_PROVIDER", "").lower() == "ollama":
+            try:
+                from scripts.ollama_coder_adapter import register_ollama_provider
+                register_ollama_provider()
+            except ImportError:
+                pass
 
         return cls(
             mode=mode,

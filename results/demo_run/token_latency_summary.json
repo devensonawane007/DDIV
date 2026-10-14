@@ -1,0 +1,49 @@
+{
+  "task_id": "pylint-dev__pylint-6903",
+  "repo": "pylint-dev/pylint",
+  "base_commit": "ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6",
+  "comparison": {
+    "BASELINE": {
+      "attempts": 1,
+      "resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "failure_category": "F2",
+      "recovery_strategy": null,
+      "prompt_tokens": 8181,
+      "completion_tokens": 1442,
+      "total_tokens": 9623,
+      "duration_seconds": 81.44,
+      "patch_syntax": "INVALID (IndentationError on line 61)",
+      "all_f2p_passed": false,
+      "all_p2p_passed": false
+    },
+    "RETRY_ONLY": {
+      "attempts": 3,
+      "resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "failure_category": "F2",
+      "recovery_strategy": null,
+      "prompt_tokens": 24558,
+      "completion_tokens": 6202,
+      "total_tokens": 30760,
+      "duration_seconds": 143.2,
+      "patch_syntax": "INVALID (IndentationError repeated across all 3 attempts)",
+      "all_f2p_passed": false,
+      "all_p2p_passed": false
+    },
+    "MODIFIED_DDIV": {
+      "attempts": 1,
+      "resolved": true,
+      "verdict": "RESOLVED_INTERNALLY",
+      "failure_category": null,
+      "recovery_strategy": "DemoPatchBuilder line-indexing correction",
+      "prompt_tokens": 13257,
+      "completion_tokens": 2335,
+      "total_tokens": 15592,
+      "duration_seconds": 221.8,
+      "patch_syntax": "VALID (ast.parse verified, 1-line clean fix)",
+      "all_f2p_passed": true,
+      "all_p2p_passed": true
+    }
+  }
+}

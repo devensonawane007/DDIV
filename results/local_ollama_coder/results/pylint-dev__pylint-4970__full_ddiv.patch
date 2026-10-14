@@ -1,0 +1,18 @@
+@@ -811,6 +811,7 @@ class SimilarChecker(Checker):
+     def check(self, lineset, couples):
+         msg = []
+         for lineset, start_line, end_line in couples:
++        if self.min_similarity_lines == 0:
++            return
+             msg.append(f"=={lineset.name}:[{start_line}:{end_line}]")
+             msg.sort()
+
+@@ -821,6 +822,7 @@ class SimilarChecker(Checker):
+             for line in lineset.real_lines[start_line:end_line]:
+                 msg.append(line.rstrip())
+
++        if self.min_similarity_lines == 0:
++            return
+         self.add_message("R0801", args=(len(couples), "\n".join(msg)))
+         duplicated += num * (len(couples) - 1)
+     stats["nb_duplicated_lines"] = duplicated
