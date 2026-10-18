@@ -1,0 +1,20 @@
+--- a/python_programs/topological_ordering.py
++++ b/python_programs/topological_ordering.py
+@@ -1,5 +1,17 @@
+ def topological_ordering(nodes):
+     ordered_nodes = [node for node in nodes if not node.incoming_nodes]
++    visited = set()
++
++    while ordered_nodes:
++        node = ordered_nodes.pop(0)
++        if node not in visited:
++            visited.add(node)
++            for nextnode in node.outgoing_nodes:
++                nextnode.incoming_nodes.remove(node)
++                if not nextnode.incoming_nodes:
++                    ordered_nodes.append(nextnode)
++
++    return visited
+ 
+     for node in ordered_nodes:
+         for nextnode in node.outgoing_nodes:

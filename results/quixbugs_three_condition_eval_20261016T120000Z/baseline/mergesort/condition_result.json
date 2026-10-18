@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-mergesort",
+  "program_name": "mergesort",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1555,
+  "prompt_tokens": 1524,
+  "completion_tokens": 31,
+  "token_breakdown": {
+    "total_tokens": 1555,
+    "prompt_tokens": 1524,
+    "completion_tokens": 31,
+    "by_role": {
+      "Coder": {
+        "prompt": 1524,
+        "completion": 31,
+        "total": 1555
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1524,
+        "completion": 31,
+        "total": 1555
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:07:00Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1524,
+        "completion_tokens": 31,
+        "total_tokens": 1555
+      }
+    ]
+  },
+  "total_duration_seconds": 5.919,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.918
+    }
+  ]
+}

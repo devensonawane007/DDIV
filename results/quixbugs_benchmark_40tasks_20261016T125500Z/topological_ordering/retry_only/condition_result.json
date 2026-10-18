@@ -1,0 +1,54 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-topological_ordering",
+  "program_name": "topological_ordering",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6698,
+  "prompt_tokens": 6243,
+  "completion_tokens": 455,
+  "total_duration_seconds": 36.875,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 11.602,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,6 +3,10 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n+            if not all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes):\n+                continue\n+            if nextnode not in ordered_nodes:\n+                ordered_nodes.append(nextnode)\n             if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 12.782,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,7 +3,7 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n-            if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n+            if all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n     return ordered_nodes\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 12.491,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,7 +3,7 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n-            if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n+            if all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n     return ordered_nodes\n"
+    }
+  ]
+}

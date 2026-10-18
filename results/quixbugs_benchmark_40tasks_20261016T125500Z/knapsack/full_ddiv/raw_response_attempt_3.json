@@ -1,0 +1,20 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 3222,
+  "completion_tokens": 136,
+  "latency_seconds": 10.0013385,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is that the memoization table is not being updated correctly. The value for the current item and weight should be updated based on the maximum value between not taking the item and taking the item.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/knapsack.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"memo[i, j] = memo[i - 1, j]\",\n      \"code\": \"memo[i, j] = max(memo[i - 1, j], value + memo[i - 1, j - weight])\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is that the memoization table is not being updated correctly. The value for the current item and weight should be updated based on the maximum value between not taking the item and taking the item.",
+    "modifications": [
+      {
+        "path": "python_programs/knapsack.py",
+        "operation": "replace",
+        "anchor": "memo[i, j] = memo[i - 1, j]",
+        "code": "memo[i, j] = max(memo[i - 1, j], value + memo[i - 1, j - weight])"
+      }
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "preflight_timestamp": "2026-10-16T09:22:55Z",
+  "preflight_verdict": "READY",
+  "evaluation_cohort": "quixbugs_full_ddiv_unresolved_27tasks",
+  "total_tasks": 27,
+  "max_attempts_per_task": 3,
+  "max_planned_attempts": 81,
+  "agent_routing": {
+    "locator": {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite"
+    },
+    "supervisor": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b"
+    },
+    "tester": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b"
+    },
+    "coder_hybrid_option": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "cost": 0.0
+    },
+    "coder_cloud_option": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    }
+  },
+  "estimated_cost_usd": "< 0.25",
+  "estimated_duration_minutes": "20 - 27",
+  "proposed_execution_command": "python scripts/run_quixbugs_cloud_assisted.py --task-manifest D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\unresolved_task_manifest.json --output-dir results/quixbugs_cloud_assisted_repair_20261016T092255Z --max-attempts 3",
+  "gates": [
+    {
+      "gate_name": "Source Artifacts Preservation",
+      "status": "PASS",
+      "evidence": "All 4,186 Phase 8.6 files and Phase 8.7 files verified byte-identical via SHA-256 manifest"
+    },
+    {
+      "gate_name": "Reconciled Task Counts",
+      "status": "PASS",
+      "evidence": "Baseline (8/40, 40 att) and FULL_DDIV (13/40, 100 att) reconciled to underlying JSON records"
+    },
+    {
+      "gate_name": "Unresolved Manifest Accuracy",
+      "status": "PASS",
+      "evidence": "Exactly 27 unresolved tasks extracted with canonical task IDs and target file paths"
+    },
+    {
+      "gate_name": "Zero Task Duplication",
+      "status": "PASS",
+      "evidence": "Deduplication check confirms exactly 27 unique task IDs"
+    },
+    {
+      "gate_name": "Canonical Target Path Verification",
+      "status": "PASS",
+      "evidence": "Every selected task has valid target path in python_programs/<name>.py"
+    },
+    {
+      "gate_name": "Agent Workspace Isolation",
+      "status": "PASS",
+      "evidence": "Clean isolated workspaces confirmed (zero test or oracle leaks)"
+    },
+    {
+      "gate_name": "Model Provider Routing",
+      "status": "PASS",
+      "evidence": "Locator=gemini, Supervisor=groq, Tester=groq, Coder=local/ollama or cloud/groq"
+    },
+    {
+      "gate_name": "Credential Masking & Security",
+      "status": "PASS",
+      "evidence": "API keys loaded safely; zero secret tokens printed to logs or reports"
+    },
+    {
+      "gate_name": "Memory Store Isolation",
+      "status": "PASS",
+      "evidence": "Designated isolated database quixbugs_cloud_assisted_memory.db; data/ddiv_memory.db protected"
+    },
+    {
+      "gate_name": "New Output Directory Configured",
+      "status": "PASS",
+      "evidence": "Configured dedicated output path at results/quixbugs_cloud_assisted_repair_<timestamp>"
+    },
+    {
+      "gate_name": "Resource & Cost Estimate",
+      "status": "PASS",
+      "evidence": "Projected token volumes and estimated cost (<$0.25) documented with assumptions"
+    },
+    {
+      "gate_name": "Evaluator Safety & Timeouts",
+      "status": "PASS",
+      "evidence": "Out-of-process pytest subprocess with 15s timeout and AST syntax gate verified"
+    },
+    {
+      "gate_name": "Strict Execution Boundary",
+      "status": "PASS",
+      "evidence": "Zero model inference, zero test runs, zero network calls executed during preflight"
+    }
+  ]
+}

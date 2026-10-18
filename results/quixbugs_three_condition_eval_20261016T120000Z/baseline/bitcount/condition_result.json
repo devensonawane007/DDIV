@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-bitcount",
+  "program_name": "bitcount",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1471,
+  "prompt_tokens": 1444,
+  "completion_tokens": 27,
+  "token_breakdown": {
+    "total_tokens": 1471,
+    "prompt_tokens": 1444,
+    "completion_tokens": 27,
+    "by_role": {
+      "Coder": {
+        "prompt": 1444,
+        "completion": 27,
+        "total": 1471
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1444,
+        "completion": 27,
+        "total": 1471
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:02:39Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1444,
+        "completion_tokens": 27,
+        "total_tokens": 1471
+      }
+    ]
+  },
+  "total_duration_seconds": 16.329,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 16.329
+    }
+  ]
+}

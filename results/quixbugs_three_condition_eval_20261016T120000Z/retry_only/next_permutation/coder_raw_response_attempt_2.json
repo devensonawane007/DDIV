@@ -1,0 +1,19 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2790,
+  "completion_tokens": 195,
+  "latency_seconds": 16.7850272,
+  "raw_text": "{\n  \"reasoning_summary\": \"The function was not correctly implementing the next permutation algorithm. The previous patch attempted to reverse the permutation, which is incorrect. The correct approach is to find the next lexicographical permutation.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/next_permutation.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"next_perm = list(perm)\",\n      \"code\": \"next_perm = list(perm)\\nif i >= 0:\\n    j = next(j for j in range(len(perm) - 1, i, -1) if perm[j] > perm[i])\\n    next_perm[i], next_perm[j] = next_perm[j], next_perm[i]\\n    next_perm[i + 1:] = reversed(next_perm[i + 1:])\\nelse:\\n    next_perm.reverse()\\nreturn next_perm\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The function was not correctly implementing the next permutation algorithm. The previous patch attempted to reverse the permutation, which is incorrect. The correct approach is to find the next lexicographical permutation.",
+    "modifications": [
+      {
+        "path": "python_programs/next_permutation.py",
+        "operation": "replace",
+        "anchor": "next_perm = list(perm)",
+        "code": "next_perm = list(perm)\nif i >= 0:\n    j = next(j for j in range(len(perm) - 1, i, -1) if perm[j] > perm[i])\n    next_perm[i], next_perm[j] = next_perm[j], next_perm[i]\n    next_perm[i + 1:] = reversed(next_perm[i + 1:])\nelse:\n    next_perm.reverse()\nreturn next_perm"
+      }
+    ]
+  }
+}

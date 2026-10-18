@@ -1,0 +1,39 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-reverse_linked_list",
+  "program_name": "reverse_linked_list",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5096,
+  "prompt_tokens": 4843,
+  "completion_tokens": 253,
+  "total_duration_seconds": 21.131,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 6.192
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 7.32
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor not found in 'python_programs/reverse_linked_list.py': return node (candidate return statement(s) in file: ['return prevnode']) (category: ANCHOR_NOT_FOUND)",
+      "resolved": false,
+      "duration_seconds": 7.619
+    }
+  ]
+}

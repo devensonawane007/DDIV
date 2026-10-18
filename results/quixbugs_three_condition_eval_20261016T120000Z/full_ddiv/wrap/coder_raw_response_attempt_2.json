@@ -1,0 +1,25 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2111,
+  "completion_tokens": 210,
+  "latency_seconds": 44.4934624,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is in the line where the text is sliced. It fails to handle spaces at the end of the slice correctly, leading to infinite loops and missing final segments. The fix involves ensuring the space is skipped and appending the final segment after the loop.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/wrap.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"line, text = text[:end], text[end:]\",\n      \"code\": \"if end == -1:\\n    end = cols\\nelse:\\n    line = text[:end]\\n    text = text[end + 1:]\\n    lines.append(line)\\n    continue\\nline, text = text[:end], text[end:]\"\n    },\n    {\n      \"path\": \"python_programs/wrap.py\",\n      \"operation\": \"insert_after\",\n      \"anchor\": \"return lines\",\n      \"code\": \"lines.append(text)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is in the line where the text is sliced. It fails to handle spaces at the end of the slice correctly, leading to infinite loops and missing final segments. The fix involves ensuring the space is skipped and appending the final segment after the loop.",
+    "modifications": [
+      {
+        "path": "python_programs/wrap.py",
+        "operation": "replace",
+        "anchor": "line, text = text[:end], text[end:]",
+        "code": "if end == -1:\n    end = cols\nelse:\n    line = text[:end]\n    text = text[end + 1:]\n    lines.append(line)\n    continue\nline, text = text[:end], text[end:]"
+      },
+      {
+        "path": "python_programs/wrap.py",
+        "operation": "insert_after",
+        "anchor": "return lines",
+        "code": "lines.append(text)"
+      }
+    ]
+  }
+}

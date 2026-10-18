@@ -1,0 +1,26 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-max_sublist_sum",
+  "program_name": "max_sublist_sum",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 1845,
+  "prompt_tokens": 1641,
+  "completion_tokens": 204,
+  "total_duration_seconds": 16.044,
+  "history": [
+    {
+      "attempt": 1,
+      "candidate_patch_applied": true,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 16.044,
+      "patch_diff": "--- a/python_programs/max_sublist_sum.py\n+++ b/python_programs/max_sublist_sum.py\n@@ -4,7 +4,7 @@\n     max_so_far = 0\n \n     for x in arr:\n-        max_ending_here = max_ending_here + x\n+        max_ending_here = max(0, max_ending_here + x)\n         max_so_far = max(max_so_far, max_ending_here)\n \n     return max_so_far\n"
+    }
+  ]
+}

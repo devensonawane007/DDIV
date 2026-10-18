@@ -1,0 +1,760 @@
+{
+  "benchmark_timestamp": "2026-10-16T04:22:28Z",
+  "total_tasks": 8,
+  "total_runs": 24,
+  "model": "qwen2.5-coder:7b",
+  "ollama_url": "http://localhost:11434",
+  "output_directory": "D:\\PROJECTS\\DDIV\\results\\quixbugs_benchmark_8tasks_20261016T084000Z",
+  "total_duration_seconds": 506.236,
+  "aggregate_totals": {
+    "BASELINE": {
+      "resolved": 5,
+      "runs": 8,
+      "tokens": 14165,
+      "duration": 133.491
+    },
+    "RETRY_ONLY": {
+      "resolved": 6,
+      "runs": 8,
+      "tokens": 24533,
+      "duration": 178.06
+    },
+    "FULL_DDIV": {
+      "resolved": 6,
+      "runs": 8,
+      "tokens": 24936,
+      "duration": 178.08400000000003
+    }
+  },
+  "results_by_task": {
+    "bucketsort": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-bucketsort",
+        "program_name": "bucketsort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1700,
+        "prompt_tokens": 1588,
+        "completion_tokens": 112,
+        "total_duration_seconds": 28.013,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 28.013,
+            "patch_diff": "--- a/python_programs/bucketsort.py\n+++ b/python_programs/bucketsort.py\n@@ -4,7 +4,7 @@\n         counts[x] += 1\n \n     sorted_arr = []\n-    for i, count in enumerate(arr):\n+    for i, count in enumerate(counts):\n         sorted_arr.extend([i] * count)\n \n     return sorted_arr\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-bucketsort",
+        "program_name": "bucketsort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1700,
+        "prompt_tokens": 1588,
+        "completion_tokens": 112,
+        "total_duration_seconds": 11.064,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 11.064,
+            "patch_diff": "--- a/python_programs/bucketsort.py\n+++ b/python_programs/bucketsort.py\n@@ -4,7 +4,7 @@\n         counts[x] += 1\n \n     sorted_arr = []\n-    for i, count in enumerate(arr):\n+    for i, count in enumerate(counts):\n         sorted_arr.extend([i] * count)\n \n     return sorted_arr\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-bucketsort",
+        "program_name": "bucketsort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1700,
+        "prompt_tokens": 1588,
+        "completion_tokens": 112,
+        "total_duration_seconds": 11.094,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 11.049,
+            "patch_diff": "--- a/python_programs/bucketsort.py\n+++ b/python_programs/bucketsort.py\n@@ -4,7 +4,7 @@\n         counts[x] += 1\n \n     sorted_arr = []\n-    for i, count in enumerate(arr):\n+    for i, count in enumerate(counts):\n         sorted_arr.extend([i] * count)\n \n     return sorted_arr\n"
+          }
+        ]
+      }
+    },
+    "flatten": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-flatten",
+        "program_name": "flatten",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1697,
+        "prompt_tokens": 1586,
+        "completion_tokens": 111,
+        "total_duration_seconds": 12.479,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 12.479,
+            "patch_diff": "--- a/python_programs/flatten.py\n+++ b/python_programs/flatten.py\n@@ -4,7 +4,7 @@\n             for y in flatten(x):\n                 yield y\n         else:\n-            yield flatten(x)\n+            yield x\n \n \n \n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-flatten",
+        "program_name": "flatten",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1697,
+        "prompt_tokens": 1586,
+        "completion_tokens": 111,
+        "total_duration_seconds": 11.782,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 11.782,
+            "patch_diff": "--- a/python_programs/flatten.py\n+++ b/python_programs/flatten.py\n@@ -4,7 +4,7 @@\n             for y in flatten(x):\n                 yield y\n         else:\n-            yield flatten(x)\n+            yield x\n \n \n \n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-flatten",
+        "program_name": "flatten",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1697,
+        "prompt_tokens": 1586,
+        "completion_tokens": 111,
+        "total_duration_seconds": 12.106,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 12.106,
+            "patch_diff": "--- a/python_programs/flatten.py\n+++ b/python_programs/flatten.py\n@@ -4,7 +4,7 @@\n             for y in flatten(x):\n                 yield y\n         else:\n-            yield flatten(x)\n+            yield x\n \n \n \n"
+          }
+        ]
+      }
+    },
+    "is_valid_parenthesization": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-is_valid_parenthesization",
+        "program_name": "is_valid_parenthesization",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1757,
+        "prompt_tokens": 1626,
+        "completion_tokens": 131,
+        "total_duration_seconds": 18.34,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 18.34,
+            "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -5,6 +5,8 @@\n         if paren == '(':\n             depth += 1\n         else:\n+            if depth < 0:\n+                return False\n             depth -= 1\n             if depth < 0:\n                 return False\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-is_valid_parenthesization",
+        "program_name": "is_valid_parenthesization",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 2,
+        "max_attempts": 3,
+        "total_tokens": 3838,
+        "prompt_tokens": 3602,
+        "completion_tokens": 236,
+        "total_duration_seconds": 31.799,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 14.04,
+            "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -5,6 +5,8 @@\n         if paren == '(':\n             depth += 1\n         else:\n+            if depth < 0:\n+                return False\n             depth -= 1\n             if depth < 0:\n                 return False\n"
+          },
+          {
+            "attempt": 2,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 17.756,
+            "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -9,7 +9,7 @@\n             if depth < 0:\n                 return False\n \n-    return True\n+    return depth == 0\n \n \n \"\"\"\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-is_valid_parenthesization",
+        "program_name": "is_valid_parenthesization",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 2,
+        "max_attempts": 3,
+        "total_tokens": 3924,
+        "prompt_tokens": 3682,
+        "completion_tokens": 242,
+        "total_duration_seconds": 27.637,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 14.62,
+            "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -5,6 +5,8 @@\n         if paren == '(':\n             depth += 1\n         else:\n+            if depth < 0:\n+                return False\n             depth -= 1\n             if depth < 0:\n                 return False\n"
+          },
+          {
+            "attempt": 2,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 12.976,
+            "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -9,7 +9,7 @@\n             if depth < 0:\n                 return False\n \n-    return True\n+    return depth == 0\n \n \n \"\"\"\n"
+          }
+        ]
+      }
+    },
+    "max_sublist_sum": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-max_sublist_sum",
+        "program_name": "max_sublist_sum",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1845,
+        "prompt_tokens": 1641,
+        "completion_tokens": 204,
+        "total_duration_seconds": 17.953,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 17.953,
+            "patch_diff": "--- a/python_programs/max_sublist_sum.py\n+++ b/python_programs/max_sublist_sum.py\n@@ -4,7 +4,7 @@\n     max_so_far = 0\n \n     for x in arr:\n-        max_ending_here = max_ending_here + x\n+        max_ending_here = max(0, max_ending_here + x)\n         max_so_far = max(max_so_far, max_ending_here)\n \n     return max_so_far\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-max_sublist_sum",
+        "program_name": "max_sublist_sum",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1845,
+        "prompt_tokens": 1641,
+        "completion_tokens": 204,
+        "total_duration_seconds": 15.58,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 15.58,
+            "patch_diff": "--- a/python_programs/max_sublist_sum.py\n+++ b/python_programs/max_sublist_sum.py\n@@ -4,7 +4,7 @@\n     max_so_far = 0\n \n     for x in arr:\n-        max_ending_here = max_ending_here + x\n+        max_ending_here = max(0, max_ending_here + x)\n         max_so_far = max(max_so_far, max_ending_here)\n \n     return max_so_far\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-max_sublist_sum",
+        "program_name": "max_sublist_sum",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1845,
+        "prompt_tokens": 1641,
+        "completion_tokens": 204,
+        "total_duration_seconds": 16.044,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 16.044,
+            "patch_diff": "--- a/python_programs/max_sublist_sum.py\n+++ b/python_programs/max_sublist_sum.py\n@@ -4,7 +4,7 @@\n     max_so_far = 0\n \n     for x in arr:\n-        max_ending_here = max_ending_here + x\n+        max_ending_here = max(0, max_ending_here + x)\n         max_so_far = max(max_so_far, max_ending_here)\n \n     return max_so_far\n"
+          }
+        ]
+      }
+    },
+    "pascal": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-pascal",
+        "program_name": "pascal",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1852,
+        "prompt_tokens": 1683,
+        "completion_tokens": 169,
+        "total_duration_seconds": 15.199,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 15.199,
+            "patch_diff": "--- a/python_programs/pascal.py\n+++ b/python_programs/pascal.py\n@@ -3,7 +3,7 @@\n     rows = [[1]]\n     for r in range(1, n):\n         row = []\n-        for c in range(0, r):\n+        for c in range(0, r + 1):\n             upleft = rows[r - 1][c - 1] if c > 0 else 0\n             upright = rows[r - 1][c] if c < r else 0\n             row.append(upleft + upright)\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-pascal",
+        "program_name": "pascal",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1855,
+        "prompt_tokens": 1683,
+        "completion_tokens": 172,
+        "total_duration_seconds": 14.286,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 14.286,
+            "patch_diff": "--- a/python_programs/pascal.py\n+++ b/python_programs/pascal.py\n@@ -3,7 +3,7 @@\n     rows = [[1]]\n     for r in range(1, n):\n         row = []\n-        for c in range(0, r):\n+        for c in range(0, r + 1):\n             upleft = rows[r - 1][c - 1] if c > 0 else 0\n             upright = rows[r - 1][c] if c < r else 0\n             row.append(upleft + upright)\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-pascal",
+        "program_name": "pascal",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1855,
+        "prompt_tokens": 1683,
+        "completion_tokens": 172,
+        "total_duration_seconds": 13.944,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 13.944,
+            "patch_diff": "--- a/python_programs/pascal.py\n+++ b/python_programs/pascal.py\n@@ -3,7 +3,7 @@\n     rows = [[1]]\n     for r in range(1, n):\n         row = []\n-        for c in range(0, r):\n+        for c in range(0, r + 1):\n             upleft = rows[r - 1][c - 1] if c > 0 else 0\n             upright = rows[r - 1][c] if c < r else 0\n             row.append(upleft + upright)\n"
+          }
+        ]
+      }
+    },
+    "quicksort": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1774,
+        "prompt_tokens": 1565,
+        "completion_tokens": 209,
+        "total_duration_seconds": 17.678,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 17.678,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6333,
+        "prompt_tokens": 5716,
+        "completion_tokens": 617,
+        "total_duration_seconds": 52.077,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 16.136,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 2,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 17.994,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 3,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 17.947,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6650,
+        "prompt_tokens": 5929,
+        "completion_tokens": 721,
+        "total_duration_seconds": 58.225,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 16.219,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 2,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 20.979,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 3,
+            "candidate_patch_applied": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 21.014,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      }
+    },
+    "rpn_eval": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1833,
+        "prompt_tokens": 1693,
+        "completion_tokens": 140,
+        "total_duration_seconds": 11.709,
+        "history": [
+          {
+            "attempt": 1,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current implementation of `rpn_eval` is incorrectly passing the second popped operand as the first argument to the `op` function, which reverses non-commutative operations like subtraction and division. The fix involves swapping the order of `a` and `b` in the `stack.ap",
+            "resolved": false,
+            "duration_seconds": 11.709
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5555,
+        "prompt_tokens": 5167,
+        "completion_tokens": 388,
+        "total_duration_seconds": 31.335,
+        "history": [
+          {
+            "attempt": 1,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current implementation of `rpn_eval` is incorrectly passing the second popped operand as the first argument to the `op` function, which reverses non-commutative operations like subtraction and division. The fix involves swapping the order of `a` and `b` in the `stack.ap",
+            "resolved": false,
+            "duration_seconds": 10.29
+          },
+          {
+            "attempt": 2,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current code pops the stack in reverse order, passing the second popped operand as the first argument to the op() function. This reverses non-commutative operations like subtraction and division. The fix is to pop the stack in the correct order, passing the first popped",
+            "resolved": false,
+            "duration_seconds": 11.087
+          },
+          {
+            "attempt": 3,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current code pops the stack twice before applying the operation, which reverses the order of operands for non-commutative operations like subtraction and division. The fix involves swapping the order of the two pops.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_pr",
+            "resolved": false,
+            "duration_seconds": 9.957
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5555,
+        "prompt_tokens": 5167,
+        "completion_tokens": 388,
+        "total_duration_seconds": 28.937,
+        "history": [
+          {
+            "attempt": 1,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current implementation of `rpn_eval` is incorrectly passing the second popped operand as the first argument to the `op` function, which reverses non-commutative operations like subtraction and division. The fix involves swapping the order of `a` and `b` in the `stack.ap",
+            "resolved": false,
+            "duration_seconds": 10.187
+          },
+          {
+            "attempt": 2,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current code pops the stack in reverse order, passing the second popped operand as the first argument to the op() function. This reverses non-commutative operations like subtraction and division. The fix is to pop the stack in the correct order, passing the first popped",
+            "resolved": false,
+            "duration_seconds": 10.093
+          },
+          {
+            "attempt": 3,
+            "patch_extracted": false,
+            "extraction_message": "Failed to extract valid patch or code modifications from model output",
+            "raw_response": "{\n  \"reasoning_summary\": \"The current code pops the stack twice before applying the operation, which reverses the order of operands for non-commutative operations like subtraction and division. The fix involves swapping the order of the two pops.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_pr",
+            "resolved": false,
+            "duration_seconds": 8.655
+          }
+        ]
+      }
+    },
+    "to_base": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-to_base",
+        "program_name": "to_base",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1707,
+        "prompt_tokens": 1617,
+        "completion_tokens": 90,
+        "total_duration_seconds": 12.12,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 12.12,
+            "patch_diff": "--- a/python_programs/to_base.py\n+++ b/python_programs/to_base.py\n@@ -6,7 +6,7 @@\n     while num > 0:\n         i = num % b\n         num = num // b\n-        result = result + alphabet[i]\n+        result = alphabet[i] + result\n     return result\n \n \n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-to_base",
+        "program_name": "to_base",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1710,
+        "prompt_tokens": 1617,
+        "completion_tokens": 93,
+        "total_duration_seconds": 10.137,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 10.137,
+            "patch_diff": "--- a/python_programs/to_base.py\n+++ b/python_programs/to_base.py\n@@ -6,7 +6,7 @@\n     while num > 0:\n         i = num % b\n         num = num // b\n-        result = result + alphabet[i]\n+        result = alphabet[i] + result\n     return result\n \n \n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-to_base",
+        "program_name": "to_base",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1710,
+        "prompt_tokens": 1617,
+        "completion_tokens": 93,
+        "total_duration_seconds": 10.097,
+        "history": [
+          {
+            "attempt": 1,
+            "candidate_patch_applied": true,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 10.096,
+            "patch_diff": "--- a/python_programs/to_base.py\n+++ b/python_programs/to_base.py\n@@ -6,7 +6,7 @@\n     while num > 0:\n         i = num % b\n         num = num // b\n-        result = result + alphabet[i]\n+        result = alphabet[i] + result\n     return result\n \n \n"
+          }
+        ]
+      }
+    }
+  }
+}

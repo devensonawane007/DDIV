@@ -1,0 +1,19 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 2242,
+  "completion_tokens": 237,
+  "latency_seconds": 49.6769543,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original implementation was not correctly following the topological sorting algorithm. It was not properly handling the removal of nodes from the list and adding them to the result. The previous patch attempted to use a deque, but it was not correctly implemented. The new approach uses a while loop to process nodes and their outgoing nodes, ensuring that nodes are only added to the result once all their outgoing nodes have been processed.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ordered_nodes = [node for node in nodes if not node.incoming_nodes]\",\n      \"code\": \"from collections import deque\\n\\nordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\\nvisited = set()\\n\\nwhile ordered_nodes:\\n    node = ordered_nodes.popleft()\\n    if node not in visited:\\n        visited.add(node)\\n        ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\\n\\nreturn list(visited)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original implementation was not correctly following the topological sorting algorithm. It was not properly handling the removal of nodes from the list and adding them to the result. The previous patch attempted to use a deque, but it was not correctly implemented. The new approach uses a while loop to process nodes and their outgoing nodes, ensuring that nodes are only added to the result once all their outgoing nodes have been processed.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "ordered_nodes = [node for node in nodes if not node.incoming_nodes]",
+        "code": "from collections import deque\n\nordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\nvisited = set()\n\nwhile ordered_nodes:\n    node = ordered_nodes.popleft()\n    if node not in visited:\n        visited.add(node)\n        ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n\nreturn list(visited)"
+      }
+    ]
+  }
+}

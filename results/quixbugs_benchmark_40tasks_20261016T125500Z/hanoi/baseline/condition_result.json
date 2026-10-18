@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-hanoi",
+  "program_name": "hanoi",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1965,
+  "prompt_tokens": 1773,
+  "completion_tokens": 192,
+  "total_duration_seconds": 16.698,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 16.698,
+      "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -1,7 +1,7 @@\n def hanoi(height, start=1, end=3):\n     steps = []\n     if height > 0:\n-        helper = ({1, 2, 3} - {start} - {end}).pop()\n+        helper = [i for i in [1, 2, 3] if i != start and i != end][0]\n         steps.extend(hanoi(height - 1, start, helper))\n         steps.append((start, helper))\n         steps.extend(hanoi(height - 1, helper, end))\n"
+    }
+  ]
+}

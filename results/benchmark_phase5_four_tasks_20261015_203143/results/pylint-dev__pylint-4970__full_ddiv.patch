@@ -1,0 +1,7 @@
+@@ -123,6 +123,7 @@ class SimilarChecker(BaseChecker):
+     if self.config.min_similarity_lines > 0:
+         # Perform similarity check
+         self._check_similarities(node)
++        return
+     # Perform other checks
+     self._check_other_checks(node)

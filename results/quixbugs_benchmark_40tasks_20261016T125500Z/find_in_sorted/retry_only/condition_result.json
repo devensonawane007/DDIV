@@ -1,0 +1,49 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-find_in_sorted",
+  "program_name": "find_in_sorted",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7389,
+  "prompt_tokens": 7044,
+  "completion_tokens": 345,
+  "total_duration_seconds": 36.253,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/find_in_sorted.py' failed Python AST syntax verification: invalid syntax (<unknown>, line 13) (category: SYNTAX_ERROR)",
+      "resolved": false,
+      "duration_seconds": 10.022
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.568,
+      "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 14.664,
+      "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+    }
+  ]
+}

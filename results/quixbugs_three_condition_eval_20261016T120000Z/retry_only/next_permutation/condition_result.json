@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-next_permutation",
+  "program_name": "next_permutation",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7135,
+  "prompt_tokens": 6736,
+  "completion_tokens": 399,
+  "token_breakdown": {
+    "total_tokens": 7135,
+    "prompt_tokens": 6736,
+    "completion_tokens": 399,
+    "by_role": {
+      "Coder": {
+        "prompt": 6736,
+        "completion": 399,
+        "total": 7135
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 6736,
+        "completion": 399,
+        "total": 7135
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:11:39Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_permutation",
+        "program_name": "next_permutation",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1547,
+        "completion_tokens": 102,
+        "total_tokens": 1649
+      },
+      {
+        "timestamp": "2026-10-17T07:12:01Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_permutation",
+        "program_name": "next_permutation",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2790,
+        "completion_tokens": 195,
+        "total_tokens": 2985
+      },
+      {
+        "timestamp": "2026-10-17T07:12:21Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_permutation",
+        "program_name": "next_permutation",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2399,
+        "completion_tokens": 102,
+        "total_tokens": 2501
+      }
+    ]
+  },
+  "total_duration_seconds": 52.684,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.181,
+      "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -7,7 +7,7 @@\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n-                    return next_perm\n+                    return perm[::-1]\n \n \n \n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 22.17,
+      "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -5,6 +5,13 @@\n             for j in range(len(perm) - 1, i, -1):\n                 if perm[j] < perm[i]:\n                     next_perm = list(perm)\n+                    if i >= 0:\n+                        j = next(j for j in range(len(perm) - 1, i, -1) if perm[j] > perm[i])\n+                        next_perm[i], next_perm[j] = next_perm[j], next_perm[i]\n+                        next_perm[i + 1:] = reversed(next_perm[i + 1:])\n+                    else:\n+                        next_perm.reverse()\n+                    return next_perm\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n                     return next_perm\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 19.329,
+      "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -7,7 +7,7 @@\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n-                    return next_perm\n+                    return next_perm if next_perm else list(reversed(perm))\n \n \n \n"
+    }
+  ]
+}

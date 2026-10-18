@@ -1,0 +1,110 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-sqrt",
+  "program_name": "sqrt",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 2853,
+  "prompt_tokens": 2219,
+  "completion_tokens": 634,
+  "token_breakdown": {
+    "total_tokens": 2853,
+    "prompt_tokens": 2219,
+    "completion_tokens": 634,
+    "by_role": {
+      "Locator": {
+        "prompt": 213,
+        "completion": 410,
+        "total": 623
+      },
+      "Coder": {
+        "prompt": 1862,
+        "completion": 92,
+        "total": 1954
+      },
+      "Tester": {
+        "prompt": 144,
+        "completion": 132,
+        "total": 276
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 213,
+        "completion": 410,
+        "total": 623
+      },
+      "ollama": {
+        "prompt": 1862,
+        "completion": 92,
+        "total": 1954
+      },
+      "groq": {
+        "prompt": 144,
+        "completion": 132,
+        "total": 276
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:52:01Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sqrt",
+        "program_name": "sqrt",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 213,
+        "completion_tokens": 410,
+        "total_tokens": 623
+      },
+      {
+        "timestamp": "2026-10-17T08:52:24Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sqrt",
+        "program_name": "sqrt",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1862,
+        "completion_tokens": 92,
+        "total_tokens": 1954
+      },
+      {
+        "timestamp": "2026-10-17T08:52:40Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sqrt",
+        "program_name": "sqrt",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 144,
+        "completion_tokens": 132,
+        "total_tokens": 276
+      }
+    ]
+  },
+  "total_duration_seconds": 62.744,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 41.613,
+      "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,7 +1,7 @@\n \n def sqrt(x, epsilon):\n     approx = x / 2\n-    while abs(x - approx) > epsilon:\n+    while abs(approx * approx - x) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n \n"
+    }
+  ]
+}

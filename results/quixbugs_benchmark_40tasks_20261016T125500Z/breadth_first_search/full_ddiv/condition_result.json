@@ -1,0 +1,41 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-breadth_first_search",
+  "program_name": "breadth_first_search",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 2,
+  "max_attempts": 3,
+  "total_tokens": 4192,
+  "prompt_tokens": 3842,
+  "completion_tokens": 350,
+  "total_duration_seconds": 26.782,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.394,
+      "patch_diff": "--- a/python_programs/breadth_first_search.py\n+++ b/python_programs/breadth_first_search.py\n@@ -14,8 +14,8 @@\n         if node is goalnode:\n             return True\n         else:\n-            queue.extend(node for node in node.successors if node not in nodesseen)\n-            nodesseen.update(node.successors)\n+            queue.extend(successor for successor in node.successors if successor not in nodesseen and successor not in queue)\n+            nodesseen.update(successor for successor in node.successors if successor not in nodesseen)\n \n     return False\n \n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 11.378,
+      "patch_diff": "--- a/python_programs/breadth_first_search.py\n+++ b/python_programs/breadth_first_search.py\n@@ -8,7 +8,7 @@\n     nodesseen = set()\n     nodesseen.add(startnode)\n \n-    while True:\n+    while queue:\n         node = queue.popleft()\n \n         if node is goalnode:\n"
+    }
+  ]
+}

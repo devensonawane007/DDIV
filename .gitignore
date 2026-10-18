@@ -37,11 +37,15 @@ htmlcov/
 
 # Logs & Runtime
 logs/
+*.log
 data/workspaces/
 data/repos/
 data/swebench/
-data/*.db
-data/*.sqlite
+data/quixbugs/
+**/workspace/
+**/workspaces/
+*.db
+*.sqlite
 experiments/results/runs/
 scratch/
 *.png

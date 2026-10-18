@@ -1,0 +1,112 @@
+{
+  "reconciliation_version": "1.0",
+  "timestamp_utc": "2026-10-17T09:30:00Z",
+  "cohort_verification": {
+    "total_canonical_tasks": 27,
+    "total_observations": 81,
+    "observations_by_condition": {
+      "BASELINE": 27,
+      "RETRY_ONLY": 27,
+      "FULL_DDIV": 27
+    },
+    "all_observations_present": true
+  },
+  "recomputed_outcomes": {
+    "BASELINE": {
+      "resolved": 1,
+      "total": 27,
+      "resolution_rate_pct": 3.7,
+      "attempts_used": 27,
+      "mean_attempts_per_task": 1.0,
+      "first_attempt_resolutions": 1,
+      "total_tokens_physical": 45806,
+      "prompt_tokens": 42143,
+      "completion_tokens": 3663,
+      "mean_tokens_per_task": 1696.5,
+      "mean_tokens_per_resolved": 45806.0,
+      "total_duration_seconds": 483.83
+    },
+    "RETRY_ONLY": {
+      "resolved": 2,
+      "total": 27,
+      "resolution_rate_pct": 7.41,
+      "attempts_used": 78,
+      "mean_attempts_per_task": 2.89,
+      "first_attempt_resolutions": 1,
+      "total_tokens_physical": 166655,
+      "prompt_tokens": 155949,
+      "completion_tokens": 10706,
+      "mean_tokens_per_task": 6172.4,
+      "mean_tokens_per_resolved": 83327.5,
+      "total_duration_seconds": 1192.68
+    },
+    "FULL_DDIV": {
+      "resolved": 17,
+      "total": 27,
+      "resolution_rate_pct": 62.96,
+      "attempts_used": 47,
+      "mean_attempts_per_task": 1.74,
+      "first_attempt_resolutions": 17,
+      "first_attempt_success_rate_pct": 100.0,
+      "total_tokens_physical": 147506,
+      "live_session_tokens_billed": 102767,
+      "reused_historical_tokens": 44739,
+      "prompt_tokens": 117526,
+      "completion_tokens": 29980,
+      "mean_tokens_per_task": 5463.2,
+      "mean_tokens_per_resolved": 8676.8,
+      "total_duration_seconds": 2104.3
+    }
+  },
+  "tokens_by_provider_physical": {
+    "gemini": 22236,
+    "groq": 17023,
+    "ollama": 292825,
+    "total": 332084
+  },
+  "tokens_by_role_physical": {
+    "Locator": 22236,
+    "Supervisor": 5490,
+    "Tester": 11533,
+    "Coder": 292825,
+    "total": 332084
+  },
+  "daily_utc_quota_ledger": {
+    "2026-10-16": {
+      "ollama_tokens": 73165,
+      "groq_tokens": 0,
+      "gemini_tokens": 0
+    },
+    "2026-10-17": {
+      "ollama_tokens": 219660,
+      "groq_tokens": 6351,
+      "gemini_tokens": 16052
+    },
+    "quota_compliance": {
+      "groq_ceiling": 100000,
+      "groq_used_max_day": 6351,
+      "groq_compliance_status": "COMPLIANT (93.6% margin)",
+      "gemini_ceiling": 30000,
+      "gemini_used_max_day": 16052,
+      "gemini_compliance_status": "COMPLIANT (46.5% margin)"
+    }
+  },
+  "cost_accounting": {
+    "reported_financial_cost_usd": 0.0,
+    "cost_verification_status": "UNVERIFIED (Operating within free rate tiers; no external paid billing invoices available)"
+  },
+  "state_integrity_verification": {
+    "production_memory_db": {
+      "path": "data/ddiv_memory.db",
+      "size_bytes": 36864,
+      "mtime": "2026-10-05T12:37:07Z",
+      "quixbugs_records": 0,
+      "status": "UNTOUCHED_PRISTINE"
+    },
+    "historical_benchmark_dir": {
+      "path": "results/quixbugs_cloud_assisted_repair_20261016T100000Z",
+      "files_modified": false,
+      "status": "FROZEN_INTACT"
+    }
+  }
+}

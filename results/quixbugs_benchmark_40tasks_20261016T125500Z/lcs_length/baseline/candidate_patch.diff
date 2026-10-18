@@ -1,0 +1,11 @@
+--- a/python_programs/lcs_length.py
++++ b/python_programs/lcs_length.py
+@@ -1,7 +1,7 @@
+ def lcs_length(s, t):
+     from collections import Counter
+ 
+-    dp = Counter()
++    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]
+ 
+     for i in range(len(s)):
+         for j in range(len(t)):

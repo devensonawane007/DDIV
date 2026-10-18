@@ -1,0 +1,42 @@
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Coder as Coder Agent (qwen2.5-coder:7b)
+    participant Patch as DemoPatchBuilder & Sandbox
+    participant Eval as QuixBugsEvaluator (Pytest)
+    participant FD as FailureDetector
+    participant Sup as Supervisor & Repetition Gate
+    participant Mem as SQLite Episodic Memory
+
+    Coder->>Patch: Attempt 1: Generate Candidate Patch (T=0.0)
+    Patch->>Eval: Apply Patch & Execute Specification Tests
+    alt Attempt 1 Passes
+        Eval-->>Coder: All Tests Pass -> RESOLVED (Terminate Early)
+    else Attempt 1 Fails
+        Eval->>FD: Return Raw Stdout & Exit Code
+        FD->>Sup: Classify (ASSERTION_FAILURE, TIMEOUT, SYNTAX_ERROR)
+        Sup->>Mem: Write FailureRecord (Task, Attempt, Diagnosis)
+        Sup->>Coder: Inject Retry Prompt: Diagnosis + Negative Diff Anchor + Avoid Mistake
+        Coder->>Patch: Attempt 2: Generate Mutated Patch (T=0.2)
+        Patch->>Sup: Check Byte-Identity vs Previous Patch
+        alt Detected Repeated Patch
+            Sup->>Coder: Inject CRITICAL REPETITION WARNING
+        end
+        Patch->>Eval: Apply Patch & Re-evaluate
+        alt Attempt 2 Passes
+            Eval-->>Coder: All Tests Pass -> RESOLVED (Multi-Attempt Recovery!)
+        else Attempt 2 Fails
+            Eval->>FD: Return Diagnostics
+            FD->>Sup: Refine Diagnosis
+            Sup->>Mem: Store Attempt 2 Record
+            Sup->>Coder: Attempt 3 Retry Guidance (T=0.2)
+            Coder->>Patch: Attempt 3 Proposal
+            Patch->>Eval: Final Evaluation
+            alt Attempt 3 Passes
+                Eval-->>Coder: RESOLVED (Attempt 3 Recovery!)
+            else Attempt 3 Fails
+                Eval-->>Coder: Maximum Attempts Exhausted -> UNRESOLVED
+            end
+        end
+    end
+```

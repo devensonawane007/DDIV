@@ -1,0 +1,49 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-topological_ordering",
+  "program_name": "topological_ordering",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6448,
+  "prompt_tokens": 5998,
+  "completion_tokens": 450,
+  "total_duration_seconds": 47.745,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 11.769,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,6 +3,10 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n+            if not all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes):\n+                continue\n+            if nextnode not in ordered_nodes:\n+                ordered_nodes.append(nextnode)\n             if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 26.715,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -2,6 +2,11 @@\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n \n     for node in ordered_nodes:\n+        if all(nextnode in ordered_nodes for nextnode in node.outgoing_nodes):\n+            for nextnode in node.outgoing_nodes:\n+                if nextnode not in ordered_nodes:\n+                    ordered_nodes.append(nextnode)\n+            ordered_nodes.append(node)\n         for nextnode in node.outgoing_nodes:\n             if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/topological_ordering.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 6) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 9.239
+    }
+  ]
+}

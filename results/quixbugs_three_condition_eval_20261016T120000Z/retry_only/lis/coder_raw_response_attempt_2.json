@@ -1,0 +1,31 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2957,
+  "completion_tokens": 243,
+  "latency_seconds": 16.5494366,
+  "raw_text": "{\n  \"reasoning_summary\": \"The previous patch attempted to initialize `ends` with a list of indices, but the logic for updating `ends` was incorrect. The new approach initializes `ends` with a list of -1s and uses a binary search to find the correct position for each element in the input array.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/lis.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ends = {}\",\n      \"code\": \"ends = [-1] * (len(arr) + 1)\"\n    },\n    {\n      \"path\": \"python_programs/lis.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if length == longest or val < arr[ends[length + 1]]:\",\n      \"code\": \"if length == longest - 1 or val < arr[ends[length + 1]]:\"\n    },\n    {\n      \"path\": \"python_programs/lis.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ends[length + 1] = i\",\n      \"code\": \"ends[length] = i\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The previous patch attempted to initialize `ends` with a list of indices, but the logic for updating `ends` was incorrect. The new approach initializes `ends` with a list of -1s and uses a binary search to find the correct position for each element in the input array.",
+    "modifications": [
+      {
+        "path": "python_programs/lis.py",
+        "operation": "replace",
+        "anchor": "ends = {}",
+        "code": "ends = [-1] * (len(arr) + 1)"
+      },
+      {
+        "path": "python_programs/lis.py",
+        "operation": "replace",
+        "anchor": "if length == longest or val < arr[ends[length + 1]]:",
+        "code": "if length == longest - 1 or val < arr[ends[length + 1]]:"
+      },
+      {
+        "path": "python_programs/lis.py",
+        "operation": "replace",
+        "anchor": "ends[length + 1] = i",
+        "code": "ends[length] = i"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+--- a/pylint/lint/run.py
++++ b/pylint/lint/run.py
+@@ -53,6 +53,8 @@
+             cpu_period = int(file.read().rstrip())
+         # Divide quota by period and you should get num of allotted CPU to the container, rounded down if fractional.
+         avail_cpu = int(cpu_quota / cpu_period)
++        if avail_cpu == 0:
++            avail_cpu = 1
+     elif Path("/sys/fs/cgroup/cpu/cpu.shares").is_file():
+         with open("/sys/fs/cgroup/cpu/cpu.shares", encoding="utf-8") as file:
+             cpu_shares = int(file.read().rstrip())

@@ -1,0 +1,9 @@
+parameter_name,frozen_value,scope,source_config,actuation_mechanism,observed_in_run
+max_attempts (BASELINE),1,Per-job attempt loop,core/conditions.py,Hard attempt ceiling,Observed exactly 1 attempt
+max_attempts (RETRY_ONLY),3,Per-job attempt loop,core/conditions.py,Loop terminates on success or 3 attempts,Observed up to 3 attempts
+max_attempts (FULL_DDIV),3,Per-job attempt loop,core/conditions.py,Supervised recovery loop terminates on success or 3 attempts,Observed up to 3 attempts
+coder_trust_critique_threshold,0.7,Critique gate,core/config.py,Triggers _run_deterministic_critique on coder trust < 0.70,Configured and enforced
+coder_temperature,0.2,Coder LLM calls,core/config.py,Temperature passed to Ollama API,Enforced at 0.2
+trust_decay_rate,0.05,Trust ledger,core/config.py,Decays trust on failed verification,Applied in TrustLedger
+memory_top_k,3,Episodic retrieval,core/config.py,Max memories injected into Supervisor/Coder,3 max matches retrieved
+memory_similarity_threshold,0.65,Episodic retrieval,core/config.py,Minimum cosine/text similarity,Relevance threshold filter

@@ -1,0 +1,54 @@
+{
+  "master_table": "| Task # | Program Name | Batch | `BASELINE` (Local) | `RETRY_ONLY` (Local) | `FULL_DDIV` (Hybrid) | Final Outcome |\n|:---:|:---|:---:|:---|:---|:---|:---:|\n| 1 | [`bitcount`](file:///d:/PROJECTS/DDIV/python_programs/bitcount.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,110t) | **DDIV Only** |\n| 2 | [`depth_first_search`](file:///d:/PROJECTS/DDIV/python_programs/depth_first_search.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 3 | [`detect_cycle`](file:///d:/PROJECTS/DDIV/python_programs/detect_cycle.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 4,771t) | **DDIV Only** |\n| 4 | [`find_in_sorted`](file:///d:/PROJECTS/DDIV/python_programs/find_in_sorted.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,377t) | **DDIV Only** |\n| 5 | [`gcd`](file:///d:/PROJECTS/DDIV/python_programs/gcd.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 2,836t) | **DDIV Only** |\n| 6 | [`get_factors`](file:///d:/PROJECTS/DDIV/python_programs/get_factors.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 7 | [`hanoi`](file:///d:/PROJECTS/DDIV/python_programs/hanoi.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,408t) | **DDIV Only** |\n| 8 | [`kheapsort`](file:///d:/PROJECTS/DDIV/python_programs/kheapsort.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,490t) | **DDIV Only** |\n| 9 | [`knapsack`](file:///d:/PROJECTS/DDIV/python_programs/knapsack.py) | Batch 1 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,519t) | **DDIV Only** |\n| 10 | [`lcs_length`](file:///d:/PROJECTS/DDIV/python_programs/lcs_length.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,285t) | **DDIV Only** |\n| 11 | [`lis`](file:///d:/PROJECTS/DDIV/python_programs/lis.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 12 | [`longest_common_subsequence`](file:///d:/PROJECTS/DDIV/python_programs/longest_common_subsequence.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,157t) | **DDIV Only** |\n| 13 | [`mergesort`](file:///d:/PROJECTS/DDIV/python_programs/mergesort.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,158t) | **DDIV Only** |\n| 14 | [`minimum_spanning_tree`](file:///d:/PROJECTS/DDIV/python_programs/minimum_spanning_tree.py) | Batch 2 | **PASS** (att=1, 1,801t) | **PASS** (att=1, 1,801t) | FAIL (att=3) | Baseline/Retry |\n| 15 | [`next_palindrome`](file:///d:/PROJECTS/DDIV/python_programs/next_palindrome.py) | Batch 2 | FAIL (att=1) | **PASS** (att=2, 3,620t) | **PASS** (att=1, 3,870t) | Shared Solved |\n| 16 | [`next_permutation`](file:///d:/PROJECTS/DDIV/python_programs/next_permutation.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,156t) | **DDIV Only** |\n| 17 | [`possible_change`](file:///d:/PROJECTS/DDIV/python_programs/possible_change.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,448t) | **DDIV Only** |\n| 18 | [`powerset`](file:///d:/PROJECTS/DDIV/python_programs/powerset.py) | Batch 2 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 2,953t) | **DDIV Only** |\n| 19 | [`shortest_path_length`](file:///d:/PROJECTS/DDIV/python_programs/shortest_path_length.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 20 | [`shortest_path_lengths`](file:///d:/PROJECTS/DDIV/python_programs/shortest_path_lengths.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 21 | [`shortest_paths`](file:///d:/PROJECTS/DDIV/python_programs/shortest_paths.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 22 | [`shunting_yard`](file:///d:/PROJECTS/DDIV/python_programs/shunting_yard.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 23 | [`sieve`](file:///d:/PROJECTS/DDIV/python_programs/sieve.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,056t) | **DDIV Only** |\n| 24 | [`sqrt`](file:///d:/PROJECTS/DDIV/python_programs/sqrt.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 2,853t) | **DDIV Only** |\n| 25 | [`subsequences`](file:///d:/PROJECTS/DDIV/python_programs/subsequences.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |\n| 26 | [`topological_ordering`](file:///d:/PROJECTS/DDIV/python_programs/topological_ordering.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | **PASS** (att=1, 3,177t) | **DDIV Only** |\n| 27 | [`wrap`](file:///d:/PROJECTS/DDIV/python_programs/wrap.py) | Batch 3 | FAIL (att=1) | FAIL (att=3) | FAIL (att=3) | Unresolved |",
+  "failure_summary": {
+    "BASELINE": {
+      "NO_MODIFICATION_OMISSION": 6,
+      "SYNTAX_AST_STATIC_ANALYSIS": 3,
+      "ASSERTION_LOGIC_FAILURE": 13,
+      "EXECUTION_TIMEOUT": 3,
+      "RESOLVED": 1,
+      "ANCHOR_NOT_FOUND": 1
+    },
+    "RETRY_ONLY": {
+      "NO_MODIFICATION_OMISSION": 15,
+      "SYNTAX_AST_STATIC_ANALYSIS": 10,
+      "ASSERTION_LOGIC_FAILURE": 43,
+      "ANCHOR_NOT_FOUND": 6,
+      "RESOLVED": 2,
+      "EXECUTION_TIMEOUT": 2
+    },
+    "FULL_DDIV": {
+      "RESOLVED": 17,
+      "ASSERTION_LOGIC_FAILURE": 7,
+      "ANCHOR_NOT_FOUND": 11,
+      "SYNTAX_AST_STATIC_ANALYSIS": 12
+    }
+  },
+  "tokens_by_provider": {
+    "BASELINE": {
+      "ollama": 45806
+    },
+    "RETRY_ONLY": {
+      "ollama": 166655
+    },
+    "FULL_DDIV": {
+      "gemini": 22236,
+      "ollama": 108247,
+      "groq": 17023
+    }
+  },
+  "tokens_by_role": {
+    "BASELINE": {
+      "Coder": 45806
+    },
+    "RETRY_ONLY": {
+      "Coder": 166655
+    },
+    "FULL_DDIV": {
+      "Locator": 22236,
+      "Coder": 108247,
+      "Tester": 11533,
+      "Supervisor": 5490
+    }
+  }
+}

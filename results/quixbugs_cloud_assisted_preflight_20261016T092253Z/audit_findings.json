@@ -1,0 +1,21 @@
+{
+  "audit_timestamp": "2026-10-16T09:22:55Z",
+  "preflight_verdict": "READY",
+  "reconciliation_verdict": "RECONCILED",
+  "frozen_sources_intact": true,
+  "unresolved_tasks_count": 27,
+  "deliverables": {
+    "reconciliation_report": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\phase87_reconciliation_report.md",
+    "reconciled_metrics": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\reconciled_metrics.json",
+    "reconciled_task_results": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\reconciled_task_results.csv",
+    "unresolved_tasks_csv": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\unresolved_full_dddiv_tasks.csv",
+    "unresolved_task_manifest": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\unresolved_task_manifest.json",
+    "routing_audit": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\cloud_agent_routing_audit.md",
+    "cost_estimate": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\cloud_resource_cost_estimate.md",
+    "experiment_protocol": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\cloud_assisted_experiment_protocol.md",
+    "preflight_report": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\cloud_assisted_preflight_report.md",
+    "preflight_spec": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\cloud_assisted_preflight_spec.json",
+    "source_manifest": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\source_artifact_manifest.json",
+    "audit_findings": "D:\\PROJECTS\\DDIV\\results\\quixbugs_cloud_assisted_preflight_20261016T092253Z\\audit_findings.json"
+  }
+}

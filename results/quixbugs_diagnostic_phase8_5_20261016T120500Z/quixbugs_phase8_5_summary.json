@@ -1,0 +1,272 @@
+{
+  "diagnostic_timestamp": "2026-10-16T06:39:14Z",
+  "total_tasks": 2,
+  "total_runs": 6,
+  "model": "qwen2.5-coder:7b",
+  "ollama_url": "http://localhost:11434",
+  "output_directory": "D:\\PROJECTS\\DDIV\\results\\quixbugs_diagnostic_phase8_5_20261016T120500Z",
+  "total_duration_seconds": 223.26,
+  "aggregate_totals": {
+    "BASELINE": {
+      "resolved": 0,
+      "runs": 2,
+      "tokens": 3590,
+      "duration": 44.248000000000005
+    },
+    "RETRY_ONLY": {
+      "resolved": 0,
+      "runs": 2,
+      "tokens": 12188,
+      "duration": 81.464
+    },
+    "FULL_DDIV": {
+      "resolved": 0,
+      "runs": 2,
+      "tokens": 12504,
+      "duration": 91.94999999999999
+    }
+  },
+  "results_by_task": {
+    "quicksort": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1774,
+        "prompt_tokens": 1578,
+        "completion_tokens": 196,
+        "total_duration_seconds": 32.084,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 32.084,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6645,
+        "prompt_tokens": 6096,
+        "completion_tokens": 549,
+        "total_duration_seconds": 49.161,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 14.855,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 16.865,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 17.441,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6956,
+        "prompt_tokens": 6344,
+        "completion_tokens": 612,
+        "total_duration_seconds": 58.282,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 16.305,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 21.451,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 20.454,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      }
+    },
+    "rpn_eval": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1816,
+        "prompt_tokens": 1706,
+        "completion_tokens": 110,
+        "total_duration_seconds": 12.164,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 12.164
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5543,
+        "prompt_tokens": 5214,
+        "completion_tokens": 329,
+        "total_duration_seconds": 32.303,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 9.845
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 10.917
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 11.542
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5548,
+        "prompt_tokens": 5214,
+        "completion_tokens": 334,
+        "total_duration_seconds": 33.668,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 11.376
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 12.21
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+            "resolved": false,
+            "duration_seconds": 10.066
+          }
+        ]
+      }
+    }
+  }
+}

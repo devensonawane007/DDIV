@@ -1,0 +1,39 @@
+```mermaid
+flowchart TD
+    subgraph Input ["Canonical Task Specification"]
+        T[QuixBugs Task i of 40]
+        W[Isolated Workspace python_programs/prog.py]
+    end
+
+    subgraph Conditions ["Experimental Conditions"]
+        direction TB
+        B["BASELINE Path<br/>Attempts: 1<br/>Sampling: T=0.0<br/>Supervisor: Disabled<br/>Memory: Disabled<br/>Trust: Disabled"]
+        F["FULL_DDIV Path<br/>Attempts: Up to 3<br/>Sampling: T=0.0 to 0.2<br/>Supervisor: Active<br/>FailureDetector: Active<br/>Episodic Memory: Active<br/>Trust: Tracked"]
+    end
+
+    subgraph LLM ["Inference Provider (Local-Only)"]
+        Ollama["Local Ollama qwen2.5-coder:7b<br/>Base URL: http://localhost:11434<br/>Cloud Invocations: 0 ($0.00)"]
+    end
+
+    subgraph Evaluator ["Authoritative Evaluation Sandbox"]
+        PB["DemoPatchBuilder<br/>AST Syntax Verification<br/>Anchor Deduplication"]
+        GA["git apply --check<br/>Patch Application Gate"]
+        PT["Out-of-Process Pytest<br/>Hidden Tests in Temp Dir<br/>15s Timeout Enforcement"]
+    end
+
+    subgraph Verdict ["Final Outcome"]
+        PASS["RESOLVED<br/>100% Tests Pass"]
+        FAIL["UNRESOLVED<br/>Tests Failed / Timeout / Syntax Error"]
+    end
+
+    T --> W
+    W --> B
+    W --> F
+    B --> Ollama
+    F --> Ollama
+    Ollama --> PB
+    PB --> GA
+    GA --> PT
+    PT --> PASS
+    PT --> FAIL
+```

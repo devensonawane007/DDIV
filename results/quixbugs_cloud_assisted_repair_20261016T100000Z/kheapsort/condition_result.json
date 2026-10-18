@@ -1,0 +1,107 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-kheapsort",
+  "program_name": "kheapsort",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3490,
+  "prompt_tokens": 2539,
+  "completion_tokens": 951,
+  "token_breakdown": {
+    "total_tokens": 3490,
+    "prompt_tokens": 2539,
+    "completion_tokens": 951,
+    "by_role": {
+      "Locator": {
+        "prompt": 389,
+        "completion": 432,
+        "total": 821
+      },
+      "Coder": {
+        "prompt": 2024,
+        "completion": 91,
+        "total": 2115
+      },
+      "Tester": {
+        "prompt": 126,
+        "completion": 428,
+        "total": 554
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 389,
+        "completion": 432,
+        "total": 821
+      },
+      "ollama": {
+        "prompt": 2024,
+        "completion": 91,
+        "total": 2115
+      },
+      "groq": {
+        "prompt": 126,
+        "completion": 428,
+        "total": 554
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T10:52:16Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-kheapsort",
+        "program_name": "kheapsort",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 389,
+        "completion_tokens": 432,
+        "total_tokens": 821
+      },
+      {
+        "timestamp": "2026-10-16T10:52:26Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-kheapsort",
+        "program_name": "kheapsort",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2024,
+        "completion_tokens": 91,
+        "total_tokens": 2115
+      },
+      {
+        "timestamp": "2026-10-16T10:52:37Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-kheapsort",
+        "program_name": "kheapsort",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 126,
+        "completion_tokens": 428,
+        "total_tokens": 554
+      }
+    ]
+  },
+  "total_duration_seconds": 59.544,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 21.852,
+      "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -4,7 +4,7 @@\n     heap = arr[:k]\n     heapq.heapify(heap)\n \n-    for x in arr:\n+    for x in arr[k:]:\n         yield heapq.heappushpop(heap, x)\n \n     while heap:\n"
+    }
+  ]
+}

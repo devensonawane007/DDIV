@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-shunting_yard",
+  "program_name": "shunting_yard",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1805,
+  "prompt_tokens": 1675,
+  "completion_tokens": 130,
+  "token_breakdown": {
+    "total_tokens": 1805,
+    "prompt_tokens": 1675,
+    "completion_tokens": 130,
+    "by_role": {
+      "Coder": {
+        "prompt": 1675,
+        "completion": 130,
+        "total": 1805
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1675,
+        "completion": 130,
+        "total": 1805
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:42:20Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1675,
+        "completion_tokens": 130,
+        "total_tokens": 1805
+      }
+    ]
+  },
+  "total_duration_seconds": 36.339,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 36.338,
+      "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+    }
+  ]
+}

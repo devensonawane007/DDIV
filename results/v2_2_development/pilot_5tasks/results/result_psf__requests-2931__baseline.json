@@ -1,0 +1,229 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "psf__requests-2931",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "requests/utils.py",
+          "target_symbol": "to_native_string",
+          "operation": "replace",
+          "anchor": "def to_native_string(string, encoding='ascii'):\n    \"\"\"\n    Given a string object, regardless of type, returns a representation of that\n    string in the native string type, encoding and decoding where necessary.\n    This assumes ASCII unless told otherwise.\n    \"\"\"\n    out = None\n\n    if isinstance(string, builtin_str):",
+          "code": "    if isinstance(string, bytes):\n        out = string\n    else:\n        if is_py2:\n            out = string.encode(encoding)\n        else:\n            out = string.decode(encoding)",
+          "reason": "Check if the input is bytes (binary data). If it is, return it as is. Otherwise, proceed with the existing encoding/decoding logic."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Patched file 'requests/utils.py' failed Python AST syntax verification: invalid syntax (<unknown>, line 694)",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "requests/models.py",
+        "requests/utils.py"
+      ],
+      "latency_seconds": 0.12620186805725098,
+      "agent_timings": {
+        "locator": 4.420360803604126,
+        "coder": 35.465998,
+        "tester": 1.4622583389282227,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 5070,
+        "completion_tokens": 1080,
+        "total_tokens": 6150
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1538,
+          "completion_tokens": 188,
+          "total_tokens": 1726,
+          "latency_seconds": 4.420360803604126
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 2457,
+          "completion_tokens": 453,
+          "total_tokens": 2910,
+          "latency_seconds": 35.465998
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1075,
+          "completion_tokens": 439,
+          "total_tokens": 1514,
+          "latency_seconds": 1.4622583389282227
+        }
+      ],
+      "context_characters": 2758,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F4",
+        "granular_failure_type": "ENVIRONMENT_FAILURE",
+        "confidence": 0.98,
+        "evidence_reasons": [
+          "Pristine repository base failed pre-existing PASS_TO_PASS tests (environment failure)."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": false,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\psf__requests-2931__baseline\\psf__requests-2931__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 82.65,
+    "input_tokens": 5070,
+    "output_tokens": 1080,
+    "total_tokens": 6150,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 4.420360803604126,
+      "coder": 35.465998,
+      "tester": 1.4622583389282227,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1538,
+        "completion_tokens": 188,
+        "total_tokens": 1726,
+        "latency_seconds": 4.420360803604126
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 2457,
+        "completion_tokens": 453,
+        "total_tokens": 2910,
+        "latency_seconds": 35.465998
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1075,
+        "completion_tokens": 439,
+        "total_tokens": 1514,
+        "latency_seconds": 1.4622583389282227
+      }
+    ],
+    "context_characters": 2758,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.13,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 82.65,
+  "worker_pid": 15292,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\pilot_5tasks\\psf__requests-2931__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\psf__requests-2931__baseline",
+  "error_message": null,
+  "started_at": "2026-10-14T12:54:35.806236+00:00",
+  "completed_at": "2026-10-14T12:55:58.452935+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 6150,
+  "prompt_tokens": 5070,
+  "completion_tokens": 1080
+}

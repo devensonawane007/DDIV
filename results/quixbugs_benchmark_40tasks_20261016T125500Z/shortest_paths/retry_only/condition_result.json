@@ -1,0 +1,39 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-shortest_paths",
+  "program_name": "shortest_paths",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5994,
+  "prompt_tokens": 5615,
+  "completion_tokens": 379,
+  "total_duration_seconds": 26.409,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min( (category: ANCHOR_NOT_FOUND)",
+      "resolved": false,
+      "duration_seconds": 7.684
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min( (category: ANCHOR_NOT_FOUND)",
+      "resolved": false,
+      "duration_seconds": 9.893
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min( (category: ANCHOR_NOT_FOUND)",
+      "resolved": false,
+      "duration_seconds": 8.833
+    }
+  ]
+}

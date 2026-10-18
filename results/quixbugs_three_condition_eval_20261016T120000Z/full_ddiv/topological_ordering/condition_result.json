@@ -1,0 +1,110 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-topological_ordering",
+  "program_name": "topological_ordering",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3177,
+  "prompt_tokens": 2375,
+  "completion_tokens": 802,
+  "token_breakdown": {
+    "total_tokens": 3177,
+    "prompt_tokens": 2375,
+    "completion_tokens": 802,
+    "by_role": {
+      "Locator": {
+        "prompt": 217,
+        "completion": 565,
+        "total": 782
+      },
+      "Coder": {
+        "prompt": 1985,
+        "completion": 131,
+        "total": 2116
+      },
+      "Tester": {
+        "prompt": 173,
+        "completion": 106,
+        "total": 279
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 217,
+        "completion": 565,
+        "total": 782
+      },
+      "ollama": {
+        "prompt": 1985,
+        "completion": 131,
+        "total": 2116
+      },
+      "groq": {
+        "prompt": 173,
+        "completion": 106,
+        "total": 279
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T09:02:09Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 217,
+        "completion_tokens": 565,
+        "total_tokens": 782
+      },
+      {
+        "timestamp": "2026-10-17T09:02:37Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1985,
+        "completion_tokens": 131,
+        "total_tokens": 2116
+      },
+      {
+        "timestamp": "2026-10-17T09:02:52Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 173,
+        "completion_tokens": 106,
+        "total_tokens": 279
+      }
+    ]
+  },
+  "total_duration_seconds": 68.055,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 45.878,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,7 +3,7 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n-            if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n+            if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n     return ordered_nodes\n"
+    }
+  ]
+}

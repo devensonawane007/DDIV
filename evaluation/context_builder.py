@@ -190,11 +190,20 @@ class TargetedContextBuilder:
         ]
 
         if code_files:
-            per_file_budget = max(1500, source_budget // len(code_files[:3]))
-            for r_file in code_files[:3]:
-                fpath = workspace_path / r_file
-                if fpath.exists():
-                    try:
+            per_file_budget = max(1500, source_budget // min(len(code_files), 3))
+            for r_file in code_files:
+                if len(context_files) >= 3:
+                    break
+                try:
+                    raw_fpath = workspace_path / r_file
+                    fpath = raw_fpath.resolve()
+                    ws_resolved = workspace_path.resolve()
+                    # Strictly enforce canonical path containment and forbid external symlinks
+                    if not fpath.is_relative_to(ws_resolved):
+                        continue
+                    if raw_fpath.is_symlink() and not fpath.is_relative_to(ws_resolved):
+                        continue
+                    if fpath.is_file():
                         content = fpath.read_text(encoding="utf-8", errors="ignore")
                         snippet, syms = self._slice_source_with_imports(
                             content, target_symbols, per_file_budget
@@ -202,8 +211,8 @@ class TargetedContextBuilder:
                         source_blocks.append(f"### File: {r_file}\n```python\n{snippet}\n```")
                         context_files.append(r_file)
                         all_selected_symbols.extend(syms)
-                    except Exception:
-                        continue
+                except Exception:
+                    continue
 
         formatted_source = "\n\n".join(source_blocks) if source_blocks else "No relevant source files located."
 

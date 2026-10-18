@@ -1,0 +1,143 @@
+{
+  "last_updated": "2026-10-17T09:07:08Z",
+  "session_count": 3,
+  "usage_by_date": {
+    "2026-10-16": {
+      "ollama": {
+        "prompt": 69746,
+        "completion": 3419,
+        "total": 73165
+      }
+    },
+    "2026-10-17": {
+      "ollama": {
+        "prompt": 203200,
+        "completion": 16460,
+        "total": 219660
+      },
+      "gemini": {
+        "prompt": 5674,
+        "completion": 10378,
+        "total": 16052
+      },
+      "groq": {
+        "prompt": 4289,
+        "completion": 2062,
+        "total": 6351
+      }
+    }
+  },
+  "totals_by_provider": {
+    "gemini": {
+      "prompt": 5674,
+      "completion": 10378,
+      "total": 16052
+    },
+    "groq": {
+      "prompt": 4289,
+      "completion": 2062,
+      "total": 6351
+    },
+    "ollama": {
+      "prompt": 272946,
+      "completion": 19879,
+      "total": 292825
+    }
+  },
+  "totals_by_role": {
+    "Locator": {
+      "prompt": 5674,
+      "completion": 10378,
+      "total": 16052
+    },
+    "Supervisor": {
+      "prompt": 2213,
+      "completion": 394,
+      "total": 2607
+    },
+    "Tester": {
+      "prompt": 2076,
+      "completion": 1668,
+      "total": 3744
+    },
+    "Coder": {
+      "prompt": 272946,
+      "completion": 19879,
+      "total": 292825
+    }
+  },
+  "totals_by_condition": {
+    "BASELINE": {
+      "prompt": 42143,
+      "completion": 3663,
+      "total": 45806
+    },
+    "RETRY_ONLY": {
+      "prompt": 155949,
+      "completion": 10706,
+      "total": 166655
+    },
+    "FULL_DDIV": {
+      "prompt": 84817,
+      "completion": 17950,
+      "total": 102767
+    }
+  },
+  "grand_total_tokens": 315228,
+  "current_session_provider_tokens": {
+    "gemini": {
+      "prompt": 2935,
+      "completion": 5154,
+      "total": 8089
+    },
+    "groq": {
+      "prompt": 464,
+      "completion": 390,
+      "total": 854
+    },
+    "ollama": {
+      "prompt": 112200,
+      "completion": 9639,
+      "total": 121839
+    }
+  },
+  "current_session_role_tokens": {
+    "Locator": {
+      "prompt": 2935,
+      "completion": 5154,
+      "total": 8089
+    },
+    "Supervisor": {
+      "prompt": 0,
+      "completion": 0,
+      "total": 0
+    },
+    "Tester": {
+      "prompt": 464,
+      "completion": 390,
+      "total": 854
+    },
+    "Coder": {
+      "prompt": 112200,
+      "completion": 9639,
+      "total": 121839
+    }
+  },
+  "current_session_condition_tokens": {
+    "BASELINE": {
+      "prompt": 14225,
+      "completion": 1390,
+      "total": 15615
+    },
+    "RETRY_ONLY": {
+      "prompt": 52853,
+      "completion": 4327,
+      "total": 57180
+    },
+    "FULL_DDIV": {
+      "prompt": 48521,
+      "completion": 9466,
+      "total": 57987
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2174,
+  "completion_tokens": 92,
+  "latency_seconds": 7.2064367,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is caused by the queue being emptied before checking if the goal node is reached. The fix ensures the queue is not emptied before checking the goal node.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/breadth_first_search.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"while True:\",\n      \"code\": \"while queue:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is caused by the queue being emptied before checking if the goal node is reached. The fix ensures the queue is not emptied before checking the goal node.",
+    "modifications": [
+      {
+        "path": "python_programs/breadth_first_search.py",
+        "operation": "replace",
+        "anchor": "while True:",
+        "code": "while queue:"
+      }
+    ]
+  }
+}

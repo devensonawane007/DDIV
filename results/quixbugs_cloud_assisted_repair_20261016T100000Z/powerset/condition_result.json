@@ -1,0 +1,107 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-powerset",
+  "program_name": "powerset",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 2953,
+  "prompt_tokens": 2312,
+  "completion_tokens": 641,
+  "token_breakdown": {
+    "total_tokens": 2953,
+    "prompt_tokens": 2312,
+    "completion_tokens": 641,
+    "by_role": {
+      "Locator": {
+        "prompt": 252,
+        "completion": 424,
+        "total": 676
+      },
+      "Coder": {
+        "prompt": 1894,
+        "completion": 105,
+        "total": 1999
+      },
+      "Tester": {
+        "prompt": 166,
+        "completion": 112,
+        "total": 278
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 252,
+        "completion": 424,
+        "total": 676
+      },
+      "ollama": {
+        "prompt": 1894,
+        "completion": 105,
+        "total": 1999
+      },
+      "groq": {
+        "prompt": 166,
+        "completion": 112,
+        "total": 278
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T11:26:45Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-powerset",
+        "program_name": "powerset",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 252,
+        "completion_tokens": 424,
+        "total_tokens": 676
+      },
+      {
+        "timestamp": "2026-10-16T11:26:56Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-powerset",
+        "program_name": "powerset",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1894,
+        "completion_tokens": 105,
+        "total_tokens": 1999
+      },
+      {
+        "timestamp": "2026-10-16T11:27:12Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-powerset",
+        "program_name": "powerset",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 166,
+        "completion_tokens": 112,
+        "total_tokens": 278
+      }
+    ]
+  },
+  "total_duration_seconds": 73.394,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 30.897,
+      "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -3,7 +3,7 @@\n     if arr:\n         first, *rest = arr #python3 just like car and cdr (in this case anyway..)\n         rest_subsets = powerset(rest)\n-        return [[first] + subset for subset in rest_subsets]\n+        return rest_subsets + [[first] + subset for subset in rest_subsets]\n     else:\n         return [[]]\n \n"
+    }
+  ]
+}

@@ -137,6 +137,7 @@ class OllamaProvider(ModelProvider):
         prompt: str,
         system_prompt: str = "",
         response_schema: Optional[Type[BaseModel]] = None,
+        temperature: Optional[float] = None,
     ) -> ProviderResponse:
         """Synchronously request generation from local Ollama endpoint."""
         if not self.model_id:
@@ -165,12 +166,13 @@ class OllamaProvider(ModelProvider):
                 f"Do not include any introductory remarks, markdown prose outside the JSON, or conversational preamble."
             )
 
+        eff_temp = self.temperature if temperature is None else temperature
         payload: Dict[str, Any] = {
             "model": self.model_id,
             "prompt": prompt_content,
             "stream": False,
             "options": {
-                "temperature": self.temperature,
+                "temperature": eff_temp,
                 "num_predict": self.max_tokens,
             },
         }

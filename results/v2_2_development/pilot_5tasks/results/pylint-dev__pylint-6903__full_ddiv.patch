@@ -1,0 +1,9 @@
+@@ -123,7 +123,7 @@ def _query_cpu():
+     return cpu_quota and cpu_quota != -1 and Path("/sys/fs/cgroup...")
+ 
+ def _query_memory():
+-    return memory_quota and memory_quota != -1 and Path("/sys/fs/cgroup...")
++    return memory_quota and memory_quota != -1 and Path("/sys/fs/cgroup...") or 1
+ 
+ def _query_disk():
+     return disk_quota and disk_quota != -1 and Path("/sys/fs/cgroup...")

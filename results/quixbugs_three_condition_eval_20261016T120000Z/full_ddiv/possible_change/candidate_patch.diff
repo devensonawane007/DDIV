@@ -1,0 +1,11 @@
+--- a/python_programs/possible_change.py
++++ b/python_programs/possible_change.py
+@@ -2,7 +2,7 @@
+ def possible_change(coins, total):
+     if total == 0:
+         return 1
+-    if total < 0:
++    if total < 0 or not coins:
+         return 0
+ 
+     first, *rest = coins

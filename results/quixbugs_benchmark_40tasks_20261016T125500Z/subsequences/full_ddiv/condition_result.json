@@ -1,0 +1,49 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-subsequences",
+  "program_name": "subsequences",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6522,
+  "prompt_tokens": 5398,
+  "completion_tokens": 1124,
+  "total_duration_seconds": 60.81,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 7.83
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 9.724,
+      "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -1,5 +1,9 @@\n def subsequences(a, b, k):\n     if k == 0:\n+        return []\n+\n+    if k == 1:\n+        return list(range(a, b + 1))\n         return []\n \n     ret = []\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": false,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Patch application failed)",
+      "failure_category": "PATCH_APPLICATION_FAILED",
+      "failure_summary": "git apply failed to apply candidate patch to workspace.",
+      "duration_seconds": 43.25,
+      "patch_diff": "diff --git a/python_programs/subsequences.py b/python_programs/subsequences.py\nindex 1234567..89abcde 100644\n--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -1,5 +1,23 @@\ndef subsequences(a, b, k):\n-    if k == 0:\n-        return []\n+    if k == 0:\n+        return [[]]\n+\n+    if k == 1:\n+        return [[i] for i in range(a, b + 1)]\n+\n+    ret = []\n+    for i in range(a, b + 1):\n+        for rest in subsequences(i + 1, b, k - 1):\n+            ret.append([i] + rest)\n+    return ret\n"
+    }
+  ]
+}

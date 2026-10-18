@@ -1,0 +1,54 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-detect_cycle",
+  "program_name": "detect_cycle",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6133,
+  "prompt_tokens": 5768,
+  "completion_tokens": 365,
+  "total_duration_seconds": 38.229,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 11.913,
+      "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,7 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n-        hare = hare.successor.successor\n+        hare = hare.successor if hare.successor is not None else None\n \n         if hare is tortoise:\n             return True\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 13.043,
+      "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,7 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n-        hare = hare.successor.successor\n+        hare = hare.successor if hare.successor is not None else None\n \n         if hare is tortoise:\n             return True\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 13.272,
+      "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,7 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n-        hare = hare.successor.successor\n+        hare = hare.successor if hare.successor is not None else None\n \n         if hare is tortoise:\n             return True\n"
+    }
+  ]
+}

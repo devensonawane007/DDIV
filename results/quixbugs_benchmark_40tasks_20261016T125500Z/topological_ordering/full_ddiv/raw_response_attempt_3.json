@@ -1,0 +1,20 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 2021,
+  "completion_tokens": 122,
+  "latency_seconds": 6.8620631,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original code had an infinite loop due to incorrect handling of node ordering. The fix involves ensuring that nodes are only added to the ordered list if all their outgoing nodes are already in the list.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"for nextnode in node.outgoing_nodes:\",\n      \"code\": \"if all(nextnode in ordered_nodes for nextnode in node.outgoing_nodes): ordered_nodes.append(node)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original code had an infinite loop due to incorrect handling of node ordering. The fix involves ensuring that nodes are only added to the ordered list if all their outgoing nodes are already in the list.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "for nextnode in node.outgoing_nodes:",
+        "code": "if all(nextnode in ordered_nodes for nextnode in node.outgoing_nodes): ordered_nodes.append(node)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+--- a/python_programs/depth_first_search.py
++++ b/python_programs/depth_first_search.py
+@@ -1,5 +1,6 @@
+ def depth_first_search(startnode, goalnode):
+     nodesvisited = set()
++    nodesvisited.add(startnode)
+ 
+     def search_from(node):
+         if node in nodesvisited:

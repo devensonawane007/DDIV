@@ -1,0 +1,67 @@
+{
+  "sample_size": 40,
+  "conditions": [
+    "BASELINE",
+    "FULL_DDIV"
+  ],
+  "paired_contingency": {
+    "both_resolved": 8,
+    "full_ddiv_only": 5,
+    "baseline_only": 0,
+    "neither_resolved": 27,
+    "total": 40,
+    "discordant_pairs": 5
+  },
+  "resolution_counts": {
+    "BASELINE": 8,
+    "FULL_DDIV": 13
+  },
+  "resolution_rates": {
+    "BASELINE": 0.2,
+    "FULL_DDIV": 0.325
+  },
+  "resolution_percentages": {
+    "BASELINE": 20.0,
+    "FULL_DDIV": 32.5
+  },
+  "absolute_difference_percentage_points": 12.5,
+  "relative_improvement_percentage": 62.5,
+  "confidence_intervals_95": {
+    "BASELINE_wilson": [
+      10.5,
+      34.76
+    ],
+    "BASELINE_clopper_pearson": [
+      9.05,
+      35.65
+    ],
+    "FULL_DDIV_wilson": [
+      20.08,
+      47.98
+    ],
+    "FULL_DDIV_clopper_pearson": [
+      18.57,
+      49.13
+    ],
+    "paired_difference_wald_pp": [
+      2.25,
+      22.75
+    ],
+    "paired_difference_newcombe_hybrid_pp": [
+      -6.79,
+      30.66
+    ]
+  },
+  "mcnemar_test": {
+    "b_full_only": 5,
+    "c_base_only": 0,
+    "exact_binomial_two_sided_p_value": 0.0625,
+    "exact_binomial_one_sided_p_value": 0.03125,
+    "asymptotic_continuity_corrected_chi2": 3.2,
+    "asymptotic_continuity_corrected_p_value": 0.07364,
+    "asymptotic_uncorrected_chi2": 5.0,
+    "asymptotic_uncorrected_p_value": 0.02535,
+    "statistically_significant_alpha_0_05": false,
+    "interpretation": "With b=5 and c=0 on N=40 paired tasks, the exact two-sided McNemar p-value is 0.0625. Because p = 0.0625 > 0.05, the observed improvement (+12.5 percentage points) exhibits a strong positive directional trend without a single regression, but does not achieve strict statistical significance at the conventional alpha=0.05 two-sided threshold due to bounded sample size."
+  }
+}

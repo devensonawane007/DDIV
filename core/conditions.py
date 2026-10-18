@@ -13,6 +13,8 @@ class ExperimentCondition(str, Enum):
     BASELINE = "baseline"
     RETRY_ONLY = "retry_only"
     FULL_DDIV = "full_ddiv"
+    FULL_DDIV_MEMORY_OFF = "full_ddiv_memory_off"
+    FULL_DDIV_MEMORY_ON = "full_ddiv_memory_on"
 
     @classmethod
     def from_str(cls, val: str) -> ExperimentCondition:
@@ -32,7 +34,11 @@ class ExperimentCondition(str, Enum):
             return ExecutionMode.BASELINE
         elif self == ExperimentCondition.RETRY_ONLY:
             return ExecutionMode.RECOVERY_ONLY
-        elif self == ExperimentCondition.FULL_DDIV:
+        elif self in (
+            ExperimentCondition.FULL_DDIV,
+            ExperimentCondition.FULL_DDIV_MEMORY_OFF,
+            ExperimentCondition.FULL_DDIV_MEMORY_ON,
+        ):
             return ExecutionMode.FULL_DDIV
         raise ValueError(f"Unmapped condition: {self}")
 
@@ -46,27 +52,46 @@ class ExperimentCondition(str, Enum):
     @property
     def is_supervisor_enabled(self) -> bool:
         """Whether Supervisor agent is active for failure diagnosis and intervention."""
-        return self == ExperimentCondition.FULL_DDIV
+        return self in (
+            ExperimentCondition.FULL_DDIV,
+            ExperimentCondition.FULL_DDIV_MEMORY_OFF,
+            ExperimentCondition.FULL_DDIV_MEMORY_ON,
+        )
 
     @property
     def is_diagnosis_enabled(self) -> bool:
         """Whether failure diagnosis (F1-F4) is active."""
-        return self == ExperimentCondition.FULL_DDIV
+        return self in (
+            ExperimentCondition.FULL_DDIV,
+            ExperimentCondition.FULL_DDIV_MEMORY_OFF,
+            ExperimentCondition.FULL_DDIV_MEMORY_ON,
+        )
 
     @property
     def is_intervention_enabled(self) -> bool:
         """Whether targeted A1-A4 recovery interventions are active."""
-        return self == ExperimentCondition.FULL_DDIV
+        return self in (
+            ExperimentCondition.FULL_DDIV,
+            ExperimentCondition.FULL_DDIV_MEMORY_OFF,
+            ExperimentCondition.FULL_DDIV_MEMORY_ON,
+        )
 
     @property
     def is_memory_enabled(self) -> bool:
         """Whether historical experience memory is enabled."""
-        return self == ExperimentCondition.FULL_DDIV
+        return self in (
+            ExperimentCondition.FULL_DDIV,
+            ExperimentCondition.FULL_DDIV_MEMORY_ON,
+        )
 
     @property
     def is_trust_enabled(self) -> bool:
         """Whether dynamic trust ledger tracking is enabled."""
-        return self == ExperimentCondition.FULL_DDIV
+        return self in (
+            ExperimentCondition.FULL_DDIV,
+            ExperimentCondition.FULL_DDIV_MEMORY_OFF,
+            ExperimentCondition.FULL_DDIV_MEMORY_ON,
+        )
 
     def get_summary_description(self) -> str:
         """Human-readable description of this condition's intervention mechanism."""
@@ -76,4 +101,8 @@ class ExperimentCondition(str, Enum):
             return "Blind multi-attempt retry (up to 3 attempts) from clean state; Supervisor, Diagnosis, Intervention, Memory, and Trust all disabled."
         elif self == ExperimentCondition.FULL_DDIV:
             return "Full DDIV loop: Multi-attempt recovery, Failure Diagnosis, Targeted A1-A4 Interventions, Memory Store, and Trust Ledger."
+        elif self == ExperimentCondition.FULL_DDIV_MEMORY_OFF:
+            return "Full DDIV loop without episodic memory: Multi-attempt recovery, Failure Diagnosis, Targeted Interventions, Trust Ledger; zero episodic memory retrieval, injection, or storage."
+        elif self == ExperimentCondition.FULL_DDIV_MEMORY_ON:
+            return "Full DDIV loop with episodic memory: Multi-attempt recovery, Failure Diagnosis, Targeted Interventions, Trust Ledger, and conditioned-scoped episodic memory retrieval, advisory prompt injection, and persistence."
         return ""

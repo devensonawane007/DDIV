@@ -1,0 +1,54 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-shortest_path_length",
+  "program_name": "shortest_path_length",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7214,
+  "prompt_tokens": 6809,
+  "completion_tokens": 405,
+  "total_duration_seconds": 34.937,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 9.288,
+      "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -38,7 +38,8 @@\n     for i, tpl in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            heapq.heapify(node_heap)\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 11.549,
+      "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -38,7 +38,7 @@\n     for i, tpl in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = dist_node\n             return None\n \n     heappush(node_heap, dist_node)\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 14.099,
+      "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -38,6 +38,15 @@\n     for i, tpl in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n+            node_heap[i] = dist_node\n+            return node_heap\n+\n+    heappush(node_heap, dist_node)\n+    return node_heap\n+    dist, node = dist_node\n+    for i, tpl in enumerate(node_heap):\n+        a, b = tpl\n+        if b == node:\n             node_heap[i] = dist_node #heapq retains sorted property\n             return None\n \n"
+    }
+  ]
+}

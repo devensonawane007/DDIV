@@ -1,0 +1,19 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1985,
+  "completion_tokens": 131,
+  "latency_seconds": 24.9438675,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug in the topological_ordering function is fixed by replacing 'nextnode.outgoing_nodes' with 'nextnode.incoming_nodes' in the condition.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\",\n      \"code\": \"if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug in the topological_ordering function is fixed by replacing 'nextnode.outgoing_nodes' with 'nextnode.incoming_nodes' in the condition.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:",
+        "code": "if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:"
+      }
+    ]
+  }
+}

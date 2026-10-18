@@ -1,0 +1,106 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-possible_change",
+  "program_name": "possible_change",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6108,
+  "prompt_tokens": 5412,
+  "completion_tokens": 696,
+  "token_breakdown": {
+    "total_tokens": 6108,
+    "prompt_tokens": 5412,
+    "completion_tokens": 696,
+    "by_role": {
+      "Coder": {
+        "prompt": 5412,
+        "completion": 696,
+        "total": 6108
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 5412,
+        "completion": 696,
+        "total": 6108
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:13:43Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1654,
+        "completion_tokens": 131,
+        "total_tokens": 1785
+      },
+      {
+        "timestamp": "2026-10-17T07:14:04Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1708,
+        "completion_tokens": 231,
+        "total_tokens": 1939
+      },
+      {
+        "timestamp": "2026-10-17T07:15:04Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2050,
+        "completion_tokens": 334,
+        "total_tokens": 2384
+      }
+    ]
+  },
+  "total_duration_seconds": 89.669,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/possible_change.py' failed variable definition verification: Undefined local variable 'dp' referenced before assignment in function 'possible_change' (line 9).",
+      "resolved": false,
+      "duration_seconds": 9.091
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 23.983,
+      "patch_diff": "--- a/python_programs/possible_change.py\n+++ b/python_programs/possible_change.py\n@@ -1,4 +1,5 @@\n # Python 3\n+dp = {}\n def possible_change(coins, total):\n     if total == 0:\n         return 1\n@@ -6,7 +7,10 @@\n         return 0\n \n     first, *rest = coins\n-    return possible_change(coins, total - first) + possible_change(rest, total)\n+    if (first, total) in dp:\n+        return dp[(first, total)]\n+    dp[(first, total)] = possible_change(coins, total - first) + possible_change(rest, total)\n+    return dp[(first, total)]\n \n \n \n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/possible_change.py' failed Python bytecode compilation: 'return' outside function (python_programs/possible_change.py, line 3)",
+      "resolved": false,
+      "duration_seconds": 56.592
+    }
+  ]
+}

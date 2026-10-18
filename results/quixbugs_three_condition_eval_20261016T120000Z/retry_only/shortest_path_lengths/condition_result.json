@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-shortest_path_lengths",
+  "program_name": "shortest_path_lengths",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6758,
+  "prompt_tokens": 6240,
+  "completion_tokens": 518,
+  "token_breakdown": {
+    "total_tokens": 6758,
+    "prompt_tokens": 6240,
+    "completion_tokens": 518,
+    "by_role": {
+      "Coder": {
+        "prompt": 6240,
+        "completion": 518,
+        "total": 6758
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 6240,
+        "completion": 518,
+        "total": 6758
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:34:44Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1598,
+        "completion_tokens": 190,
+        "total_tokens": 1788
+      },
+      {
+        "timestamp": "2026-10-17T08:35:05Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2310,
+        "completion_tokens": 184,
+        "total_tokens": 2494
+      },
+      {
+        "timestamp": "2026-10-17T08:35:22Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2332,
+        "completion_tokens": 144,
+        "total_tokens": 2476
+      }
+    ]
+  },
+  "total_duration_seconds": 52.65,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 14.081,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,6 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 21.02,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -2,7 +2,7 @@\n \n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n-    length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, i): 0 for i in range(n)}); length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_path})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 17.547,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,7 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n-    length_by_path.update(length_by_edge)\n+    length_by_path.update(length_by_edge); length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_path})\n \n     for k in range(n):\n         for i in range(n):\n"
+    }
+  ]
+}

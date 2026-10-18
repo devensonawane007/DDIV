@@ -1,0 +1,54 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-shortest_path_lengths",
+  "program_name": "shortest_path_lengths",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7092,
+  "prompt_tokens": 6640,
+  "completion_tokens": 452,
+  "total_duration_seconds": 36.973,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 11.657,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,7 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n-    length_by_path.update(length_by_edge)\n+    length_by_path.update({(i, j): length_by_edge[(i, j)] for i, j in length_by_edge if length_by_path[(i, j)] > length_by_edge[(i, j)]})\n \n     for k in range(n):\n         for i in range(n):\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 12.88,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,7 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n-    length_by_path.update(length_by_edge)\n+    length_by_path.update({(i, j): length_by_edge[(i, j)] for i, j in length_by_edge if length_by_path[(i, j)] == float('inf')})\n \n     for k in range(n):\n         for i in range(n):\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 12.436,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,7 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n-    length_by_path.update(length_by_edge)\n+    length_by_path.update({(i, j): length_by_edge[(i, j)] for i, j in length_by_edge if length_by_path[(i, j)] == float('inf')})\n \n     for k in range(n):\n         for i in range(n):\n"
+    }
+  ]
+}

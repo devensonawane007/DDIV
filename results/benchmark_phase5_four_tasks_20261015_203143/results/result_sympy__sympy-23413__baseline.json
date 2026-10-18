@@ -1,0 +1,248 @@
+{
+  "experiment_id": "phase5_20261015_203143",
+  "task_id": "sympy__sympy-23413",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "sympy/matrices/matrices.py",
+          "target_symbol": null,
+          "operation": "replace",
+          "anchor": "def hermite_normal_form(M, **kwargs):",
+          "code": "def hermite_normal_form(M, **kwargs):\n    # Modify rank-deficiency check to prevent row removal\n    rank = M.rank()\n    if rank < M.rows:\n        raise ValueError('Matrix is rank-deficient and cannot be reduced to HNF')\n    # Continue with existing implementation\n    # ...",
+          "reason": "Modify the rank-deficiency check to prevent row removal during the computation."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Anchor not found in 'sympy/matrices/matrices.py'. Anchor must match exact verbatim lines from source file with identical indentation. Anchor snippet:\ndef hermite_normal_form(M, **kwargs):",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "sympy/matrices/matrices.py",
+        "sympy/matrices/matrixbase.py",
+        "sympy/matrices/dense.py"
+      ],
+      "latency_seconds": 0.20413422584533691,
+      "agent_timings": {
+        "locator": 3.5752813816070557,
+        "coder": 34.5069811,
+        "tester": 1.656127691268921,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 6325,
+        "completion_tokens": 1285,
+        "total_tokens": 7610
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1498,
+          "completion_tokens": 161,
+          "total_tokens": 1659,
+          "latency_seconds": 3.5752813816070557
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3114,
+          "completion_tokens": 591,
+          "total_tokens": 3705,
+          "latency_seconds": 34.5069811
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1713,
+          "completion_tokens": 533,
+          "total_tokens": 2246,
+          "latency_seconds": 1.656127691268921
+        }
+      ],
+      "context_characters": 7783,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Anchor not found in 'sympy/matrices/matrices.py'. Anchor must match exact verbatim lines from source file with identical indentation. Anchor snippet:\ndef hermite_normal_form(M, **kwargs):."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\results\\benchmark_phase5_four_tasks_20261015_203143\\workspaces\\sympy__sympy-23413__baseline\\sympy__sympy-23413__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 95.59,
+    "input_tokens": 6325,
+    "output_tokens": 1285,
+    "total_tokens": 7610,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 3.5752813816070557,
+      "coder": 34.5069811,
+      "tester": 1.656127691268921,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1498,
+        "completion_tokens": 161,
+        "total_tokens": 1659,
+        "latency_seconds": 3.5752813816070557
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3114,
+        "completion_tokens": 591,
+        "total_tokens": 3705,
+        "latency_seconds": 34.5069811
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1713,
+        "completion_tokens": 533,
+        "total_tokens": 2246,
+        "latency_seconds": 1.656127691268921
+      }
+    ],
+    "context_characters": 7783,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.2,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 95.59701824188232,
+  "worker_pid": 17984,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\benchmark_phase5_four_tasks_20261015_203143\\logs\\sympy__sympy-23413__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\results\\benchmark_phase5_four_tasks_20261015_203143\\workspaces\\sympy__sympy-23413__baseline",
+  "error_message": null,
+  "started_at": "2026-10-15T15:52:36.484710+00:00",
+  "completed_at": "2026-10-15T15:54:12.070790+00:00",
+  "job_key": "sympy__sympy-23413__baseline",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "captured_prompts": [
+    {
+      "role": "Locator",
+      "attempt": 1,
+      "length_chars": 3726,
+      "file": "sympy__sympy-23413__baseline__att1__locator_prompt.txt",
+      "has_memory": false
+    },
+    {
+      "role": "Coder",
+      "attempt": 1,
+      "length_chars": 6660,
+      "file": "sympy__sympy-23413__baseline__att1__coder_prompt.txt",
+      "has_memory": false,
+      "memory_chars": 0,
+      "has_recovery": false,
+      "recovery_chars": 0
+    }
+  ],
+  "ground_truth_f2p": 1,
+  "ground_truth_p2p": 2
+}

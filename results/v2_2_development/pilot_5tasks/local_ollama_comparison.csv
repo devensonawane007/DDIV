@@ -1,0 +1,16 @@
+task_id,condition,status,resolved,official_swebench_evaluated,attempts,pass_at_1,patch_generated,patch_applied,f2p_passed,f2p_total,p2p_passed,p2p_total,f2p_display,p2p_display,duration_seconds,total_tokens,prompt_tokens,completion_tokens,coder_provider,coder_model,zero_cloud_fallback,failure_category
+pylint-dev__pylint-6903,baseline,COMPLETED,False,False,1,False,True,True,0,1,8,8,0/1,8/8,157.31,9633,8515,1118,ollama,qwen2.5-coder:7b,True,F2P_FAILURE
+pylint-dev__pylint-6903,retry_only,COMPLETED,False,False,3,False,True,True,0,1,8,8,0/1,8/8,342.59,29317,25561,3756,ollama,qwen2.5-coder:7b,True,REPEATED_PATCH_CYCLE
+pylint-dev__pylint-6903,full_ddiv,COMPLETED,False,False,3,False,True,False,0,1,0,8,0/1 (Not Run - Apply Failed),0/8 (Not Run - Apply Failed),313.51,46706,39187,7519,ollama,qwen2.5-coder:7b,True,PATCH_INVALID
+mwaskom__seaborn-3187,baseline,COMPLETED,False,False,1,False,False,False,0,2,0,248,0/2 (Not Run - Apply Failed),0/248 (Not Run - Apply Failed),161.2,9209,8220,989,ollama,qwen2.5-coder:7b,True,ANCHOR_NOT_FOUND
+mwaskom__seaborn-3187,retry_only,COMPLETED,False,False,3,False,False,False,0,2,0,248,0/2 (Not Run - Apply Failed),0/248 (Not Run - Apply Failed),181.97,27819,24726,3093,ollama,qwen2.5-coder:7b,True,ANCHOR_NOT_FOUND
+mwaskom__seaborn-3187,full_ddiv,COMPLETED,False,False,3,False,True,False,0,2,0,248,0/2 (Not Run - Apply Failed),0/248 (Not Run - Apply Failed),370.61,41531,33621,7910,ollama,qwen2.5-coder:7b,True,PATCH_INVALID
+pydata__xarray-7393,baseline,COMPLETED,False,False,1,False,False,False,0,2,0,71,0/2 (Not Run - Apply Failed),0/71 (Not Run - Apply Failed),155.77,10127,9085,1042,ollama,qwen2.5-coder:7b,True,ENVIRONMENT_FAILURE
+pydata__xarray-7393,retry_only,COMPLETED,False,False,3,False,True,True,0,2,0,10,0/2,0/10,265.88,30896,27601,3295,ollama,qwen2.5-coder:7b,True,ENVIRONMENT_FAILURE
+pydata__xarray-7393,full_ddiv,COMPLETED,False,False,3,False,True,False,0,2,0,71,0/2 (Not Run - Apply Failed),0/71 (Not Run - Apply Failed),240.7,44932,38743,6189,ollama,qwen2.5-coder:7b,True,PATCH_APPLICATION_FAILED
+astropy__astropy-8872,baseline,COMPLETED,False,False,1,False,False,False,0,1,0,80,0/1 (Not Run - Apply Failed),0/80 (Not Run - Apply Failed),102.34,9524,8267,1257,ollama,qwen2.5-coder:7b,True,ENVIRONMENT_FAILURE
+astropy__astropy-8872,retry_only,COMPLETED,False,False,3,False,False,False,0,1,0,80,0/1 (Not Run - Apply Failed),0/80 (Not Run - Apply Failed),421.2,28628,24867,3761,ollama,qwen2.5-coder:7b,True,ENVIRONMENT_FAILURE
+astropy__astropy-8872,full_ddiv,COMPLETED,False,False,3,False,True,True,0,1,0,80,0/1 (Not Run - Apply Failed),0/80 (Not Run - Apply Failed),418.17,34981,28398,6583,ollama,qwen2.5-coder:7b,True,PATCH_INVALID
+psf__requests-2931,baseline,COMPLETED,False,False,1,False,False,False,0,1,0,84,0/1 (Not Run - Apply Failed),0/84 (Not Run - Apply Failed),82.65,6150,5070,1080,ollama,qwen2.5-coder:7b,True,ENVIRONMENT_FAILURE
+psf__requests-2931,retry_only,COMPLETED,False,False,3,False,True,True,0,1,0,10,0/1,0/10,259.29,17430,14171,3259,ollama,qwen2.5-coder:7b,True,ENVIRONMENT_FAILURE
+psf__requests-2931,full_ddiv,COMPLETED,False,False,3,False,True,False,0,1,0,84,0/1 (Not Run - Apply Failed),0/84 (Not Run - Apply Failed),276.32,39123,26284,12839,ollama,qwen2.5-coder:7b,True,PATCH_APPLICATION_FAILED

@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1628,
+  "completion_tokens": 100,
+  "latency_seconds": 4.907789,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The function returns the first factor found instead of all factors. It should collect all factors and return them.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/get_factors.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"return [i] + get_factors(n // i)\",\n      \"code\": \"factors = [i] + get_factors(n // i)\\nreturn factors\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The function returns the first factor found instead of all factors. It should collect all factors and return them.",
+    "modifications": [
+      {
+        "path": "python_programs/get_factors.py",
+        "operation": "replace",
+        "anchor": "return [i] + get_factors(n // i)",
+        "code": "factors = [i] + get_factors(n // i)\nreturn factors"
+      }
+    ]
+  }
+}

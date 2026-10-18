@@ -1,0 +1,63 @@
+{
+  "task_id": "quixbugs-python-quicksort",
+  "program_name": "quicksort",
+  "benchmark": "QuixBugs (Python)",
+  "git_commit": "4257f44b0ff1181dedaedee6a447e133219fcebf",
+  "target_source_file": "python_programs/quicksort.py",
+  "test_suite_file": "python_testcases/test_quicksort.py",
+  "test_data_fixture": "json_testcases/quicksort.json",
+  "model": {
+    "coder_model": "qwen2.5-coder:7b",
+    "provider": "ollama",
+    "base_url": "http://localhost:11434",
+    "temperature": 0.0,
+    "max_tokens": 2048,
+    "timeout_seconds": 60,
+    "cost_per_call": "$0.00 (local)"
+  },
+  "conditions": {
+    "BASELINE": {
+      "attempts": 1,
+      "supervisor": "DISABLED",
+      "tester_critic": "DISABLED",
+      "failure_detector": "DISABLED",
+      "episodic_memory": "DISABLED",
+      "trust_updates": "DISABLED",
+      "expected_inference_calls": 1
+    },
+    "RETRY_ONLY": {
+      "attempts": 3,
+      "supervisor": "DISABLED",
+      "tester_critic": "DISABLED",
+      "failure_detector": "DISABLED",
+      "episodic_memory": "DISABLED",
+      "trust_updates": "DISABLED",
+      "feedback": "Raw sanitized failure diagnostics ([ORACLE_REDACTED])",
+      "expected_inference_calls": "1 to 3"
+    },
+    "FULL_DDIV": {
+      "attempts": 3,
+      "supervisor": "ENABLED",
+      "tester_critic": "ENABLED",
+      "failure_detector": "ENABLED",
+      "episodic_memory": "ENABLED (isolated pilot DB: results/quixbugs_pilot_quicksort_20261016T060000Z/quixbugs_pilot_memory.db)",
+      "trust_updates": "ENABLED",
+      "feedback": "Supervisor diagnosis, mistake avoidance constraints, and retrieved sanitized exemplars",
+      "expected_inference_calls": "1 to 3 Coder + Supervisor/Critic"
+    }
+  },
+  "output_directory": "results/quixbugs_pilot_quicksort_20261016T060000Z",
+  "timeouts": {
+    "model_inference": 60,
+    "test_execution": 15
+  },
+  "resource_estimates": {
+    "total_runtime_seconds": "25 - 45s",
+    "cloud_api_cost": "$0.00",
+    "cloud_tokens": 0,
+    "cpu_usage": "1 core during test execution",
+    "gpu_usage": "Active during local Ollama inference (~4.7 GB VRAM)",
+    "disk_usage": "< 2 MB"
+  },
+  "preflight_verdict": "READY"
+}

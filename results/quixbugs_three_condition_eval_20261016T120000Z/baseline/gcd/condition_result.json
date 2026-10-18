@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-gcd",
+  "program_name": "gcd",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1479,
+  "prompt_tokens": 1447,
+  "completion_tokens": 32,
+  "token_breakdown": {
+    "total_tokens": 1479,
+    "prompt_tokens": 1447,
+    "completion_tokens": 32,
+    "by_role": {
+      "Coder": {
+        "prompt": 1447,
+        "completion": 32,
+        "total": 1479
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1447,
+        "completion": 32,
+        "total": 1479
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:05:22Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1447,
+        "completion_tokens": 32,
+        "total_tokens": 1479
+      }
+    ]
+  },
+  "total_duration_seconds": 5.82,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.82
+    }
+  ]
+}

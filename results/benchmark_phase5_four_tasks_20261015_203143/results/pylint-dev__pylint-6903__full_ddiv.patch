@@ -1,0 +1,10 @@
+--- a/pylint/lint/run.py
++++ b/pylint/lint/run.py
+@@ -32,6 +32,7 @@
+ 
+ 
+ def _query_cpu() -> int | None:
++    result = max(1, result)
+     """Try to determine number of CPUs allotted in a docker container.
+ 
+     This is based on discussion and copied from suggestions in

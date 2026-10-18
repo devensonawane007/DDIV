@@ -1,0 +1,8 @@
+--- a/pylint/lint/run.py
++++ b/pylint/lint/run.py
+@@ -123,7 +123,7 @@ def _query_cpu() -> int:
+     return _cpu_count()
+ 
+ def _cpu_count() -> int:
+-    return os.cpu_count() or 0
++    return max(1, int(os.cpu_count() or 0))

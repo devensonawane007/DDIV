@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-levenshtein",
+  "program_name": "levenshtein",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1820,
+  "prompt_tokens": 1733,
+  "completion_tokens": 87,
+  "total_duration_seconds": 8.614,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 8.614
+    }
+  ]
+}

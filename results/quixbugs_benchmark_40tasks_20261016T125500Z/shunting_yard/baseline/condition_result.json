@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-shunting_yard",
+  "program_name": "shunting_yard",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1926,
+  "prompt_tokens": 1800,
+  "completion_tokens": 126,
+  "total_duration_seconds": 11.569,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.569,
+      "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+    }
+  ]
+}

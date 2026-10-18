@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-get_factors",
+  "program_name": "get_factors",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1607,
+  "prompt_tokens": 1505,
+  "completion_tokens": 102,
+  "token_breakdown": {
+    "total_tokens": 1607,
+    "prompt_tokens": 1505,
+    "completion_tokens": 102,
+    "by_role": {
+      "Coder": {
+        "prompt": 1505,
+        "completion": 102,
+        "total": 1607
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1505,
+        "completion": 102,
+        "total": 1607
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:05:49Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1505,
+        "completion_tokens": 102,
+        "total_tokens": 1607
+      }
+    ]
+  },
+  "total_duration_seconds": 12.684,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 12.683,
+      "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-wrap",
+  "program_name": "wrap",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1707,
+  "prompt_tokens": 1565,
+  "completion_tokens": 142,
+  "token_breakdown": {
+    "total_tokens": 1707,
+    "prompt_tokens": 1565,
+    "completion_tokens": 142,
+    "by_role": {
+      "Coder": {
+        "prompt": 1565,
+        "completion": 142,
+        "total": 1707
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1565,
+        "completion": 142,
+        "total": 1707
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T09:03:23Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1565,
+        "completion_tokens": 142,
+        "total_tokens": 1707
+      }
+    ]
+  },
+  "total_duration_seconds": 27.603,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+      "resolved": false,
+      "duration_seconds": 27.601
+    }
+  ]
+}

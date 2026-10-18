@@ -383,7 +383,7 @@ def test_v22_supervised_worker_feedback_delivery_to_next_coder_prompt(tmp_path, 
         avoid_text = sup_res1.output.avoid_previous_mistake
         assert "CRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS" in avoid_text
         assert "Attempt 1: Modified 'src/flask/blueprints.py'" in avoid_text
-        assert "You MUST NOT generate this identical modification again." in avoid_text
+        assert "You MUST NOT generate this semantically identical modification again." in avoid_text
 
         # Attempt 2: Worker passes supervisor's avoid instructions into next coder prompt
         c_in_2 = {
@@ -459,7 +459,7 @@ def test_v22_supervised_worker_feedback_delivery_to_next_coder_prompt(tmp_path, 
     assert len(received_coder_inputs) == 2
     assert received_coder_inputs[0]["avoid_previous_mistake"] == ""
     assert "Attempt 1: Modified 'src/flask/blueprints.py'" in received_coder_inputs[1]["avoid_previous_mistake"]
-    assert "You MUST NOT generate this identical modification again." in received_coder_inputs[1]["avoid_previous_mistake"]
+    assert "You MUST NOT generate this semantically identical modification again." in received_coder_inputs[1]["avoid_previous_mistake"]
 
     # Verify restoration
     assert ew.CoderAgent.execute is dummy_orig_coder

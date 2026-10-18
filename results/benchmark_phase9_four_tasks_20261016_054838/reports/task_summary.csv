@@ -1,0 +1,13 @@
+task_id,condition,resolved,status,attempts,f2p_passed,f2p_total,p2p_passed,p2p_total,patch_valid,tokens,duration_s,final_failure_category
+pylint-dev__pylint-6903,baseline,False,COMPLETED,1,0,1,0,8,True,9650,252.25,NONE
+pylint-dev__pylint-6903,retry_only,False,COMPLETED,3,0,1,0,8,True,30112,246.64,UNRESOLVED_RETRY
+pylint-dev__pylint-6903,full_ddiv,False,COMPLETED,3,0,1,0,8,True,47234,352.65,NONE
+pylint-dev__pylint-4970,baseline,False,COMPLETED,1,0,1,0,17,,9018,59.07,NONE
+pylint-dev__pylint-4970,retry_only,False,COMPLETED,3,0,1,0,17,,27208,126.07,UNRESOLVED_RETRY
+pylint-dev__pylint-4970,full_ddiv,False,COMPLETED,3,0,1,0,17,True,40857,266.84,NONE
+sympy__sympy-23413,baseline,False,COMPLETED,1,0,1,0,2,,7610,113.95,NONE
+sympy__sympy-23413,retry_only,False,COMPLETED,3,0,1,0,2,True,23229,279.69,UNRESOLVED_RETRY
+sympy__sympy-23413,full_ddiv,False,COMPLETED,3,0,1,0,2,True,43435,468.22,NONE
+mwaskom__seaborn-3187,baseline,False,COMPLETED,1,0,2,0,11,,9203,198.75,NONE
+mwaskom__seaborn-3187,retry_only,False,COMPLETED,3,0,2,0,11,,28467,222.23,UNRESOLVED_RETRY
+mwaskom__seaborn-3187,full_ddiv,False,COMPLETED,3,0,2,0,11,True,41865,289.24,NONE

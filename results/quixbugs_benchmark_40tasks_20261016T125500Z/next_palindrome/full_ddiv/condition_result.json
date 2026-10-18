@@ -1,0 +1,49 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-next_palindrome",
+  "program_name": "next_palindrome",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6117,
+  "prompt_tokens": 5829,
+  "completion_tokens": 288,
+  "total_duration_seconds": 25.904,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 6.483
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 9.397,
+      "patch_diff": "--- a/python_programs/next_palindrome.py\n+++ b/python_programs/next_palindrome.py\n@@ -12,7 +12,7 @@\n             if low_mid != high_mid:\n                 digit_list[low_mid] += 1\n             return digit_list\n-    return [1] + (len(digit_list)) * [0] + [1]\n+    return digit_list\n \n \"\"\"\n Finds the next palindromic integer when given the current integer\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 10.002,
+      "patch_diff": "--- a/python_programs/next_palindrome.py\n+++ b/python_programs/next_palindrome.py\n@@ -12,7 +12,7 @@\n             if low_mid != high_mid:\n                 digit_list[low_mid] += 1\n             return digit_list\n-    return [1] + (len(digit_list)) * [0] + [1]\n+    return digit_list\n \n \"\"\"\n Finds the next palindromic integer when given the current integer\n"
+    }
+  ]
+}

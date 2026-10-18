@@ -1,0 +1,538 @@
+[
+  {
+    "instance_id": "pylint-dev__pylint-6386",
+    "repo": "pylint-dev/pylint",
+    "base_commit": "754b487f4d892e3d4872b6fc7468a71db4e31c13",
+    "fail_to_pass_tests": [
+      "tests/config/test_config.py::test_short_verbose"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "classification": "verified_eligible",
+    "blockers": [],
+    "evidence": [
+      "base_commit_confirmed: 754b487f4d892e3d4872b6fc7468a71db4e31c13",
+      "test_patch_applied: yes",
+      "install_succeeded: yes",
+      "baseline_correctly_fails: rc=1, '1 failed in 1.06s' (FAILED tests/config/test_config.py::test_short_verbose - SystemExit: 2)",
+      "test_run_time_s=2.89",
+      "classification_note: charmap crash was in script log-writing (Unicode checkmark), NOT in test execution"
+    ],
+    "test_run_time_s": 2.89,
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 1,
+        "success": true,
+        "stdout_preview": "FAILED tests/config/test_config.py::test_short_verbose - SystemExit: 2\n1 failed, 160 warnings in 1.06s"
+      }
+    ]
+  },
+  {
+    "instance_id": "pylint-dev__pylint-8898",
+    "repo": "pylint-dev/pylint",
+    "base_commit": "1f8c4d9eb185c16a2c1d881c054f015e1c2eb334",
+    "fail_to_pass_tests": [
+      "tests/config/test_config.py::test_csv_regex_error"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "classification": "verified_eligible",
+    "blockers": [],
+    "evidence": [
+      "base_commit_confirmed: 1f8c4d9eb185c16a2c1d881c054f015e1c2eb334",
+      "test_patch_applied: yes",
+      "install_succeeded: yes",
+      "test_collected: 1 test collected in 1.07s",
+      "baseline_correctly_fails: rc=1, 'FAILED tests/config/test_config.py::test_csv_regex_error - AssertionError'",
+      "baseline_output: ssion: (foo{1 beginning at index 0: missing ), unterminated subpattern",
+      "test_run_time_s=2.41",
+      "classification_note: charmap crash was in script log-writing (Unicode checkmark), NOT in test execution"
+    ],
+    "test_run_time_s": 2.41,
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 0,
+        "success": true,
+        "note": "1 test collected in 1.07s"
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 1,
+        "success": true,
+        "stdout_preview": "FAILED tests/config/test_config.py::test_csv_regex_error - AssertionError\n1 failed in 0.59s"
+      }
+    ]
+  },
+  {
+    "instance_id": "pylint-dev__pylint-7277",
+    "repo": "pylint-dev/pylint",
+    "base_commit": "684a1d6aa0a6791e20078bc524f97c8906332390",
+    "fail_to_pass_tests": [
+      "tests/test_self.py::TestRunTC::test_modify_sys_path"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "classification": "blocked",
+    "blockers": [
+      "ModuleNotFoundError: No module named 'py._path' \u2014 py library version incompatibility with Python 3.11 and pytest 7+"
+    ],
+    "evidence": [
+      "base_commit_confirmed: yes",
+      "install_succeeded: yes",
+      "collection_error: ModuleNotFoundError: No module named 'py._path'; 'py' is not a package",
+      "root_cause: astroid/py lib version pinned incompatibly for Python 3.11"
+    ],
+    "test_run_time_s": 4.36,
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 4,
+        "success": false,
+        "error": "ModuleNotFoundError: No module named 'py._path'"
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 4,
+        "success": false
+      }
+    ]
+  },
+  {
+    "instance_id": "sphinx-doc__sphinx-10323",
+    "repo": "sphinx-doc/sphinx",
+    "base_commit": "31eba1a76dd485dc633cae48227b46879eda5df4",
+    "fail_to_pass_tests": [
+      "tests/test_directive_code.py::test_LiteralIncludeReader_dedent_and_append_and_prepend"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "classification": "promising_not_verified",
+    "blockers": [
+      "xfail_at_baseline: test is marked xfail on unpatched code (rc=0, 1 xfailed). Needs test_patch inspection to confirm xfail marker is removed by fix."
+    ],
+    "evidence": [
+      "base_commit_confirmed: yes",
+      "install_succeeded: yes",
+      "test_collected: 1 item",
+      "baseline_result: rc=0, 1 xfailed in 0.52s",
+      "note: XFAIL means test is correctly detecting the bug but via xfail decorator. Patch likely removes xfail and makes test pass properly. Needs deeper investigation."
+    ],
+    "test_run_time_s": 2.2,
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 0,
+        "success": false,
+        "stdout_preview": "1 xfailed in 0.52s"
+      }
+    ]
+  },
+  {
+    "instance_id": "sphinx-doc__sphinx-8721",
+    "repo": "sphinx-doc/sphinx",
+    "base_commit": "82ef497a8c88e9e677e1f3bc80f0de0c70d83855",
+    "fail_to_pass_tests": [
+      "tests/test_ext_viewcode.py::test_viewcode_epub_default"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "classification": "blocked",
+    "blockers": [
+      "test_collection_error: rc=1, no output \u2014 likely missing optional deps (epub builder or similar)"
+    ],
+    "evidence": [
+      "base_commit_confirmed: yes",
+      "install_succeeded: yes",
+      "collection_error: rc=1, no stdout output"
+    ],
+    "test_run_time_s": 2.02,
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 1,
+        "success": false
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 1,
+        "success": false
+      }
+    ]
+  },
+  {
+    "instance_id": "psf__requests-5414",
+    "repo": "psf/requests",
+    "base_commit": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+    "fail_to_pass_tests": [
+      "tests/test_requests.py::TestRequests::test_invalid_url[InvalidURL-http://.example.com]"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "elapsed_s": 11.1,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "elapsed_s": 28.5,
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 0,
+        "success": true,
+        "stdout": "tests/test_requests.py::TestRequests::test_invalid_url[InvalidURL-http://.example.com]\n\n1 test collected in 0.47s\n"
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 1,
+        "elapsed_s": 2.0,
+        "stdout_preview": "..\\venv\\Lib\\site-packages\\urllib3\\connection.py:174: in _new_conn\n    conn = connection.create_connection(\n..\\venv\\Lib\\site-packages\\urllib3\\util\\connection.py:68: in create_connection\n    return six.raise_from(\n<string>:3: in raise_from\n    ???\nE   urllib3.exceptions.LocationParseError: Failed to parse: '.example.com', label empty or too long\n=========================== short test summary info ===========================\nFAILED tests/test_requests.py::TestRequests::test_invalid_url[InvalidURL-http://.example.com]\n============================== 1 failed in 0.56s ==============================\n"
+      }
+    ],
+    "classification": "verified_eligible",
+    "blockers": [],
+    "evidence": [
+      "base_commit_confirmed: 39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "baseline_correctly_fails: rc=1",
+      "test_run_time_s=2.0"
+    ],
+    "test_run_time_s": 2.0
+  },
+  {
+    "instance_id": "psf__requests-6028",
+    "repo": "psf/requests",
+    "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+    "fail_to_pass_tests": [
+      "tests/test_utils.py::test_prepend_scheme_if_needed[http://user:pass@example.com/path?query-http://user:pass@example.com/path?query]",
+      "tests/test_utils.py::test_prepend_scheme_if_needed[http://user@example.com/path?query-http://user@example.com/path?query]"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "elapsed_s": 4.2,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "elapsed_s": 30.0,
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 0,
+        "success": true,
+        "stdout": "tests/test_utils.py::test_prepend_scheme_if_needed[http://user:pass@example.com/path?query-http://user:pass@example.com/path?query]\ntests/test_utils.py::test_prepend_scheme_if_needed[http://user@example.com/path?query-http://user@example.com/path?query]\n\n2 tests collected in 0.13s\n"
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 1,
+        "elapsed_s": 1.27,
+        "stdout_preview": "ttp://examp...om/path?query' == 'http://user@...om/path?query'\nE     \nE     - http://user@example.com/path?query\nE     ?        -----\nE     + http://example.com/path?query\n=========================== short test summary info ===========================\nFAILED tests/test_utils.py::test_prepend_scheme_if_needed[http://user:pass@example.com/path?query-http://user:pass@example.com/path?query]\nFAILED tests/test_utils.py::test_prepend_scheme_if_needed[http://user@example.com/path?query-http://user@example.com/path?query]\n============================== 2 failed in 0.33s ==============================\n"
+      }
+    ],
+    "classification": "verified_eligible",
+    "blockers": [],
+    "evidence": [
+      "base_commit_confirmed: 0192aac24123735b3eaf9b08df46429bb770c283",
+      "baseline_correctly_fails: rc=1",
+      "test_run_time_s=1.27"
+    ],
+    "test_run_time_s": 1.27
+  },
+  {
+    "instance_id": "pylint-dev__pylint-4661",
+    "repo": "pylint-dev/pylint",
+    "base_commit": "1d1619ef913b99b06647d2030bddff4800abdf63",
+    "fail_to_pass_tests": [
+      "tests/lint/unittest_lint.py::test_pylint_home"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "elapsed_s": 28.0,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "elapsed_s": 32.9,
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 4,
+        "success": false,
+        "stdout": ""
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 4,
+        "elapsed_s": 0.83,
+        "stdout_preview": ""
+      }
+    ],
+    "classification": "blocked",
+    "blockers": [
+      "ambiguous_baseline: rc=4"
+    ],
+    "evidence": [
+      "base_commit_confirmed: 1d1619ef913b99b06647d2030bddff4800abdf63"
+    ],
+    "test_run_time_s": 0.83
+  },
+  {
+    "instance_id": "pylint-dev__pylint-4604",
+    "repo": "pylint-dev/pylint",
+    "base_commit": "1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f",
+    "fail_to_pass_tests": [
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_bitbucket_issue_78",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_no_name_in_module_skipped",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_all_elements_without_parent",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_redefined_builtin_ignored",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_redefined_builtin_custom_modules",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_redefined_builtin_modname_not_ignored",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_redefined_builtin_in_function",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_unassigned_global",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_listcomp_in_decorator",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_listcomp_in_ancestors",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_return_type_annotation",
+      "tests/checkers/unittest_variables.py::TestVariablesChecker::test_attribute_in_type_comment",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_custom_callback_string",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_redefined_builtin_modname_not_ignored",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_redefined_builtin_in_function",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_import_as_underscore",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_lambda_in_classdef",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_nested_lambda",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_ignored_argument_names_no_message",
+      "tests/checkers/unittest_variables.py::TestVariablesCheckerWithTearDown::test_ignored_argument_names_starred_args",
+      "tests/checkers/unittest_variables.py::TestMissingSubmodule::test_package_all"
+    ],
+    "verification_timestamp": "20261015T150533Z",
+    "steps": [
+      {
+        "step": "clone",
+        "returncode": 0,
+        "elapsed_s": 71.8,
+        "success": true
+      },
+      {
+        "step": "checkout",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "create_venv",
+        "elapsed_s": 11.7,
+        "success": true
+      },
+      {
+        "step": "apply_test_patch",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "install",
+        "returncode": 0,
+        "success": true
+      },
+      {
+        "step": "collect",
+        "returncode": 4,
+        "success": false,
+        "stdout": ""
+      },
+      {
+        "step": "run_baseline",
+        "returncode": 4,
+        "elapsed_s": 1.16,
+        "stdout_preview": ""
+      }
+    ],
+    "classification": "blocked",
+    "blockers": [
+      "ambiguous_baseline: rc=4"
+    ],
+    "evidence": [
+      "base_commit_confirmed: 1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f"
+    ],
+    "test_run_time_s": 1.16
+  }
+]

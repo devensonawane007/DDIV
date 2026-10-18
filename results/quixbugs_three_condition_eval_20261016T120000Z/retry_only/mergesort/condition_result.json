@@ -1,0 +1,101 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-mergesort",
+  "program_name": "mergesort",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 4710,
+  "prompt_tokens": 4618,
+  "completion_tokens": 92,
+  "token_breakdown": {
+    "total_tokens": 4710,
+    "prompt_tokens": 4618,
+    "completion_tokens": 92,
+    "by_role": {
+      "Coder": {
+        "prompt": 4618,
+        "completion": 92,
+        "total": 4710
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 4618,
+        "completion": 92,
+        "total": 4710
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:07:05Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1524,
+        "completion_tokens": 31,
+        "total_tokens": 1555
+      },
+      {
+        "timestamp": "2026-10-17T07:07:11Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1547,
+        "completion_tokens": 30,
+        "total_tokens": 1577
+      },
+      {
+        "timestamp": "2026-10-17T07:07:16Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1547,
+        "completion_tokens": 31,
+        "total_tokens": 1578
+      }
+    ]
+  },
+  "total_duration_seconds": 15.864,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 4.491
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.686
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.685
+    }
+  ]
+}

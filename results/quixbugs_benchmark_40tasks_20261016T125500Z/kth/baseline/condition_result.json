@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-kth",
+  "program_name": "kth",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1750,
+  "prompt_tokens": 1635,
+  "completion_tokens": 115,
+  "total_duration_seconds": 13.225,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 13.225,
+      "patch_diff": "--- a/python_programs/kth.py\n+++ b/python_programs/kth.py\n@@ -4,7 +4,7 @@\n     above = [x for x in arr if x > pivot]\n \n     num_less = len(below)\n-    num_lessoreq = len(arr) - len(above)\n+    num_lessoreq = len(arr) - num_less - 1\n \n     if k < num_less:\n         return kth(below, k)\n"
+    }
+  ]
+}

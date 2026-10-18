@@ -1,0 +1,37 @@
+```mermaid
+flowchart LR
+    subgraph Frozen ["Frozen Source Artifacts (Phase 8.6)"]
+        S1["quixbugs_40tasks_summary.json"]
+        S2["quixbugs_40tasks_memory.db"]
+        S3["40 Task Condition Results (120 JSONs)"]
+        S4["Raw Response Artifacts"]
+    end
+
+    subgraph Forensic ["Forensic Analysis Pipeline (Phase 8.7)"]
+        H1["SHA-256 Pre-Manifest Calculation"]
+        E1["Strict BASELINE vs FULL_DDIV Extraction"]
+        S5["Exact McNemar & Wilson Score Statistical Analysis"]
+        C1["Data-Availability Parameter Audit"]
+        H2["Post-Analysis Hash Verification (Zero Mutations)"]
+    end
+
+    subgraph Outputs ["Research-Ready Deliverables"]
+        R1["Comprehensive Analytical Report (.md)"]
+        R2["Executive Summary (.md)"]
+        R3["6 Standard CSV Datasets"]
+        R4["4 JSON Summary Specifications"]
+        R5["7 Publication Figures (PNG/SVG)"]
+        R6["Standalone Interactive HTML Dashboard"]
+    end
+
+    Frozen --> H1
+    H1 --> E1
+    E1 --> S5
+    E1 --> C1
+    S5 --> R1
+    S5 --> R3
+    S5 --> R4
+    C1 --> R5
+    C1 --> R6
+    R1 --> H2
+```

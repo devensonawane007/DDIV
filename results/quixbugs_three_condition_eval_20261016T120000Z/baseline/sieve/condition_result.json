@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-sieve",
+  "program_name": "sieve",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1559,
+  "prompt_tokens": 1434,
+  "completion_tokens": 125,
+  "token_breakdown": {
+    "total_tokens": 1559,
+    "prompt_tokens": 1434,
+    "completion_tokens": 125,
+    "by_role": {
+      "Coder": {
+        "prompt": 1434,
+        "completion": 125,
+        "total": 1559
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1434,
+        "completion": 125,
+        "total": 1559
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:46:09Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1434,
+        "completion_tokens": 125,
+        "total_tokens": 1559
+      }
+    ]
+  },
+  "total_duration_seconds": 31.379,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+      "resolved": false,
+      "duration_seconds": 31.378
+    }
+  ]
+}

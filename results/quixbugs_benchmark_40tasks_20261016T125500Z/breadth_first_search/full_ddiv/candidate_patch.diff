@@ -1,0 +1,11 @@
+--- a/python_programs/breadth_first_search.py
++++ b/python_programs/breadth_first_search.py
+@@ -8,7 +8,7 @@
+     nodesseen = set()
+     nodesseen.add(startnode)
+ 
+-    while True:
++    while queue:
+         node = queue.popleft()
+ 
+         if node is goalnode:

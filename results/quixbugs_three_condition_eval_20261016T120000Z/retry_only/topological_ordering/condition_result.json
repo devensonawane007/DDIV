@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-topological_ordering",
+  "program_name": "topological_ordering",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6565,
+  "prompt_tokens": 5944,
+  "completion_tokens": 621,
+  "token_breakdown": {
+    "total_tokens": 6565,
+    "prompt_tokens": 5944,
+    "completion_tokens": 621,
+    "by_role": {
+      "Coder": {
+        "prompt": 5944,
+        "completion": 621,
+        "total": 6565
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 5944,
+        "completion": 621,
+        "total": 6565
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:59:50Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1491,
+        "completion_tokens": 181,
+        "total_tokens": 1672
+      },
+      {
+        "timestamp": "2026-10-17T09:00:31Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2211,
+        "completion_tokens": 203,
+        "total_tokens": 2414
+      },
+      {
+        "timestamp": "2026-10-17T09:01:26Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2242,
+        "completion_tokens": 237,
+        "total_tokens": 2479
+      }
+    ]
+  },
+  "total_duration_seconds": 142.186,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 31.083,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,14 @@\n def topological_ordering(nodes):\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.pop(0)\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return visited\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 41.522,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,16 @@\n def topological_ordering(nodes):\n-    ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    from collections import deque\n+\n+    ordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.popleft()\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return list(visited)\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 69.578,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,16 @@\n def topological_ordering(nodes):\n-    ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    from collections import deque\n+\n+    ordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.popleft()\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return list(visited)\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+    }
+  ]
+}

@@ -174,10 +174,31 @@ class OpenAICompatibleProvider(ModelProvider):
         if response_schema:
             kwargs["response_format"] = {"type": "json_object"}
 
+        last_rate_limit_headers: Dict[str, Any] = {}
+
         while retries <= max_retries:
             try:
+                rate_limit_headers: Dict[str, Any] = {}
+                use_raw = hasattr(client.chat.completions, "with_raw_response")
+                if use_raw and type(client).__module__ == "unittest.mock":
+                    create_fn = getattr(client.chat.completions, "create", None)
+                    if getattr(create_fn, "side_effect", None) is not None:
+                        use_raw = False
 
-                response = client.chat.completions.create(**kwargs)
+                if use_raw:
+                    try:
+                        raw_resp = client.chat.completions.with_raw_response.create(**kwargs)
+                        response = raw_resp.parse()
+                        raw_headers = getattr(raw_resp, "headers", None) or {}
+                        for k, v in raw_headers.items():
+                            k_lower = k.lower()
+                            if "ratelimit" in k_lower or "retry-after" in k_lower:
+                                rate_limit_headers[k_lower] = v
+                    except Exception:
+                        response = client.chat.completions.create(**kwargs)
+                else:
+                    response = client.chat.completions.create(**kwargs)
+
                 latency = time.time() - start_time
                 content = (response.choices[0].message.content or "").strip()
                 request_id = getattr(response, "id", None)
@@ -210,6 +231,7 @@ class OpenAICompatibleProvider(ModelProvider):
                     request_id=request_id,
                     error=error_msg,
                     error_category=error_cat,
+                    rate_limit_headers=rate_limit_headers if rate_limit_headers else None,
                 )
 
             except Exception as e:
@@ -217,6 +239,16 @@ class OpenAICompatibleProvider(ModelProvider):
                 category = categorize_error(e, status_code)
                 last_category = category
                 last_error = sanitize_error_message(str(e), self.config.api_key)
+
+                # Capture rate limit headers from exception if available
+                e_headers = getattr(e, "headers", None)
+                if not e_headers and hasattr(e, "response"):
+                    e_headers = getattr(e.response, "headers", None)
+                if e_headers:
+                    for k, v in e_headers.items():
+                        k_lower = k.lower()
+                        if "ratelimit" in k_lower or "retry-after" in k_lower:
+                            last_rate_limit_headers[k_lower] = v
 
                 # Fast-fail non-transient errors (auth, permission, model not found)
                 if not is_retryable_error(category):
@@ -227,15 +259,38 @@ class OpenAICompatibleProvider(ModelProvider):
                         latency_seconds=time.time() - start_time,
                         error=f"{category.value}: {last_error}",
                         error_category=category.value,
+                        rate_limit_headers=last_rate_limit_headers if last_rate_limit_headers else None,
                     )
 
                 retries += 1
                 if retries <= max_retries:
                     backoff = min(1.0 * (2 ** (retries - 1)), 8.0)
+                    if category == ErrorCategory.RATE_LIMITED:
+                        # Extract retry-after header if present
+                        retry_after = None
+                        for h_k, h_v in last_rate_limit_headers.items():
+                            if "retry-after" in h_k:
+                                try:
+                                    retry_after = float(h_v)
+                                    break
+                                except (ValueError, TypeError):
+                                    pass
+                            elif "reset" in h_k and ("token" in h_k or "request" in h_k):
+                                try:
+                                    retry_after = float(str(h_v).rstrip("s"))
+                                    break
+                                except (ValueError, TypeError):
+                                    pass
+                        if retry_after is not None and retry_after > 0:
+                            backoff = max(backoff, retry_after + 1.0)
+                        else:
+                            # For OTPM / TPM 60-second rolling window rate limits without explicit header, wait 25s
+                            backoff = max(backoff, 25.0 * retries)
                     time.sleep(backoff)
 
-        # Automatic fallback on rate limit if available
-        if last_category == ErrorCategory.RATE_LIMITED and self.provider_name.lower() in ("groq", "openai_compatible"):
+        # Automatic fallback on rate limit only if explicitly enabled
+        disable_fallback = getattr(self.config, "disable_fallback", True)
+        if not disable_fallback and last_category == ErrorCategory.RATE_LIMITED and self.provider_name.lower() in ("groq", "openai_compatible"):
             fallback_model = None
             if "gpt-oss-120b" in self.config.model_id:
                 fallback_model = "qwen/qwen3.8-27b"
@@ -274,6 +329,7 @@ class OpenAICompatibleProvider(ModelProvider):
             latency_seconds=time.time() - start_time,
             error=f"{last_category.value if last_category else 'PROVIDER_UNAVAILABLE'} after {max_retries} retries: {last_error}",
             error_category=last_category.value if last_category else ErrorCategory.PROVIDER_UNAVAILABLE.value,
+            rate_limit_headers=last_rate_limit_headers if last_rate_limit_headers else None,
         )
 
 

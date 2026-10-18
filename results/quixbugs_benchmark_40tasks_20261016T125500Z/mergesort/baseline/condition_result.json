@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-mergesort",
+  "program_name": "mergesort",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1771,
+  "prompt_tokens": 1649,
+  "completion_tokens": 122,
+  "total_duration_seconds": 9.875,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 9.875
+    }
+  ]
+}

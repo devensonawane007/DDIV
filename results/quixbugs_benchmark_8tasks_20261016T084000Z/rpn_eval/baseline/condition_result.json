@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-rpn_eval",
+  "program_name": "rpn_eval",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1833,
+  "prompt_tokens": 1693,
+  "completion_tokens": 140,
+  "total_duration_seconds": 11.709,
+  "history": [
+    {
+      "attempt": 1,
+      "patch_extracted": false,
+      "extraction_message": "Failed to extract valid patch or code modifications from model output",
+      "raw_response": "{\n  \"reasoning_summary\": \"The current implementation of `rpn_eval` is incorrectly passing the second popped operand as the first argument to the `op` function, which reverses non-commutative operations like subtraction and division. The fix involves swapping the order of `a` and `b` in the `stack.ap",
+      "resolved": false,
+      "duration_seconds": 11.709
+    }
+  ]
+}

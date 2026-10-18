@@ -1,0 +1,19 @@
+diff --git a/python_programs/subsequences.py b/python_programs/subsequences.py
+index 1234567..89abcde 100644
+--- a/python_programs/subsequences.py
++++ b/python_programs/subsequences.py
+@@ -1,5 +1,23 @@
+def subsequences(a, b, k):
+-    if k == 0:
+-        return []
++    if k == 0:
++        return [[]]
++
++    if k == 1:
++        return [[i] for i in range(a, b + 1)]
++
++    ret = []
++    for i in range(a, b + 1):
++        for rest in subsequences(i + 1, b, k - 1):
++            ret.append([i] + rest)
++    return ret

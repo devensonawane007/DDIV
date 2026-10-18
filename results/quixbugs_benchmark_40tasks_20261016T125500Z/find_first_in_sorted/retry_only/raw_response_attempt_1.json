@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1667,
+  "completion_tokens": 103,
+  "latency_seconds": 5.2762277,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is in the while loop condition. The loop should continue as long as lo <= hi, but the hi index should be len(arr) - 1 to avoid index out of range errors.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/find_first_in_sorted.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"while lo <= hi:\",\n      \"code\": \"while lo < hi:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is in the while loop condition. The loop should continue as long as lo <= hi, but the hi index should be len(arr) - 1 to avoid index out of range errors.",
+    "modifications": [
+      {
+        "path": "python_programs/find_first_in_sorted.py",
+        "operation": "replace",
+        "anchor": "while lo <= hi:",
+        "code": "while lo < hi:"
+      }
+    ]
+  }
+}

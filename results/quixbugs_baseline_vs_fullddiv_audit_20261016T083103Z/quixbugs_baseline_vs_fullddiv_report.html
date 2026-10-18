@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDIV Phase 8.7: QuixBugs BASELINE vs FULL_DDIV Forensic Report</title>
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --primary-light: #3B82F6;
+            --success: #15803D;
+            --success-bg: #DCFCE7;
+            --danger: #B91C1C;
+            --danger-bg: #FEE2E2;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--gray-900);
+            background: #F9FAFB;
+            margin: 0;
+            padding: 24px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 36px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 { color: var(--primary); }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .badge-pass { background: var(--success-bg); color: var(--success); }
+        .badge-fail { background: var(--danger-bg); color: var(--danger); }
+        .badge-recovery { background: #E0E7FF; color: #4338CA; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .metric-card {
+            background: var(--gray-100);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-light);
+        }
+        .metric-value { font-size: 28px; font-weight: 800; color: var(--primary); }
+        .metric-label { font-size: 13px; color: var(--gray-700); font-weight: 600; text-transform: uppercase; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        th { background: var(--gray-100); font-weight: 700; cursor: pointer; }
+        tr:hover { background: #F8FAFC; }
+        .search-box {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        .fig-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>DDIV Phase 8.7: QuixBugs Forensic Evaluation Dashboard</h1>
+    <p><strong>Benchmark Condition Scope:</strong> BASELINE vs FULL_DDIV only | <strong>Model:</strong> qwen2.5-coder:7b (Local Ollama) | <strong>Tasks:</strong> 40 | <strong>Cost:</strong> $0.00</p>
+    
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">BASELINE Resolution</div>
+            <div class="metric-value">8 / 40 <span style="font-size:16px;">(20.0%)</span></div>
+            <small>Wilson 95% CI: [10.5%, 34.8%]</small>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">FULL_DDIV Resolution</div>
+            <div class="metric-value">13 / 40 <span style="font-size:16px;">(32.5%)</span></div>
+            <small>Wilson 95% CI: [20.1%, 48.0%]</small>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Absolute Difference</div>
+            <div class="metric-value">+12.5 pp</div>
+            <small>Relative: +62.5%</small>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Exact McNemar p-value</div>
+            <div class="metric-value">0.0625</div>
+            <small>Discordant pairs: b=5, c=0</small>
+        </div>
+    </div>
+
+    <h2>40-Task Interactive Paired Outcome Table</h2>
+    <input type="text" id="searchInput" class="search-box" placeholder="Filter by task name or paired category (e.g., full_ddiv_only, both_resolved)..." onkeyup="filterTable()">
+    
+    <table id="taskTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">#</th>
+                <th onclick="sortTable(1)">Task ID</th>
+                <th onclick="sortTable(2)">Program</th>
+                <th onclick="sortTable(3)">BASELINE</th>
+                <th onclick="sortTable(4)">FULL_DDIV</th>
+                <th onclick="sortTable(5)">Att (Base)</th>
+                <th onclick="sortTable(6)">Att (DDIV)</th>
+                <th onclick="sortTable(7)">Paired Category</th>
+                <th onclick="sortTable(8)">Recovery</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><code>quixbugs-python-bitcount</code></td>
+                <td><strong>bitcount</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><code>quixbugs-python-breadth_first_search</code></td>
+                <td><strong>breadth_first_search</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>2</td>
+                <td><code>full_ddiv_only</code></td>
+                <td><span class="badge badge-recovery">Attempt 2</span></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><code>quixbugs-python-bucketsort</code></td>
+                <td><strong>bucketsort</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><code>quixbugs-python-depth_first_search</code></td>
+                <td><strong>depth_first_search</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><code>quixbugs-python-detect_cycle</code></td>
+                <td><strong>detect_cycle</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><code>quixbugs-python-find_first_in_sorted</code></td>
+                <td><strong>find_first_in_sorted</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><code>quixbugs-python-find_in_sorted</code></td>
+                <td><strong>find_in_sorted</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><code>quixbugs-python-flatten</code></td>
+                <td><strong>flatten</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><code>quixbugs-python-gcd</code></td>
+                <td><strong>gcd</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><code>quixbugs-python-get_factors</code></td>
+                <td><strong>get_factors</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td><code>quixbugs-python-hanoi</code></td>
+                <td><strong>hanoi</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td><code>quixbugs-python-is_valid_parenthesization</code></td>
+                <td><strong>is_valid_parenthesization</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td><code>quixbugs-python-kheapsort</code></td>
+                <td><strong>kheapsort</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td><code>quixbugs-python-knapsack</code></td>
+                <td><strong>knapsack</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td><code>quixbugs-python-kth</code></td>
+                <td><strong>kth</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>2</td>
+                <td><code>full_ddiv_only</code></td>
+                <td><span class="badge badge-recovery">Attempt 2</span></td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td><code>quixbugs-python-lcs_length</code></td>
+                <td><strong>lcs_length</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td><code>quixbugs-python-levenshtein</code></td>
+                <td><strong>levenshtein</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>2</td>
+                <td><code>full_ddiv_only</code></td>
+                <td><span class="badge badge-recovery">Attempt 2</span></td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td><code>quixbugs-python-lis</code></td>
+                <td><strong>lis</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td><code>quixbugs-python-longest_common_subsequence</code></td>
+                <td><strong>longest_common_subsequence</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td><code>quixbugs-python-max_sublist_sum</code></td>
+                <td><strong>max_sublist_sum</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td><code>quixbugs-python-mergesort</code></td>
+                <td><strong>mergesort</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td><code>quixbugs-python-minimum_spanning_tree</code></td>
+                <td><strong>minimum_spanning_tree</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td><code>quixbugs-python-next_palindrome</code></td>
+                <td><strong>next_palindrome</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td><code>quixbugs-python-next_permutation</code></td>
+                <td><strong>next_permutation</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td><code>quixbugs-python-pascal</code></td>
+                <td><strong>pascal</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td><code>quixbugs-python-possible_change</code></td>
+                <td><strong>possible_change</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td><code>quixbugs-python-powerset</code></td>
+                <td><strong>powerset</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td><code>quixbugs-python-quicksort</code></td>
+                <td><strong>quicksort</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>2</td>
+                <td><code>full_ddiv_only</code></td>
+                <td><span class="badge badge-recovery">Attempt 2</span></td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td><code>quixbugs-python-reverse_linked_list</code></td>
+                <td><strong>reverse_linked_list</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>full_ddiv_only</code></td>
+                <td><span class="badge badge-recovery">Attempt 3</span></td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td><code>quixbugs-python-rpn_eval</code></td>
+                <td><strong>rpn_eval</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>31</td>
+                <td><code>quixbugs-python-shortest_path_length</code></td>
+                <td><strong>shortest_path_length</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>32</td>
+                <td><code>quixbugs-python-shortest_path_lengths</code></td>
+                <td><strong>shortest_path_lengths</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>33</td>
+                <td><code>quixbugs-python-shortest_paths</code></td>
+                <td><strong>shortest_paths</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>34</td>
+                <td><code>quixbugs-python-shunting_yard</code></td>
+                <td><strong>shunting_yard</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>35</td>
+                <td><code>quixbugs-python-sieve</code></td>
+                <td><strong>sieve</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>36</td>
+                <td><code>quixbugs-python-sqrt</code></td>
+                <td><strong>sqrt</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>37</td>
+                <td><code>quixbugs-python-subsequences</code></td>
+                <td><strong>subsequences</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>38</td>
+                <td><code>quixbugs-python-to_base</code></td>
+                <td><strong>to_base</strong></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>1</td>
+                <td>1</td>
+                <td><code>both_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>39</td>
+                <td><code>quixbugs-python-topological_ordering</code></td>
+                <td><strong>topological_ordering</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td><code>quixbugs-python-wrap</code></td>
+                <td><strong>wrap</strong></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td><span class="badge badge-fail">FAIL</span></td>
+                <td>1</td>
+                <td>3</td>
+                <td><code>neither_resolved</code></td>
+                <td>None</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Statistical Significance & Claim Boundaries</h2>
+    <p>On 40 paired tasks, the exact McNemar test on discordant pairs (b = 5, c = 0) produces a two-sided p-value of <strong>0.0625</strong>. 
+    While the observed +12.5 percentage point improvement demonstrates zero regressions and clear multi-attempt recovery capability, 
+    it strictly falls short of the conventional alpha = 0.05 threshold due to limited sample size. In a research paper, this must be accurately reported 
+    as a positive directional trend without making claims of formal statistical significance.</p>
+
+    <h2>Visualizations</h2>
+    <h3>Figure 1: Overall Resolution Rate Comparison</h3>
+    <img src="figures/figure_1_overall_resolution.png" class="fig-img" alt="Figure 1">
+    
+    <h3>Figure 3: Paired Contingency Distribution</h3>
+    <img src="figures/figure_3_paired_distribution.png" class="fig-img" alt="Figure 3">
+    
+    <h3>Figure 5: Resource & Efficiency Trade-Offs</h3>
+    <img src="figures/figure_5_resource_efficiency.png" class="fig-img" alt="Figure 5">
+</div>
+
+<script>
+function filterTable() {
+    var input = document.getElementById("searchInput");
+    var filter = input.value.toLowerCase();
+    var table = document.getElementById("taskTable");
+    var tr = table.getElementsByTagName("tr");
+    for (var i = 1; i < tr.length; i++) {
+        var text = tr[i].textContent.toLowerCase();
+        tr[i].style.display = text.indexOf(filter) > -1 ? "" : "none";
+    }
+}
+
+function sortTable(n) {
+    var table = document.getElementById("taskTable");
+    var rows = table.rows;
+    var switching = true;
+    var dir = "asc";
+    var switchcount = 0;
+    while (switching) {
+        switching = false;
+        var shouldSwitch = false;
+        for (var i = 1; i < (rows.length - 1); i++) {
+            var x = rows[i].getElementsByTagName("TD")[n];
+            var y = rows[i + 1].getElementsByTagName("TD")[n];
+            var cmpX = isNaN(x.innerHTML) ? x.innerHTML.toLowerCase() : parseFloat(x.innerHTML);
+            var cmpY = isNaN(y.innerHTML) ? y.innerHTML.toLowerCase() : parseFloat(y.innerHTML);
+            if (dir == "asc") {
+                if (cmpX > cmpY) { shouldSwitch = true; break; }
+            } else if (dir == "desc") {
+                if (cmpX < cmpY) { shouldSwitch = true; break; }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
+</script>
+</body>
+</html>

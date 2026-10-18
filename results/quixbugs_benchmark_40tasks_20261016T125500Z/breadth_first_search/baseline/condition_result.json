@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-breadth_first_search",
+  "program_name": "breadth_first_search",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1842,
+  "prompt_tokens": 1623,
+  "completion_tokens": 219,
+  "total_duration_seconds": 19.773,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 19.773,
+      "patch_diff": "--- a/python_programs/breadth_first_search.py\n+++ b/python_programs/breadth_first_search.py\n@@ -14,8 +14,8 @@\n         if node is goalnode:\n             return True\n         else:\n-            queue.extend(node for node in node.successors if node not in nodesseen)\n-            nodesseen.update(node.successors)\n+            queue.extend(node for node in node.successors if node not in nodesseen and node not in queue)\n+            nodesseen.update(node for node in node.successors if node not in nodesseen)\n \n     return False\n \n"
+    }
+  ]
+}

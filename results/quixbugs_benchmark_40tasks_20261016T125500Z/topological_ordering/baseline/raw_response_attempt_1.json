@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1616,
+  "completion_tokens": 112,
+  "latency_seconds": 6.4680371,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is that the function does not correctly handle the addition of nodes to the ordered list. The current implementation does not ensure that all outgoing nodes of a node are added to the ordered list before the node itself is added.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"for node in ordered_nodes:\",\n      \"code\": \"for node in ordered_nodes[:]:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is that the function does not correctly handle the addition of nodes to the ordered list. The current implementation does not ensure that all outgoing nodes of a node are added to the ordered list before the node itself is added.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "for node in ordered_nodes:",
+        "code": "for node in ordered_nodes[:]:"
+      }
+    ]
+  }
+}

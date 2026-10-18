@@ -1,0 +1,125 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-shortest_path_lengths",
+  "program_name": "shortest_path_lengths",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7593,
+  "prompt_tokens": 6498,
+  "completion_tokens": 1095,
+  "token_breakdown": {
+    "total_tokens": 7593,
+    "prompt_tokens": 6498,
+    "completion_tokens": 1095,
+    "by_role": {
+      "Locator": {
+        "prompt": 356,
+        "completion": 521,
+        "total": 877
+      },
+      "Coder": {
+        "prompt": 6142,
+        "completion": 574,
+        "total": 6716
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 356,
+        "completion": 521,
+        "total": 877
+      },
+      "ollama": {
+        "prompt": 6142,
+        "completion": 574,
+        "total": 6716
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:35:48Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 356,
+        "completion_tokens": 521,
+        "total_tokens": 877
+      },
+      {
+        "timestamp": "2026-10-17T08:36:02Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2016,
+        "completion_tokens": 196,
+        "total_tokens": 2212
+      },
+      {
+        "timestamp": "2026-10-17T08:36:20Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "FULL_DDIV",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2063,
+        "completion_tokens": 200,
+        "total_tokens": 2263
+      },
+      {
+        "timestamp": "2026-10-17T08:36:50Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "FULL_DDIV",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2063,
+        "completion_tokens": 178,
+        "total_tokens": 2241
+      }
+    ]
+  },
+  "total_duration_seconds": 83.75,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+      "resolved": false,
+      "duration_seconds": 14.33
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+      "resolved": false,
+      "duration_seconds": 18.169
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+      "resolved": false,
+      "duration_seconds": 29.66
+    }
+  ]
+}

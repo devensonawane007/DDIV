@@ -1,0 +1,110 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-next_permutation",
+  "program_name": "next_permutation",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3156,
+  "prompt_tokens": 2429,
+  "completion_tokens": 727,
+  "token_breakdown": {
+    "total_tokens": 3156,
+    "prompt_tokens": 2429,
+    "completion_tokens": 727,
+    "by_role": {
+      "Locator": {
+        "prompt": 285,
+        "completion": 462,
+        "total": 747
+      },
+      "Coder": {
+        "prompt": 1940,
+        "completion": 105,
+        "total": 2045
+      },
+      "Tester": {
+        "prompt": 204,
+        "completion": 160,
+        "total": 364
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 285,
+        "completion": 462,
+        "total": 747
+      },
+      "ollama": {
+        "prompt": 1940,
+        "completion": 105,
+        "total": 2045
+      },
+      "groq": {
+        "prompt": 204,
+        "completion": 160,
+        "total": 364
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:12:54Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_permutation",
+        "program_name": "next_permutation",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 285,
+        "completion_tokens": 462,
+        "total_tokens": 747
+      },
+      {
+        "timestamp": "2026-10-17T07:13:04Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_permutation",
+        "program_name": "next_permutation",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1940,
+        "completion_tokens": 105,
+        "total_tokens": 2045
+      },
+      {
+        "timestamp": "2026-10-17T07:13:19Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_permutation",
+        "program_name": "next_permutation",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 204,
+        "completion_tokens": 160,
+        "total_tokens": 364
+      }
+    ]
+  },
+  "total_duration_seconds": 57.653,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 28.357,
+      "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -3,7 +3,7 @@\n     for i in range(len(perm) - 2, -1, -1):\n         if perm[i] < perm[i + 1]:\n             for j in range(len(perm) - 1, i, -1):\n-                if perm[j] < perm[i]:\n+                if perm[j] > perm[i]:\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-mergesort",
+  "program_name": "mergesort",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5373,
+  "prompt_tokens": 5052,
+  "completion_tokens": 321,
+  "total_duration_seconds": 25.852,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 9.075
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/mergesort.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 19) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 7.754
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/mergesort.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 18) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 9.013
+    }
+  ]
+}

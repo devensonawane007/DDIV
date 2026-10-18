@@ -1,0 +1,54 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-knapsack",
+  "program_name": "knapsack",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 8611,
+  "prompt_tokens": 8194,
+  "completion_tokens": 417,
+  "total_duration_seconds": 45.128,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 12.753,
+      "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -7,7 +7,7 @@\n         weight, value = items[i - 1]\n \n         for j in range(1, capacity + 1):\n-            memo[i, j] = memo[i - 1, j]\n+            memo[i, j] = max(memo[i - 1, j], value + memo[i - 1, j - weight])\n \n             if weight < j:\n                 memo[i, j] = max(\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 16.357,
+      "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -7,7 +7,7 @@\n         weight, value = items[i - 1]\n \n         for j in range(1, capacity + 1):\n-            memo[i, j] = memo[i - 1, j]\n+            memo[i, j] = max(memo[i - 1, j], value + memo[i - 1, j - weight])\n \n             if weight < j:\n                 memo[i, j] = max(\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.947,
+      "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -7,7 +7,7 @@\n         weight, value = items[i - 1]\n \n         for j in range(1, capacity + 1):\n-            memo[i, j] = memo[i - 1, j]\n+            memo[i, j] = max(memo[i - 1, j], value + memo[i - 1, j - weight])\n \n             if weight < j:\n                 memo[i, j] = max(\n"
+    }
+  ]
+}

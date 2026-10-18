@@ -1,0 +1,20 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2361,
+  "completion_tokens": 160,
+  "latency_seconds": 9.0454861,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is that the current implementation does not correctly handle the topological sorting of nodes. The fix involves ensuring that all outgoing nodes of a node are already in the ordered list before adding the node itself.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"for node in ordered_nodes:\",\n      \"code\": \"for node in ordered_nodes:\\n    if all(nextnode in ordered_nodes for nextnode in node.outgoing_nodes):\\n        for nextnode in node.outgoing_nodes:\\n            if nextnode not in ordered_nodes:\\n                ordered_nodes.append(nextnode)\\n        ordered_nodes.append(node)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is that the current implementation does not correctly handle the topological sorting of nodes. The fix involves ensuring that all outgoing nodes of a node are already in the ordered list before adding the node itself.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "for node in ordered_nodes:",
+        "code": "for node in ordered_nodes:\n    if all(nextnode in ordered_nodes for nextnode in node.outgoing_nodes):\n        for nextnode in node.outgoing_nodes:\n            if nextnode not in ordered_nodes:\n                ordered_nodes.append(nextnode)\n        ordered_nodes.append(node)"
+      }
+    ]
+  }
+}

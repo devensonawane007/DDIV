@@ -1,0 +1,9 @@
+{
+  "phase": 3,
+  "timestamp": "20261015T144817Z",
+  "candidates_verified": 5,
+  "results_by_class": {
+    "blocked": 4,
+    "promising_not_verified": 1
+  }
+}

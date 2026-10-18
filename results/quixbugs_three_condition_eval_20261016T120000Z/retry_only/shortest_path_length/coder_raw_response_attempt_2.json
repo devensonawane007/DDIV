@@ -1,0 +1,25 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2599,
+  "completion_tokens": 182,
+  "latency_seconds": 10.2680311,
+  "raw_text": "{\n  \"reasoning_summary\": \"The previous patch failed because it incorrectly replaced the tuple unpacking in the `insert_or_update` function. The correct approach is to ensure that the tuple unpacking is done correctly and that the heap is updated properly.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"for i, tpl in enumerate(node_heap):\",\n      \"code\": \"for i, (dist, node) in enumerate(node_heap):\"\n    },\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"node_heap[i] = dist_node\",\n      \"code\": \"node_heap[i] = (dist_node[0], dist_node[1])\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The previous patch failed because it incorrectly replaced the tuple unpacking in the `insert_or_update` function. The correct approach is to ensure that the tuple unpacking is done correctly and that the heap is updated properly.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "for i, tpl in enumerate(node_heap):",
+        "code": "for i, (dist, node) in enumerate(node_heap):"
+      },
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "node_heap[i] = dist_node",
+        "code": "node_heap[i] = (dist_node[0], dist_node[1])"
+      }
+    ]
+  }
+}

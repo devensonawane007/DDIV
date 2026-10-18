@@ -1,0 +1,28 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-flatten",
+  "program_name": "flatten",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 1694,
+  "prompt_tokens": 1599,
+  "completion_tokens": 95,
+  "total_duration_seconds": 9.799,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 9.798,
+      "patch_diff": "--- a/python_programs/flatten.py\n+++ b/python_programs/flatten.py\n@@ -4,7 +4,7 @@\n             for y in flatten(x):\n                 yield y\n         else:\n-            yield flatten(x)\n+            yield x\n \n \n \n"
+    }
+  ]
+}

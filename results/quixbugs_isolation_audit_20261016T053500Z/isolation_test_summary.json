@@ -1,0 +1,50 @@
+{
+  "audit_version": "1.0",
+  "audit_date": "2026-10-16T05:35:00Z",
+  "benchmark": "QuixBugs (Python)",
+  "overall_isolation_status": "VERIFIED",
+  "audit_scope": {
+    "total_tasks_discovered": 40,
+    "total_agent_workspaces_audited": 40,
+    "workspaces_clean_isolated": 40,
+    "workspaces_with_leakage": 0
+  },
+  "asset_classification": {
+    "agent_visible_source": [
+      "python_programs/<program>.py"
+    ],
+    "agent_visible_support": [
+      "python_programs/node.py (graph tasks only)"
+    ],
+    "evaluator_only_testcases": [
+      "python_testcases/test_<program>.py",
+      "conftest.py"
+    ],
+    "evaluator_only_oracles": [
+      "json_testcases/<program>.json",
+      "python_testcases/load_testdata.py",
+      "python_testcases/node.py"
+    ],
+    "protected_gold_references": [
+      "correct_python_programs/",
+      "correct_java_programs/",
+      "java_programs/",
+      "java_testcases/"
+    ]
+  },
+  "isolation_defense_layers": {
+    "two_workspace_architecture": "Enforced. Agent workspaces receive solely the target buggy file and node.py (if graph task). Tests and JSON oracles remain strictly in the benchmark root.",
+    "fail_closed_creation_gate": "Operational. Any detection of test_*, *_test.py, .json, or correct* files immediately wipes the directory and raises RuntimeError.",
+    "isolated_evaluator_runner": "Operational. Pytest runs with isolated temp cwd, candidate workspace at sys.path[0], and --import-mode=append, resolving candidate code over upstream/reference code.",
+    "evaluator_output_sanitizer": "Operational. Strips test parametrization inputs/outputs, variable dumps, and assertion values (replacing with [ORACLE_REDACTED]). Redacts diff lines.",
+    "patch_security_gate": "Operational. Inspects patch target files and AST/tokens, failing closed if open(), subprocess, os.system, or external modifications are attempted.",
+    "context_builder_containment": "Operational. Canonical workspace containment check fpath.resolve().is_relative_to(workspace.resolve()) blocks ../ traversals, absolute paths, and external symlinks.",
+    "agent_permissions_boundary": "Operational. DDIV model-facing agents (Coder, Locator, Tester, Supervisor) are pure JSON-in/JSON-out LLM wrappers with zero shell or file-read tools."
+  },
+  "test_results": {
+    "test_quixbugs_adapter_py": "10/10 PASSED",
+    "test_quixbugs_isolation_py": "9/9 PASSED",
+    "total_tests_passed": 19,
+    "total_tests_failed": 0
+  }
+}

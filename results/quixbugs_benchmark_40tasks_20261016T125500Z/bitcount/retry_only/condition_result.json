@@ -1,0 +1,49 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-bitcount",
+  "program_name": "bitcount",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5337,
+  "prompt_tokens": 5027,
+  "completion_tokens": 310,
+  "total_duration_seconds": 58.776,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Failed to extract valid patch or code modifications from model output",
+      "resolved": false,
+      "duration_seconds": 5.153
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 25.703,
+      "patch_diff": "--- a/python_programs/bitcount.py\n+++ b/python_programs/bitcount.py\n@@ -1,5 +1,12 @@\n \n def bitcount(n):\n+    if n == 0:\n+        return 0\n+    count = 0\n+    while n:\n+        n ^= n - 1\n+        count += 1\n+    return count\n     count = 0\n     while n:\n         n ^= n - 1\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 27.919,
+      "patch_diff": "--- a/python_programs/bitcount.py\n+++ b/python_programs/bitcount.py\n@@ -1,5 +1,12 @@\n \n def bitcount(n):\n+    if n == 0:\n+        return 0\n+    count = 0\n+    while n:\n+        n ^= n - 1\n+        count += 1\n+    return count\n     count = 0\n     while n:\n         n ^= n - 1\n"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-find_in_sorted",
+  "program_name": "find_in_sorted",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1800,
+  "prompt_tokens": 1648,
+  "completion_tokens": 152,
+  "total_duration_seconds": 11.736,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/find_in_sorted.py' failed Python AST syntax verification: invalid syntax (<unknown>, line 13) (category: SYNTAX_ERROR)",
+      "resolved": false,
+      "duration_seconds": 11.736
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "diagnostic_timestamp": "2026-10-16T06:44:20Z",
+  "total_tasks": 2,
+  "total_runs": 6,
+  "model": "qwen2.5-coder:7b",
+  "ollama_url": "http://localhost:11434",
+  "output_directory": "D:\\PROJECTS\\DDIV\\results\\quixbugs_diagnostic_phase8_5_20261016T121200Z",
+  "total_duration_seconds": 140.755,
+  "aggregate_totals": {
+    "BASELINE": {
+      "resolved": 1,
+      "runs": 2,
+      "tokens": 3570,
+      "duration": 30.045
+    },
+    "RETRY_ONLY": {
+      "resolved": 1,
+      "runs": 2,
+      "tokens": 8488,
+      "duration": 65.844
+    },
+    "FULL_DDIV": {
+      "resolved": 2,
+      "runs": 2,
+      "tokens": 6027,
+      "duration": 41.345
+    }
+  },
+  "results_by_task": {
+    "quicksort": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1754,
+        "prompt_tokens": 1562,
+        "completion_tokens": 192,
+        "total_duration_seconds": 18.639,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 18.639,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6672,
+        "prompt_tokens": 6048,
+        "completion_tokens": 624,
+        "total_duration_seconds": 54.742,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 15.785,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 19.145,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 19.812,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-quicksort",
+        "program_name": "quicksort",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 2,
+        "max_attempts": 3,
+        "total_tokens": 4211,
+        "prompt_tokens": 3903,
+        "completion_tokens": 308,
+        "total_duration_seconds": 30.066,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 15.918,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 14.066,
+            "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,7 +3,7 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n     greater = quicksort([x for x in arr[1:] if x > pivot])\n     return lesser + [pivot] + greater\n \n"
+          }
+        ]
+      }
+    },
+    "rpn_eval": {
+      "baseline": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1816,
+        "prompt_tokens": 1706,
+        "completion_tokens": 110,
+        "total_duration_seconds": 11.406,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 11.406,
+            "patch_diff": "--- a/python_programs/rpn_eval.py\n+++ b/python_programs/rpn_eval.py\n@@ -16,9 +16,7 @@\n         else:\n             a = stack.pop()\n             b = stack.pop()\n-            stack.append(\n-                op(token, a, b)\n-            )\n+            stack.append(op(token, b, a))\n \n     return stack.pop()\n \n"
+          }
+        ]
+      },
+      "retry_only": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1816,
+        "prompt_tokens": 1706,
+        "completion_tokens": 110,
+        "total_duration_seconds": 11.102,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 11.102,
+            "patch_diff": "--- a/python_programs/rpn_eval.py\n+++ b/python_programs/rpn_eval.py\n@@ -16,9 +16,7 @@\n         else:\n             a = stack.pop()\n             b = stack.pop()\n-            stack.append(\n-                op(token, a, b)\n-            )\n+            stack.append(op(token, b, a))\n \n     return stack.pop()\n \n"
+          }
+        ]
+      },
+      "full_ddiv": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-rpn_eval",
+        "program_name": "rpn_eval",
+        "model": "qwen2.5-coder:7b",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 1816,
+        "prompt_tokens": 1706,
+        "completion_tokens": 110,
+        "total_duration_seconds": 11.279,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 11.277,
+            "patch_diff": "--- a/python_programs/rpn_eval.py\n+++ b/python_programs/rpn_eval.py\n@@ -16,9 +16,7 @@\n         else:\n             a = stack.pop()\n             b = stack.pop()\n-            stack.append(\n-                op(token, a, b)\n-            )\n+            stack.append(op(token, b, a))\n \n     return stack.pop()\n \n"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-hanoi",
+  "program_name": "hanoi",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3408,
+  "prompt_tokens": 2526,
+  "completion_tokens": 882,
+  "token_breakdown": {
+    "total_tokens": 3408,
+    "prompt_tokens": 2526,
+    "completion_tokens": 882,
+    "by_role": {
+      "Locator": {
+        "prompt": 385,
+        "completion": 384,
+        "total": 769
+      },
+      "Coder": {
+        "prompt": 1986,
+        "completion": 98,
+        "total": 2084
+      },
+      "Tester": {
+        "prompt": 155,
+        "completion": 400,
+        "total": 555
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 385,
+        "completion": 384,
+        "total": 769
+      },
+      "ollama": {
+        "prompt": 1986,
+        "completion": 98,
+        "total": 2084
+      },
+      "groq": {
+        "prompt": 155,
+        "completion": 400,
+        "total": 555
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T10:51:17Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-hanoi",
+        "program_name": "hanoi",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 385,
+        "completion_tokens": 384,
+        "total_tokens": 769
+      },
+      {
+        "timestamp": "2026-10-16T10:51:26Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-hanoi",
+        "program_name": "hanoi",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1986,
+        "completion_tokens": 98,
+        "total_tokens": 2084
+      },
+      {
+        "timestamp": "2026-10-16T10:51:37Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-hanoi",
+        "program_name": "hanoi",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 155,
+        "completion_tokens": 400,
+        "total_tokens": 555
+      }
+    ]
+  },
+  "total_duration_seconds": 49.747,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 21.368,
+      "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -3,7 +3,7 @@\n     if height > 0:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n-        steps.append((start, helper))\n+        steps.append((start, end))\n         steps.extend(hanoi(height - 1, helper, end))\n \n     return steps\n"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+--- a/python_programs/gcd.py
++++ b/python_programs/gcd.py
+@@ -1,4 +1,10 @@
+ def gcd(a, b):
++    if a == 0 and b == 0:
++        return None  # or raise an exception, depending on the desired behavior
++    if b == 0:
++        return a
++    else:
++        return gcd(a % b, b)
+     if b == 0:
+         return a
+     else:

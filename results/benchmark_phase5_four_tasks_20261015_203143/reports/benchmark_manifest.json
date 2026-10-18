@@ -1,0 +1,89 @@
+{
+  "benchmark_id": "phase5_four_tasks_20261015_203143",
+  "protocol_version": "v2.2_frozen",
+  "timestamp_start": "2026-10-15T15:01:43.737470+00:00",
+  "commit_head": "68ebe921971a8d8ba6e5611a927eefd055b3c96f",
+  "tasks": [
+    "pylint-dev__pylint-6903",
+    "pylint-dev__pylint-4970",
+    "sympy__sympy-23413",
+    "mwaskom__seaborn-3187"
+  ],
+  "conditions": [
+    "baseline",
+    "retry_only",
+    "full_ddiv"
+  ],
+  "evaluator": "InternalSWEBenchEvaluator",
+  "models": {
+    "Coder": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "temperature": 0.2
+    },
+    "Supervisor": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b",
+      "temperature": 0.0
+    },
+    "Tester": {
+      "provider": "groq",
+      "model": "qwen/qwen3.8-27b",
+      "temperature": 0.0
+    },
+    "Locator": {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "temperature": 0.0
+    }
+  },
+  "parameters": {
+    "max_attempts": {
+      "baseline": 1,
+      "retry_only": 3,
+      "full_ddiv": 3
+    },
+    "coder_trust_critique_threshold": 0.7,
+    "coder_temperature": 0.2,
+    "trust_decay_rate": 0.05,
+    "memory_top_k": 3,
+    "memory_similarity_threshold": 0.65
+  },
+  "target_task_specs": {
+    "pylint-dev__pylint-6903": {
+      "repo": "pylint-dev/pylint",
+      "base_commit": "ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6",
+      "gt_f2p": 1,
+      "gt_p2p": 8,
+      "f2p_test": "tests/test_self.py::TestRun::test_query_cpu",
+      "f2p_error": "ValueError: Number of processes must be at least 1"
+    },
+    "pylint-dev__pylint-4970": {
+      "repo": "pylint-dev/pylint",
+      "base_commit": "40cc2ffd7887959157aaf469e09585ec2be7f528",
+      "gt_f2p": 1,
+      "gt_p2p": 17,
+      "f2p_test": "tests/checkers/unittest_similar.py::test_min_similarity_lines_zero",
+      "f2p_error": "AssertionError"
+    },
+    "sympy__sympy-23413": {
+      "repo": "sympy/sympy",
+      "base_commit": "10de1a18a0efac0b19b611e40c928250dda688bf",
+      "gt_f2p": 1,
+      "gt_p2p": 2,
+      "f2p_test": "sympy/matrices/tests/test_normalforms.py::test_hermite_normal",
+      "f2p_error": "AssertionError: HNF computation bug with flip/transposition"
+    },
+    "mwaskom__seaborn-3187": {
+      "repo": "mwaskom/seaborn",
+      "base_commit": "22cdfb0c93f8ec78492d87edb810f10cb7f57a31",
+      "gt_f2p": 1,
+      "gt_p2p": 11,
+      "f2p_test": "tests/_core/test_scales.py::TestPseudoComputeRange::test_legend_with_formatters",
+      "f2p_error": "AssertionError: Formatter not applied to legend values"
+    }
+  },
+  "seed_memory_records": 11,
+  "timestamp_end": "2026-10-15T16:17:44.919142+00:00",
+  "total_wall_clock_seconds": 4561.107626438141
+}

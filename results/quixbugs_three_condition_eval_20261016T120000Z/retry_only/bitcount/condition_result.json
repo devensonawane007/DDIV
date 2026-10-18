@@ -1,0 +1,101 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-bitcount",
+  "program_name": "bitcount",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 4459,
+  "prompt_tokens": 4378,
+  "completion_tokens": 81,
+  "token_breakdown": {
+    "total_tokens": 4459,
+    "prompt_tokens": 4378,
+    "completion_tokens": 81,
+    "by_role": {
+      "Coder": {
+        "prompt": 4378,
+        "completion": 81,
+        "total": 4459
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 4378,
+        "completion": 81,
+        "total": 4459
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:02:43Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1444,
+        "completion_tokens": 27,
+        "total_tokens": 1471
+      },
+      {
+        "timestamp": "2026-10-16T18:02:49Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1467,
+        "completion_tokens": 27,
+        "total_tokens": 1494
+      },
+      {
+        "timestamp": "2026-10-16T18:02:54Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1467,
+        "completion_tokens": 27,
+        "total_tokens": 1494
+      }
+    ]
+  },
+  "total_duration_seconds": 14.801,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 4.081
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.481
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.239
+    }
+  ]
+}

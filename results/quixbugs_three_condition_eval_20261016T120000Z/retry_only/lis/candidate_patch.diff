@@ -1,0 +1,21 @@
+--- a/python_programs/lis.py
++++ b/python_programs/lis.py
+@@ -1,6 +1,6 @@
+ 
+ def lis(arr):
+-    ends = {}
++    ends = [-1] * (len(arr) + 1)
+     longest = 0
+ 
+     for i, val in enumerate(arr):
+@@ -9,8 +9,8 @@
+ 
+         length = max(prefix_lengths) if prefix_lengths else 0
+ 
+-        if length == longest or val < arr[ends[length + 1]]:
+-            ends[length + 1] = i
++        if length == longest - 1 or val < arr[ends[length + 1]]:
++            ends[length] = i
+             longest = length + 1
+ 
+     return longest

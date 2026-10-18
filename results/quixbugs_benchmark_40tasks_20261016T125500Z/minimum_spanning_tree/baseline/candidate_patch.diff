@@ -1,0 +1,12 @@
+--- a/python_programs/minimum_spanning_tree.py
++++ b/python_programs/minimum_spanning_tree.py
+@@ -7,7 +7,8 @@
+         u, v = edge
+         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):
+             mst_edges.add(edge)
+-            group_by_node[u].update(group_by_node[v])
++            for node in group_by_node[v]:
++                group_by_node[node].update(group_by_node[u])
+             for node in group_by_node[v]:
+                 group_by_node[node].update(group_by_node[u])
+ 

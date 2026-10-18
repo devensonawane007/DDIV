@@ -1,0 +1,15 @@
+diff --git a/python_programs/possible_change.py b/python_programs/possible_change.py
+index 1234567..89abcde 100644
+--- a/python_programs/possible_change.py
++++ b/python_programs/possible_change.py
+@@ -1,6 +1,7 @@
+ # Python 3
+ def possible_change(coins, total):
++    if not coins:
++        return 0
+     if total == 0:
+         return 1
+     if total < 0:
+         return 0
+     first, *rest = coins
+     return possible_change(coins, total - first) + possible_change(rest, total)

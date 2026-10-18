@@ -1,0 +1,121 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-minimum_spanning_tree",
+  "program_name": "minimum_spanning_tree",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 8245,
+  "prompt_tokens": 7170,
+  "completion_tokens": 1075,
+  "token_breakdown": {
+    "total_tokens": 8245,
+    "prompt_tokens": 7170,
+    "completion_tokens": 1075,
+    "by_role": {
+      "Locator": {
+        "prompt": 402,
+        "completion": 713,
+        "total": 1115
+      },
+      "Coder": {
+        "prompt": 6768,
+        "completion": 362,
+        "total": 7130
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 402,
+        "completion": 713,
+        "total": 1115
+      },
+      "ollama": {
+        "prompt": 6768,
+        "completion": 362,
+        "total": 7130
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T11:21:37Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-minimum_spanning_tree",
+        "program_name": "minimum_spanning_tree",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 402,
+        "completion_tokens": 713,
+        "total_tokens": 1115
+      },
+      {
+        "timestamp": "2026-10-16T11:21:50Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-minimum_spanning_tree",
+        "program_name": "minimum_spanning_tree",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2216,
+        "completion_tokens": 121,
+        "total_tokens": 2337
+      },
+      {
+        "timestamp": "2026-10-16T11:22:00Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-minimum_spanning_tree",
+        "program_name": "minimum_spanning_tree",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2276,
+        "completion_tokens": 121,
+        "total_tokens": 2397
+      },
+      {
+        "timestamp": "2026-10-16T11:22:11Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-minimum_spanning_tree",
+        "program_name": "minimum_spanning_tree",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2276,
+        "completion_tokens": 120,
+        "total_tokens": 2396
+      }
+    ]
+  },
+  "total_duration_seconds": 67.108,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+      "resolved": false,
+      "duration_seconds": 12.401
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+      "resolved": false,
+      "duration_seconds": 10.516
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+      "resolved": false,
+      "duration_seconds": 10.619
+    }
+  ]
+}

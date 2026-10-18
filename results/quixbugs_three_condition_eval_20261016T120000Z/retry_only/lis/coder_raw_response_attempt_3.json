@@ -1,0 +1,31 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 3082,
+  "completion_tokens": 240,
+  "latency_seconds": 16.016784,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original implementation of 'lis' was incorrect because it did not properly handle the logic for finding the longest increasing subsequence. The previous patch attempted to fix this by initializing 'ends' with -1, but it failed because the logic for updating 'ends' was incorrect.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/lis.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ends = {}\",\n      \"code\": \"ends = [-1] * (len(arr) + 1)\"\n    },\n    {\n      \"path\": \"python_programs/lis.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if length == longest or val < arr[ends[length + 1]]:\",\n      \"code\": \"if length == longest - 1 or val < arr[ends[length + 1]]:\"\n    },\n    {\n      \"path\": \"python_programs/lis.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ends[length + 1] = i\",\n      \"code\": \"ends[length] = i\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original implementation of 'lis' was incorrect because it did not properly handle the logic for finding the longest increasing subsequence. The previous patch attempted to fix this by initializing 'ends' with -1, but it failed because the logic for updating 'ends' was incorrect.",
+    "modifications": [
+      {
+        "path": "python_programs/lis.py",
+        "operation": "replace",
+        "anchor": "ends = {}",
+        "code": "ends = [-1] * (len(arr) + 1)"
+      },
+      {
+        "path": "python_programs/lis.py",
+        "operation": "replace",
+        "anchor": "if length == longest or val < arr[ends[length + 1]]:",
+        "code": "if length == longest - 1 or val < arr[ends[length + 1]]:"
+      },
+      {
+        "path": "python_programs/lis.py",
+        "operation": "replace",
+        "anchor": "ends[length + 1] = i",
+        "code": "ends[length] = i"
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "bitcount": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 222,
+    "duration_seconds": 20.159
+  },
+  "detect_cycle": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 305,
+    "duration_seconds": 24.549
+  },
+  "find_in_sorted": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 328,
+    "duration_seconds": 22.0
+  },
+  "gcd": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 199,
+    "duration_seconds": 21.27
+  },
+  "hanoi": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 368,
+    "duration_seconds": 21.368
+  },
+  "kheapsort": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 247,
+    "duration_seconds": 21.852
+  },
+  "knapsack": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 358,
+    "duration_seconds": 22.524
+  },
+  "lcs_length": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 331,
+    "duration_seconds": 30.279
+  },
+  "longest_common_subsequence": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 334,
+    "duration_seconds": 30.179
+  },
+  "mergesort": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 279,
+    "duration_seconds": 26.987
+  },
+  "next_palindrome": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 395,
+    "duration_seconds": 29.638
+  },
+  "next_permutation": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 499,
+    "duration_seconds": 28.357
+  },
+  "possible_change": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 280,
+    "duration_seconds": 31.208
+  },
+  "powerset": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 403,
+    "duration_seconds": 27.768
+  },
+  "sieve": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 296,
+    "duration_seconds": 44.749
+  },
+  "sqrt": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 284,
+    "duration_seconds": 41.613
+  },
+  "topological_ordering": {
+    "resolved": true,
+    "attempts_used": 1,
+    "first_attempt_resolved": true,
+    "test_passed": true,
+    "eval_verdict": "RESOLVED",
+    "patch_applied": true,
+    "diff_exists": true,
+    "diff_size_bytes": 487,
+    "duration_seconds": 45.878
+  }
+}

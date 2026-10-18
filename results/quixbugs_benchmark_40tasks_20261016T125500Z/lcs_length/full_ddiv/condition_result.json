@@ -1,0 +1,54 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-lcs_length",
+  "program_name": "lcs_length",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 9405,
+  "prompt_tokens": 9062,
+  "completion_tokens": 343,
+  "total_duration_seconds": 41.139,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.084,
+      "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.166,
+      "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 14.845,
+      "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+    }
+  ]
+}

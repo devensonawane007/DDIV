@@ -1,0 +1,86 @@
+task_id,repository,base_commit_available,required_python_env,target_test_available,fail_to_pass_count,clean_base_test_outcome,defect_reproduction_status,windows_compatibility,test_execution_time_s,docker_required,eligibility_classification,evidence_and_logs,remaining_blockers
+pylint-dev__pylint-6386,pylint-dev/pylint,yes,2.14,yes,1,FAILED (correct),yes,9,2.89,no,verified_eligible,"base_commit_confirmed: 754b487f4d892e3d4872b6fc7468a71db4e31c13; test_patch_applied: yes; install_succeeded: yes; baseline_correctly_fails: rc=1, '1 failed in 1.06s' (FAILED tests/config/test_config.py::test_short_verbose - SystemExit: 2); test_run_time_s=2.89; classification_note: charmap crash was in script log-writing (Unicode checkmark), NOT in test execution",none
+pylint-dev__pylint-8898,pylint-dev/pylint,yes,3.0,yes,1,FAILED (correct),yes,9,2.41,no,verified_eligible,"base_commit_confirmed: 1f8c4d9eb185c16a2c1d881c054f015e1c2eb334; test_patch_applied: yes; install_succeeded: yes; test_collected: 1 test collected in 1.07s; baseline_correctly_fails: rc=1, 'FAILED tests/config/test_config.py::test_csv_regex_error - AssertionError'; baseline_output: ssion: (foo{1 beginning at index 0: missing ), unterminated subpattern; test_run_time_s=2.41; classification_note: charmap crash was in script log-writing (Unicode checkmark), NOT in test execution",none
+psf__requests-5414,psf/requests,yes,2.26,yes,1,FAILED (correct),yes,8,2.0,no,verified_eligible,base_commit_confirmed: 39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e; baseline_correctly_fails: rc=1; test_run_time_s=2.0,
+psf__requests-6028,psf/requests,yes,2.27,yes,2,FAILED (correct),yes,7,1.27,no,verified_eligible,base_commit_confirmed: 0192aac24123735b3eaf9b08df46429bb770c283; baseline_correctly_fails: rc=1; test_run_time_s=1.27,
+pylint-dev__pylint-7080,pylint-dev/pylint,yes,2.15,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-10323,sphinx-doc/sphinx,yes,5.0,yes,1,not_verified,not_verified,9,2.2,no,promising_not_verified,"base_commit_confirmed: yes; install_succeeded: yes; test_collected: 1 item; baseline_result: rc=0, 1 xfailed in 0.52s; note: XFAIL means test is correctly detecting the bug but via xfail decorator. Patch likely removes xfail and makes test pass properly. Needs deeper investigation.",none
+sphinx-doc__sphinx-10435,sphinx-doc/sphinx,yes,5.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-10449,sphinx-doc/sphinx,yes,5.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-10466,sphinx-doc/sphinx,yes,5.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-10673,sphinx-doc/sphinx,yes,5.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-7454,sphinx-doc/sphinx,yes,3.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-7590,sphinx-doc/sphinx,yes,3.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-7757,sphinx-doc/sphinx,yes,3.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-7889,sphinx-doc/sphinx,yes,3.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-7910,sphinx-doc/sphinx,yes,3.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8035,sphinx-doc/sphinx,yes,3.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8056,sphinx-doc/sphinx,yes,3.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8120,sphinx-doc/sphinx,yes,3.3,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8459,sphinx-doc/sphinx,yes,3.4,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8548,sphinx-doc/sphinx,yes,3.4,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8551,sphinx-doc/sphinx,yes,3.4,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-8595,sphinx-doc/sphinx,yes,3.5,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9229,sphinx-doc/sphinx,yes,4.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9230,sphinx-doc/sphinx,yes,4.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9258,sphinx-doc/sphinx,yes,4.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9281,sphinx-doc/sphinx,yes,4.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9320,sphinx-doc/sphinx,yes,4.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9367,sphinx-doc/sphinx,yes,4.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9591,sphinx-doc/sphinx,yes,4.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9602,sphinx-doc/sphinx,yes,4.2,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9658,sphinx-doc/sphinx,yes,4.3,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9673,sphinx-doc/sphinx,yes,4.3,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9698,sphinx-doc/sphinx,yes,4.3,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sphinx-doc__sphinx-9711,sphinx-doc/sphinx,yes,4.3,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-11618,sympy/sympy,yes,1.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-12096,sympy/sympy,yes,1.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-12419,sympy/sympy,yes,1.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-12481,sympy/sympy,yes,1.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-12489,sympy/sympy,yes,1.0,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13031,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13372,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13480,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13551,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13615,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13647,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13757,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13798,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13852,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+sympy__sympy-13877,sympy/sympy,yes,1.1,yes,1,not_verified,not_verified,9,,no,promising_not_verified,static_screen_only,none
+pylint-dev__pylint-4661,pylint-dev/pylint,yes,2.10,yes,1,error/blocked,no,9,0.83,no,blocked,base_commit_confirmed: 1d1619ef913b99b06647d2030bddff4800abdf63,ambiguous_baseline: rc=4
+pylint-dev__pylint-7277,pylint-dev/pylint,yes,2.15,yes,1,error/blocked,no,9,4.36,no,blocked,base_commit_confirmed: yes; install_succeeded: yes; collection_error: ModuleNotFoundError: No module named 'py._path'; 'py' is not a package; root_cause: astroid/py lib version pinned incompatibly for Python 3.11,ModuleNotFoundError: No module named 'py._path' — py library version incompatibility with Python 3.11 and pytest 7+
+sphinx-doc__sphinx-8721,sphinx-doc/sphinx,yes,3.5,yes,1,error/blocked,no,9,2.02,no,blocked,"base_commit_confirmed: yes; install_succeeded: yes; collection_error: rc=1, no stdout output","test_collection_error: rc=1, no output — likely missing optional deps (epub builder or similar)"
+pylint-dev__pylint-4604,pylint-dev/pylint,yes,2.9,yes,21,see_logs,no,5,1.16,no,blocked,base_commit_confirmed: 1e55ae64624d28c5fe8b63ad7979880ee2e6ef3f,ambiguous_baseline: rc=4
+astropy__astropy-12907,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+astropy__astropy-13033,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+astropy__astropy-14508,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+astropy__astropy-8872,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+django__django-11141,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+django__django-16429,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+matplotlib__matplotlib-20676,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+matplotlib__matplotlib-26342,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+mwaskom__seaborn-3187,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pallets__flask-5014,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+psf__requests-2148,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+psf__requests-2931,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pydata__xarray-4966,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pydata__xarray-7393,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pylint-dev__pylint-4970,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pylint-dev__pylint-6903,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pytest-dev__pytest-5221,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pytest-dev__pytest-7982,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+pytest-dev__pytest-8399,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+scikit-learn__scikit-learn-13496,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+scikit-learn__scikit-learn-26323,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sphinx-doc__sphinx-8269,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sphinx-doc__sphinx-8638,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-13878,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-22914,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-23262,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-23413,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-23950,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-24443,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-24539,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-24562,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none
+sympy__sympy-24661,,yes,existing,yes,N/A,N/A,N/A,N/A,,N/A,duplicate,already_in_benchmark_or_excluded,none

@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-depth_first_search",
+  "program_name": "depth_first_search",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1594,
+  "prompt_tokens": 1468,
+  "completion_tokens": 126,
+  "token_breakdown": {
+    "total_tokens": 1594,
+    "prompt_tokens": 1468,
+    "completion_tokens": 126,
+    "by_role": {
+      "Coder": {
+        "prompt": 1468,
+        "completion": 126,
+        "total": 1594
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1468,
+        "completion": 126,
+        "total": 1594
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:03:04Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-depth_first_search",
+        "program_name": "depth_first_search",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1468,
+        "completion_tokens": 126,
+        "total_tokens": 1594
+      }
+    ]
+  },
+  "total_duration_seconds": 9.538,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/depth_first_search.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 7)",
+      "resolved": false,
+      "duration_seconds": 9.538
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "pylint-dev__pylint-6903",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/lint/run.py",
+          "target_symbol": "_query_cpu",
+          "operation": "replace",
+          "anchor": "avail_cpu = int(cpu_quota / cpu_period)",
+          "code": "avail_cpu = max(int(cpu_quota / cpu_period), 1)",
+          "reason": "Ensure that avail_cpu is never 0 by using the max function to set a minimum value of 1."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -52,7 +52,7 @@\n         with open(\"/sys/fs/cgroup/cpu/cpu.cfs_period_us\", encoding=\"utf-8\") as file:\n             cpu_period = int(file.read().rstrip())\n         # Divide quota by period and you should get num of allotted CPU to the container, rounded down if fractional.\n-        avail_cpu = int(cpu_quota / cpu_period)\n+        avail_cpu = max(int(cpu_quota / cpu_period), 1)\n     elif Path(\"/sys/fs/cgroup/cpu/cpu.shares\").is_file():\n         with open(\"/sys/fs/cgroup/cpu/cpu.shares\", encoding=\"utf-8\") as file:\n             cpu_shares = int(file.read().rstrip())\n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/lint/run.py"
+      ],
+      "latency_seconds": 45.763404846191406,
+      "agent_timings": {
+        "locator": 2.6711297035217285,
+        "coder": 28.2418118,
+        "tester": 1.9185245037078857,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8515,
+        "completion_tokens": 1118,
+        "total_tokens": 9633
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 3336,
+          "completion_tokens": 132,
+          "total_tokens": 3468,
+          "latency_seconds": 2.6711297035217285
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3182,
+          "completion_tokens": 344,
+          "total_tokens": 3526,
+          "latency_seconds": 28.2418118
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1997,
+          "completion_tokens": 642,
+          "total_tokens": 2639,
+          "latency_seconds": 1.9185245037078857
+        }
+      ],
+      "context_characters": 3657,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -52,7 +52,7 @@\n         with open(\"/sys/fs/cgroup/cpu/cpu.cfs_period_us\", encoding=\"utf-8\") as file:\n             cpu_period = int(file.read().rstrip())\n         # Divide quota by period and you should get num of allotted CPU to the container, rounded down if fractional.\n-        avail_cpu = int(cpu_quota / cpu_period)\n+        avail_cpu = max(int(cpu_quota / cpu_period), 1)\n     elif Path(\"/sys/fs/cgroup/cpu/cpu.shares\").is_file():\n         with open(\"/sys/fs/cgroup/cpu/cpu.shares\", encoding=\"utf-8\") as file:\n             cpu_shares = int(file.read().rstrip())\n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\pylint-dev__pylint-6903__baseline\\pylint-dev__pylint-6903__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 157.31,
+    "input_tokens": 8515,
+    "output_tokens": 1118,
+    "total_tokens": 9633,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 2.6711297035217285,
+      "coder": 28.2418118,
+      "tester": 1.9185245037078857,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 3336,
+        "completion_tokens": 132,
+        "total_tokens": 3468,
+        "latency_seconds": 2.6711297035217285
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3182,
+        "completion_tokens": 344,
+        "total_tokens": 3526,
+        "latency_seconds": 28.2418118
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1997,
+        "completion_tokens": 642,
+        "total_tokens": 2639,
+        "latency_seconds": 1.9185245037078857
+      }
+    ],
+    "context_characters": 3657,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+    "duration_seconds": 45.76,
+    "all_f2p_passed": false,
+    "all_p2p_passed": true,
+    "internal_resolved": false,
+    "fail_to_pass_results": {
+      "tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction": false
+    },
+    "pass_to_pass_results": {
+      "tests/test_pylint_runners.py::test_runner[run_epylint]": true,
+      "tests/test_pylint_runners.py::test_runner[run_pylint]": true,
+      "tests/test_pylint_runners.py::test_runner[run_pyreverse]": true,
+      "tests/test_pylint_runners.py::test_runner[run_symilar]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_epylint]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_pylint]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_pyreverse]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_symilar]": true
+    }
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 157.31,
+  "worker_pid": 34500,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\pilot_5tasks\\pylint-dev__pylint-6903__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\pylint-dev__pylint-6903__baseline",
+  "error_message": null,
+  "started_at": "2026-10-14T07:43:18.100318+00:00",
+  "completed_at": "2026-10-14T07:45:55.412977+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 9633,
+  "prompt_tokens": 8515,
+  "completion_tokens": 1118
+}

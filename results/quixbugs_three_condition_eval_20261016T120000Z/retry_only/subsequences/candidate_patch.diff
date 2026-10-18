@@ -1,0 +1,13 @@
+--- a/python_programs/subsequences.py
++++ b/python_programs/subsequences.py
+@@ -4,9 +4,7 @@
+ 
+     ret = []
+     for i in range(a, b + 1 - k):
+-        ret.extend(
+-            [i] + rest for rest in subsequences(i + 1, b, k - 1)
+-        )
++        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])
+ 
+     return ret
+ 

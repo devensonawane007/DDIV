@@ -1,0 +1,15 @@
+--- a/python_programs/bitcount.py
++++ b/python_programs/bitcount.py
+@@ -1,5 +1,12 @@
+ 
+ def bitcount(n):
++    if n == 0:
++        return 0
++    count = 0
++    while n:
++        n ^= n - 1
++        count += 1
++    return count
+     count = 0
+     while n:
+         n ^= n - 1

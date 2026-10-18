@@ -1,0 +1,84 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-next_palindrome",
+  "program_name": "next_palindrome",
+  "resolved": true,
+  "attempts_used": 2,
+  "max_attempts": 3,
+  "total_tokens": 3620,
+  "prompt_tokens": 3268,
+  "completion_tokens": 352,
+  "token_breakdown": {
+    "total_tokens": 3620,
+    "prompt_tokens": 3268,
+    "completion_tokens": 352,
+    "by_role": {
+      "Coder": {
+        "prompt": 3268,
+        "completion": 352,
+        "total": 3620
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 3268,
+        "completion": 352,
+        "total": 3620
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:09:59Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_palindrome",
+        "program_name": "next_palindrome",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1620,
+        "completion_tokens": 212,
+        "total_tokens": 1832
+      },
+      {
+        "timestamp": "2026-10-17T07:10:22Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-next_palindrome",
+        "program_name": "next_palindrome",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1648,
+        "completion_tokens": 140,
+        "total_tokens": 1788
+      }
+    ]
+  },
+  "total_duration_seconds": 45.533,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+      "resolved": false,
+      "duration_seconds": 19.697
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 25.835,
+      "patch_diff": "--- a/python_programs/next_palindrome.py\n+++ b/python_programs/next_palindrome.py\n@@ -12,7 +12,7 @@\n             if low_mid != high_mid:\n                 digit_list[low_mid] += 1\n             return digit_list\n-    return [1] + (len(digit_list)) * [0] + [1]\n+    return [1] + [0] * (len(digit_list) - 1) + [1]\n \n \"\"\"\n Finds the next palindromic integer when given the current integer\n"
+    }
+  ]
+}

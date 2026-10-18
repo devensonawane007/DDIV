@@ -1,0 +1,37 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-is_valid_parenthesization",
+  "program_name": "is_valid_parenthesization",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 2,
+  "max_attempts": 3,
+  "total_tokens": 3838,
+  "prompt_tokens": 3602,
+  "completion_tokens": 236,
+  "total_duration_seconds": 31.799,
+  "history": [
+    {
+      "attempt": 1,
+      "candidate_patch_applied": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 14.04,
+      "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -5,6 +5,8 @@\n         if paren == '(':\n             depth += 1\n         else:\n+            if depth < 0:\n+                return False\n             depth -= 1\n             if depth < 0:\n                 return False\n"
+    },
+    {
+      "attempt": 2,
+      "candidate_patch_applied": true,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 17.756,
+      "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -9,7 +9,7 @@\n             if depth < 0:\n                 return False\n \n-    return True\n+    return depth == 0\n \n \n \"\"\"\n"
+    }
+  ]
+}

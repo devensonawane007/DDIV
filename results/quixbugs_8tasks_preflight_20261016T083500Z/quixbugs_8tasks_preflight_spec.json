@@ -1,0 +1,98 @@
+{
+  "preflight_timestamp": "2026-10-16T03:05:47Z",
+  "phase": "8.4",
+  "benchmark": "QuixBugs (Python)",
+  "dataset_path": "data/quixbugs",
+  "model": "qwen2.5-coder:7b",
+  "provider": "ollama",
+  "ollama_endpoint": "http://localhost:11434",
+  "cloud_inference_allowed": false,
+  "tasks_selected": [
+    "quixbugs-python-bucketsort",
+    "quixbugs-python-flatten",
+    "quixbugs-python-is_valid_parenthesization",
+    "quixbugs-python-max_sublist_sum",
+    "quixbugs-python-pascal",
+    "quixbugs-python-quicksort",
+    "quixbugs-python-rpn_eval",
+    "quixbugs-python-to_base"
+  ],
+  "experimental_conditions": {
+    "BASELINE": {
+      "max_attempts": 1,
+      "supervisor_enabled": false,
+      "tester_enabled": false,
+      "episodic_memory_enabled": false,
+      "trust_updates_enabled": false,
+      "feedback_provided": "None (single shot direct repair)"
+    },
+    "RETRY_ONLY": {
+      "max_attempts": 3,
+      "supervisor_enabled": false,
+      "tester_enabled": false,
+      "episodic_memory_enabled": false,
+      "trust_updates_enabled": false,
+      "feedback_provided": "Raw sanitized pytest failure diagnostics ([ORACLE_REDACTED])"
+    },
+    "FULL_DDIV": {
+      "max_attempts": 3,
+      "supervisor_enabled": true,
+      "tester_enabled": true,
+      "episodic_memory_enabled": true,
+      "trust_updates_enabled": true,
+      "feedback_provided": "Supervisor causal failure diagnosis (F1-F4), mistake avoidance directive, and tester critique"
+    }
+  },
+  "total_runs": 24,
+  "agent_role_routing": {
+    "Locator": {
+      "class": "LocatorAgent",
+      "provider": "OllamaProvider",
+      "model": "qwen2.5-coder:7b",
+      "schema": "LocatorOutput"
+    },
+    "Coder": {
+      "class": "CoderAgent",
+      "provider": "OllamaProvider",
+      "model": "qwen2.5-coder:7b",
+      "schema": "CoderOutput"
+    },
+    "Tester": {
+      "class": "TesterAgent",
+      "provider": "OllamaProvider",
+      "model": "qwen2.5-coder:7b",
+      "schema": "TesterOutput"
+    },
+    "Supervisor": {
+      "class": "SupervisorAgent",
+      "provider": "OllamaProvider",
+      "model": "qwen2.5-coder:7b",
+      "schema": "SupervisorDecision"
+    }
+  },
+  "resource_estimates": {
+    "min_model_calls": 32,
+    "max_model_calls": 72,
+    "estimated_total_tokens": "45,000 - 80,000 tokens",
+    "estimated_wall_clock_minutes": "12 - 18 minutes",
+    "ollama_timeout_seconds": 120,
+    "pytest_timeout_seconds": 15,
+    "vram_required": "~5.5 GB VRAM",
+    "disk_required": "< 50 MB"
+  },
+  "isolation_guarantees": {
+    "agent_workspace_contains_testcases": false,
+    "agent_workspace_contains_oracles": false,
+    "agent_workspace_contains_reference_solutions": false,
+    "sanitized_diagnostics": true,
+    "separate_subprocess_pytest": true,
+    "import_precedence_protection": true
+  },
+  "state_preservation": {
+    "production_memory_db": "data/ddiv_memory.db (Preserved, untouched)",
+    "swebench_records": "results/candidate_* (Preserved, untouched)",
+    "phase_8_3_pilot_records": "results/quixbugs_pilot_quicksort_20261016T060000Z (Preserved, untouched)",
+    "benchmark_memory_target": "results/quixbugs_benchmark_8tasks_<timestamp>/quixbugs_8tasks_memory.db"
+  },
+  "preflight_verdict": "READY"
+}

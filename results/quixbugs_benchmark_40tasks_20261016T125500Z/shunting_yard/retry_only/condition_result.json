@@ -1,0 +1,54 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-shunting_yard",
+  "program_name": "shunting_yard",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7400,
+  "prompt_tokens": 7049,
+  "completion_tokens": 351,
+  "total_duration_seconds": 32.876,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 9.929,
+      "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 10.9,
+      "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 12.047,
+      "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+    }
+  ]
+}

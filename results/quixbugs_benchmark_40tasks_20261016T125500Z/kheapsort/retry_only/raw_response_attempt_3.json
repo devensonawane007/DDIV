@@ -1,0 +1,20 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 2503,
+  "completion_tokens": 132,
+  "latency_seconds": 8.4829257,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is that the code does not handle the case where the heap size exceeds k. The fix is to ensure that the heap size never exceeds k by removing the smallest element when the heap size exceeds k.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/kheapsort.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"yield heapq.heappushpop(heap, x)\",\n      \"code\": \"if len(heap) > k:\\n    heapq.heappop(heap)\\n    yield heapq.heappushpop(heap, x)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is that the code does not handle the case where the heap size exceeds k. The fix is to ensure that the heap size never exceeds k by removing the smallest element when the heap size exceeds k.",
+    "modifications": [
+      {
+        "path": "python_programs/kheapsort.py",
+        "operation": "replace",
+        "anchor": "yield heapq.heappushpop(heap, x)",
+        "code": "if len(heap) > k:\n    heapq.heappop(heap)\n    yield heapq.heappushpop(heap, x)"
+      }
+    ]
+  }
+}

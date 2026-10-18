@@ -1,0 +1,28 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-rpn_eval",
+  "program_name": "rpn_eval",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 1816,
+  "prompt_tokens": 1706,
+  "completion_tokens": 110,
+  "total_duration_seconds": 11.279,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 11.277,
+      "patch_diff": "--- a/python_programs/rpn_eval.py\n+++ b/python_programs/rpn_eval.py\n@@ -16,9 +16,7 @@\n         else:\n             a = stack.pop()\n             b = stack.pop()\n-            stack.append(\n-                op(token, a, b)\n-            )\n+            stack.append(op(token, b, a))\n \n     return stack.pop()\n \n"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-find_first_in_sorted",
+  "program_name": "find_first_in_sorted",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 1770,
+  "prompt_tokens": 1667,
+  "completion_tokens": 103,
+  "total_duration_seconds": 10.67,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 10.664,
+      "patch_diff": "--- a/python_programs/find_first_in_sorted.py\n+++ b/python_programs/find_first_in_sorted.py\n@@ -2,7 +2,7 @@\n     lo = 0\n     hi = len(arr)\n \n-    while lo <= hi:\n+    while lo < hi:\n         mid = (lo + hi) // 2\n \n         if x == arr[mid] and (mid == 0 or x != arr[mid - 1]):\n"
+    }
+  ]
+}

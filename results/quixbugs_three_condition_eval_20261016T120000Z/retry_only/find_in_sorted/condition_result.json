@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-find_in_sorted",
+  "program_name": "find_in_sorted",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 8863,
+  "prompt_tokens": 8526,
+  "completion_tokens": 337,
+  "token_breakdown": {
+    "total_tokens": 8863,
+    "prompt_tokens": 8526,
+    "completion_tokens": 337,
+    "by_role": {
+      "Coder": {
+        "prompt": 8526,
+        "completion": 337,
+        "total": 8863
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 8526,
+        "completion": 337,
+        "total": 8863
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:04:43Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-find_in_sorted",
+        "program_name": "find_in_sorted",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1524,
+        "completion_tokens": 121,
+        "total_tokens": 1645
+      },
+      {
+        "timestamp": "2026-10-16T18:04:57Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-find_in_sorted",
+        "program_name": "find_in_sorted",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 3501,
+        "completion_tokens": 112,
+        "total_tokens": 3613
+      },
+      {
+        "timestamp": "2026-10-16T18:05:12Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-find_in_sorted",
+        "program_name": "find_in_sorted",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 3501,
+        "completion_tokens": 104,
+        "total_tokens": 3605
+      }
+    ]
+  },
+  "total_duration_seconds": 41.87,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.268,
+      "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.326,
+      "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.274,
+      "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+    }
+  ]
+}

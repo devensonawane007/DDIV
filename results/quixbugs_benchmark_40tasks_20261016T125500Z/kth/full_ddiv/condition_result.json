@@ -1,0 +1,41 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-kth",
+  "program_name": "kth",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 2,
+  "max_attempts": 3,
+  "total_tokens": 4941,
+  "prompt_tokens": 4599,
+  "completion_tokens": 342,
+  "total_duration_seconds": 30.575,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.256,
+      "patch_diff": "--- a/python_programs/kth.py\n+++ b/python_programs/kth.py\n@@ -4,7 +4,7 @@\n     above = [x for x in arr if x > pivot]\n \n     num_less = len(below)\n-    num_lessoreq = len(arr) - len(above)\n+    num_lessoreq = len(arr) - num_less - 1\n \n     if k < num_less:\n         return kth(below, k)\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 19.298,
+      "patch_diff": "--- a/python_programs/kth.py\n+++ b/python_programs/kth.py\n@@ -1,4 +1,19 @@\n def kth(arr, k):\n+    if not arr:\n+        raise ValueError('Array is empty')\n+    pivot = arr[0]\n+    below = [x for x in arr if x < pivot]\n+    above = [x for x in arr if x > pivot]\n+\n+    num_less = len(below)\n+    num_lessoreq = len(arr) - len(above)\n+\n+    if k < num_less:\n+        return kth(below, k)\n+    elif k >= num_lessoreq:\n+        return kth(above, k - num_lessoreq)\n+    else:\n+        return pivot\n     pivot = arr[0]\n     below = [x for x in arr if x < pivot]\n     above = [x for x in arr if x > pivot]\n"
+    }
+  ]
+}

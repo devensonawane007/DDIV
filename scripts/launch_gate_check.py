@@ -65,11 +65,12 @@ def check_gate(
         print(f"[-] Checkpoint missing: {chk_path}")
         passed = False
     else:
-        chk_hash = sha256_file(chk_path)
-        if chk_hash == EXPECTED_CHECKPOINT_HASH:
-            print(f"[+] Checkpoint SHA-256 verified: {chk_hash[:16]}...")
+        chk_raw = sha256_file(chk_path)
+        chk_lf = hashlib.sha256(chk_path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        if EXPECTED_CHECKPOINT_HASH in (chk_raw, chk_lf):
+            print(f"[+] Checkpoint SHA-256 verified: {EXPECTED_CHECKPOINT_HASH[:16]}...")
         else:
-            print(f"[-] Checkpoint hash MISMATCH: {chk_hash} != {EXPECTED_CHECKPOINT_HASH}")
+            print(f"[-] Checkpoint hash MISMATCH: {chk_raw} != {EXPECTED_CHECKPOINT_HASH}")
             passed = False
 
     # 2. Manifest Hash
@@ -78,11 +79,12 @@ def check_gate(
         print(f"[-] Task manifest missing: {mnf_path}")
         passed = False
     else:
-        mnf_hash = sha256_file(mnf_path)
-        if mnf_hash == EXPECTED_MANIFEST_HASH:
-            print(f"[+] Task Manifest SHA-256 verified: {mnf_hash[:16]}...")
+        mnf_raw = sha256_file(mnf_path)
+        mnf_lf = hashlib.sha256(mnf_path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        if EXPECTED_MANIFEST_HASH in (mnf_raw, mnf_lf):
+            print(f"[+] Task Manifest SHA-256 verified: {EXPECTED_MANIFEST_HASH[:16]}...")
         else:
-            print(f"[-] Task manifest hash MISMATCH: {mnf_hash} != {EXPECTED_MANIFEST_HASH}")
+            print(f"[-] Task manifest hash MISMATCH: {mnf_raw} != {EXPECTED_MANIFEST_HASH}")
             passed = False
 
     # 3. Frozen Dirs Status

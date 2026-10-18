@@ -1,0 +1,12 @@
+--- a/python_programs/kheapsort.py
++++ b/python_programs/kheapsort.py
+@@ -5,7 +5,8 @@
+     heapq.heapify(heap)
+ 
+     for x in arr:
+-        yield heapq.heappushpop(heap, x)
++        heapq.heappush(heap, x)
++        yield heapq.heappop(heap)
+ 
+     while heap:
+         yield heapq.heappop(heap)

@@ -1,0 +1,11 @@
+--- a/python_programs/flatten.py
++++ b/python_programs/flatten.py
+@@ -4,7 +4,7 @@
+             for y in flatten(x):
+                 yield y
+         else:
+-            yield flatten(x)
++            yield x
+ 
+ 
+ 

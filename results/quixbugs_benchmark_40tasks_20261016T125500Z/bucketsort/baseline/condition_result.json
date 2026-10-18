@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-bucketsort",
+  "program_name": "bucketsort",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1715,
+  "prompt_tokens": 1601,
+  "completion_tokens": 114,
+  "total_duration_seconds": 10.55,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 10.55,
+      "patch_diff": "--- a/python_programs/bucketsort.py\n+++ b/python_programs/bucketsort.py\n@@ -4,7 +4,7 @@\n         counts[x] += 1\n \n     sorted_arr = []\n-    for i, count in enumerate(arr):\n+    for i, count in enumerate(counts):\n         sorted_arr.extend([i] * count)\n \n     return sorted_arr\n"
+    }
+  ]
+}

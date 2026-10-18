@@ -1,0 +1,228 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "astropy__astropy-8872",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "path/to/astropy/units/quantity.py",
+          "target_symbol": null,
+          "operation": "insert_after",
+          "anchor": "if value_unit is None:",
+          "code": "    if isinstance(value, np.float16):\n        dtype = np.float16\n    else:\n        dtype = np.float64\n",
+          "reason": "This change adds a check to ensure that the dtype remains `np.float16` if the input is a `np.float16`. This prevents automatic dtype promotion to `np.float64` when creating a `Quantity` from a `np.float16`."
+        }
+      ],
+      "patch_operations": [
+        "insert_after"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Target file not found in workspace: path/to/astropy/units/quantity.py",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "astropy/units/quantity.py"
+      ],
+      "latency_seconds": 0.14860796928405762,
+      "agent_timings": {
+        "locator": 3.745506525039673,
+        "coder": 42.5938171,
+        "tester": 1.6682021617889404,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8267,
+        "completion_tokens": 1257,
+        "total_tokens": 9524
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 2024,
+          "completion_tokens": 152,
+          "total_tokens": 2176,
+          "latency_seconds": 3.745506525039673
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3781,
+          "completion_tokens": 622,
+          "total_tokens": 4403,
+          "latency_seconds": 42.5938171
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2462,
+          "completion_tokens": 483,
+          "total_tokens": 2945,
+          "latency_seconds": 1.6682021617889404
+        }
+      ],
+      "context_characters": 10213,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F4",
+        "granular_failure_type": "ENVIRONMENT_FAILURE",
+        "confidence": 0.98,
+        "evidence_reasons": [
+          "Pristine repository base failed pre-existing PASS_TO_PASS tests (environment failure)."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": false,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\astropy__astropy-8872__baseline\\astropy__astropy-8872__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 102.34,
+    "input_tokens": 8267,
+    "output_tokens": 1257,
+    "total_tokens": 9524,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 3.745506525039673,
+      "coder": 42.5938171,
+      "tester": 1.6682021617889404,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 2024,
+        "completion_tokens": 152,
+        "total_tokens": 2176,
+        "latency_seconds": 3.745506525039673
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3781,
+        "completion_tokens": 622,
+        "total_tokens": 4403,
+        "latency_seconds": 42.5938171
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2462,
+        "completion_tokens": 483,
+        "total_tokens": 2945,
+        "latency_seconds": 1.6682021617889404
+      }
+    ],
+    "context_characters": 10213,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.15,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 102.34,
+  "worker_pid": 27236,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\pilot_5tasks\\astropy__astropy-8872__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\astropy__astropy-8872__baseline",
+  "error_message": null,
+  "started_at": "2026-10-14T11:00:35.628383+00:00",
+  "completed_at": "2026-10-14T11:02:17.965827+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 9524,
+  "prompt_tokens": 8267,
+  "completion_tokens": 1257
+}

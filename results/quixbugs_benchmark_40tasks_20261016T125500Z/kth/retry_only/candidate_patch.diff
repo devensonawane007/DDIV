@@ -1,0 +1,18 @@
+--- a/python_programs/kth.py
++++ b/python_programs/kth.py
+@@ -1,4 +1,15 @@
+ def kth(arr, k):
++    if not arr:
++        raise ValueError('Array is empty')
++    pivot = arr[0]
++    below = [x for x in arr if x < pivot]
++    above = [x for x in arr if x > pivot]
++    if k == len(below):
++        return pivot
++    elif k < len(below):
++        return kth(below, k)
++    else:
++        return kth(above, k - len(below) - 1)
+     pivot = arr[0]
+     below = [x for x in arr if x < pivot]
+     above = [x for x in arr if x > pivot]

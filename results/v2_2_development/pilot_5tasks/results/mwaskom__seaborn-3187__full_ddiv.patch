@@ -1,0 +1,12 @@
+@@ -370,10 +370,15 @@
+     def get_legend_info(self, formatter):
+         # Get the legend information from the parent class
+         legend_info = super().get_legend_info(formatter)
++
++        # Retrieve the offset from the formatter
++        offset = formatter.get_offset()
++
++        # Apply the offset to the legend labels/titles
++        pass
++
+         return legend_info

@@ -1,0 +1,1236 @@
+{
+  "timestamp": "2026-10-16T11:27:16Z",
+  "status": "COMPLETED",
+  "batch": 2,
+  "total_assigned_tasks": 9,
+  "completed_tasks": 9,
+  "skipped_checkpoint_tasks": 1,
+  "resolved": 5,
+  "resolution_rate_pct": 55.56,
+  "today_date_utc": "2026-10-16",
+  "today_groq_tokens": 23410,
+  "today_gemini_tokens": 14274,
+  "cumulative_groq_tokens": 23410,
+  "cumulative_gemini_tokens": 14274,
+  "current_session_groq_tokens": 5651,
+  "current_session_gemini_tokens": 7164,
+  "results": {
+    "lcs_length": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-lcs_length",
+      "program_name": "lcs_length",
+      "resolved": false,
+      "attempts_used": 3,
+      "max_attempts": 3,
+      "total_tokens": 15874,
+      "prompt_tokens": 12840,
+      "completion_tokens": 3034,
+      "token_breakdown": {
+        "total_tokens": 15874,
+        "prompt_tokens": 12840,
+        "completion_tokens": 3034,
+        "by_role": {
+          "Locator": {
+            "prompt": 0,
+            "completion": 0,
+            "total": 0
+          },
+          "Coder": {
+            "prompt": 9458,
+            "completion": 1265,
+            "total": 10723
+          },
+          "Tester": {
+            "prompt": 141,
+            "completion": 1195,
+            "total": 1336
+          },
+          "Supervisor": {
+            "prompt": 3241,
+            "completion": 574,
+            "total": 3815
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 0,
+            "completion": 0,
+            "total": 0
+          },
+          "ollama": {
+            "prompt": 9458,
+            "completion": 1265,
+            "total": 10723
+          },
+          "groq": {
+            "prompt": 3382,
+            "completion": 1769,
+            "total": 5151
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:07:20Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lcs_length",
+            "program_name": "lcs_length",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 0,
+            "completion_tokens": 0,
+            "total_tokens": 0
+          },
+          {
+            "timestamp": "2026-10-16T11:07:36Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lcs_length",
+            "program_name": "lcs_length",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1479,
+            "completion_tokens": 113,
+            "total_tokens": 1592
+          },
+          {
+            "timestamp": "2026-10-16T11:07:51Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lcs_length",
+            "program_name": "lcs_length",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 141,
+            "completion_tokens": 1195,
+            "total_tokens": 1336
+          },
+          {
+            "timestamp": "2026-10-16T11:08:05Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lcs_length",
+            "program_name": "lcs_length",
+            "attempt": 1,
+            "role": "Supervisor",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 3241,
+            "completion_tokens": 574,
+            "total_tokens": 3815
+          },
+          {
+            "timestamp": "2026-10-16T11:08:54Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lcs_length",
+            "program_name": "lcs_length",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 4052,
+            "completion_tokens": 924,
+            "total_tokens": 4976
+          },
+          {
+            "timestamp": "2026-10-16T11:09:12Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lcs_length",
+            "program_name": "lcs_length",
+            "attempt": 3,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 3927,
+            "completion_tokens": 228,
+            "total_tokens": 4155
+          }
+        ]
+      },
+      "total_duration_seconds": 212.463,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "1 test(s) failed assertion check.",
+          "duration_seconds": 33.438,
+          "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Anchor not found in 'python_programs/lcs_length.py': dp[i, j] = max(dp[i-1, j], dp[i, j-1])",
+          "resolved": false,
+          "duration_seconds": 49.206
+        },
+        {
+          "attempt": 3,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Patched file 'python_programs/lcs_length.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 12)",
+          "resolved": false,
+          "duration_seconds": 17.808
+        }
+      ]
+    },
+    "lis": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-lis",
+      "program_name": "lis",
+      "resolved": false,
+      "attempts_used": 3,
+      "max_attempts": 3,
+      "total_tokens": 13531,
+      "prompt_tokens": 11588,
+      "completion_tokens": 1943,
+      "token_breakdown": {
+        "total_tokens": 13531,
+        "prompt_tokens": 11588,
+        "completion_tokens": 1943,
+        "by_role": {
+          "Locator": {
+            "prompt": 260,
+            "completion": 666,
+            "total": 926
+          },
+          "Coder": {
+            "prompt": 8635,
+            "completion": 417,
+            "total": 9052
+          },
+          "Tester": {
+            "prompt": 480,
+            "completion": 480,
+            "total": 960
+          },
+          "Supervisor": {
+            "prompt": 2213,
+            "completion": 380,
+            "total": 2593
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 260,
+            "completion": 666,
+            "total": 926
+          },
+          "ollama": {
+            "prompt": 8635,
+            "completion": 417,
+            "total": 9052
+          },
+          "groq": {
+            "prompt": 2693,
+            "completion": 860,
+            "total": 3553
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:15:31Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 260,
+            "completion_tokens": 666,
+            "total_tokens": 926
+          },
+          {
+            "timestamp": "2026-10-16T11:15:48Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2148,
+            "completion_tokens": 116,
+            "total_tokens": 2264
+          },
+          {
+            "timestamp": "2026-10-16T11:16:04Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 160,
+            "completion_tokens": 160,
+            "total_tokens": 320
+          },
+          {
+            "timestamp": "2026-10-16T11:16:23Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 1,
+            "role": "Supervisor",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 1106,
+            "completion_tokens": 186,
+            "total_tokens": 1292
+          },
+          {
+            "timestamp": "2026-10-16T11:16:36Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 3239,
+            "completion_tokens": 144,
+            "total_tokens": 3383
+          },
+          {
+            "timestamp": "2026-10-16T11:16:52Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 2,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 160,
+            "completion_tokens": 160,
+            "total_tokens": 320
+          },
+          {
+            "timestamp": "2026-10-16T11:17:10Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 2,
+            "role": "Supervisor",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 1107,
+            "completion_tokens": 194,
+            "total_tokens": 1301
+          },
+          {
+            "timestamp": "2026-10-16T11:17:24Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 3,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 3248,
+            "completion_tokens": 157,
+            "total_tokens": 3405
+          },
+          {
+            "timestamp": "2026-10-16T11:17:40Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-lis",
+            "program_name": "lis",
+            "attempt": 3,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 160,
+            "completion_tokens": 160,
+            "total_tokens": 320
+          }
+        ]
+      },
+      "total_duration_seconds": 193.076,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "1 test(s) failed assertion check.",
+          "duration_seconds": 36.484,
+          "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -9,7 +9,7 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n+        if length == longest or (length + 1 in ends and val < arr[ends[length + 1]]):\n             ends[length + 1] = i\n             longest = length + 1\n \n"
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": true,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "1 test(s) failed assertion check.",
+          "duration_seconds": 31.225,
+          "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -9,7 +9,7 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n+        if length == longest or (length + 1 in ends and val < arr[ends[length + 1]]):\n             ends[length + 1] = i\n             longest = length + 1\n \n"
+        },
+        {
+          "attempt": 3,
+          "temperature": 0.2,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": true,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "1 test(s) failed assertion check.",
+          "duration_seconds": 32.254,
+          "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -9,7 +9,7 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n+        if length == longest or (length + 1 in ends and val < arr[ends[length + 1]]):\n             ends[length + 1] = i\n             longest = length + 1\n \n"
+        }
+      ]
+    },
+    "longest_common_subsequence": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-longest_common_subsequence",
+      "program_name": "longest_common_subsequence",
+      "resolved": true,
+      "attempts_used": 2,
+      "max_attempts": 3,
+      "total_tokens": 6202,
+      "prompt_tokens": 5153,
+      "completion_tokens": 1049,
+      "token_breakdown": {
+        "total_tokens": 6202,
+        "prompt_tokens": 5153,
+        "completion_tokens": 1049,
+        "by_role": {
+          "Locator": {
+            "prompt": 298,
+            "completion": 473,
+            "total": 771
+          },
+          "Coder": {
+            "prompt": 4228,
+            "completion": 259,
+            "total": 4487
+          },
+          "Tester": {
+            "prompt": 316,
+            "completion": 216,
+            "total": 532
+          },
+          "Supervisor": {
+            "prompt": 311,
+            "completion": 101,
+            "total": 412
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 298,
+            "completion": 473,
+            "total": 771
+          },
+          "ollama": {
+            "prompt": 4228,
+            "completion": 259,
+            "total": 4487
+          },
+          "groq": {
+            "prompt": 627,
+            "completion": 317,
+            "total": 944
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:18:42Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-longest_common_subsequence",
+            "program_name": "longest_common_subsequence",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 298,
+            "completion_tokens": 473,
+            "total_tokens": 771
+          },
+          {
+            "timestamp": "2026-10-16T11:18:55Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-longest_common_subsequence",
+            "program_name": "longest_common_subsequence",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1976,
+            "completion_tokens": 144,
+            "total_tokens": 2120
+          },
+          {
+            "timestamp": "2026-10-16T11:19:10Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-longest_common_subsequence",
+            "program_name": "longest_common_subsequence",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 158,
+            "completion_tokens": 108,
+            "total_tokens": 266
+          },
+          {
+            "timestamp": "2026-10-16T11:19:41Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-longest_common_subsequence",
+            "program_name": "longest_common_subsequence",
+            "attempt": 1,
+            "role": "Supervisor",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 311,
+            "completion_tokens": 101,
+            "total_tokens": 412
+          },
+          {
+            "timestamp": "2026-10-16T11:19:52Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-longest_common_subsequence",
+            "program_name": "longest_common_subsequence",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2252,
+            "completion_tokens": 115,
+            "total_tokens": 2367
+          },
+          {
+            "timestamp": "2026-10-16T11:20:07Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-longest_common_subsequence",
+            "program_name": "longest_common_subsequence",
+            "attempt": 2,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 158,
+            "completion_tokens": 108,
+            "total_tokens": 266
+          }
+        ]
+      },
+      "total_duration_seconds": 151.016,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Timeout)",
+          "failure_category": "TIMEOUT",
+          "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+          "duration_seconds": 43.48,
+          "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -3,7 +3,7 @@\n         return ''\n \n     elif a[0] == b[0]:\n-        return a[0] + longest_common_subsequence(a[1:], b)\n+        return a[0] + longest_common_subsequence(a[1:], b[1:])\n \n     else:\n         return max(\n"
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": true,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 32.87,
+          "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -3,7 +3,7 @@\n         return ''\n \n     elif a[0] == b[0]:\n-        return a[0] + longest_common_subsequence(a[1:], b)\n+        return a[0] + longest_common_subsequence(a[1:], b[1:])\n \n     else:\n         return max(\n"
+        }
+      ]
+    },
+    "mergesort": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-mergesort",
+      "program_name": "mergesort",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3152,
+      "prompt_tokens": 2412,
+      "completion_tokens": 740,
+      "token_breakdown": {
+        "total_tokens": 3152,
+        "prompt_tokens": 2412,
+        "completion_tokens": 740,
+        "by_role": {
+          "Locator": {
+            "prompt": 267,
+            "completion": 567,
+            "total": 834
+          },
+          "Coder": {
+            "prompt": 2003,
+            "completion": 86,
+            "total": 2089
+          },
+          "Tester": {
+            "prompt": 142,
+            "completion": 87,
+            "total": 229
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 267,
+            "completion": 567,
+            "total": 834
+          },
+          "ollama": {
+            "prompt": 2003,
+            "completion": 86,
+            "total": 2089
+          },
+          "groq": {
+            "prompt": 142,
+            "completion": 87,
+            "total": 229
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:20:33Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-mergesort",
+            "program_name": "mergesort",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 267,
+            "completion_tokens": 567,
+            "total_tokens": 834
+          },
+          {
+            "timestamp": "2026-10-16T11:20:43Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-mergesort",
+            "program_name": "mergesort",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2003,
+            "completion_tokens": 86,
+            "total_tokens": 2089
+          },
+          {
+            "timestamp": "2026-10-16T11:20:59Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-mergesort",
+            "program_name": "mergesort",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 142,
+            "completion_tokens": 87,
+            "total_tokens": 229
+          }
+        ]
+      },
+      "total_duration_seconds": 48.081,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 30.121,
+          "patch_diff": "--- a/python_programs/mergesort.py\n+++ b/python_programs/mergesort.py\n@@ -14,7 +14,7 @@\n         result.extend(left[i:] or right[j:])\n         return result\n \n-    if len(arr) == 0:\n+    if len(arr) <= 1:\n         return arr\n     else:\n         middle = len(arr) // 2\n"
+        }
+      ]
+    },
+    "minimum_spanning_tree": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-minimum_spanning_tree",
+      "program_name": "minimum_spanning_tree",
+      "resolved": false,
+      "attempts_used": 3,
+      "max_attempts": 3,
+      "total_tokens": 8245,
+      "prompt_tokens": 7170,
+      "completion_tokens": 1075,
+      "token_breakdown": {
+        "total_tokens": 8245,
+        "prompt_tokens": 7170,
+        "completion_tokens": 1075,
+        "by_role": {
+          "Locator": {
+            "prompt": 402,
+            "completion": 713,
+            "total": 1115
+          },
+          "Coder": {
+            "prompt": 6768,
+            "completion": 362,
+            "total": 7130
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 402,
+            "completion": 713,
+            "total": 1115
+          },
+          "ollama": {
+            "prompt": 6768,
+            "completion": 362,
+            "total": 7130
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:21:37Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-minimum_spanning_tree",
+            "program_name": "minimum_spanning_tree",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 402,
+            "completion_tokens": 713,
+            "total_tokens": 1115
+          },
+          {
+            "timestamp": "2026-10-16T11:21:50Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-minimum_spanning_tree",
+            "program_name": "minimum_spanning_tree",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2216,
+            "completion_tokens": 121,
+            "total_tokens": 2337
+          },
+          {
+            "timestamp": "2026-10-16T11:22:00Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-minimum_spanning_tree",
+            "program_name": "minimum_spanning_tree",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2276,
+            "completion_tokens": 121,
+            "total_tokens": 2397
+          },
+          {
+            "timestamp": "2026-10-16T11:22:11Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-minimum_spanning_tree",
+            "program_name": "minimum_spanning_tree",
+            "attempt": 3,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2276,
+            "completion_tokens": 120,
+            "total_tokens": 2396
+          }
+        ]
+      },
+      "total_duration_seconds": 67.108,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "patch_extracted": false,
+          "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+          "resolved": false,
+          "duration_seconds": 12.401
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+          "resolved": false,
+          "duration_seconds": 10.516
+        },
+        {
+          "attempt": 3,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+          "resolved": false,
+          "duration_seconds": 10.619
+        }
+      ]
+    },
+    "next_palindrome": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-next_palindrome",
+      "program_name": "next_palindrome",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3868,
+      "prompt_tokens": 2857,
+      "completion_tokens": 1011,
+      "token_breakdown": {
+        "total_tokens": 3868,
+        "prompt_tokens": 2857,
+        "completion_tokens": 1011,
+        "by_role": {
+          "Locator": {
+            "prompt": 361,
+            "completion": 784,
+            "total": 1145
+          },
+          "Coder": {
+            "prompt": 2318,
+            "completion": 122,
+            "total": 2440
+          },
+          "Tester": {
+            "prompt": 178,
+            "completion": 105,
+            "total": 283
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 361,
+            "completion": 784,
+            "total": 1145
+          },
+          "ollama": {
+            "prompt": 2318,
+            "completion": 122,
+            "total": 2440
+          },
+          "groq": {
+            "prompt": 178,
+            "completion": 105,
+            "total": 283
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:22:34Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-next_palindrome",
+            "program_name": "next_palindrome",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 361,
+            "completion_tokens": 784,
+            "total_tokens": 1145
+          },
+          {
+            "timestamp": "2026-10-16T11:22:47Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-next_palindrome",
+            "program_name": "next_palindrome",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2318,
+            "completion_tokens": 122,
+            "total_tokens": 2440
+          },
+          {
+            "timestamp": "2026-10-16T11:23:02Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-next_palindrome",
+            "program_name": "next_palindrome",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 178,
+            "completion_tokens": 105,
+            "total_tokens": 283
+          }
+        ]
+      },
+      "total_duration_seconds": 54.649,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 32.2,
+          "patch_diff": "--- a/python_programs/next_palindrome.py\n+++ b/python_programs/next_palindrome.py\n@@ -12,7 +12,7 @@\n             if low_mid != high_mid:\n                 digit_list[low_mid] += 1\n             return digit_list\n-    return [1] + (len(digit_list)) * [0] + [1]\n+    return [1] + (len(digit_list) - 1) * [0] + [1]\n \n \"\"\"\n Finds the next palindromic integer when given the current integer\n"
+        }
+      ]
+    },
+    "next_permutation": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-next_permutation",
+      "program_name": "next_permutation",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3156,
+      "prompt_tokens": 2429,
+      "completion_tokens": 727,
+      "token_breakdown": {
+        "total_tokens": 3156,
+        "prompt_tokens": 2429,
+        "completion_tokens": 727,
+        "by_role": {
+          "Locator": {
+            "prompt": 285,
+            "completion": 462,
+            "total": 747
+          },
+          "Coder": {
+            "prompt": 1940,
+            "completion": 105,
+            "total": 2045
+          },
+          "Tester": {
+            "prompt": 204,
+            "completion": 160,
+            "total": 364
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 285,
+            "completion": 462,
+            "total": 747
+          },
+          "ollama": {
+            "prompt": 1940,
+            "completion": 105,
+            "total": 2045
+          },
+          "groq": {
+            "prompt": 204,
+            "completion": 160,
+            "total": 364
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:24:37Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-next_permutation",
+            "program_name": "next_permutation",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 285,
+            "completion_tokens": 462,
+            "total_tokens": 747
+          },
+          {
+            "timestamp": "2026-10-16T11:24:48Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-next_permutation",
+            "program_name": "next_permutation",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1940,
+            "completion_tokens": 105,
+            "total_tokens": 2045
+          },
+          {
+            "timestamp": "2026-10-16T11:25:04Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-next_permutation",
+            "program_name": "next_permutation",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 204,
+            "completion_tokens": 160,
+            "total_tokens": 364
+          }
+        ]
+      },
+      "total_duration_seconds": 120.565,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 31.124,
+          "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -3,7 +3,7 @@\n     for i in range(len(perm) - 2, -1, -1):\n         if perm[i] < perm[i + 1]:\n             for j in range(len(perm) - 1, i, -1):\n-                if perm[j] < perm[i]:\n+                if perm[j] > perm[i]:\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n"
+        }
+      ]
+    },
+    "possible_change": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-possible_change",
+      "program_name": "possible_change",
+      "resolved": false,
+      "attempts_used": 3,
+      "max_attempts": 3,
+      "total_tokens": 8053,
+      "prompt_tokens": 7096,
+      "completion_tokens": 957,
+      "token_breakdown": {
+        "total_tokens": 8053,
+        "prompt_tokens": 7096,
+        "completion_tokens": 957,
+        "by_role": {
+          "Locator": {
+            "prompt": 378,
+            "completion": 572,
+            "total": 950
+          },
+          "Coder": {
+            "prompt": 6718,
+            "completion": 385,
+            "total": 7103
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 378,
+            "completion": 572,
+            "total": 950
+          },
+          "ollama": {
+            "prompt": 6718,
+            "completion": 385,
+            "total": 7103
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:25:28Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-possible_change",
+            "program_name": "possible_change",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 378,
+            "completion_tokens": 572,
+            "total_tokens": 950
+          },
+          {
+            "timestamp": "2026-10-16T11:25:39Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-possible_change",
+            "program_name": "possible_change",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2182,
+            "completion_tokens": 129,
+            "total_tokens": 2311
+          },
+          {
+            "timestamp": "2026-10-16T11:25:50Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-possible_change",
+            "program_name": "possible_change",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2268,
+            "completion_tokens": 128,
+            "total_tokens": 2396
+          },
+          {
+            "timestamp": "2026-10-16T11:26:01Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-possible_change",
+            "program_name": "possible_change",
+            "attempt": 3,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2268,
+            "completion_tokens": 128,
+            "total_tokens": 2396
+          }
+        ]
+      },
+      "total_duration_seconds": 52.595,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "patch_extracted": false,
+          "extraction_message": "Anchor not found in 'python_programs/possible_change.py': return possible_change(coins, total - first) + possible_change(coins, total) (candidate return statement(s) in file: ['return 1', 'return 0', 'return possible_change(coins, total - first) + possible_change(rest, total)'])",
+          "resolved": false,
+          "duration_seconds": 11.849
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Anchor not found in 'python_programs/possible_change.py': return possible_change(coins, total - first) + possible_change(coins, total) (candidate return statement(s) in file: ['return 1', 'return 0', 'return possible_change(coins, total - first) + possible_change(rest, total)'])",
+          "resolved": false,
+          "duration_seconds": 10.946
+        },
+        {
+          "attempt": 3,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Anchor not found in 'python_programs/possible_change.py': return possible_change(coins, total - first) + possible_change(coins, total) (candidate return statement(s) in file: ['return 1', 'return 0', 'return possible_change(coins, total - first) + possible_change(rest, total)'])",
+          "resolved": false,
+          "duration_seconds": 10.982
+        }
+      ]
+    },
+    "powerset": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-powerset",
+      "program_name": "powerset",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 2953,
+      "prompt_tokens": 2312,
+      "completion_tokens": 641,
+      "token_breakdown": {
+        "total_tokens": 2953,
+        "prompt_tokens": 2312,
+        "completion_tokens": 641,
+        "by_role": {
+          "Locator": {
+            "prompt": 252,
+            "completion": 424,
+            "total": 676
+          },
+          "Coder": {
+            "prompt": 1894,
+            "completion": 105,
+            "total": 1999
+          },
+          "Tester": {
+            "prompt": 166,
+            "completion": 112,
+            "total": 278
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 252,
+            "completion": 424,
+            "total": 676
+          },
+          "ollama": {
+            "prompt": 1894,
+            "completion": 105,
+            "total": 1999
+          },
+          "groq": {
+            "prompt": 166,
+            "completion": 112,
+            "total": 278
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T11:26:45Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-powerset",
+            "program_name": "powerset",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 252,
+            "completion_tokens": 424,
+            "total_tokens": 676
+          },
+          {
+            "timestamp": "2026-10-16T11:26:56Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-powerset",
+            "program_name": "powerset",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1894,
+            "completion_tokens": 105,
+            "total_tokens": 1999
+          },
+          {
+            "timestamp": "2026-10-16T11:27:12Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-powerset",
+            "program_name": "powerset",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 166,
+            "completion_tokens": 112,
+            "total_tokens": 278
+          }
+        ]
+      },
+      "total_duration_seconds": 73.394,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 30.897,
+          "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -3,7 +3,7 @@\n     if arr:\n         first, *rest = arr #python3 just like car and cdr (in this case anyway..)\n         rest_subsets = powerset(rest)\n-        return [[first] + subset for subset in rest_subsets]\n+        return rest_subsets + [[first] + subset for subset in rest_subsets]\n     else:\n         return [[]]\n \n"
+        }
+      ]
+    }
+  }
+}

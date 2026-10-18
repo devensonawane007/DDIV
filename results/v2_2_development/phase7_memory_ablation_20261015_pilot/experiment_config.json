@@ -1,0 +1,80 @@
+{
+  "experiment_id": "phase7_ablation_1792056462",
+  "timestamp": "2026-10-15T09:27:42.215779+00:00",
+  "tasks": {
+    "pylint-dev__pylint-6903": {
+      "repo": "pylint-dev/pylint",
+      "base_commit": "ca80f03a43bc39e4cc2c67dc99817b3c9f13b8a6",
+      "protocol_type": "FIXED_HISTORICAL_CORPUS_BASELINE",
+      "description": "Known DDIV repair; evaluates whether memory maintains or degrades baseline repair capability."
+    },
+    "pylint-dev__pylint-4970": {
+      "repo": "pylint-dev/pylint",
+      "base_commit": "40cc2ffd7887959157aaf469e09585ec2be7f528",
+      "protocol_type": "SEQUENTIAL_ACCUMULATION_TRANSFER",
+      "description": "Within-repository transfer task; evaluates transfer from genuine pylint-6903 repair experience."
+    },
+    "sympy__sympy-23413": {
+      "repo": "sympy/sympy",
+      "base_commit": "10de1a18a0efac0b19b611e40c928250dda688bf",
+      "protocol_type": "FIXED_HISTORICAL_CORPUS_TRANSFER",
+      "description": "Cross-subsystem mathematical reasoning; evaluates transfer from 10 historical SymPy experiences."
+    }
+  },
+  "conditions": {
+    "FULL_DDIV_MEMORY_OFF": {
+      "enum": "full_ddiv_memory_off",
+      "mode": "full_ddiv",
+      "is_memory_enabled": false,
+      "is_supervisor_enabled": true,
+      "max_attempts": 3,
+      "description": "Full DDIV recovery loop with zero episodic memory reads, writes, or prompt injections."
+    },
+    "FULL_DDIV_MEMORY_ON": {
+      "enum": "full_ddiv_memory_on",
+      "mode": "full_ddiv",
+      "is_memory_enabled": true,
+      "is_supervisor_enabled": true,
+      "max_attempts": 3,
+      "memory_db": "results/v2_2_development/phase7_memory_ablation_20261015_pilot/memory/phase7_memory_on.db",
+      "description": "Full DDIV recovery loop with condition-scoped episodic memory retrieval, injection, and persistence."
+    }
+  },
+  "models": {
+    "Coder": {
+      "provider": "ollama",
+      "model_id": "qwen2.5-coder:7b",
+      "temperature": 0.0
+    },
+    "Supervisor": {
+      "provider": "groq",
+      "model_id": "qwen/qwen3.8-27b",
+      "temperature": 0.0
+    },
+    "Tester": {
+      "provider": "groq",
+      "model_id": "qwen/qwen3.8-27b",
+      "temperature": 0.0
+    },
+    "Locator": {
+      "provider": "gemini",
+      "model_id": "gemini-3.1-flash-lite",
+      "temperature": 0.0
+    },
+    "TestUnderstanding": {
+      "provider": "groq",
+      "model_id": "qwen/qwen3.8-27b",
+      "temperature": 0.0
+    },
+    "PatchCritic": {
+      "provider": "groq",
+      "model_id": "qwen/qwen3.8-27b",
+      "temperature": 0.0
+    }
+  },
+  "environment": {
+    "os": "windows",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "quota_verified_groq": 500000
+  }
+}

@@ -1,0 +1,28 @@
+task_id,program_name,target_file,baseline_resolved,full_ddiv_resolved,baseline_attempts,full_ddiv_attempts,full_ddiv_resolved_attempt,full_ddiv_last_failure_category,full_ddiv_last_verdict,full_ddiv_patch_extracted,full_ddiv_patch_applied,baseline_tokens,full_ddiv_tokens,baseline_duration_s,full_ddiv_duration_s
+quixbugs-python-bitcount,bitcount,python_programs/bitcount.py,False,False,1,3,,TIMEOUT,UNRESOLVED (Timeout),True,True,1612,5362,16.803,57.149
+quixbugs-python-depth_first_search,depth_first_search,python_programs/depth_first_search.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1692,6458,11.515,37.682
+quixbugs-python-detect_cycle,detect_cycle,python_programs/detect_cycle.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1694,6254,12.477,38.733
+quixbugs-python-find_in_sorted,find_in_sorted,python_programs/find_in_sorted.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1800,5461,11.736,32.159
+quixbugs-python-gcd,gcd,python_programs/gcd.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1720,8547,14.038,48.909
+quixbugs-python-get_factors,get_factors,python_programs/get_factors.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1728,8152,12.136,39.185
+quixbugs-python-hanoi,hanoi,python_programs/hanoi.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1965,8346,16.698,50.546
+quixbugs-python-kheapsort,kheapsort,python_programs/kheapsort.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1916,7364,13.854,37.71
+quixbugs-python-knapsack,knapsack,python_programs/knapsack.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1915,8611,13.925,45.128
+quixbugs-python-lcs_length,lcs_length,python_programs/lcs_length.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1743,9405,12.682,41.139
+quixbugs-python-lis,lis,python_programs/lis.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1767,8054,12.828,42.138
+quixbugs-python-longest_common_subsequence,longest_common_subsequence,python_programs/longest_common_subsequence.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1857,7086,11.901,37.807
+quixbugs-python-mergesort,mergesort,python_programs/mergesort.py,False,False,1,3,,SYNTAX_ERROR_INDENTATION,UNRESOLVED (SYNTAX_ERROR_INDENTATION),False,False,1771,5373,9.875,25.852
+quixbugs-python-minimum_spanning_tree,minimum_spanning_tree,python_programs/minimum_spanning_tree.py,False,False,1,3,,ANCHOR_NOT_FOUND,UNRESOLVED (ANCHOR_NOT_FOUND),False,False,1885,7200,13.33,37.333
+quixbugs-python-next_palindrome,next_palindrome,python_programs/next_palindrome.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1830,6117,9.008,25.904
+quixbugs-python-next_permutation,next_permutation,python_programs/next_permutation.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1765,7917,9.79,30.246
+quixbugs-python-possible_change,possible_change,python_programs/possible_change.py,False,False,1,3,,SYNTAX_ERROR_INDENTATION,UNRESOLVED (SYNTAX_ERROR_INDENTATION),False,False,1886,6736,10.956,52.022
+quixbugs-python-powerset,powerset,python_programs/powerset.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1735,6838,9.638,28.504
+quixbugs-python-shortest_path_length,shortest_path_length,python_programs/shortest_path_length.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1982,7248,10.839,32.384
+quixbugs-python-shortest_path_lengths,shortest_path_lengths,python_programs/shortest_path_lengths.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1890,7177,13.011,37.186
+quixbugs-python-shortest_paths,shortest_paths,python_programs/shortest_paths.py,False,False,1,3,,ANCHOR_NOT_FOUND,UNRESOLVED (ANCHOR_NOT_FOUND),False,False,1955,5962,9.324,23.152
+quixbugs-python-shunting_yard,shunting_yard,python_programs/shunting_yard.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1926,7526,11.569,33.391
+quixbugs-python-sieve,sieve,python_programs/sieve.py,False,False,1,3,,ASSERTION_FAILURE,UNRESOLVED (Tests failed),True,True,1675,6965,10.992,35.363
+quixbugs-python-sqrt,sqrt,python_programs/sqrt.py,False,False,1,3,,TIMEOUT,UNRESOLVED (Timeout),True,True,1723,5871,24.045,70.521
+quixbugs-python-subsequences,subsequences,python_programs/subsequences.py,False,False,1,3,,PATCH_APPLICATION_FAILED,UNRESOLVED (Patch application failed),True,False,1764,6522,8.989,60.81
+quixbugs-python-topological_ordering,topological_ordering,python_programs/topological_ordering.py,False,False,1,3,,SYNTAX_ERROR_INDENTATION,UNRESOLVED (SYNTAX_ERROR_INDENTATION),False,False,1728,6448,10.922,47.745
+quixbugs-python-wrap,wrap,python_programs/wrap.py,False,False,1,3,,PATCH_REVISION_MISMATCH,UNRESOLVED (PATCH_REVISION_MISMATCH),False,False,1803,5618,8.903,27.895

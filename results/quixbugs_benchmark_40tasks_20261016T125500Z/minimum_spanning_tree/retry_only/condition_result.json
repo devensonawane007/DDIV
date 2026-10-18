@@ -1,0 +1,54 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-minimum_spanning_tree",
+  "program_name": "minimum_spanning_tree",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7059,
+  "prompt_tokens": 6721,
+  "completion_tokens": 338,
+  "total_duration_seconds": 38.255,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "3 test(s) failed assertion check.",
+      "duration_seconds": 11.686,
+      "patch_diff": "--- a/python_programs/minimum_spanning_tree.py\n+++ b/python_programs/minimum_spanning_tree.py\n@@ -7,7 +7,8 @@\n         u, v = edge\n         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):\n             mst_edges.add(edge)\n-            group_by_node[u].update(group_by_node[v])\n+            for node in group_by_node[v]:\n+                group_by_node[node].update(group_by_node[u])\n             for node in group_by_node[v]:\n                 group_by_node[node].update(group_by_node[u])\n \n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 12.855,
+      "patch_diff": "--- a/python_programs/minimum_spanning_tree.py\n+++ b/python_programs/minimum_spanning_tree.py\n@@ -8,7 +8,7 @@\n         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):\n             mst_edges.add(edge)\n             group_by_node[u].update(group_by_node[v])\n-            for node in group_by_node[v]:\n+            for node in group_by_node[v].copy():\n                 group_by_node[node].update(group_by_node[u])\n \n     return mst_edges\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 13.713,
+      "patch_diff": "--- a/python_programs/minimum_spanning_tree.py\n+++ b/python_programs/minimum_spanning_tree.py\n@@ -8,7 +8,7 @@\n         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):\n             mst_edges.add(edge)\n             group_by_node[u].update(group_by_node[v])\n-            for node in group_by_node[v]:\n+            for node in group_by_node[v].copy():\n                 group_by_node[node].update(group_by_node[u])\n \n     return mst_edges\n"
+    }
+  ]
+}

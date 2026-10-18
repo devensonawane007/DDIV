@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-lis",
+  "program_name": "lis",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 8536,
+  "prompt_tokens": 7570,
+  "completion_tokens": 966,
+  "token_breakdown": {
+    "total_tokens": 8536,
+    "prompt_tokens": 7570,
+    "completion_tokens": 966,
+    "by_role": {
+      "Coder": {
+        "prompt": 7570,
+        "completion": 966,
+        "total": 8536
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 7570,
+        "completion": 966,
+        "total": 8536
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:02:15Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-lis",
+        "program_name": "lis",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1531,
+        "completion_tokens": 483,
+        "total_tokens": 2014
+      },
+      {
+        "timestamp": "2026-10-17T07:02:35Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-lis",
+        "program_name": "lis",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2957,
+        "completion_tokens": 243,
+        "total_tokens": 3200
+      },
+      {
+        "timestamp": "2026-10-17T07:02:57Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-lis",
+        "program_name": "lis",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 3082,
+        "completion_tokens": 240,
+        "total_tokens": 3322
+      }
+    ]
+  },
+  "total_duration_seconds": 67.997,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 25.0,
+      "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,16 +1,16 @@\n \n def lis(arr):\n-    ends = {}\n-    longest = 0\n+    ends = [-1] * (len(arr) + 1)\n+    longest = 1\n \n     for i, val in enumerate(arr):\n \n-        prefix_lengths = [j for j in range(1, longest + 1) if arr[ends[j]] < val]\n+        prefix_lengths = [j for j in range(1, longest) if arr[ends[j]] < val]\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 21.537,
+      "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,6 +1,6 @@\n \n def lis(arr):\n-    ends = {}\n+    ends = [-1] * (len(arr) + 1)\n     longest = 0\n \n     for i, val in enumerate(arr):\n@@ -9,8 +9,8 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 21.458,
+      "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,6 +1,6 @@\n \n def lis(arr):\n-    ends = {}\n+    ends = [-1] * (len(arr) + 1)\n     longest = 0\n \n     for i, val in enumerate(arr):\n@@ -9,8 +9,8 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+    }
+  ]
+}

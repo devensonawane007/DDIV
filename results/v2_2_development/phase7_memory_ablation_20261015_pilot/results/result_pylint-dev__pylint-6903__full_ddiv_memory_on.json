@@ -1,0 +1,329 @@
+{
+  "experiment_id": "phase7_ablation_1792052950",
+  "task_id": "pylint-dev__pylint-6903",
+  "condition": "full_ddiv_memory_on",
+  "status": "COMPLETED",
+  "resolved": true,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/lint/run.py",
+          "target_symbol": "_query_cpu",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_before",
+          "anchor": "return avail_cpu",
+          "code": "    if avail_cpu is not None and avail_cpu < 1:\n        avail_cpu = 1",
+          "reason": "Ensure _query_cpu never returns a value less than 1, preventing multiprocessing from receiving 0 processes."
+        }
+      ],
+      "patch_operations": [
+        "insert_before"
+      ],
+      "generated_patch": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -58,6 +58,8 @@\n             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n         avail_cpu = int(cpu_shares / 1024)\n+    if avail_cpu is not None and avail_cpu < 1:\n+        avail_cpu = 1\n     return avail_cpu\n \n \n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": true,
+      "verdict": "RESOLVED_INTERNALLY",
+      "f2p_passed": true,
+      "p2p_passed": true,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": true,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/lint/run.py"
+      ],
+      "latency_seconds": 55.64765214920044,
+      "agent_timings": {
+        "locator": 1.941239595413208,
+        "coder": 2.6995182037353516,
+        "tester": 27.672401428222656,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 21087,
+        "completion_tokens": 2825,
+        "total_tokens": 23912
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 3336,
+          "completion_tokens": 132,
+          "total_tokens": 3468,
+          "latency_seconds": 1.941239595413208
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 4979,
+          "completion_tokens": 687,
+          "total_tokens": 5666,
+          "latency_seconds": 2.1206674575805664
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 6668,
+          "completion_tokens": 884,
+          "total_tokens": 7552,
+          "latency_seconds": 2.6995182037353516
+        },
+        {
+          "agent": "PatchCritic",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 1705,
+          "completion_tokens": 460,
+          "total_tokens": 2165,
+          "latency_seconds": 18.575895309448242
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 4399,
+          "completion_tokens": 662,
+          "total_tokens": 5061,
+          "latency_seconds": 27.672401428222656
+        }
+      ],
+      "context_characters": 14104,
+      "root_cause_analysis": {
+        "root_cause": "The function `_query_cpu` in `pylint/lint/run.py` calculates the number of available CPUs by reading cgroup files. Specifically, when `cpu.cfs_quota_us` is -1 (unlimited) or not set, it falls back to `cpu.shares`. The calculation `int(cpu_shares / 1024)` can result in 0 if `cpu_shares` is less than 1024 (e.g., 2). This value is then returned by `_cpu_count` (via `min(cpu_share, cpu_count)`), and when `--jobs=0` is used, `Run.__init__` sets `linter.config.jobs` to this value. `multiprocessing.Pool` raises a `ValueError` if the number of processes is less than 1.",
+        "behavioral_contract": "The function `_query_cpu` must return a value that, when used to determine the number of parallel jobs, results in a valid number of processes for `multiprocessing.Pool`. Specifically, the number of CPUs reported should never be less than 1 if the system is capable of running at least one process. The `Run` class must ensure that `linter.config.jobs` is at least 1 when multiprocessing is enabled and `--jobs=0` is specified.",
+        "expected_behavior": "When running pylint with `--jobs=0` in an environment where the cgroup CPU shares result in a calculated CPU count of 0 (e.g., `cpu.shares` < 1024), pylint should not crash. It should fall back to using at least 1 process.",
+        "current_behavior": "Pylint crashes with `ValueError: Number of processes must be at least 1` when `--jobs=0` is used in a Kubernetes pod (or similar containerized environment) where `cpu.shares` is less than 1024, causing `_query_cpu` to return 0.",
+        "relevant_symbols": [
+          "pylint.lint.run._query_cpu",
+          "pylint.lint.run._cpu_count",
+          "pylint.lint.run.Run.__init__"
+        ],
+        "relevant_tests": [
+          "tests/test_pylint_runners.py"
+        ],
+        "required_change": "Modify `_query_cpu` to ensure it never returns a value less than 1. Specifically, in the branch where `cpu.shares` is used, the result of `int(cpu_shares / 1024)` should be clamped to a minimum of 1. Alternatively, `_cpu_count` could be modified to ensure the final returned value is at least 1.",
+        "regression_risks": [
+          "Ensuring that the fix does not break the logic for environments where `cpu.cfs_quota_us` is correctly set and results in a valid CPU count > 0.",
+          "Verifying that the fallback to `cpu.shares` still works correctly for AWS Batch and other environments where `cpu.shares` is a multiple of 1024.",
+          "Confirming that `multiprocessing.Pool` is not called with 0 processes in any other code path."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": {
+        "approved": true,
+        "risk_level": "LOW",
+        "concerns": [
+          "The patch only fixes the `cpu_shares` calculation path. If the `cpu.cfs_quota_us` path (around line 55 in the original context) also results in 0 (e.g., quota < period), the crash could still occur, although the issue specifically highlights the shares path.",
+          "The fix is applied inside `_query_cpu`. If `_cpu_count` or other callers rely on `_query_cpu` returning `None` to indicate 'unknown' and then fall back to `os.cpu_count()`, this change is safe. However, if `_query_cpu` is expected to return 0 to signal 'no limit' or similar, this might change behavior. Given the context of `--jobs=0` mapping to 'auto-detect', returning 1 is the correct semantic for 'minimum 1 worker'."
+        ],
+        "recommended_changes": [
+          "Consider applying the same `max(1, ...)` or `if < 1: = 1` logic to the `cpu.cfs_quota_us` calculation path as well, to ensure robustness against all cgroup configurations that might yield 0.",
+          "Verify that `_query_cpu` is the only source of the `jobs` value when `--jobs=0` is used, or ensure that the final assignment to `linter.config.jobs` also enforces a minimum of 1."
+        ],
+        "reasoning": "The patch directly addresses the root cause identified in the issue: `int(cpu_shares / 1024)` resulting in 0 when `cpu_shares` is small (e.g., 2). By clamping the value to 1 if it is less than 1, it prevents the `ValueError` from `multiprocessing.Pool`. The change is minimal, localized to the specific function causing the issue, and aligns with the expected behavior that the number of processes should never be 0. The risk is low because it only affects the edge case where the calculated CPU count is 0, which is invalid for multiprocessing anyway."
+      },
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": false,
+        "candidate_failure_type": null,
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 1.0,
+        "evidence_reasons": [
+          "Patch applied cleanly and all test requirements verified successfully.",
+          "Disambiguated root cause: [UNKNOWN_FAILURE] Unclassified failure."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": true,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": true,
+          "p2p_passed": true,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false,
+          "disambiguated_failure_type": "UNKNOWN_FAILURE",
+          "disambiguated_explanation": "Unclassified failure."
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null
+    }
+  ],
+  "candidate_patch": "--- a/pylint/lint/run.py\n+++ b/pylint/lint/run.py\n@@ -58,6 +58,8 @@\n             cpu_shares = int(file.read().rstrip())\n         # For AWS, gives correct value * 1024.\n         avail_cpu = int(cpu_shares / 1024)\n+    if avail_cpu is not None and avail_cpu < 1:\n+        avail_cpu = 1\n     return avail_cpu\n \n \n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase7_ablation\\pylint-dev__pylint-6903__full_ddiv_memory_on\\pylint-dev__pylint-6903__full_ddiv_memory_on.patch",
+  "pass_at_1": true,
+  "metrics": {
+    "pass_at_1": true,
+    "repair_accuracy": true,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 168.43,
+    "input_tokens": 21087,
+    "output_tokens": 2825,
+    "total_tokens": 23912,
+    "inference_calls": 5,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 1.941239595413208,
+      "coder": 2.6995182037353516,
+      "tester": 27.672401428222656,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 3336,
+        "completion_tokens": 132,
+        "total_tokens": 3468,
+        "latency_seconds": 1.941239595413208
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 4979,
+        "completion_tokens": 687,
+        "total_tokens": 5666,
+        "latency_seconds": 2.1206674575805664
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 6668,
+        "completion_tokens": 884,
+        "total_tokens": 7552,
+        "latency_seconds": 2.6995182037353516
+      },
+      {
+        "agent": "PatchCritic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 1705,
+        "completion_tokens": 460,
+        "total_tokens": 2165,
+        "latency_seconds": 18.575895309448242
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 4399,
+        "completion_tokens": 662,
+        "total_tokens": 5061,
+        "latency_seconds": 27.672401428222656
+      }
+    ],
+    "context_characters": 14104,
+    "critic_approved": true,
+    "critic_risk_level": "LOW",
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "RESOLVED",
+    "verdict": "RESOLVED_INTERNALLY",
+    "duration_seconds": 55.65,
+    "all_f2p_passed": true,
+    "all_p2p_passed": true,
+    "internal_resolved": true,
+    "fail_to_pass_results": {
+      "tests/test_pylint_runners.py::test_pylint_run_jobs_equal_zero_dont_crash_with_cpu_fraction": true
+    },
+    "pass_to_pass_results": {
+      "tests/test_pylint_runners.py::test_runner[run_epylint]": true,
+      "tests/test_pylint_runners.py::test_runner[run_pylint]": true,
+      "tests/test_pylint_runners.py::test_runner[run_pyreverse]": true,
+      "tests/test_pylint_runners.py::test_runner[run_symilar]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_epylint]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_pylint]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_pyreverse]": true,
+      "tests/test_pylint_runners.py::test_runner_with_arguments[run_symilar]": true
+    }
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": {
+    "Locator": 0.92,
+    "Coder": 0.79,
+    "Tester": 0.91,
+    "Supervisor": 0.84
+  },
+  "execution_duration_seconds": 168.44,
+  "worker_pid": 29760,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\v2_2_development\\phase7_memory_ablation_20261015_pilot\\logs\\pylint-dev__pylint-6903__full_ddiv_memory_on.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase7_ablation\\pylint-dev__pylint-6903__full_ddiv_memory_on",
+  "error_message": null,
+  "started_at": "2026-10-15T08:32:29.124359+00:00",
+  "completed_at": "2026-10-15T08:35:17.551935+00:00",
+  "protocol_type": "FIXED_HISTORICAL_CORPUS_BASELINE",
+  "telemetry_coder_prompts": [
+    {
+      "attempt": 1,
+      "has_memory": false,
+      "memory_chars": 0,
+      "prompt_chars": 22046
+    }
+  ],
+  "telemetry_loc_prompts": [
+    {
+      "attempt": 1,
+      "has_memory": false,
+      "len": 8066
+    }
+  ],
+  "telemetry_sup_prompts": []
+}

@@ -1,0 +1,2647 @@
+{
+  "timestamp": "2026-10-17T09:07:08Z",
+  "status": "COMPLETED",
+  "condition_filter": "ALL",
+  "batch": 3,
+  "total_assigned_observations": 27,
+  "completed_observations": 27,
+  "skipped_checkpoint_observations": 0,
+  "reused_observations": 0,
+  "resolved": 3,
+  "resolution_rate_pct": 11.11,
+  "today_date_utc": "2026-10-17",
+  "today_groq_tokens": 6351,
+  "today_gemini_tokens": 16052,
+  "cumulative_groq_tokens": 6351,
+  "cumulative_gemini_tokens": 16052,
+  "results_by_condition": {
+    "BASELINE": {
+      "shortest_path_length": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-shortest_path_length",
+        "program_name": "shortest_path_length",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1938,
+        "prompt_tokens": 1745,
+        "completion_tokens": 193,
+        "token_breakdown": {
+          "total_tokens": 1938,
+          "prompt_tokens": 1745,
+          "completion_tokens": 193,
+          "by_role": {
+            "Coder": {
+              "prompt": 1745,
+              "completion": 193,
+              "total": 1938
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1745,
+              "completion": 193,
+              "total": 1938
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:31:29Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1745,
+              "completion_tokens": 193,
+              "total_tokens": 1938
+            }
+          ]
+        },
+        "total_duration_seconds": 22.025,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "2 test(s) failed assertion check.",
+            "duration_seconds": 22.025,
+            "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+          }
+        ]
+      },
+      "shortest_path_lengths": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1788,
+        "prompt_tokens": 1598,
+        "completion_tokens": 190,
+        "token_breakdown": {
+          "total_tokens": 1788,
+          "prompt_tokens": 1598,
+          "completion_tokens": 190,
+          "by_role": {
+            "Coder": {
+              "prompt": 1598,
+              "completion": 190,
+              "total": 1788
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1598,
+              "completion": 190,
+              "total": 1788
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:34:30Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1598,
+              "completion_tokens": 190,
+              "total_tokens": 1788
+            }
+          ]
+        },
+        "total_duration_seconds": 14.804,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "4 test(s) failed assertion check.",
+            "duration_seconds": 14.803,
+            "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,6 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+          }
+        ]
+      },
+      "shortest_paths": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-shortest_paths",
+        "program_name": "shortest_paths",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1821,
+        "prompt_tokens": 1713,
+        "completion_tokens": 108,
+        "token_breakdown": {
+          "total_tokens": 1821,
+          "prompt_tokens": 1713,
+          "completion_tokens": 108,
+          "by_role": {
+            "Coder": {
+              "prompt": 1713,
+              "completion": 108,
+              "total": 1821
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1713,
+              "completion": 108,
+              "total": 1821
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:37:20Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1713,
+              "completion_tokens": 108,
+              "total_tokens": 1821
+            }
+          ]
+        },
+        "total_duration_seconds": 29.565,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+            "resolved": false,
+            "duration_seconds": 29.564
+          }
+        ]
+      },
+      "shunting_yard": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1805,
+        "prompt_tokens": 1675,
+        "completion_tokens": 130,
+        "token_breakdown": {
+          "total_tokens": 1805,
+          "prompt_tokens": 1675,
+          "completion_tokens": 130,
+          "by_role": {
+            "Coder": {
+              "prompt": 1675,
+              "completion": 130,
+              "total": 1805
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1675,
+              "completion": 130,
+              "total": 1805
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:42:20Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1675,
+              "completion_tokens": 130,
+              "total_tokens": 1805
+            }
+          ]
+        },
+        "total_duration_seconds": 36.339,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 36.338,
+            "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+          }
+        ]
+      },
+      "sieve": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1559,
+        "prompt_tokens": 1434,
+        "completion_tokens": 125,
+        "token_breakdown": {
+          "total_tokens": 1559,
+          "prompt_tokens": 1434,
+          "completion_tokens": 125,
+          "by_role": {
+            "Coder": {
+              "prompt": 1434,
+              "completion": 125,
+              "total": 1559
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1434,
+              "completion": 125,
+              "total": 1559
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:46:09Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1434,
+              "completion_tokens": 125,
+              "total_tokens": 1559
+            }
+          ]
+        },
+        "total_duration_seconds": 31.379,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+            "resolved": false,
+            "duration_seconds": 31.378
+          }
+        ]
+      },
+      "sqrt": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-sqrt",
+        "program_name": "sqrt",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1636,
+        "prompt_tokens": 1485,
+        "completion_tokens": 151,
+        "token_breakdown": {
+          "total_tokens": 1636,
+          "prompt_tokens": 1485,
+          "completion_tokens": 151,
+          "by_role": {
+            "Coder": {
+              "prompt": 1485,
+              "completion": 151,
+              "total": 1636
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1485,
+              "completion": 151,
+              "total": 1636
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:49:55Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1485,
+              "completion_tokens": 151,
+              "total_tokens": 1636
+            }
+          ]
+        },
+        "total_duration_seconds": 43.671,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Timeout)",
+            "failure_category": "TIMEOUT",
+            "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+            "duration_seconds": 43.671,
+            "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = 1 if x >= 1 else x / 2\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+          }
+        ]
+      },
+      "subsequences": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-subsequences",
+        "program_name": "subsequences",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1672,
+        "prompt_tokens": 1519,
+        "completion_tokens": 153,
+        "token_breakdown": {
+          "total_tokens": 1672,
+          "prompt_tokens": 1519,
+          "completion_tokens": 153,
+          "by_role": {
+            "Coder": {
+              "prompt": 1519,
+              "completion": 153,
+              "total": 1672
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1519,
+              "completion": 153,
+              "total": 1672
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:53:12Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1519,
+              "completion_tokens": 153,
+              "total_tokens": 1672
+            }
+          ]
+        },
+        "total_duration_seconds": 31.55,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 31.55,
+            "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -4,9 +4,7 @@\n \n     ret = []\n     for i in range(a, b + 1 - k):\n-        ret.extend(\n-            [i] + rest for rest in subsequences(i + 1, b, k - 1)\n-        )\n+        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])\n \n     return ret\n \n"
+          }
+        ]
+      },
+      "topological_ordering": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1689,
+        "prompt_tokens": 1491,
+        "completion_tokens": 198,
+        "token_breakdown": {
+          "total_tokens": 1689,
+          "prompt_tokens": 1491,
+          "completion_tokens": 198,
+          "by_role": {
+            "Coder": {
+              "prompt": 1491,
+              "completion": 198,
+              "total": 1689
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1491,
+              "completion": 198,
+              "total": 1689
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:59:00Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1491,
+              "completion_tokens": 198,
+              "total_tokens": 1689
+            }
+          ]
+        },
+        "total_duration_seconds": 72.887,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Timeout)",
+            "failure_category": "TIMEOUT",
+            "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+            "duration_seconds": 72.883,
+            "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,17 @@\n def topological_ordering(nodes):\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.pop(0)\n+        if node not in visited:\n+            visited.add(node)\n+            for nextnode in node.outgoing_nodes:\n+                nextnode.incoming_nodes.remove(node)\n+                if not nextnode.incoming_nodes:\n+                    ordered_nodes.append(nextnode)\n+\n+    return visited\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+          }
+        ]
+      },
+      "wrap": {
+        "condition": "BASELINE",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "resolved": false,
+        "attempts_used": 1,
+        "max_attempts": 1,
+        "total_tokens": 1707,
+        "prompt_tokens": 1565,
+        "completion_tokens": 142,
+        "token_breakdown": {
+          "total_tokens": 1707,
+          "prompt_tokens": 1565,
+          "completion_tokens": 142,
+          "by_role": {
+            "Coder": {
+              "prompt": 1565,
+              "completion": 142,
+              "total": 1707
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 1565,
+              "completion": 142,
+              "total": 1707
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T09:03:23Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "BASELINE",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1565,
+              "completion_tokens": 142,
+              "total_tokens": 1707
+            }
+          ]
+        },
+        "total_duration_seconds": 27.603,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+            "resolved": false,
+            "duration_seconds": 27.601
+          }
+        ]
+      }
+    },
+    "RETRY_ONLY": {
+      "shortest_path_length": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-shortest_path_length",
+        "program_name": "shortest_path_length",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 7416,
+        "prompt_tokens": 6942,
+        "completion_tokens": 474,
+        "token_breakdown": {
+          "total_tokens": 7416,
+          "prompt_tokens": 6942,
+          "completion_tokens": 474,
+          "by_role": {
+            "Coder": {
+              "prompt": 6942,
+              "completion": 474,
+              "total": 7416
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 6942,
+              "completion": 474,
+              "total": 7416
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:31:44Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1745,
+              "completion_tokens": 193,
+              "total_tokens": 1938
+            },
+            {
+              "timestamp": "2026-10-17T08:31:59Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2599,
+              "completion_tokens": 182,
+              "total_tokens": 2781
+            },
+            {
+              "timestamp": "2026-10-17T08:32:11Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2598,
+              "completion_tokens": 99,
+              "total_tokens": 2697
+            }
+          ]
+        },
+        "total_duration_seconds": 40.983,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "2 test(s) failed assertion check.",
+            "duration_seconds": 13.86,
+            "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "2 test(s) failed assertion check.",
+            "duration_seconds": 15.479,
+            "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "2 test(s) failed assertion check.",
+            "duration_seconds": 11.643,
+            "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -36,7 +36,7 @@\n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n     for i, tpl in enumerate(node_heap):\n-        a, b = tpl\n+        dist, node = dist_node\n         if b == node:\n             node_heap[i] = dist_node #heapq retains sorted property\n             return None\n"
+          }
+        ]
+      },
+      "shortest_path_lengths": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6758,
+        "prompt_tokens": 6240,
+        "completion_tokens": 518,
+        "token_breakdown": {
+          "total_tokens": 6758,
+          "prompt_tokens": 6240,
+          "completion_tokens": 518,
+          "by_role": {
+            "Coder": {
+              "prompt": 6240,
+              "completion": 518,
+              "total": 6758
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 6240,
+              "completion": 518,
+              "total": 6758
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:34:44Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1598,
+              "completion_tokens": 190,
+              "total_tokens": 1788
+            },
+            {
+              "timestamp": "2026-10-17T08:35:05Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2310,
+              "completion_tokens": 184,
+              "total_tokens": 2494
+            },
+            {
+              "timestamp": "2026-10-17T08:35:22Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2332,
+              "completion_tokens": 144,
+              "total_tokens": 2476
+            }
+          ]
+        },
+        "total_duration_seconds": 52.65,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "4 test(s) failed assertion check.",
+            "duration_seconds": 14.081,
+            "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,6 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "4 test(s) failed assertion check.",
+            "duration_seconds": 21.02,
+            "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -2,7 +2,7 @@\n \n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n-    length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, i): 0 for i in range(n)}); length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_path})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "4 test(s) failed assertion check.",
+            "duration_seconds": 17.547,
+            "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,7 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n-    length_by_path.update(length_by_edge)\n+    length_by_path.update(length_by_edge); length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_path})\n \n     for k in range(n):\n         for i in range(n):\n"
+          }
+        ]
+      },
+      "shortest_paths": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-shortest_paths",
+        "program_name": "shortest_paths",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5586,
+        "prompt_tokens": 5217,
+        "completion_tokens": 369,
+        "token_breakdown": {
+          "total_tokens": 5586,
+          "prompt_tokens": 5217,
+          "completion_tokens": 369,
+          "by_role": {
+            "Coder": {
+              "prompt": 5217,
+              "completion": 369,
+              "total": 5586
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 5217,
+              "completion": 369,
+              "total": 5586
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:37:40Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1713,
+              "completion_tokens": 108,
+              "total_tokens": 1821
+            },
+            {
+              "timestamp": "2026-10-17T08:38:17Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1752,
+              "completion_tokens": 163,
+              "total_tokens": 1915
+            },
+            {
+              "timestamp": "2026-10-17T08:38:44Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1752,
+              "completion_tokens": 98,
+              "total_tokens": 1850
+            }
+          ]
+        },
+        "total_duration_seconds": 82.841,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+            "resolved": false,
+            "duration_seconds": 19.434
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+            "resolved": false,
+            "duration_seconds": 37.025
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+            "resolved": false,
+            "duration_seconds": 26.379
+          }
+        ]
+      },
+      "shunting_yard": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6894,
+        "prompt_tokens": 6527,
+        "completion_tokens": 367,
+        "token_breakdown": {
+          "total_tokens": 6894,
+          "prompt_tokens": 6527,
+          "completion_tokens": 367,
+          "by_role": {
+            "Coder": {
+              "prompt": 6527,
+              "completion": 367,
+              "total": 6894
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 6527,
+              "completion": 367,
+              "total": 6894
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:42:47Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1675,
+              "completion_tokens": 130,
+              "total_tokens": 1805
+            },
+            {
+              "timestamp": "2026-10-17T08:43:36Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2490,
+              "completion_tokens": 127,
+              "total_tokens": 2617
+            },
+            {
+              "timestamp": "2026-10-17T08:44:06Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2362,
+              "completion_tokens": 110,
+              "total_tokens": 2472
+            }
+          ]
+        },
+        "total_duration_seconds": 105.742,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 27.323,
+            "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/shunting_yard.py' failed Python AST syntax verification: expected ':' (<unknown>, line 16)",
+            "resolved": false,
+            "duration_seconds": 45.487
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 32.931,
+            "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+          }
+        ]
+      },
+      "sieve": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5725,
+        "prompt_tokens": 5265,
+        "completion_tokens": 460,
+        "token_breakdown": {
+          "total_tokens": 5725,
+          "prompt_tokens": 5265,
+          "completion_tokens": 460,
+          "by_role": {
+            "Coder": {
+              "prompt": 5265,
+              "completion": 460,
+              "total": 5725
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 5265,
+              "completion": 460,
+              "total": 5725
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:46:46Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1434,
+              "completion_tokens": 131,
+              "total_tokens": 1565
+            },
+            {
+              "timestamp": "2026-10-17T08:47:41Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1477,
+              "completion_tokens": 213,
+              "total_tokens": 1690
+            },
+            {
+              "timestamp": "2026-10-17T08:48:19Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2354,
+              "completion_tokens": 116,
+              "total_tokens": 2470
+            }
+          ]
+        },
+        "total_duration_seconds": 129.327,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/sieve.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 6)",
+            "resolved": false,
+            "duration_seconds": 33.815
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 66.337,
+            "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,8 +1,8 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n-            primes.append(n)\n+        if any(n % p == 0 for p in primes):\n+            primes.append(n)  # This line is incorrect. It should mark multiples of n as non-prime instead of appending n to the list of primes.\n     return primes\n \n \"\"\"\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 29.172,
+            "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,7 +1,7 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n+        if any(n % p == 0 for p in primes):\n             primes.append(n)\n     return primes\n \n"
+          }
+        ]
+      },
+      "sqrt": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-sqrt",
+        "program_name": "sqrt",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6890,
+        "prompt_tokens": 6513,
+        "completion_tokens": 377,
+        "token_breakdown": {
+          "total_tokens": 6890,
+          "prompt_tokens": 6513,
+          "completion_tokens": 377,
+          "by_role": {
+            "Coder": {
+              "prompt": 6513,
+              "completion": 377,
+              "total": 6890
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 6513,
+              "completion": 377,
+              "total": 6890
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:50:32Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1485,
+              "completion_tokens": 143,
+              "total_tokens": 1628
+            },
+            {
+              "timestamp": "2026-10-17T08:51:04Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2514,
+              "completion_tokens": 116,
+              "total_tokens": 2630
+            },
+            {
+              "timestamp": "2026-10-17T08:51:37Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2514,
+              "completion_tokens": 118,
+              "total_tokens": 2632
+            }
+          ]
+        },
+        "total_duration_seconds": 88.078,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 24.038,
+            "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = x if x >= 1 else 1\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 32.109,
+            "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = x if x >= 1 else 1\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 31.932,
+            "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = x if x >= 1 else 1\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+          }
+        ]
+      },
+      "subsequences": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-subsequences",
+        "program_name": "subsequences",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6178,
+        "prompt_tokens": 5398,
+        "completion_tokens": 780,
+        "token_breakdown": {
+          "total_tokens": 6178,
+          "prompt_tokens": 5398,
+          "completion_tokens": 780,
+          "by_role": {
+            "Coder": {
+              "prompt": 5398,
+              "completion": 780,
+              "total": 6178
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 5398,
+              "completion": 780,
+              "total": 6178
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:53:38Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1519,
+              "completion_tokens": 152,
+              "total_tokens": 1671
+            },
+            {
+              "timestamp": "2026-10-17T08:55:24Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2050,
+              "completion_tokens": 456,
+              "total_tokens": 2506
+            },
+            {
+              "timestamp": "2026-10-17T08:56:14Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1829,
+              "completion_tokens": 172,
+              "total_tokens": 2001
+            }
+          ]
+        },
+        "total_duration_seconds": 179.341,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "1 test(s) failed assertion check.",
+            "duration_seconds": 25.542,
+            "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -4,9 +4,7 @@\n \n     ret = []\n     for i in range(a, b + 1 - k):\n-        ret.extend(\n-            [i] + rest for rest in subsequences(i + 1, b, k - 1)\n-        )\n+        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])\n \n     return ret\n \n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Timeout)",
+            "failure_category": "TIMEOUT",
+            "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+            "duration_seconds": 120.398,
+            "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -4,9 +4,7 @@\n \n     ret = []\n     for i in range(a, b + 1 - k):\n-        ret.extend(\n-            [i] + rest for rest in subsequences(i + 1, b, k - 1)\n-        )\n+        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])\n \n     return ret\n \n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unmatched ']' (<unknown>, line 7)",
+            "resolved": false,
+            "duration_seconds": 33.401
+          }
+        ]
+      },
+      "topological_ordering": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 6565,
+        "prompt_tokens": 5944,
+        "completion_tokens": 621,
+        "token_breakdown": {
+          "total_tokens": 6565,
+          "prompt_tokens": 5944,
+          "completion_tokens": 621,
+          "by_role": {
+            "Coder": {
+              "prompt": 5944,
+              "completion": 621,
+              "total": 6565
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 5944,
+              "completion": 621,
+              "total": 6565
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:59:50Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1491,
+              "completion_tokens": 181,
+              "total_tokens": 1672
+            },
+            {
+              "timestamp": "2026-10-17T09:00:31Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2211,
+              "completion_tokens": 203,
+              "total_tokens": 2414
+            },
+            {
+              "timestamp": "2026-10-17T09:01:26Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2242,
+              "completion_tokens": 237,
+              "total_tokens": 2479
+            }
+          ]
+        },
+        "total_duration_seconds": 142.186,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "3 test(s) failed assertion check.",
+            "duration_seconds": 31.083,
+            "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,14 @@\n def topological_ordering(nodes):\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.pop(0)\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return visited\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Tests failed)",
+            "failure_category": "ASSERTION_FAILURE",
+            "failure_summary": "3 test(s) failed assertion check.",
+            "duration_seconds": 41.522,
+            "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,16 @@\n def topological_ordering(nodes):\n-    ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    from collections import deque\n+\n+    ordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.popleft()\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return list(visited)\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": true,
+            "resolved": false,
+            "all_passed": false,
+            "evaluation_verdict": "UNRESOLVED (Timeout)",
+            "failure_category": "TIMEOUT",
+            "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+            "duration_seconds": 69.578,
+            "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,16 @@\n def topological_ordering(nodes):\n-    ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    from collections import deque\n+\n+    ordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.popleft()\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return list(visited)\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+          }
+        ]
+      },
+      "wrap": {
+        "condition": "RETRY_ONLY",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 5168,
+        "prompt_tokens": 4807,
+        "completion_tokens": 361,
+        "token_breakdown": {
+          "total_tokens": 5168,
+          "prompt_tokens": 4807,
+          "completion_tokens": 361,
+          "by_role": {
+            "Coder": {
+              "prompt": 4807,
+              "completion": 361,
+              "total": 5168
+            }
+          },
+          "by_provider": {
+            "ollama": {
+              "prompt": 4807,
+              "completion": 361,
+              "total": 5168
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T09:03:45Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "RETRY_ONLY",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1565,
+              "completion_tokens": 142,
+              "total_tokens": 1707
+            },
+            {
+              "timestamp": "2026-10-17T09:04:08Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "RETRY_ONLY",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1621,
+              "completion_tokens": 109,
+              "total_tokens": 1730
+            },
+            {
+              "timestamp": "2026-10-17T09:04:32Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "RETRY_ONLY",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1621,
+              "completion_tokens": 110,
+              "total_tokens": 1731
+            }
+          ]
+        },
+        "total_duration_seconds": 69.106,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+            "resolved": false,
+            "duration_seconds": 21.417
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+            "resolved": false,
+            "duration_seconds": 23.189
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:7\nerror: python_programs/wrap.py: patch does not apply",
+            "resolved": false,
+            "duration_seconds": 24.499
+          }
+        ]
+      }
+    },
+    "FULL_DDIV": {
+      "shortest_path_length": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-shortest_path_length",
+        "program_name": "shortest_path_length",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 9794,
+        "prompt_tokens": 8012,
+        "completion_tokens": 1782,
+        "token_breakdown": {
+          "total_tokens": 9794,
+          "prompt_tokens": 8012,
+          "completion_tokens": 1782,
+          "by_role": {
+            "Locator": {
+              "prompt": 536,
+              "completion": 838,
+              "total": 1374
+            },
+            "Coder": {
+              "prompt": 7476,
+              "completion": 944,
+              "total": 8420
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 536,
+              "completion": 838,
+              "total": 1374
+            },
+            "ollama": {
+              "prompt": 7476,
+              "completion": 944,
+              "total": 8420
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:33:22Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 536,
+              "completion_tokens": 838,
+              "total_tokens": 1374
+            },
+            {
+              "timestamp": "2026-10-17T08:33:40Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2461,
+              "completion_tokens": 289,
+              "total_tokens": 2750
+            },
+            {
+              "timestamp": "2026-10-17T08:34:00Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "FULL_DDIV",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2508,
+              "completion_tokens": 355,
+              "total_tokens": 2863
+            },
+            {
+              "timestamp": "2026-10-17T08:34:17Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_length",
+              "program_name": "shortest_path_length",
+              "condition": "FULL_DDIV",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2507,
+              "completion_tokens": 300,
+              "total_tokens": 2807
+            }
+          ]
+        },
+        "total_duration_seconds": 122.959,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/shortest_path_length.py' failed Python AST syntax verification: unmatched ')' (<unknown>, line 32)",
+            "resolved": false,
+            "duration_seconds": 17.848
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_path_length.py': new_dist = distance + length_by_edge[(node, nextnode)]",
+            "resolved": false,
+            "duration_seconds": 20.043
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_path_length.py': new_dist = distance + length_by_edge[(node, nextnode)]",
+            "resolved": false,
+            "duration_seconds": 17.445
+          }
+        ]
+      },
+      "shortest_path_lengths": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 7593,
+        "prompt_tokens": 6498,
+        "completion_tokens": 1095,
+        "token_breakdown": {
+          "total_tokens": 7593,
+          "prompt_tokens": 6498,
+          "completion_tokens": 1095,
+          "by_role": {
+            "Locator": {
+              "prompt": 356,
+              "completion": 521,
+              "total": 877
+            },
+            "Coder": {
+              "prompt": 6142,
+              "completion": 574,
+              "total": 6716
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 356,
+              "completion": 521,
+              "total": 877
+            },
+            "ollama": {
+              "prompt": 6142,
+              "completion": 574,
+              "total": 6716
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:35:48Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 356,
+              "completion_tokens": 521,
+              "total_tokens": 877
+            },
+            {
+              "timestamp": "2026-10-17T08:36:02Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2016,
+              "completion_tokens": 196,
+              "total_tokens": 2212
+            },
+            {
+              "timestamp": "2026-10-17T08:36:20Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "FULL_DDIV",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2063,
+              "completion_tokens": 200,
+              "total_tokens": 2263
+            },
+            {
+              "timestamp": "2026-10-17T08:36:50Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_path_lengths",
+              "program_name": "shortest_path_lengths",
+              "condition": "FULL_DDIV",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2063,
+              "completion_tokens": 178,
+              "total_tokens": 2241
+            }
+          ]
+        },
+        "total_duration_seconds": 83.75,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+            "resolved": false,
+            "duration_seconds": 14.33
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+            "resolved": false,
+            "duration_seconds": 18.169
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+            "resolved": false,
+            "duration_seconds": 29.66
+          }
+        ]
+      },
+      "shortest_paths": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-shortest_paths",
+        "program_name": "shortest_paths",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 8691,
+        "prompt_tokens": 7265,
+        "completion_tokens": 1426,
+        "token_breakdown": {
+          "total_tokens": 8691,
+          "prompt_tokens": 7265,
+          "completion_tokens": 1426,
+          "by_role": {
+            "Locator": {
+              "prompt": 477,
+              "completion": 636,
+              "total": 1113
+            },
+            "Coder": {
+              "prompt": 6788,
+              "completion": 790,
+              "total": 7578
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 477,
+              "completion": 636,
+              "total": 1113
+            },
+            "ollama": {
+              "prompt": 6788,
+              "completion": 790,
+              "total": 7578
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:39:03Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 477,
+              "completion_tokens": 636,
+              "total_tokens": 1113
+            },
+            {
+              "timestamp": "2026-10-17T08:39:54Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2232,
+              "completion_tokens": 258,
+              "total_tokens": 2490
+            },
+            {
+              "timestamp": "2026-10-17T08:40:53Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "FULL_DDIV",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2283,
+              "completion_tokens": 279,
+              "total_tokens": 2562
+            },
+            {
+              "timestamp": "2026-10-17T08:41:45Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shortest_paths",
+              "program_name": "shortest_paths",
+              "condition": "FULL_DDIV",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2273,
+              "completion_tokens": 253,
+              "total_tokens": 2526
+            }
+          ]
+        },
+        "total_duration_seconds": 180.786,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])",
+            "resolved": false,
+            "duration_seconds": 50.069
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = float('inf')",
+            "resolved": false,
+            "duration_seconds": 59.726
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])",
+            "resolved": false,
+            "duration_seconds": 51.871
+          }
+        ]
+      },
+      "shunting_yard": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 7473,
+        "prompt_tokens": 6711,
+        "completion_tokens": 762,
+        "token_breakdown": {
+          "total_tokens": 7473,
+          "prompt_tokens": 6711,
+          "completion_tokens": 762,
+          "by_role": {
+            "Locator": {
+              "prompt": 424,
+              "completion": 466,
+              "total": 890
+            },
+            "Coder": {
+              "prompt": 6287,
+              "completion": 296,
+              "total": 6583
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 424,
+              "completion": 466,
+              "total": 890
+            },
+            "ollama": {
+              "prompt": 6287,
+              "completion": 296,
+              "total": 6583
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:44:28Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 424,
+              "completion_tokens": 466,
+              "total_tokens": 890
+            },
+            {
+              "timestamp": "2026-10-17T08:44:54Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2073,
+              "completion_tokens": 101,
+              "total_tokens": 2174
+            },
+            {
+              "timestamp": "2026-10-17T08:45:16Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "FULL_DDIV",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2107,
+              "completion_tokens": 98,
+              "total_tokens": 2205
+            },
+            {
+              "timestamp": "2026-10-17T08:45:37Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-shunting_yard",
+              "program_name": "shunting_yard",
+              "condition": "FULL_DDIV",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2107,
+              "completion_tokens": 97,
+              "total_tokens": 2204
+            }
+          ]
+        },
+        "total_duration_seconds": 87.625,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+            "resolved": false,
+            "duration_seconds": 25.698
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+            "resolved": false,
+            "duration_seconds": 21.539
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+            "resolved": false,
+            "duration_seconds": 21.246
+          }
+        ]
+      },
+      "sieve": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 3056,
+        "prompt_tokens": 2242,
+        "completion_tokens": 814,
+        "token_breakdown": {
+          "total_tokens": 3056,
+          "prompt_tokens": 2242,
+          "completion_tokens": 814,
+          "by_role": {
+            "Locator": {
+              "prompt": 159,
+              "completion": 536,
+              "total": 695
+            },
+            "Coder": {
+              "prompt": 1936,
+              "completion": 126,
+              "total": 2062
+            },
+            "Tester": {
+              "prompt": 147,
+              "completion": 152,
+              "total": 299
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 159,
+              "completion": 536,
+              "total": 695
+            },
+            "ollama": {
+              "prompt": 1936,
+              "completion": 126,
+              "total": 2062
+            },
+            "groq": {
+              "prompt": 147,
+              "completion": 152,
+              "total": 299
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:48:42Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 159,
+              "completion_tokens": 536,
+              "total_tokens": 695
+            },
+            {
+              "timestamp": "2026-10-17T08:49:08Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1936,
+              "completion_tokens": 126,
+              "total_tokens": 2062
+            },
+            {
+              "timestamp": "2026-10-17T08:49:24Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sieve",
+              "program_name": "sieve",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Tester",
+              "provider": "groq",
+              "model": "qwen/qwen3.8-27b",
+              "prompt_tokens": 147,
+              "completion_tokens": 152,
+              "total_tokens": 299
+            }
+          ]
+        },
+        "total_duration_seconds": 64.914,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 44.749,
+            "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,7 +1,7 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n+        if all(n % p != 0 for p in primes):\n             primes.append(n)\n     return primes\n \n"
+          }
+        ]
+      },
+      "sqrt": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-sqrt",
+        "program_name": "sqrt",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 2853,
+        "prompt_tokens": 2219,
+        "completion_tokens": 634,
+        "token_breakdown": {
+          "total_tokens": 2853,
+          "prompt_tokens": 2219,
+          "completion_tokens": 634,
+          "by_role": {
+            "Locator": {
+              "prompt": 213,
+              "completion": 410,
+              "total": 623
+            },
+            "Coder": {
+              "prompt": 1862,
+              "completion": 92,
+              "total": 1954
+            },
+            "Tester": {
+              "prompt": 144,
+              "completion": 132,
+              "total": 276
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 213,
+              "completion": 410,
+              "total": 623
+            },
+            "ollama": {
+              "prompt": 1862,
+              "completion": 92,
+              "total": 1954
+            },
+            "groq": {
+              "prompt": 144,
+              "completion": 132,
+              "total": 276
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:52:01Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 213,
+              "completion_tokens": 410,
+              "total_tokens": 623
+            },
+            {
+              "timestamp": "2026-10-17T08:52:24Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1862,
+              "completion_tokens": 92,
+              "total_tokens": 1954
+            },
+            {
+              "timestamp": "2026-10-17T08:52:40Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-sqrt",
+              "program_name": "sqrt",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Tester",
+              "provider": "groq",
+              "model": "qwen/qwen3.8-27b",
+              "prompt_tokens": 144,
+              "completion_tokens": 132,
+              "total_tokens": 276
+            }
+          ]
+        },
+        "total_duration_seconds": 62.744,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 41.613,
+            "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,7 +1,7 @@\n \n def sqrt(x, epsilon):\n     approx = x / 2\n-    while abs(x - approx) > epsilon:\n+    while abs(approx * approx - x) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n \n"
+          }
+        ]
+      },
+      "subsequences": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-subsequences",
+        "program_name": "subsequences",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 7658,
+        "prompt_tokens": 6595,
+        "completion_tokens": 1063,
+        "token_breakdown": {
+          "total_tokens": 7658,
+          "prompt_tokens": 6595,
+          "completion_tokens": 1063,
+          "by_role": {
+            "Locator": {
+              "prompt": 252,
+              "completion": 616,
+              "total": 868
+            },
+            "Coder": {
+              "prompt": 6343,
+              "completion": 447,
+              "total": 6790
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 252,
+              "completion": 616,
+              "total": 868
+            },
+            "ollama": {
+              "prompt": 6343,
+              "completion": 447,
+              "total": 6790
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T08:56:34Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 252,
+              "completion_tokens": 616,
+              "total_tokens": 868
+            },
+            {
+              "timestamp": "2026-10-17T08:57:05Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2081,
+              "completion_tokens": 149,
+              "total_tokens": 2230
+            },
+            {
+              "timestamp": "2026-10-17T08:57:33Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "FULL_DDIV",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2131,
+              "completion_tokens": 149,
+              "total_tokens": 2280
+            },
+            {
+              "timestamp": "2026-10-17T08:58:02Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-subsequences",
+              "program_name": "subsequences",
+              "condition": "FULL_DDIV",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2131,
+              "completion_tokens": 149,
+              "total_tokens": 2280
+            }
+          ]
+        },
+        "total_duration_seconds": 106.96,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4)",
+            "resolved": false,
+            "duration_seconds": 30.644
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4)",
+            "resolved": false,
+            "duration_seconds": 28.329
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4)",
+            "resolved": false,
+            "duration_seconds": 28.719
+          }
+        ]
+      },
+      "topological_ordering": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "resolved": true,
+        "attempts_used": 1,
+        "max_attempts": 3,
+        "total_tokens": 3177,
+        "prompt_tokens": 2375,
+        "completion_tokens": 802,
+        "token_breakdown": {
+          "total_tokens": 3177,
+          "prompt_tokens": 2375,
+          "completion_tokens": 802,
+          "by_role": {
+            "Locator": {
+              "prompt": 217,
+              "completion": 565,
+              "total": 782
+            },
+            "Coder": {
+              "prompt": 1985,
+              "completion": 131,
+              "total": 2116
+            },
+            "Tester": {
+              "prompt": 173,
+              "completion": 106,
+              "total": 279
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 217,
+              "completion": 565,
+              "total": 782
+            },
+            "ollama": {
+              "prompt": 1985,
+              "completion": 131,
+              "total": 2116
+            },
+            "groq": {
+              "prompt": 173,
+              "completion": 106,
+              "total": 279
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T09:02:09Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 217,
+              "completion_tokens": 565,
+              "total_tokens": 782
+            },
+            {
+              "timestamp": "2026-10-17T09:02:37Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 1985,
+              "completion_tokens": 131,
+              "total_tokens": 2116
+            },
+            {
+              "timestamp": "2026-10-17T09:02:52Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-topological_ordering",
+              "program_name": "topological_ordering",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Tester",
+              "provider": "groq",
+              "model": "qwen/qwen3.8-27b",
+              "prompt_tokens": 173,
+              "completion_tokens": 106,
+              "total_tokens": 279
+            }
+          ]
+        },
+        "total_duration_seconds": 68.055,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "candidate_patch_applied": true,
+            "is_repeated_patch": false,
+            "resolved": true,
+            "all_passed": true,
+            "evaluation_verdict": "RESOLVED",
+            "failure_category": "NONE",
+            "failure_summary": "All tests passed successfully.",
+            "duration_seconds": 45.878,
+            "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,7 +3,7 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n-            if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n+            if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n     return ordered_nodes\n"
+          }
+        ]
+      },
+      "wrap": {
+        "condition": "FULL_DDIV",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "resolved": false,
+        "attempts_used": 3,
+        "max_attempts": 3,
+        "total_tokens": 7692,
+        "prompt_tokens": 6604,
+        "completion_tokens": 1088,
+        "token_breakdown": {
+          "total_tokens": 7692,
+          "prompt_tokens": 6604,
+          "completion_tokens": 1088,
+          "by_role": {
+            "Locator": {
+              "prompt": 301,
+              "completion": 566,
+              "total": 867
+            },
+            "Coder": {
+              "prompt": 6303,
+              "completion": 522,
+              "total": 6825
+            }
+          },
+          "by_provider": {
+            "gemini": {
+              "prompt": 301,
+              "completion": 566,
+              "total": 867
+            },
+            "ollama": {
+              "prompt": 6303,
+              "completion": 522,
+              "total": 6825
+            }
+          },
+          "transactions": [
+            {
+              "timestamp": "2026-10-17T09:04:56Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "FULL_DDIV",
+              "attempt": 0,
+              "role": "Locator",
+              "provider": "gemini",
+              "model": "gemini-3.1-flash-lite",
+              "prompt_tokens": 301,
+              "completion_tokens": 566,
+              "total_tokens": 867
+            },
+            {
+              "timestamp": "2026-10-17T09:05:47Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "FULL_DDIV",
+              "attempt": 1,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2068,
+              "completion_tokens": 159,
+              "total_tokens": 2227
+            },
+            {
+              "timestamp": "2026-10-17T09:06:38Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "FULL_DDIV",
+              "attempt": 2,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2111,
+              "completion_tokens": 210,
+              "total_tokens": 2321
+            },
+            {
+              "timestamp": "2026-10-17T09:07:08Z",
+              "date_utc": "2026-10-17",
+              "task_id": "quixbugs-python-wrap",
+              "program_name": "wrap",
+              "condition": "FULL_DDIV",
+              "attempt": 3,
+              "role": "Coder",
+              "provider": "ollama",
+              "model": "qwen2.5-coder:7b",
+              "prompt_tokens": 2124,
+              "completion_tokens": 153,
+              "total_tokens": 2277
+            }
+          ]
+        },
+        "total_duration_seconds": 150.724,
+        "history": [
+          {
+            "attempt": 1,
+            "temperature": 0.0,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/wrap.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+            "resolved": false,
+            "duration_seconds": 50.933
+          },
+          {
+            "attempt": 2,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:4\nerror: python_programs/wrap.py: patch does not apply",
+            "resolved": false,
+            "duration_seconds": 51.257
+          },
+          {
+            "attempt": 3,
+            "temperature": 0.2,
+            "patch_extracted": false,
+            "extraction_message": "Patched file 'python_programs/wrap.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+            "resolved": false,
+            "duration_seconds": 29.659
+          }
+        ]
+      }
+    }
+  }
+}

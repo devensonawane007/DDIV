@@ -1,0 +1,13 @@
+--- a/python_programs/rpn_eval.py
++++ b/python_programs/rpn_eval.py
+@@ -16,9 +16,7 @@
+         else:
+             a = stack.pop()
+             b = stack.pop()
+-            stack.append(
+-                op(token, a, b)
+-            )
++            stack.append(op(token, b, a))
+ 
+     return stack.pop()
+ 

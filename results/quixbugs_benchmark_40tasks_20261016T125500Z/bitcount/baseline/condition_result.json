@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-bitcount",
+  "program_name": "bitcount",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1612,
+  "prompt_tokens": 1567,
+  "completion_tokens": 45,
+  "total_duration_seconds": 16.803,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Failed to extract valid patch or code modifications from model output",
+      "resolved": false,
+      "duration_seconds": 16.801
+    }
+  ]
+}

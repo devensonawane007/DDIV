@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-sqrt",
+  "program_name": "sqrt",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1723,
+  "prompt_tokens": 1608,
+  "completion_tokens": 115,
+  "total_duration_seconds": 24.045,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 24.045,
+      "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = 1 if x < 1 else x / 2\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1616,
+  "completion_tokens": 168,
+  "latency_seconds": 7.2986114,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is that the function does not handle the case where a node has outgoing nodes that are not yet in the ordered list. The fix is to add a check to ensure that all outgoing nodes of a node are in the ordered list before adding the node to the ordered list.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"for nextnode in node.outgoing_nodes:\",\n      \"code\": \"for nextnode in node.outgoing_nodes:\\n    if not all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes):\\n        continue\\n    if nextnode not in ordered_nodes:\\n        ordered_nodes.append(nextnode)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is that the function does not handle the case where a node has outgoing nodes that are not yet in the ordered list. The fix is to add a check to ensure that all outgoing nodes of a node are in the ordered list before adding the node to the ordered list.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "for nextnode in node.outgoing_nodes:",
+        "code": "for nextnode in node.outgoing_nodes:\n    if not all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes):\n        continue\n    if nextnode not in ordered_nodes:\n        ordered_nodes.append(nextnode)"
+      }
+    ]
+  }
+}

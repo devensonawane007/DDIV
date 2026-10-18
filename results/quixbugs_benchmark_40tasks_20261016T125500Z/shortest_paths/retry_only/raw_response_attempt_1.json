@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1837,
+  "completion_tokens": 118,
+  "latency_seconds": 5.3179278,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is in the update of `weight_by_node[v]` inside the inner loop. It should be updated based on the new weight calculated, not the old weight.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_paths.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"weight_by_node[v] = min(\",\n      \"code\": \"weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is in the update of `weight_by_node[v]` inside the inner loop. It should be updated based on the new weight calculated, not the old weight.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_paths.py",
+        "operation": "replace",
+        "anchor": "weight_by_node[v] = min(",
+        "code": "weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])"
+      }
+    ]
+  }
+}

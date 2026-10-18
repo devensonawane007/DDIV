@@ -1,0 +1,11 @@
+--- a/python_programs/shortest_path_length.py
++++ b/python_programs/shortest_path_length.py
+@@ -36,7 +36,7 @@
+ def insert_or_update(node_heap, dist_node):
+     dist, node = dist_node
+     for i, tpl in enumerate(node_heap):
+-        a, b = tpl
++        dist, node = dist_node
+         if b == node:
+             node_heap[i] = dist_node #heapq retains sorted property
+             return None

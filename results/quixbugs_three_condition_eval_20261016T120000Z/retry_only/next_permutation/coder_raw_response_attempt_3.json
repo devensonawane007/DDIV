@@ -1,0 +1,19 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 2399,
+  "completion_tokens": 102,
+  "latency_seconds": 13.6318179,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original implementation did not correctly handle the case where no next permutation exists. The patch introduced a condition to reverse the permutation when no valid next permutation is found.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/next_permutation.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"return next_perm\",\n      \"code\": \"return next_perm if next_perm else list(reversed(perm))\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original implementation did not correctly handle the case where no next permutation exists. The patch introduced a condition to reverse the permutation when no valid next permutation is found.",
+    "modifications": [
+      {
+        "path": "python_programs/next_permutation.py",
+        "operation": "replace",
+        "anchor": "return next_perm",
+        "code": "return next_perm if next_perm else list(reversed(perm))"
+      }
+    ]
+  }
+}

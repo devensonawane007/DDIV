@@ -1,0 +1,125 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-shunting_yard",
+  "program_name": "shunting_yard",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7473,
+  "prompt_tokens": 6711,
+  "completion_tokens": 762,
+  "token_breakdown": {
+    "total_tokens": 7473,
+    "prompt_tokens": 6711,
+    "completion_tokens": 762,
+    "by_role": {
+      "Locator": {
+        "prompt": 424,
+        "completion": 466,
+        "total": 890
+      },
+      "Coder": {
+        "prompt": 6287,
+        "completion": 296,
+        "total": 6583
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 424,
+        "completion": 466,
+        "total": 890
+      },
+      "ollama": {
+        "prompt": 6287,
+        "completion": 296,
+        "total": 6583
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:44:28Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 424,
+        "completion_tokens": 466,
+        "total_tokens": 890
+      },
+      {
+        "timestamp": "2026-10-17T08:44:54Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2073,
+        "completion_tokens": 101,
+        "total_tokens": 2174
+      },
+      {
+        "timestamp": "2026-10-17T08:45:16Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "condition": "FULL_DDIV",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2107,
+        "completion_tokens": 98,
+        "total_tokens": 2205
+      },
+      {
+        "timestamp": "2026-10-17T08:45:37Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shunting_yard",
+        "program_name": "shunting_yard",
+        "condition": "FULL_DDIV",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2107,
+        "completion_tokens": 97,
+        "total_tokens": 2204
+      }
+    ]
+  },
+  "total_duration_seconds": 87.625,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+      "resolved": false,
+      "duration_seconds": 25.698
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+      "resolved": false,
+      "duration_seconds": 21.539
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+      "resolved": false,
+      "duration_seconds": 21.246
+    }
+  ]
+}

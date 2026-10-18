@@ -1,0 +1,39 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-rpn_eval",
+  "program_name": "rpn_eval",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5548,
+  "prompt_tokens": 5214,
+  "completion_tokens": 334,
+  "total_duration_seconds": 33.668,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+      "resolved": false,
+      "duration_seconds": 11.376
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+      "resolved": false,
+      "duration_seconds": 12.21
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Anchor ambiguous in 'python_programs/rpn_eval.py' (2 matches). (category: ANCHOR_AMBIGUOUS)",
+      "resolved": false,
+      "duration_seconds": 10.066
+    }
+  ]
+}

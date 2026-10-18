@@ -1,0 +1,246 @@
+{
+  "experiment_id": "phase9_20261016_054838",
+  "task_id": "mwaskom__seaborn-3187",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "seaborn/_core/scales.py",
+          "target_symbol": "seaborn._core.scales.Continuous.get_legend_info",
+          "operation": "replace",
+          "anchor": "def get_legend_info(self, formatter, axis):",
+          "code": "def get_legend_info(self, formatter, axis):\n    if isinstance(formatter, ScalarFormatter):\n        offset = formatter.get_offset()\n        if offset:\n            label = f'{formatter.get_label()} (x{offset})'\n            return label\n    return formatter.get_label()",
+          "reason": "This modification checks if the formatter is an instance of `ScalarFormatter` and retrieves the offset value. If an offset is present, it appends it to the legend label, ensuring that the legend accurately represents the scale of large numbers."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "PatchBuilder failed: Anchor not found in 'seaborn/_core/scales.py'. Anchor must match exact verbatim lines from source file with identical indentation. Anchor snippet:\ndef get_legend_info(self, formatter, axis):",
+      "coder_error_code": "ANCHOR_NOT_FOUND",
+      "coder_error_detail": "PatchBuilder failed: Anchor not found in 'seaborn/_core/scales.py'. Anchor must match exact verbatim lines from source file with identical indentation. Anchor snippet:\ndef get_legend_info(self, formatter, axis):",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "seaborn/_core/scales.py"
+      ],
+      "latency_seconds": 0.20363616943359375,
+      "agent_timings": {
+        "locator": 2.305924654006958,
+        "coder": 38.7643146,
+        "tester": 1.1105966567993164,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8220,
+        "completion_tokens": 983,
+        "total_tokens": 9203
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1766,
+          "completion_tokens": 148,
+          "total_tokens": 1914,
+          "latency_seconds": 2.305924654006958
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3866,
+          "completion_tokens": 476,
+          "total_tokens": 4342,
+          "latency_seconds": 38.7643146
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2588,
+          "completion_tokens": 359,
+          "total_tokens": 2947,
+          "latency_seconds": 1.1105966567993164
+        }
+      ],
+      "context_characters": 8439,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F4",
+        "granular_failure_type": "ENVIRONMENT_FAILURE",
+        "confidence": 0.98,
+        "evidence_reasons": [
+          "Pristine repository base failed pre-existing PASS_TO_PASS tests (environment failure)."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "ANCHOR_NOT_FOUND",
+          "clean_base_passed": false,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\results\\benchmark_phase9_four_tasks_20261016_054838\\workspaces\\mwaskom__seaborn-3187__baseline\\mwaskom__seaborn-3187__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 198.74,
+    "input_tokens": 8220,
+    "output_tokens": 983,
+    "total_tokens": 9203,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 2.305924654006958,
+      "coder": 38.7643146,
+      "tester": 1.1105966567993164,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1766,
+        "completion_tokens": 148,
+        "total_tokens": 1914,
+        "latency_seconds": 2.305924654006958
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3866,
+        "completion_tokens": 476,
+        "total_tokens": 4342,
+        "latency_seconds": 38.7643146
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2588,
+        "completion_tokens": 359,
+        "total_tokens": 2947,
+        "latency_seconds": 1.1105966567993164
+      }
+    ],
+    "context_characters": 8439,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.2,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": true,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 198.75233483314514,
+  "worker_pid": 14216,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\benchmark_phase9_four_tasks_20261016_054838\\logs\\mwaskom__seaborn-3187__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\results\\benchmark_phase9_four_tasks_20261016_054838\\workspaces\\mwaskom__seaborn-3187__baseline",
+  "error_message": null,
+  "started_at": "2026-10-16T01:04:30.190387+00:00",
+  "completed_at": "2026-10-16T01:07:48.931452+00:00",
+  "job_key": "mwaskom__seaborn-3187__baseline",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "captured_prompts": [
+    {
+      "role": "Locator",
+      "attempt": 1,
+      "length_chars": 4695,
+      "file": "mwaskom__seaborn-3187__baseline__att1__locator_prompt.txt",
+      "has_memory": false
+    },
+    {
+      "role": "Coder",
+      "attempt": 1,
+      "length_chars": 10127,
+      "file": "mwaskom__seaborn-3187__baseline__att1__coder_prompt.txt",
+      "has_memory": false,
+      "memory_chars": 0,
+      "has_recovery": false,
+      "recovery_chars": 0
+    }
+  ],
+  "ground_truth_f2p": 2,
+  "ground_truth_p2p": 11
+}

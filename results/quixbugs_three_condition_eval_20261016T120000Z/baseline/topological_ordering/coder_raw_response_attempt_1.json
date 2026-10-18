@@ -1,0 +1,19 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1491,
+  "completion_tokens": 198,
+  "latency_seconds": 50.0281429,
+  "raw_text": "{\n  \"reasoning_summary\": \"The current implementation does not correctly handle the topological sorting of nodes. It fails to ensure that all nodes are included in the ordered list and respects the directed graph structure.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ordered_nodes = [node for node in nodes if not node.incoming_nodes]\",\n      \"code\": \"ordered_nodes = [node for node in nodes if not node.incoming_nodes]\\nvisited = set()\\n\\nwhile ordered_nodes:\\n    node = ordered_nodes.pop(0)\\n    if node not in visited:\\n        visited.add(node)\\n        for nextnode in node.outgoing_nodes:\\n            nextnode.incoming_nodes.remove(node)\\n            if not nextnode.incoming_nodes:\\n                ordered_nodes.append(nextnode)\\n\\nreturn visited\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The current implementation does not correctly handle the topological sorting of nodes. It fails to ensure that all nodes are included in the ordered list and respects the directed graph structure.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "ordered_nodes = [node for node in nodes if not node.incoming_nodes]",
+        "code": "ordered_nodes = [node for node in nodes if not node.incoming_nodes]\nvisited = set()\n\nwhile ordered_nodes:\n    node = ordered_nodes.pop(0)\n    if node not in visited:\n        visited.add(node)\n        for nextnode in node.outgoing_nodes:\n            nextnode.incoming_nodes.remove(node)\n            if not nextnode.incoming_nodes:\n                ordered_nodes.append(nextnode)\n\nreturn visited"
+      }
+    ]
+  }
+}

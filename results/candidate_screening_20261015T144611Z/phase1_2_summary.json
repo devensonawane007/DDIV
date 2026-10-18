@@ -1,0 +1,15 @@
+{
+  "timestamp": "20261015T144611Z",
+  "parquet_path": "D:\\DDIV\\data\\swebench\\test-00000-of-00001.parquet",
+  "parquet_size_bytes": 2096679,
+  "total_rows": 500,
+  "excluded_existing_tasks": 30,
+  "candidates_screened": 470,
+  "unique_repos_in_dataset": 12,
+  "classification_distribution": {
+    "promising_not_verified": 424,
+    "blocked": 34,
+    "ineligible": 12
+  },
+  "top_candidates_count": 330
+}

@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-wrap",
+  "program_name": "wrap",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1803,
+  "prompt_tokens": 1687,
+  "completion_tokens": 116,
+  "total_duration_seconds": 8.903,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:5\nerror: python_programs/wrap.py: patch does not apply (category: PATCH_REVISION_MISMATCH)",
+      "resolved": false,
+      "duration_seconds": 8.903
+    }
+  ]
+}

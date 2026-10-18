@@ -1,0 +1,1105 @@
+{
+  "timestamp": "2026-10-16T10:54:58Z",
+  "status": "COMPLETED",
+  "batch": 1,
+  "total_assigned_tasks": 9,
+  "completed_tasks": 9,
+  "skipped_checkpoint_tasks": 0,
+  "resolved": 7,
+  "resolution_rate_pct": 77.78,
+  "today_date_utc": "2026-10-16",
+  "today_groq_tokens": 10672,
+  "today_gemini_tokens": 6184,
+  "cumulative_groq_tokens": 10672,
+  "cumulative_gemini_tokens": 6184,
+  "current_session_groq_tokens": 10672,
+  "current_session_gemini_tokens": 6184,
+  "results": {
+    "bitcount": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-bitcount",
+      "program_name": "bitcount",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3110,
+      "prompt_tokens": 2133,
+      "completion_tokens": 977,
+      "token_breakdown": {
+        "total_tokens": 3110,
+        "prompt_tokens": 2133,
+        "completion_tokens": 977,
+        "by_role": {
+          "Locator": {
+            "prompt": 162,
+            "completion": 449,
+            "total": 611
+          },
+          "Coder": {
+            "prompt": 1856,
+            "completion": 92,
+            "total": 1948
+          },
+          "Tester": {
+            "prompt": 115,
+            "completion": 436,
+            "total": 551
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 162,
+            "completion": 449,
+            "total": 611
+          },
+          "ollama": {
+            "prompt": 1856,
+            "completion": 92,
+            "total": 1948
+          },
+          "groq": {
+            "prompt": 115,
+            "completion": 436,
+            "total": 551
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:44:37Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-bitcount",
+            "program_name": "bitcount",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 162,
+            "completion_tokens": 449,
+            "total_tokens": 611
+          },
+          {
+            "timestamp": "2026-10-16T10:44:44Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-bitcount",
+            "program_name": "bitcount",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1856,
+            "completion_tokens": 92,
+            "total_tokens": 1948
+          },
+          {
+            "timestamp": "2026-10-16T10:44:55Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-bitcount",
+            "program_name": "bitcount",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 115,
+            "completion_tokens": 436,
+            "total_tokens": 551
+          }
+        ]
+      },
+      "total_duration_seconds": 37.123,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 20.159,
+          "patch_diff": "--- a/python_programs/bitcount.py\n+++ b/python_programs/bitcount.py\n@@ -2,7 +2,7 @@\n def bitcount(n):\n     count = 0\n     while n:\n-        n ^= n - 1\n+        n &= n - 1\n         count += 1\n     return count\n \n"
+        }
+      ]
+    },
+    "depth_first_search": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-depth_first_search",
+      "program_name": "depth_first_search",
+      "resolved": false,
+      "attempts_used": 3,
+      "max_attempts": 3,
+      "total_tokens": 13273,
+      "prompt_tokens": 10338,
+      "completion_tokens": 2935,
+      "token_breakdown": {
+        "total_tokens": 13273,
+        "prompt_tokens": 10338,
+        "completion_tokens": 2935,
+        "by_role": {
+          "Locator": {
+            "prompt": 196,
+            "completion": 477,
+            "total": 673
+          },
+          "Coder": {
+            "prompt": 7313,
+            "completion": 343,
+            "total": 7656
+          },
+          "Tester": {
+            "prompt": 351,
+            "completion": 1710,
+            "total": 2061
+          },
+          "Supervisor": {
+            "prompt": 2478,
+            "completion": 405,
+            "total": 2883
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 196,
+            "completion": 477,
+            "total": 673
+          },
+          "ollama": {
+            "prompt": 7313,
+            "completion": 343,
+            "total": 7656
+          },
+          "groq": {
+            "prompt": 2829,
+            "completion": 2115,
+            "total": 4944
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:45:31Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 196,
+            "completion_tokens": 477,
+            "total_tokens": 673
+          },
+          {
+            "timestamp": "2026-10-16T10:45:40Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1875,
+            "completion_tokens": 106,
+            "total_tokens": 1981
+          },
+          {
+            "timestamp": "2026-10-16T10:45:52Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 117,
+            "completion_tokens": 570,
+            "total_tokens": 687
+          },
+          {
+            "timestamp": "2026-10-16T10:46:04Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 1,
+            "role": "Supervisor",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 1240,
+            "completion_tokens": 120,
+            "total_tokens": 1360
+          },
+          {
+            "timestamp": "2026-10-16T10:46:14Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2640,
+            "completion_tokens": 115,
+            "total_tokens": 2755
+          },
+          {
+            "timestamp": "2026-10-16T10:46:25Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 2,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 117,
+            "completion_tokens": 570,
+            "total_tokens": 687
+          },
+          {
+            "timestamp": "2026-10-16T10:46:42Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 2,
+            "role": "Supervisor",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 1238,
+            "completion_tokens": 285,
+            "total_tokens": 1523
+          },
+          {
+            "timestamp": "2026-10-16T10:46:53Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 3,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2798,
+            "completion_tokens": 122,
+            "total_tokens": 2920
+          },
+          {
+            "timestamp": "2026-10-16T10:47:04Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-depth_first_search",
+            "program_name": "depth_first_search",
+            "attempt": 3,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 117,
+            "completion_tokens": 570,
+            "total_tokens": 687
+          }
+        ]
+      },
+      "total_duration_seconds": 128.088,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "4 test(s) failed assertion check.",
+          "duration_seconds": 22.096,
+          "patch_diff": "--- a/python_programs/depth_first_search.py\n+++ b/python_programs/depth_first_search.py\n@@ -2,6 +2,7 @@\n     nodesvisited = set()\n \n     def search_from(node):\n+        nodesvisited.add(node)\n         if node in nodesvisited:\n             return False\n         elif node is goalnode:\n"
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": true,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "4 test(s) failed assertion check.",
+          "duration_seconds": 22.861,
+          "patch_diff": "--- a/python_programs/depth_first_search.py\n+++ b/python_programs/depth_first_search.py\n@@ -2,6 +2,7 @@\n     nodesvisited = set()\n \n     def search_from(node):\n+        nodesvisited.add(node)\n         if node in nodesvisited:\n             return False\n         elif node is goalnode:\n"
+        },
+        {
+          "attempt": 3,
+          "temperature": 0.2,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": true,
+          "resolved": false,
+          "all_passed": false,
+          "evaluation_verdict": "UNRESOLVED (Tests failed)",
+          "failure_category": "ASSERTION_FAILURE",
+          "failure_summary": "4 test(s) failed assertion check.",
+          "duration_seconds": 23.307,
+          "patch_diff": "--- a/python_programs/depth_first_search.py\n+++ b/python_programs/depth_first_search.py\n@@ -2,6 +2,7 @@\n     nodesvisited = set()\n \n     def search_from(node):\n+        nodesvisited.add(node)\n         if node in nodesvisited:\n             return False\n         elif node is goalnode:\n"
+        }
+      ]
+    },
+    "detect_cycle": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-detect_cycle",
+      "program_name": "detect_cycle",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 4771,
+      "prompt_tokens": 2169,
+      "completion_tokens": 2602,
+      "token_breakdown": {
+        "total_tokens": 4771,
+        "prompt_tokens": 2169,
+        "completion_tokens": 2602,
+        "by_role": {
+          "Locator": {
+            "prompt": 174,
+            "completion": 452,
+            "total": 626
+          },
+          "Coder": {
+            "prompt": 1874,
+            "completion": 102,
+            "total": 1976
+          },
+          "Tester": {
+            "prompt": 121,
+            "completion": 2048,
+            "total": 2169
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 174,
+            "completion": 452,
+            "total": 626
+          },
+          "ollama": {
+            "prompt": 1874,
+            "completion": 102,
+            "total": 1976
+          },
+          "groq": {
+            "prompt": 121,
+            "completion": 2048,
+            "total": 2169
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:47:31Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-detect_cycle",
+            "program_name": "detect_cycle",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 174,
+            "completion_tokens": 452,
+            "total_tokens": 626
+          },
+          {
+            "timestamp": "2026-10-16T10:47:39Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-detect_cycle",
+            "program_name": "detect_cycle",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1874,
+            "completion_tokens": 102,
+            "total_tokens": 1976
+          },
+          {
+            "timestamp": "2026-10-16T10:47:54Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-detect_cycle",
+            "program_name": "detect_cycle",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 121,
+            "completion_tokens": 2048,
+            "total_tokens": 2169
+          }
+        ]
+      },
+      "total_duration_seconds": 49.276,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 24.549,
+          "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -2,7 +2,7 @@\n     hare = tortoise = node\n \n     while True:\n-        if hare.successor is None:\n+        if hare is None or hare.successor is None:\n             return False\n \n         tortoise = tortoise.successor\n"
+        }
+      ]
+    },
+    "find_in_sorted": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-find_in_sorted",
+      "program_name": "find_in_sorted",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3377,
+      "prompt_tokens": 2309,
+      "completion_tokens": 1068,
+      "token_breakdown": {
+        "total_tokens": 3377,
+        "prompt_tokens": 2309,
+        "completion_tokens": 1068,
+        "by_role": {
+          "Locator": {
+            "prompt": 258,
+            "completion": 461,
+            "total": 719
+          },
+          "Coder": {
+            "prompt": 1922,
+            "completion": 114,
+            "total": 2036
+          },
+          "Tester": {
+            "prompt": 129,
+            "completion": 493,
+            "total": 622
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 258,
+            "completion": 461,
+            "total": 719
+          },
+          "ollama": {
+            "prompt": 1922,
+            "completion": 114,
+            "total": 2036
+          },
+          "groq": {
+            "prompt": 129,
+            "completion": 493,
+            "total": 622
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:48:22Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-find_in_sorted",
+            "program_name": "find_in_sorted",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 258,
+            "completion_tokens": 461,
+            "total_tokens": 719
+          },
+          {
+            "timestamp": "2026-10-16T10:48:32Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-find_in_sorted",
+            "program_name": "find_in_sorted",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1922,
+            "completion_tokens": 114,
+            "total_tokens": 2036
+          },
+          {
+            "timestamp": "2026-10-16T10:48:43Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-find_in_sorted",
+            "program_name": "find_in_sorted",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 129,
+            "completion_tokens": 493,
+            "total_tokens": 622
+          }
+        ]
+      },
+      "total_duration_seconds": 48.715,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 22.0,
+          "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -6,7 +6,7 @@\n         if x < arr[mid]:\n             return binsearch(start, mid)\n         elif x > arr[mid]:\n-            return binsearch(mid, end)\n+            return binsearch(mid + 1, end)\n         else:\n             return mid\n \n"
+        }
+      ]
+    },
+    "gcd": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-gcd",
+      "program_name": "gcd",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 2836,
+      "prompt_tokens": 1974,
+      "completion_tokens": 862,
+      "token_breakdown": {
+        "total_tokens": 2836,
+        "prompt_tokens": 1974,
+        "completion_tokens": 862,
+        "by_role": {
+          "Locator": {
+            "prompt": 173,
+            "completion": 281,
+            "total": 454
+          },
+          "Coder": {
+            "prompt": 1692,
+            "completion": 99,
+            "total": 1791
+          },
+          "Tester": {
+            "prompt": 109,
+            "completion": 482,
+            "total": 591
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 173,
+            "completion": 281,
+            "total": 454
+          },
+          "ollama": {
+            "prompt": 1692,
+            "completion": 99,
+            "total": 1791
+          },
+          "groq": {
+            "prompt": 109,
+            "completion": 482,
+            "total": 591
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:49:09Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-gcd",
+            "program_name": "gcd",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 173,
+            "completion_tokens": 281,
+            "total_tokens": 454
+          },
+          {
+            "timestamp": "2026-10-16T10:49:18Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-gcd",
+            "program_name": "gcd",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1692,
+            "completion_tokens": 99,
+            "total_tokens": 1791
+          },
+          {
+            "timestamp": "2026-10-16T10:49:29Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-gcd",
+            "program_name": "gcd",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 109,
+            "completion_tokens": 482,
+            "total_tokens": 591
+          }
+        ]
+      },
+      "total_duration_seconds": 45.854,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 21.27,
+          "patch_diff": "--- a/python_programs/gcd.py\n+++ b/python_programs/gcd.py\n@@ -2,7 +2,7 @@\n     if b == 0:\n         return a\n     else:\n-        return gcd(a % b, b)\n+        return gcd(b, a % b)\n \n \n \"\"\"\n"
+        }
+      ]
+    },
+    "get_factors": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-get_factors",
+      "program_name": "get_factors",
+      "resolved": false,
+      "attempts_used": 3,
+      "max_attempts": 3,
+      "total_tokens": 6955,
+      "prompt_tokens": 6201,
+      "completion_tokens": 754,
+      "token_breakdown": {
+        "total_tokens": 6955,
+        "prompt_tokens": 6201,
+        "completion_tokens": 754,
+        "by_role": {
+          "Locator": {
+            "prompt": 245,
+            "completion": 510,
+            "total": 755
+          },
+          "Coder": {
+            "prompt": 5956,
+            "completion": 244,
+            "total": 6200
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 245,
+            "completion": 510,
+            "total": 755
+          },
+          "ollama": {
+            "prompt": 5956,
+            "completion": 244,
+            "total": 6200
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:50:26Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-get_factors",
+            "program_name": "get_factors",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 245,
+            "completion_tokens": 510,
+            "total_tokens": 755
+          },
+          {
+            "timestamp": "2026-10-16T10:50:34Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-get_factors",
+            "program_name": "get_factors",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1964,
+            "completion_tokens": 82,
+            "total_tokens": 2046
+          },
+          {
+            "timestamp": "2026-10-16T10:50:41Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-get_factors",
+            "program_name": "get_factors",
+            "attempt": 2,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1996,
+            "completion_tokens": 77,
+            "total_tokens": 2073
+          },
+          {
+            "timestamp": "2026-10-16T10:50:48Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-get_factors",
+            "program_name": "get_factors",
+            "attempt": 3,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1996,
+            "completion_tokens": 85,
+            "total_tokens": 2081
+          }
+        ]
+      },
+      "total_duration_seconds": 77.558,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "patch_extracted": false,
+          "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+          "resolved": false,
+          "duration_seconds": 7.921
+        },
+        {
+          "attempt": 2,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+          "resolved": false,
+          "duration_seconds": 7.079
+        },
+        {
+          "attempt": 3,
+          "temperature": 0.2,
+          "patch_extracted": false,
+          "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+          "resolved": false,
+          "duration_seconds": 7.473
+        }
+      ]
+    },
+    "hanoi": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-hanoi",
+      "program_name": "hanoi",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3408,
+      "prompt_tokens": 2526,
+      "completion_tokens": 882,
+      "token_breakdown": {
+        "total_tokens": 3408,
+        "prompt_tokens": 2526,
+        "completion_tokens": 882,
+        "by_role": {
+          "Locator": {
+            "prompt": 385,
+            "completion": 384,
+            "total": 769
+          },
+          "Coder": {
+            "prompt": 1986,
+            "completion": 98,
+            "total": 2084
+          },
+          "Tester": {
+            "prompt": 155,
+            "completion": 400,
+            "total": 555
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 385,
+            "completion": 384,
+            "total": 769
+          },
+          "ollama": {
+            "prompt": 1986,
+            "completion": 98,
+            "total": 2084
+          },
+          "groq": {
+            "prompt": 155,
+            "completion": 400,
+            "total": 555
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:51:17Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-hanoi",
+            "program_name": "hanoi",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 385,
+            "completion_tokens": 384,
+            "total_tokens": 769
+          },
+          {
+            "timestamp": "2026-10-16T10:51:26Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-hanoi",
+            "program_name": "hanoi",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1986,
+            "completion_tokens": 98,
+            "total_tokens": 2084
+          },
+          {
+            "timestamp": "2026-10-16T10:51:37Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-hanoi",
+            "program_name": "hanoi",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 155,
+            "completion_tokens": 400,
+            "total_tokens": 555
+          }
+        ]
+      },
+      "total_duration_seconds": 49.747,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 21.368,
+          "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -3,7 +3,7 @@\n     if height > 0:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n-        steps.append((start, helper))\n+        steps.append((start, end))\n         steps.extend(hanoi(height - 1, helper, end))\n \n     return steps\n"
+        }
+      ]
+    },
+    "kheapsort": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-kheapsort",
+      "program_name": "kheapsort",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3490,
+      "prompt_tokens": 2539,
+      "completion_tokens": 951,
+      "token_breakdown": {
+        "total_tokens": 3490,
+        "prompt_tokens": 2539,
+        "completion_tokens": 951,
+        "by_role": {
+          "Locator": {
+            "prompt": 389,
+            "completion": 432,
+            "total": 821
+          },
+          "Coder": {
+            "prompt": 2024,
+            "completion": 91,
+            "total": 2115
+          },
+          "Tester": {
+            "prompt": 126,
+            "completion": 428,
+            "total": 554
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 389,
+            "completion": 432,
+            "total": 821
+          },
+          "ollama": {
+            "prompt": 2024,
+            "completion": 91,
+            "total": 2115
+          },
+          "groq": {
+            "prompt": 126,
+            "completion": 428,
+            "total": 554
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:52:16Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-kheapsort",
+            "program_name": "kheapsort",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 389,
+            "completion_tokens": 432,
+            "total_tokens": 821
+          },
+          {
+            "timestamp": "2026-10-16T10:52:26Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-kheapsort",
+            "program_name": "kheapsort",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 2024,
+            "completion_tokens": 91,
+            "total_tokens": 2115
+          },
+          {
+            "timestamp": "2026-10-16T10:52:37Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-kheapsort",
+            "program_name": "kheapsort",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 126,
+            "completion_tokens": 428,
+            "total_tokens": 554
+          }
+        ]
+      },
+      "total_duration_seconds": 59.544,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 21.852,
+          "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -4,7 +4,7 @@\n     heap = arr[:k]\n     heapq.heapify(heap)\n \n-    for x in arr:\n+    for x in arr[k:]:\n         yield heapq.heappushpop(heap, x)\n \n     while heap:\n"
+        }
+      ]
+    },
+    "knapsack": {
+      "condition": "CLOUD_ASSISTED_DDIV",
+      "task_id": "quixbugs-python-knapsack",
+      "program_name": "knapsack",
+      "resolved": true,
+      "attempts_used": 1,
+      "max_attempts": 3,
+      "total_tokens": 3519,
+      "prompt_tokens": 2520,
+      "completion_tokens": 999,
+      "token_breakdown": {
+        "total_tokens": 3519,
+        "prompt_tokens": 2520,
+        "completion_tokens": 999,
+        "by_role": {
+          "Locator": {
+            "prompt": 381,
+            "completion": 375,
+            "total": 756
+          },
+          "Coder": {
+            "prompt": 1987,
+            "completion": 90,
+            "total": 2077
+          },
+          "Tester": {
+            "prompt": 152,
+            "completion": 534,
+            "total": 686
+          }
+        },
+        "by_provider": {
+          "gemini": {
+            "prompt": 381,
+            "completion": 375,
+            "total": 756
+          },
+          "ollama": {
+            "prompt": 1987,
+            "completion": 90,
+            "total": 2077
+          },
+          "groq": {
+            "prompt": 152,
+            "completion": 534,
+            "total": 686
+          }
+        },
+        "transactions": [
+          {
+            "timestamp": "2026-10-16T10:54:36Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-knapsack",
+            "program_name": "knapsack",
+            "attempt": 0,
+            "role": "Locator",
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-lite",
+            "prompt_tokens": 381,
+            "completion_tokens": 375,
+            "total_tokens": 756
+          },
+          {
+            "timestamp": "2026-10-16T10:54:44Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-knapsack",
+            "program_name": "knapsack",
+            "attempt": 1,
+            "role": "Coder",
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "prompt_tokens": 1987,
+            "completion_tokens": 90,
+            "total_tokens": 2077
+          },
+          {
+            "timestamp": "2026-10-16T10:54:56Z",
+            "date_utc": "2026-10-16",
+            "task_id": "quixbugs-python-knapsack",
+            "program_name": "knapsack",
+            "attempt": 1,
+            "role": "Tester",
+            "provider": "groq",
+            "model": "qwen/qwen3.8-27b",
+            "prompt_tokens": 152,
+            "completion_tokens": 534,
+            "total_tokens": 686
+          }
+        ]
+      },
+      "total_duration_seconds": 139.549,
+      "history": [
+        {
+          "attempt": 1,
+          "temperature": 0.0,
+          "candidate_patch_applied": true,
+          "is_repeated_patch": false,
+          "resolved": true,
+          "all_passed": true,
+          "evaluation_verdict": "RESOLVED",
+          "failure_category": "NONE",
+          "failure_summary": "All tests passed successfully.",
+          "duration_seconds": 22.524,
+          "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -9,7 +9,7 @@\n         for j in range(1, capacity + 1):\n             memo[i, j] = memo[i - 1, j]\n \n-            if weight < j:\n+            if weight <= j:\n                 memo[i, j] = max(\n                     memo[i, j],\n                     value + memo[i - 1, j - weight]\n"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-10-15T08:29:10.305220+00:00",
+  "total_seed_records": 11,
+  "target_database": "results/v2_2_development/phase7_memory_ablation_20261015_pilot/memory/phase7_memory_on.db",
+  "anti_contamination_policy": "Zero ground truth, zero test patches, zero target task solutions",
+  "entries": [
+    {
+      "seed_id": 1,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_flask5014_ddiv/ddiv_memory.db",
+      "source_mtime": "2026-10-08T11:20:23.227328+00:00",
+      "task_id": "pallets__flask-5014",
+      "repository": "pallets/flask",
+      "failure_type": "NONE",
+      "recovery_action": "NONE",
+      "result": "SUCCESS",
+      "attempt": 1,
+      "relevant_files": [
+        "src/flask/blueprints.py",
+        "tests/test_blueprints.py"
+      ],
+      "diagnosis_summary": "Resolved successfully",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 2,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy23262_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:55:59.494914+00:00",
+      "task_id": "sympy__sympy-23262",
+      "repository": "sympy/sympy",
+      "failure_type": "F2",
+      "recovery_action": "A2",
+      "result": "FAILED",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/printing/pycode.py",
+        "sympy/printing/printer.py",
+        "sympy/utilities/lambdify.py"
+      ],
+      "diagnosis_summary": "The patch was applied successfully (patch_valid: true), but the tests failed. The issue is a logic error in the code generation for single-element tuples. The Python code printer is likely stripping t",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 3,
+      "original_id": 2,
+      "source_database": "data/workspaces/experiments/exp_val_sympy23262_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:55:59.494914+00:00",
+      "task_id": "sympy__sympy-23262",
+      "repository": "sympy/sympy",
+      "failure_type": "F3",
+      "recovery_action": "A3",
+      "result": "FAILED",
+      "attempt": 2,
+      "relevant_files": [
+        "sympy/printing/pycode.py",
+        "sympy/printing/printer.py",
+        "sympy/utilities/lambdify.py"
+      ],
+      "diagnosis_summary": "The attempt failed because the PatchBuilder could not apply the patch. The error 'Anchor not found in sympy/printing/printer.py' indicates that the Coder attempted to modify a method in the base class",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 4,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy23950_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T11:14:00.941240+00:00",
+      "task_id": "sympy__sympy-23950",
+      "repository": "sympy/sympy",
+      "failure_type": "F3",
+      "recovery_action": "A3",
+      "result": "FAILED",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/sets/contains.py",
+        "sympy/functions/elementary/piecewise.py"
+      ],
+      "diagnosis_summary": "The attempt failed because the generated patch did not conform to the standard unified diff format. The error message explicitly states: 'Patch does not match standard unified diff format (missing ---",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 5,
+      "original_id": 2,
+      "source_database": "data/workspaces/experiments/exp_val_sympy23950_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T11:14:00.941240+00:00",
+      "task_id": "sympy__sympy-23950",
+      "repository": "sympy/sympy",
+      "failure_type": "NONE",
+      "recovery_action": "NONE",
+      "result": "SUCCESS",
+      "attempt": 2,
+      "relevant_files": [
+        "sympy/sets/contains.py",
+        "sympy/functions/elementary/piecewise.py"
+      ],
+      "diagnosis_summary": "Resolved successfully",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 6,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy24562_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:28:32.279018+00:00",
+      "task_id": "sympy__sympy-24562",
+      "repository": "sympy/sympy",
+      "failure_type": "F2",
+      "recovery_action": "A2",
+      "result": "FAILED",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/core/numbers.py"
+      ],
+      "diagnosis_summary": "The patch was applied successfully (patch_valid: true), but the tests failed. The issue is that `Rational('0.5', '100')` incorrectly returns `1/100100` instead of `1/200`. This indicates a logic error",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 7,
+      "original_id": 2,
+      "source_database": "data/workspaces/experiments/exp_val_sympy24562_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:28:32.279018+00:00",
+      "task_id": "sympy__sympy-24562",
+      "repository": "sympy/sympy",
+      "failure_type": "F2",
+      "recovery_action": "A2",
+      "result": "FAILED",
+      "attempt": 2,
+      "relevant_files": [
+        "sympy/core/numbers.py"
+      ],
+      "diagnosis_summary": "The patch was applied successfully (patch_valid: true), but the tests failed. The issue is that `Rational('0.5', '100')` incorrectly returns `1/100100` instead of `1/200`. This indicates a logic error",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 8,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy22914_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T11:10:22.927674+00:00",
+      "task_id": "sympy__sympy-22914",
+      "repository": "sympy/sympy",
+      "failure_type": "NONE",
+      "recovery_action": "NONE",
+      "result": "SUCCESS",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/printing/pycode.py"
+      ],
+      "diagnosis_summary": "Resolved successfully",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 9,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy24443_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:43:19.421057+00:00",
+      "task_id": "sympy__sympy-24443",
+      "repository": "sympy/sympy",
+      "failure_type": "NONE",
+      "recovery_action": "NONE",
+      "result": "SUCCESS",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/combinatorics/homomorphisms.py"
+      ],
+      "diagnosis_summary": "Resolved successfully",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 10,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy24539_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:47:52.045543+00:00",
+      "task_id": "sympy__sympy-24539",
+      "repository": "sympy/sympy",
+      "failure_type": "NONE",
+      "recovery_action": "NONE",
+      "result": "SUCCESS",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/polys/rings.py"
+      ],
+      "diagnosis_summary": "Resolved successfully",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    },
+    {
+      "seed_id": 11,
+      "original_id": 1,
+      "source_database": "data/workspaces/experiments/exp_val_sympy24661_fix01/ddiv_memory.db",
+      "source_mtime": "2026-10-08T04:38:01.112375+00:00",
+      "task_id": "sympy__sympy-24661",
+      "repository": "sympy/sympy",
+      "failure_type": "NONE",
+      "recovery_action": "NONE",
+      "result": "SUCCESS",
+      "attempt": 1,
+      "relevant_files": [
+        "sympy/parsing/sympy_parser.py",
+        "sympy/core/relational.py"
+      ],
+      "diagnosis_summary": "Resolved successfully",
+      "sanitized_clean": true,
+      "eligibility": "APPROVED_HISTORICAL_EXPERIENCE"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2317,
+  "completion_tokens": 143,
+  "latency_seconds": 8.3032035,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is that the current implementation does not correctly handle the addition of nodes to the ordered list. The fix involves ensuring that a node is only added if all its outgoing nodes are already in the ordered list.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/topological_ordering.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\",\n      \"code\": \"if all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is that the current implementation does not correctly handle the addition of nodes to the ordered list. The fix involves ensuring that a node is only added if all its outgoing nodes are already in the ordered list.",
+    "modifications": [
+      {
+        "path": "python_programs/topological_ordering.py",
+        "operation": "replace",
+        "anchor": "if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:",
+        "code": "if all(nextnode in ordered_nodes for nextnode in nextnode.outgoing_nodes) and nextnode not in ordered_nodes:"
+      }
+    ]
+  }
+}

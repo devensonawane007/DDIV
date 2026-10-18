@@ -1,0 +1,10 @@
+--- a/sympy/physics/hep/gamma_matrices.py
++++ b/sympy/physics/hep/gamma_matrices.py
+@@ -44,6 +44,7 @@
+ 
+ 
+ def extract_type_tens(expression, component):
++    residual_expr = None
+     """
+     Extract from a ``TensExpr`` all tensors with `component`.
+ 

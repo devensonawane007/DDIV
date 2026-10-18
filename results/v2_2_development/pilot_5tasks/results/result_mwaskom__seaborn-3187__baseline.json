@@ -1,0 +1,228 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "mwaskom__seaborn-3187",
+  "condition": "baseline",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "seaborn/_core/scales.py",
+          "target_symbol": "seaborn._core.scales.Continuous.get_legend_info",
+          "operation": "replace",
+          "anchor": "def get_legend_info(self, formatter, axis):",
+          "code": "def get_legend_info(self, formatter, axis):\n    if isinstance(formatter, ScalarFormatter):\n        offset = formatter.get_offset()\n        if offset:\n            label = f'{formatter.get_label()} (x{offset})'\n        else:\n            label = formatter.get_label()\n    else:\n        label = formatter.get_label()\n    return label",
+          "reason": "This modification retrieves the offset value from the `ScalarFormatter` and includes it in the legend label, ensuring that legends accurately represent the scale of large numbers."
+        }
+      ],
+      "patch_operations": [
+        "replace"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Anchor not found in 'seaborn/_core/scales.py': def get_legend_info(self, formatter, axis):",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "seaborn/_core/scales.py"
+      ],
+      "latency_seconds": 0.13226675987243652,
+      "agent_timings": {
+        "locator": 11.875441789627075,
+        "coder": 34.055293,
+        "tester": 1.9938082695007324,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 8220,
+        "completion_tokens": 989,
+        "total_tokens": 9209
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1766,
+          "completion_tokens": 148,
+          "total_tokens": 1914,
+          "latency_seconds": 11.875441789627075
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 3866,
+          "completion_tokens": 482,
+          "total_tokens": 4348,
+          "latency_seconds": 34.055293
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2588,
+          "completion_tokens": 359,
+          "total_tokens": 2947,
+          "latency_seconds": 1.9938082695007324
+        }
+      ],
+      "context_characters": 8439,
+      "root_cause_analysis": null,
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Anchor not found in 'seaborn/_core/scales.py': def get_legend_info(self, formatter, axis):."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Baseline mode does not perform recovery or retries.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\mwaskom__seaborn-3187__baseline\\mwaskom__seaborn-3187__baseline.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 161.2,
+    "input_tokens": 8220,
+    "output_tokens": 989,
+    "total_tokens": 9209,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 11.875441789627075,
+      "coder": 34.055293,
+      "tester": 1.9938082695007324,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1766,
+        "completion_tokens": 148,
+        "total_tokens": 1914,
+        "latency_seconds": 11.875441789627075
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 3866,
+        "completion_tokens": 482,
+        "total_tokens": 4348,
+        "latency_seconds": 34.055293
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2588,
+        "completion_tokens": 359,
+        "total_tokens": 2947,
+        "latency_seconds": 1.9938082695007324
+      }
+    ],
+    "context_characters": 8439,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.13,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": null,
+  "execution_duration_seconds": 161.2,
+  "worker_pid": 43376,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\pilot_5tasks\\mwaskom__seaborn-3187__baseline.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\mwaskom__seaborn-3187__baseline",
+  "error_message": null,
+  "started_at": "2026-10-14T07:59:40.703936+00:00",
+  "completed_at": "2026-10-14T08:02:21.908151+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 9209,
+  "prompt_tokens": 8220,
+  "completion_tokens": 989
+}

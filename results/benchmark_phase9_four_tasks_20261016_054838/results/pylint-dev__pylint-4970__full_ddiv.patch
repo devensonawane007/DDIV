@@ -1,0 +1,11 @@
+--- a/pylint/checkers/similar.py
++++ b/pylint/checkers/similar.py
+@@ -812,6 +812,8 @@
+             self.ignore_signatures = self.config.ignore_signatures
+ 
+     def open(self):
++        if self.linter.config.min_similarity_lines == 0:
++            return
+         """init the checkers: reset linesets and statistics information"""
+         self.linesets = []
+         self.stats = self.linter.add_stats(

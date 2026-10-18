@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-subsequences",
+  "program_name": "subsequences",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1764,
+  "prompt_tokens": 1642,
+  "completion_tokens": 122,
+  "total_duration_seconds": 8.989,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 8.989
+    }
+  ]
+}

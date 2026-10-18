@@ -1,0 +1,11 @@
+--- a/python_programs/shunting_yard.py
++++ b/python_programs/shunting_yard.py
+@@ -13,7 +13,7 @@
+         if isinstance(token, int):
+             rpntokens.append(token)
+         else:
+-            while opstack and precedence[token] <= precedence[opstack[-1]]:
++            while opstack and precedence[token] < precedence[opstack[-1]]:
+                 rpntokens.append(opstack.pop())
+ 
+     while opstack:

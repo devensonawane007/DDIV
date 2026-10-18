@@ -1,0 +1,32 @@
+{
+  "episodic_memory": {
+    "baseline": {
+      "retrievals": 0,
+      "injections": 0,
+      "active": false
+    },
+    "retry_only": {
+      "retrievals": 0,
+      "injections": 0,
+      "active": false
+    },
+    "full_ddiv": {
+      "retrievals": 4,
+      "injections": 4,
+      "active": true
+    }
+  },
+  "anti_repetition": {
+    "full_ddiv_active": true,
+    "blocked_cycles_recorded": true,
+    "negative_constraints_emitted": true
+  },
+  "source_grounding": {
+    "full_ddiv_active": true,
+    "verified_in_situ": true
+  },
+  "false_success_prevention": {
+    "invariant_active": true,
+    "empty_invalid_patches_forced_unresolved": true
+  }
+}

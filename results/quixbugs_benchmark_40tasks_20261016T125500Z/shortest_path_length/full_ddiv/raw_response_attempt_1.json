@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1870,
+  "completion_tokens": 112,
+  "latency_seconds": 5.1129395,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is in the `insert_or_update` function. It incorrectly updates the distance for a node that is already in the heap, but it does not re-heapify the heap, leading to incorrect distances.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"node_heap[i] = dist_node\",\n      \"code\": \"heapq.heapify(node_heap)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is in the `insert_or_update` function. It incorrectly updates the distance for a node that is already in the heap, but it does not re-heapify the heap, leading to incorrect distances.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "node_heap[i] = dist_node",
+        "code": "heapq.heapify(node_heap)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+Metric Category,Metric Name,BASELINE,FULL_DDIV,Delta (FULL - BASE),Relative Change (%)
+Overall Performance,Tasks Evaluated,40,40,0,0.0
+Overall Performance,Tasks Resolved,8,13,5,62.5
+Overall Performance,Resolution Rate (%),20.0,32.5,12.5,62.5
+Overall Performance,Wilson 95% CI (%),"[10.5, 34.8]","[20.1, 48.0]",N/A,N/A
+Attempts & Recovery,Total Repair Attempts,40,100,60,150.0
+Attempts & Recovery,Mean Attempts per Task,1.0,2.5,1.5,N/A
+Attempts & Recovery,Mean Attempts per Resolved Task,1.0,1.46,0.46,N/A
+Attempts & Recovery,Resolved on Attempt 1,8,8,0,0.0
+Attempts & Recovery,Resolved on Attempt 2,0,4,4,N/A
+Attempts & Recovery,Resolved on Attempt 3,0,1,1,N/A
+Attempts & Recovery,Multi-Attempt Recoveries,0,5,5,N/A
+Attempts & Recovery,Repeated Identical Patches,0,25,25,N/A
+Patch & Evaluator,Valid Patches Generated,30,80,50,N/A
+Patch & Evaluator,Valid Patch Rate (%),75.0,80.0,5.0,N/A
+Patch & Evaluator,Applied Patches,30,78,48,N/A
+Patch & Evaluator,Patch Application Rate (%),75.0,78.0,3.0,N/A
+Patch & Evaluator,Evaluation Timeouts,1,6,5,N/A
+Patch & Evaluator,Syntax/Indentation Errors,0,0,0,N/A
+Model & Efficiency,Total Invocations / Model Calls,40,100,60,N/A
+Model & Efficiency,Total Tokens,71558,225458,153900,215.07
+Model & Efficiency,Prompt Tokens,66826,211821,144995,N/A
+Model & Efficiency,Completion Tokens,4732,13637,8905,N/A
+Model & Efficiency,Mean Tokens per Task,1789.0,5636.4,3847.5,215.07
+Model & Efficiency,Mean Tokens per Successful Repair,8944.8,17342.9,8398.2,N/A
+Model & Efficiency,Total Execution Duration (s),482.99,1289.0,806.01,166.88
+Model & Efficiency,Mean Duration per Task (s),12.07,32.23,20.15,N/A
+Model & Efficiency,Cloud API Invocations,0,0,0,0.0
+Model & Efficiency,Cloud Financial Cost ($),0.00,0.00,0.00,0.0

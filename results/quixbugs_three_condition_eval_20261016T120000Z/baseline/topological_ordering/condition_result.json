@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-topological_ordering",
+  "program_name": "topological_ordering",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1689,
+  "prompt_tokens": 1491,
+  "completion_tokens": 198,
+  "token_breakdown": {
+    "total_tokens": 1689,
+    "prompt_tokens": 1491,
+    "completion_tokens": 198,
+    "by_role": {
+      "Coder": {
+        "prompt": 1491,
+        "completion": 198,
+        "total": 1689
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1491,
+        "completion": 198,
+        "total": 1689
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:59:00Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-topological_ordering",
+        "program_name": "topological_ordering",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1491,
+        "completion_tokens": 198,
+        "total_tokens": 1689
+      }
+    ]
+  },
+  "total_duration_seconds": 72.887,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 72.883,
+      "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,17 @@\n def topological_ordering(nodes):\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.pop(0)\n+        if node not in visited:\n+            visited.add(node)\n+            for nextnode in node.outgoing_nodes:\n+                nextnode.incoming_nodes.remove(node)\n+                if not nextnode.incoming_nodes:\n+                    ordered_nodes.append(nextnode)\n+\n+    return visited\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+@@ -123,6 +123,7 @@ class ScalarFormatter:
+     def get_legend_info(self):
+         labels = self._format_labels()
+         # Add offset to labels
++        labels = [f'{label} + {self.offset}' for label in labels]
+         return labels

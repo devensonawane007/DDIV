@@ -1,0 +1,23 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-longest_common_subsequence",
+  "program_name": "longest_common_subsequence",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1857,
+  "prompt_tokens": 1696,
+  "completion_tokens": 161,
+  "total_duration_seconds": 11.901,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/longest_common_subsequence.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 10) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 11.901
+    }
+  ]
+}

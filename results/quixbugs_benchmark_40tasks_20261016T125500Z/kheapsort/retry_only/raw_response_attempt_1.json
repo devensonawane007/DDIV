@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1777,
+  "completion_tokens": 120,
+  "latency_seconds": 5.7247526,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is in the line `yield heapq.heappushpop(heap, x)`. This line should be `heapq.heappushpop(heap, x)` instead of `yield heapq.heappushpop(heap, x)`.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/kheapsort.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"yield heapq.heappushpop(heap, x)\",\n      \"code\": \"heapq.heappushpop(heap, x)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is in the line `yield heapq.heappushpop(heap, x)`. This line should be `heapq.heappushpop(heap, x)` instead of `yield heapq.heappushpop(heap, x)`.",
+    "modifications": [
+      {
+        "path": "python_programs/kheapsort.py",
+        "operation": "replace",
+        "anchor": "yield heapq.heappushpop(heap, x)",
+        "code": "heapq.heappushpop(heap, x)"
+      }
+    ]
+  }
+}

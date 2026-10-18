@@ -1,0 +1,149 @@
+{
+  "screening_timestamp": "2026-10-16T00:19:09Z",
+  "benchmark": "QuixBugs (Python)",
+  "dataset_path": "D:/PROJECTS/DDIV/data/quixbugs",
+  "total_tasks_screened": 8,
+  "eligible_tasks_count": 8,
+  "ineligible_tasks_count": 0,
+  "needs_recheck_count": 0,
+  "overall_screening_status": "SUCCESS",
+  "total_duration_seconds": 12.404,
+  "tasks": [
+    {
+      "task_id": "quixbugs-python-bucketsort",
+      "program_name": "bucketsort",
+      "target_file": "python_programs/bucketsort.py",
+      "test_file": "python_testcases/test_bucketsort.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_bucketsort[case]"
+      ],
+      "duration_seconds": 1.722
+    },
+    {
+      "task_id": "quixbugs-python-flatten",
+      "program_name": "flatten",
+      "target_file": "python_programs/flatten.py",
+      "test_file": "python_testcases/test_flatten.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_flatten[case]"
+      ],
+      "duration_seconds": 1.477
+    },
+    {
+      "task_id": "quixbugs-python-is_valid_parenthesization",
+      "program_name": "is_valid_parenthesization",
+      "target_file": "python_programs/is_valid_parenthesization.py",
+      "test_file": "python_testcases/test_is_valid_parenthesization.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_is_valid_parenthesization[case]"
+      ],
+      "duration_seconds": 1.333
+    },
+    {
+      "task_id": "quixbugs-python-max_sublist_sum",
+      "program_name": "max_sublist_sum",
+      "target_file": "python_programs/max_sublist_sum.py",
+      "test_file": "python_testcases/test_max_sublist_sum.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_max_sublist_sum[case]"
+      ],
+      "duration_seconds": 1.62
+    },
+    {
+      "task_id": "quixbugs-python-pascal",
+      "program_name": "pascal",
+      "target_file": "python_programs/pascal.py",
+      "test_file": "python_testcases/test_pascal.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_pascal[case]"
+      ],
+      "duration_seconds": 1.535
+    },
+    {
+      "task_id": "quixbugs-python-quicksort",
+      "program_name": "quicksort",
+      "target_file": "python_programs/quicksort.py",
+      "test_file": "python_testcases/test_quicksort.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_quicksort[case]"
+      ],
+      "duration_seconds": 1.501
+    },
+    {
+      "task_id": "quixbugs-python-rpn_eval",
+      "program_name": "rpn_eval",
+      "target_file": "python_programs/rpn_eval.py",
+      "test_file": "python_testcases/test_rpn_eval.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_rpn_eval[case]"
+      ],
+      "duration_seconds": 1.392
+    },
+    {
+      "task_id": "quixbugs-python-to_base",
+      "program_name": "to_base",
+      "target_file": "python_programs/to_base.py",
+      "test_file": "python_testcases/test_to_base.py",
+      "eligibility_status": "ELIGIBLE",
+      "has_reproduced_defect": true,
+      "has_environment_failure": false,
+      "is_timeout": false,
+      "total_tests": 1,
+      "passed_tests_count": 0,
+      "failed_tests_count": 1,
+      "failed_tests": [
+        "::test_to_base[case]"
+      ],
+      "duration_seconds": 1.722
+    }
+  ]
+}

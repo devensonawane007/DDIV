@@ -1,0 +1,110 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-mergesort",
+  "program_name": "mergesort",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3158,
+  "prompt_tokens": 2412,
+  "completion_tokens": 746,
+  "token_breakdown": {
+    "total_tokens": 3158,
+    "prompt_tokens": 2412,
+    "completion_tokens": 746,
+    "by_role": {
+      "Locator": {
+        "prompt": 267,
+        "completion": 567,
+        "total": 834
+      },
+      "Coder": {
+        "prompt": 2003,
+        "completion": 92,
+        "total": 2095
+      },
+      "Tester": {
+        "prompt": 142,
+        "completion": 87,
+        "total": 229
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 267,
+        "completion": 567,
+        "total": 834
+      },
+      "ollama": {
+        "prompt": 2003,
+        "completion": 92,
+        "total": 2095
+      },
+      "groq": {
+        "prompt": 142,
+        "completion": 87,
+        "total": 229
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:07:35Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 267,
+        "completion_tokens": 567,
+        "total_tokens": 834
+      },
+      {
+        "timestamp": "2026-10-17T07:07:45Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2003,
+        "completion_tokens": 92,
+        "total_tokens": 2095
+      },
+      {
+        "timestamp": "2026-10-17T07:08:00Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-mergesort",
+        "program_name": "mergesort",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 142,
+        "completion_tokens": 87,
+        "total_tokens": 229
+      }
+    ]
+  },
+  "total_duration_seconds": 45.42,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 26.987,
+      "patch_diff": "--- a/python_programs/mergesort.py\n+++ b/python_programs/mergesort.py\n@@ -14,7 +14,7 @@\n         result.extend(left[i:] or right[j:])\n         return result\n \n-    if len(arr) == 0:\n+    if len(arr) <= 1:\n         return arr\n     else:\n         middle = len(arr) // 2\n"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-possible_change",
+  "program_name": "possible_change",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1785,
+  "prompt_tokens": 1654,
+  "completion_tokens": 131,
+  "token_breakdown": {
+    "total_tokens": 1785,
+    "prompt_tokens": 1654,
+    "completion_tokens": 131,
+    "by_role": {
+      "Coder": {
+        "prompt": 1654,
+        "completion": 131,
+        "total": 1785
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1654,
+        "completion": 131,
+        "total": 1785
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:13:34Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1654,
+        "completion_tokens": 131,
+        "total_tokens": 1785
+      }
+    ]
+  },
+  "total_duration_seconds": 10.919,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/possible_change.py' failed variable definition verification: Undefined local variable 'dp' referenced before assignment in function 'possible_change' (line 9).",
+      "resolved": false,
+      "duration_seconds": 10.918
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1598,
+  "completion_tokens": 190,
+  "latency_seconds": 10.0118115,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original code does not handle the case where there is no direct edge between two nodes. The Floyd-Warshall algorithm should initialize the distance between all pairs of nodes to infinity except for the nodes themselves, which should be initialized to 0. The current code does not handle this case correctly.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_path_lengths.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"length_by_path.update({(i, i): 0 for i in range(n)})\",\n      \"code\": \"length_by_path.update({(i, i): 0 for i in range(n)})\\nlength_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original code does not handle the case where there is no direct edge between two nodes. The Floyd-Warshall algorithm should initialize the distance between all pairs of nodes to infinity except for the nodes themselves, which should be initialized to 0. The current code does not handle this case correctly.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_path_lengths.py",
+        "operation": "replace",
+        "anchor": "length_by_path.update({(i, i): 0 for i in range(n)})",
+        "code": "length_by_path.update({(i, i): 0 for i in range(n)})\nlength_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})"
+      }
+    ]
+  }
+}

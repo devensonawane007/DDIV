@@ -1,0 +1,223 @@
+{
+  "experiment_id": "local_ollama_coder",
+  "task_id": "astropy__astropy-8872",
+  "condition": "full_ddiv",
+  "status": "ABORTED_QUOTA_EXHAUSTED",
+  "resolved": false,
+  "workflow_completed": false,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": "Coder",
+  "error_code": "CODER_RATE_LIMITED",
+  "provider_failure": {
+    "stage": "Coder",
+    "error_code": "CODER_RATE_LIMITED",
+    "error_message": "PROVIDER_UNAVAILABLE: Connection refused at http://localhost:11434. Ensure local Ollama server is running. Details: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001AD046CBAD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))",
+    "attempt": 1,
+    "quota_exhausted": true
+  },
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [],
+      "patch_operations": [],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": null,
+      "coder_error_code": "CODER_RATE_LIMITED",
+      "coder_error_detail": "PROVIDER_UNAVAILABLE: Connection refused at http://localhost:11434. Ensure local Ollama server is running. Details: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001AD046CBAD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))",
+      "agent_apply_success": false,
+      "agent_test_status": "NOT_RUN",
+      "internal_resolved": false,
+      "verdict": "ABORTED_QUOTA_EXHAUSTED",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "astropy/units/quantity.py"
+      ],
+      "latency_seconds": 0.0,
+      "agent_timings": {
+        "locator": 9.188508749008179,
+        "coder": 4.072883129119873,
+        "tester": 0.0,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 5536,
+        "completion_tokens": 867,
+        "total_tokens": 6403
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 2024,
+          "completion_tokens": 152,
+          "total_tokens": 2176,
+          "latency_seconds": 9.188508749008179
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 3512,
+          "completion_tokens": 715,
+          "total_tokens": 4227,
+          "latency_seconds": 1.8914783000946045
+        },
+        {
+          "agent": "Coder",
+          "model": "qwen2.5-coder:7b",
+          "provider": "ollama",
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0,
+          "latency_seconds": 4.072883129119873
+        }
+      ],
+      "context_characters": 10213,
+      "root_cause_analysis": {
+        "root_cause": "The `Quantity.__new__` method (or the underlying logic determining the default dtype when `dtype` is not specified) fails to preserve the `float16` dtype. Specifically, when a `np.float16` scalar is passed as the value, the code likely falls into a branch that defaults to `float` (which is `float64`) or uses a check like `np.can_cast(np.float32, value.dtype)` that incorrectly treats `float16` as requiring an upgrade to `float64` (or simply ignores `float16` in the list of preserved float types). In the provided snippet, the logic `if not (np.can_cast(np.float32, value.dtype) or value.dtype.fields): dtype = float` is visible for `Quantity` inputs, but for scalar inputs, the default dtype determination likely has a similar flaw or relies on `np.asarray(value).dtype` which might be handled incorrectly if the code explicitly checks for `float32`/`float64` but not `float16`.",
+        "behavioral_contract": "When creating a `Quantity` from a scalar or array value without an explicit `dtype` argument, the resulting `Quantity` should preserve the floating-point precision of the input value. Specifically, `np.float16` inputs should result in a `Quantity` with `dtype('float16')`, just as `np.float32` results in `dtype('float32')` and `np.float64` results in `dtype('float64')`.",
+        "expected_behavior": "Creating a `Quantity` from a `np.float16` value (e.g., `np.float16(1) * u.km`) should result in a `Quantity` with `dtype('float16')`.",
+        "current_behavior": "Creating a `Quantity` from a `np.float16` value results in a `Quantity` with `dtype('float64')`, effectively upgrading the precision unnecessarily.",
+        "relevant_symbols": [
+          "astropy.units.quantity.Quantity",
+          "astropy.units.quantity.Quantity.__new__"
+        ],
+        "relevant_tests": [
+          "astropy/units/tests/test_quantity.py::test_quantity_creation",
+          "astropy/units/tests/test_quantity.py::test_dtype"
+        ],
+        "required_change": "Modify the dtype determination logic in `Quantity.__new__` to explicitly preserve `float16` dtype when the input value is of type `float16` and no explicit `dtype` is provided. This likely involves updating the condition that checks for float types to include `float16` or ensuring that `np.asarray(value).dtype` is used directly for float types without forcing a conversion to `float64`.",
+        "regression_risks": [
+          "Ensuring that integer inputs still convert to `float64` (or the default float) as per existing behavior.",
+          "Verifying that `float32` and `float64` inputs continue to preserve their respective dtypes.",
+          "Checking that `float128` inputs (if supported by the platform) continue to work correctly.",
+          "Ensuring that the change does not affect the behavior of `Quantity` creation from strings or other non-numeric types."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": null,
+      "memory_retrieved": false
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\astropy__astropy-8872__full_ddiv\\astropy__astropy-8872__full_ddiv.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 61.22,
+    "input_tokens": 5536,
+    "output_tokens": 867,
+    "total_tokens": 6403,
+    "inference_calls": 3,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 9.188508749008179,
+      "coder": 4.072883129119873,
+      "tester": 0.0,
+      "supervisor": 0.0
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 2024,
+        "completion_tokens": 152,
+        "total_tokens": 2176,
+        "latency_seconds": 9.188508749008179
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 3512,
+        "completion_tokens": 715,
+        "total_tokens": 4227,
+        "latency_seconds": 1.8914783000946045
+      },
+      {
+        "agent": "Coder",
+        "model": "qwen2.5-coder:7b",
+        "provider": "ollama",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "latency_seconds": 4.072883129119873
+      }
+    ],
+    "context_characters": 10213,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "ABORTED_QUOTA_EXHAUSTED",
+    "duration_seconds": 0.0,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": {
+    "Locator": 0.87,
+    "Coder": 0.74,
+    "Tester": 0.91,
+    "Supervisor": 0.84
+  },
+  "execution_duration_seconds": 61.22,
+  "worker_pid": 29516,
+  "worker_exit_code": 3,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\pilot_5tasks\\astropy__astropy-8872__full_ddiv.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\pilot_5tasks\\astropy__astropy-8872__full_ddiv",
+  "error_message": "PROVIDER_UNAVAILABLE: Connection refused at http://localhost:11434. Ensure local Ollama server is running. Details: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001AD046CBAD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))",
+  "started_at": "2026-10-14T12:36:22.551248+00:00",
+  "completed_at": "2026-10-14T12:37:23.770723+00:00",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "coder_base_url": "http://localhost:11434",
+  "total_tokens": 6403,
+  "prompt_tokens": 5536,
+  "completion_tokens": 867
+}

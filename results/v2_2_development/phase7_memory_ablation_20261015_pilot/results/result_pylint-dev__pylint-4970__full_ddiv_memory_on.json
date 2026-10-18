@@ -1,0 +1,836 @@
+{
+  "experiment_id": "phase7_ablation_1792056462",
+  "task_id": "pylint-dev__pylint-4970",
+  "condition": "full_ddiv_memory_on",
+  "status": "COMPLETED",
+  "resolved": false,
+  "workflow_completed": true,
+  "patch_generated": true,
+  "patch_applied": true,
+  "failed_stage": null,
+  "error_code": null,
+  "provider_failure": null,
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 3,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.close",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "\"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"",
+          "code": "        if self.min_lines <= 0:\n            # Disabled similarity checking: do not emit any R0801 messages\n            self.stats[\"nb_duplicated_lines\"] = 0\n            self.stats[\"percent_duplicated_lines\"] = 0\n            return",
+          "reason": "Treat a min-similarity-lines value of 0 as disabling the duplicate\u2011code checker."
+        }
+      ],
+      "patch_operations": [
+        "insert_after"
+      ],
+      "generated_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -830,6 +830,11 @@\n \n     def close(self):\n         \"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"\n+        if self.min_lines <= 0:\n+            # Disabled similarity checking: do not emit any R0801 messages\n+            self.stats[\"nb_duplicated_lines\"] = 0\n+            self.stats[\"percent_duplicated_lines\"] = 0\n+            return\n         total = sum(len(lineset) for lineset in self.linesets)\n         duplicated = 0\n         stats = self.stats\n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 28.35852289199829,
+      "agent_timings": {
+        "locator": 3.419403553009033,
+        "coder": 5.68686842918396,
+        "tester": 32.65894675254822,
+        "supervisor": 5.041107177734375
+      },
+      "token_usage": {
+        "prompt_tokens": 14186,
+        "completion_tokens": 4788,
+        "total_tokens": 18974
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1718,
+          "completion_tokens": 160,
+          "total_tokens": 1878,
+          "latency_seconds": 3.419403553009033
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2625,
+          "completion_tokens": 1217,
+          "total_tokens": 3842,
+          "latency_seconds": 6.32044792175293
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 4499,
+          "completion_tokens": 1031,
+          "total_tokens": 5530,
+          "latency_seconds": 5.68686842918396
+        },
+        {
+          "agent": "PatchCritic",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 884,
+          "completion_tokens": 428,
+          "total_tokens": 1312,
+          "latency_seconds": 1.061870813369751
+        },
+        {
+          "agent": "Tester",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2539,
+          "completion_tokens": 1337,
+          "total_tokens": 3876,
+          "latency_seconds": 32.65894675254822
+        },
+        {
+          "agent": "Supervisor",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 1921,
+          "completion_tokens": 615,
+          "total_tokens": 2536,
+          "latency_seconds": 5.041107177734375
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The SimilarChecker forwards the configured `min-similarity-lines` value directly to the underlying `Similar` implementation without handling the special case of 0. The `Similar` logic treats a minimum of 0 lines as a valid threshold, causing it to consider every line as a duplicate and emit R0801 messages. There is no guard that disables the checker when the threshold is set to 0, contrary to the intended semantics of the option.",
+        "behavioral_contract": "When the configuration option `min-similarity-lines` is set to 0, the similarity checker must be completely disabled: it must not emit any R0801 (duplicate code) messages, must not affect statistics, and must not raise errors. For any positive integer, the checker must report only those code blocks whose duplicated region length is greater than or equal to that integer.",
+        "expected_behavior": "Setting `min-similarity-lines = 0` in a pylint rcfile (or via CLI) results in the similarity checker being a no\u2011op: no R0801 messages are produced, `nb_duplicated_lines` and `percent_duplicated_lines` remain 0, and the rest of pylint's execution proceeds unchanged.",
+        "current_behavior": "With `min-similarity-lines = 0`, the checker treats every line as a duplicate, generating a large number of R0801 messages (one for each line or small block) and inflating the duplicate\u2011line statistics, which is the opposite of the intended disabling behavior.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.__init__",
+          "SimilarChecker.set_option",
+          "SimilarChecker.open",
+          "SimilarChecker.process_module",
+          "SimilarChecker.close",
+          "Similar._compute_sims"
+        ],
+        "relevant_tests": [
+          "tests/checkers/test_similar.py",
+          "tests/checkers/test_duplicate_code.py",
+          "tests/functional/test_similar_checker.py"
+        ],
+        "required_change": "Add a guard that treats a `min_similarity_lines` value of 0 (or any non\u2011positive value) as a signal to disable the similarity checker. The guard can be implemented in `SimilarChecker.__init__`/`set_option` and/or in `SimilarChecker.close` so that when `self.min_lines <= 0` the checker skips collection, computation, and message emission, and records zero statistics.",
+        "regression_risks": [
+          "Disabling the checker may interfere with the map\u2011reduce workflow used when pylint runs in parallel; ensure that the reduction step still works when no data is collected.",
+          "Stats keys `nb_duplicated_lines` and `percent_duplicated_lines` must still be present (with zero values) to avoid KeyError in downstream reporting.",
+          "Other checkers that rely on the existence of `self.linesets` should handle the case where it remains empty.",
+          "Changing the behavior for 0 must not affect the existing behavior for positive thresholds, especially edge cases like 1 where a single line duplicate should be reported according to current semantics."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": {
+        "approved": true,
+        "risk_level": "LOW",
+        "concerns": [
+          "The patch relies on `self.min_lines` being the correct attribute name for the configured threshold. If the attribute is named differently (e.g., `min_similarity_lines`), this will raise an AttributeError.",
+          "The patch only guards the `close` method. If `Similar` or other parts of the checker emit messages during parsing (unlikely for R0801 which is usually aggregated at the end, but possible in some implementations), they might still be emitted. However, R0801 is typically reported in `close`.",
+          "Setting stats to 0 explicitly is good, but ensuring that no other side effects (like memory usage from storing linesets) are problematic is out of scope for a minimal fix, though acceptable."
+        ],
+        "recommended_changes": [
+          "Verify that `self.min_lines` is indeed the attribute storing the `min-similarity-lines` option value in the `SimilarChecker` class. If it is stored as `self.min_similarity_lines` or accessed via `self.linter.config`, update the reference accordingly.",
+          "Consider adding a unit test that sets `min-similarity-lines` to 0 and asserts that no R0801 messages are generated and stats are zero."
+        ],
+        "reasoning": "The patch addresses the root cause by adding a guard clause in the `close` method of `SimilarChecker`. When `min_lines` is 0 or less, it skips the similarity calculation and reporting, effectively disabling the check as requested. This aligns with the desired behavior where setting the threshold to 0 disables the linter rule. The risk is low because it only affects the specific case of a non-positive threshold, which was previously buggy. The main concern is the correctness of the attribute name `self.min_lines`, which is a standard naming convention in pylint checkers for this option, but should be verified against the actual class definition."
+      },
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": true,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "F2",
+      "recovery_strategy": "A2",
+      "supervisor_diagnosis": "The recovery patch checked the wrong attribute (self.min_lines) to determine whether similarity checking is disabled, so the early return never executed and duplicate-code messages were still emitted.",
+      "supervisor_instructions": "Update the close() method in pylint/checkers/similar.py to check the correct configuration attribute that represents the 'min-similarity-lines' option (e.g., self.min_similarity_lines). If that value is 0, skip the duplicate\u2011code analysis entirely and return without emitting R0801 messages. Ensure any related stats are handled appropriately. Do not rely on a non\u2011existent self.min_lines attribute.",
+      "avoid_previous_mistake": "Do not reference self.min_lines; use the actual attribute name for the min\u2011similarity\u2011lines option (self.min_similarity_lines or the appropriate config field).\n\nCRITICAL ANCHOR GROUNDING RULES:\n1. The 'anchor' string MUST be copied VERBATIM from '=== SOURCE CODE IN RELEVANT FILES ==='.\n2. Do NOT invent, simplify, or reformat function signatures or parameters.\n3. Do NOT collapse multi-line definitions into a single line.\n4. Select 1 to 3 unique lines that appear EXACTLY as written in the target file.\n5. Target ONLY the relevant implementation files, NEVER test files.\n6. If the target method or anchor exists in multiple classes, specify 'target_symbol': 'ClassName.method_name' or 'target_class': 'ClassName' to bind the edit to the intended AST scope.\n\nCRITICAL SCOPE DIRECTIVE:\n1. Do NOT insert statements before 'def' or at class body level.\n2. To place statements inside a method, use 'operation': 'insert_after' with the 'def ...:' method header as anchor, NOT 'insert_before'.\n3. 'return' is strictly illegal outside functions/methods.\n\nCRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:\n- Attempt 1: Modified 'pylint/checkers/similar.py' (target: 'SimilarChecker.close') (op: insert_after) at anchor '\"\"\"compute and display similarities on closing (i.e. end ...'. Result: [UNRESOLVED_ATTEMPT] Attempt 1 failed validation/tests.. You MUST NOT generate this semantically identical modification again.",
+      "should_retry": true
+    },
+    {
+      "attempt": 2,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.close",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "\"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"",
+          "code": "        if self.config.min_similarity_lines == 0:\n            # Disabled similarity checking: do not emit any R0801 messages\n            if self.stats is not None:\n                self.stats[\"nb_duplicated_lines\"] = 0\n                self.stats[\"percent_duplicated_lines\"] = 0\n            return",
+          "reason": "Skip duplicate\u2011code analysis when min-similarity-lines is set to 0, matching the expected disabling behavior."
+        }
+      ],
+      "patch_operations": [
+        "insert_after"
+      ],
+      "generated_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -830,6 +830,12 @@\n \n     def close(self):\n         \"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"\n+        if self.config.min_similarity_lines == 0:\n+            # Disabled similarity checking: do not emit any R0801 messages\n+            if self.stats is not None:\n+                self.stats[\"nb_duplicated_lines\"] = 0\n+                self.stats[\"percent_duplicated_lines\"] = 0\n+            return\n         total = sum(len(lineset) for lineset in self.linesets)\n         duplicated = 0\n         stats = self.stats\n",
+      "patch_generated": true,
+      "patch_valid": true,
+      "patch_validation_error": null,
+      "coder_error_code": null,
+      "coder_error_detail": null,
+      "agent_apply_success": true,
+      "agent_test_status": "PASS",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (FAIL_TO_PASS tests failed)",
+      "f2p_passed": false,
+      "p2p_passed": true,
+      "failed_f2p_tests": [
+        "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+      ],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 15.796870708465576,
+      "agent_timings": {
+        "locator": 3.419403553009033,
+        "coder": 120.01133227348328,
+        "tester": 22.79532790184021,
+        "supervisor": 14.243292331695557
+      },
+      "token_usage": {
+        "prompt_tokens": 13308,
+        "completion_tokens": 5881,
+        "total_tokens": 19189
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1718,
+          "completion_tokens": 160,
+          "total_tokens": 1878,
+          "latency_seconds": 3.419403553009033
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 3017,
+          "completion_tokens": 1480,
+          "total_tokens": 4497,
+          "latency_seconds": 6.753520965576172
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 5237,
+          "completion_tokens": 2225,
+          "total_tokens": 7462,
+          "latency_seconds": 120.01133227348328
+        },
+        {
+          "agent": "PatchCritic",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 1292,
+          "completion_tokens": 1008,
+          "total_tokens": 2300,
+          "latency_seconds": 21.642925262451172
+        },
+        {
+          "agent": "Tester",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0,
+          "latency_seconds": 22.79532790184021
+        },
+        {
+          "agent": "Supervisor",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2044,
+          "completion_tokens": 1008,
+          "total_tokens": 3052,
+          "latency_seconds": 14.243292331695557
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The SimilarChecker never checks the value of the 'min-similarity-lines' option to decide whether to run the duplicate\u2011code analysis. When the option is set to 0 the internal algorithm still processes all lines, treating any single line as a similarity and emitting R0801 messages.",
+        "behavioral_contract": "SimilarChecker must treat a configuration value of min-similarity-lines == 0 as a request to disable the duplicate\u2011code check entirely. In that mode it must not emit any R0801 messages, must not modify duplication statistics, and must otherwise behave as if the checker were not run.",
+        "expected_behavior": "If the user sets 'min-similarity-lines = 0' in the pylint rcfile, the checker should skip all similarity computation and produce no R0801 messages; the statistics 'nb_duplicated_lines' and 'percent_duplicated_lines' should remain zero.",
+        "current_behavior": "With 'min-similarity-lines = 0' the checker still runs its similarity algorithm, which treats every line as a duplicate and generates a large number of R0801 messages, contrary to the intended disabling behavior.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.close",
+          "SimilarChecker.__init__",
+          "SimilarChecker.set_option",
+          "SimilarChecker.open",
+          "SimilarChecker.reduce_map_data"
+        ],
+        "relevant_tests": [
+          "tests/checkers/test_similar.py::test_disable_with_zero",
+          "tests/checkers/test_similar.py::test_no_R0801_when_min_similarity_zero"
+        ],
+        "required_change": "Add an early\u2011exit guard at the beginning of SimilarChecker.close (and, for completeness, in reduce_map_data before recombining data) that checks the configured option via self.config.min_similarity_lines (or self.min_lines) and returns without processing when the value is 0. Ensure that the statistics remain zero and that no messages are added.",
+        "regression_risks": [
+          "If the guard is placed incorrectly it could skip similarity checking even when a positive min-similarity-lines is configured.",
+          "Stats objects are still created in open(); the early return must not leave them unset, but must keep their values at zero.",
+          "Map\u2011reduce path must also respect the disabled flag; otherwise duplicate data could be emitted from a remote worker.",
+          "Future extensions that rely on self.min_lines being set should continue to work when the value is >0."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": {
+        "approved": true,
+        "risk_level": "LOW",
+        "concerns": [
+          "The patch assumes that `self.config.min_similarity_lines` is the correct attribute; this is true if `BaseChecker` provides a `config` property, otherwise it should use `self.linter.config.min_similarity_lines`.",
+          "Early return skips any further processing that might be added to `close` in the future (e.g., additional statistics), but currently this does not affect existing behavior."
+        ],
+        "recommended_changes": [
+          "Add a comment clarifying that `self.config` is a shortcut to `self.linter.config` for future maintainers.",
+          "Consider using `getattr(self.config, \"min_similarity_lines\", None)` to guard against attribute name changes, though not strictly necessary."
+        ],
+        "reasoning": "The candidate patch directly addresses the root cause by checking the `min-similarity-lines` option and returning early when it is set to 0, thereby preventing the duplicate\u2011code analysis and correctly zeroing the related statistics. The attribute name used matches the option definition, and the early return does not interfere with other functionality. The change is minimal, scoped only to the `close` method, and does not introduce regressions, making it a low\u2011risk, appropriate fix."
+      },
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m3kpvj89efpapkc1fcqhmgb1` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199212, Requested 3170. Please try again in 17m9.024s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+      "tester_error_code": "TESTER_RATE_LIMITED",
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F2",
+        "granular_failure_type": "F2P_FAILURE",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "Candidate patch failed to resolve the reported issue (FAIL_TO_PASS failed: ['tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero'])."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": true,
+          "patch_applied": true,
+          "test_passed": false,
+          "coder_error_code": null,
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": true,
+          "failed_f2p_tests": [
+            "tests/checkers/unittest_similar.py::test_set_duplicate_lines_to_zero"
+          ],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": true,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "failure_category": "F2",
+      "recovery_strategy": "A2",
+      "supervisor_diagnosis": "The patch only prevented emitting messages at the end of parsing (close), but SimilarChecker already generates R0801 messages during process_module when min_similarity_lines is 0, so disabling in close is too late.",
+      "supervisor_instructions": "Update SimilarChecker to disable similarity detection as soon as the checker is opened. In the open() method, after reading the configuration, set a flag (e.g., self._disable_similar = True) when self.config.min_similarity_lines == 0. Then, in process_module (and any other method that may emit duplicate-code messages), add an early return if self._disable_similar is True. Also adjust close() to simply return when disabled, without emitting stats. Ensure no R0801 messages are added when the flag is set.",
+      "avoid_previous_mistake": "Do not only check config.min_similarity_lines in close(); the check must be performed earlier (in open/process_module) to prevent any duplicate-code messages from being generated.\n\nCRITICAL ANCHOR GROUNDING RULES:\n1. The 'anchor' string MUST be copied VERBATIM from '=== SOURCE CODE IN RELEVANT FILES ==='.\n2. Do NOT invent, simplify, or reformat function signatures or parameters.\n3. Do NOT collapse multi-line definitions into a single line.\n4. Select 1 to 3 unique lines that appear EXACTLY as written in the target file.\n5. Target ONLY the relevant implementation files, NEVER test files.\n6. If the target method or anchor exists in multiple classes, specify 'target_symbol': 'ClassName.method_name' or 'target_class': 'ClassName' to bind the edit to the intended AST scope.\n\nCRITICAL SCOPE DIRECTIVE:\n1. Do NOT insert statements before 'def' or at class body level.\n2. To place statements inside a method, use 'operation': 'insert_after' with the 'def ...:' method header as anchor, NOT 'insert_before'.\n3. 'return' is strictly illegal outside functions/methods.\n\nCRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:\n- Attempt 1: Modified 'pylint/checkers/similar.py' (target: 'SimilarChecker.close') (op: insert_after) at anchor '\"\"\"compute and display similarities on closing (i.e. end ...'. Result: [UNRESOLVED_ATTEMPT] Attempt 1 failed validation/tests.. You MUST NOT generate this semantically identical modification again.\n- Attempt 2: Modified 'pylint/checkers/similar.py' (target: 'SimilarChecker.close') (op: insert_after) at anchor '\"\"\"compute and display similarities on closing (i.e. end ...'. Result: [UNRESOLVED_ATTEMPT] Attempt 2 failed validation/tests.. You MUST NOT generate this semantically identical modification again.",
+      "should_retry": true
+    },
+    {
+      "attempt": 3,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.open",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "\"\"\"init the checkers: reset linesets and statistics information\"\"\"",
+          "code": "        self._disable_similar = (self.min_lines == 0)",
+          "reason": "Record whether similarity checking is disabled based on the configured minimum lines."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.process_module",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "        \"\"\"",
+          "code": "        if getattr(self, \"_disable_similar\", False):\n            return",
+          "reason": "Skip processing modules entirely when the checker is disabled."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.close",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "\"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"",
+          "code": "        if getattr(self, \"_disable_similar\", False):\n            return",
+          "reason": "Avoid computing and reporting similarities when disabled."
+        }
+      ],
+      "patch_operations": [
+        "insert_after",
+        "insert_after",
+        "insert_after"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Anchor ambiguous within target scope 'SimilarChecker.process_module' in 'pylint/checkers/similar.py' (2 matches).",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.18503093719482422,
+      "agent_timings": {
+        "locator": 3.419403553009033,
+        "coder": 55.89744973182678,
+        "tester": 26.09083390235901,
+        "supervisor": 0.0
+      },
+      "token_usage": {
+        "prompt_tokens": 13085,
+        "completion_tokens": 4076,
+        "total_tokens": 17161
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1718,
+          "completion_tokens": 160,
+          "total_tokens": 1878,
+          "latency_seconds": 3.419403553009033
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 3103,
+          "completion_tokens": 1232,
+          "total_tokens": 4335,
+          "latency_seconds": 29.88624906539917
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 5871,
+          "completion_tokens": 2110,
+          "total_tokens": 7981,
+          "latency_seconds": 55.89744973182678
+        },
+        {
+          "agent": "Tester",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2393,
+          "completion_tokens": 574,
+          "total_tokens": 2967,
+          "latency_seconds": 26.09083390235901
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The similarity checker treats the configuration value `min-similarity-lines` as a threshold for the minimum number of lines in a duplicate block, but it does not treat a value of 0 as a signal to disable the checker. Consequently, with `min-similarity-lines=0` every line matches the threshold and the checker reports a flood of R0801 messages.",
+        "behavioral_contract": "When the configuration option `min-similarity-lines` is set to 0, the `SimilarChecker` must behave as if the duplicate\u2011code check is disabled: it must not collect any similarity data, must not emit any R0801 messages, and must not affect statistics reported by the linter.",
+        "expected_behavior": "Running pylint with `--min-similarity-lines=0` (or the equivalent rcfile setting) should produce no R0801 messages, regardless of the content of the analyzed files. All other functionality of the checker should remain unchanged for positive values of the option.",
+        "current_behavior": "With `min-similarity-lines=0` the checker still processes each module, treats every line as a duplicate block, and emits a large number of R0801 messages, violating the intended disabling semantics.",
+        "relevant_symbols": [
+          "SimilarChecker.process_module",
+          "SimilarChecker.open",
+          "SimilarChecker.close"
+        ],
+        "relevant_tests": [
+          "test_similar_checker_disable_by_zero_option.py",
+          "test_duplicate_code_detection.py"
+        ],
+        "required_change": "Add an early\u2011exit guard in `SimilarChecker.process_module` (and optionally in `SimilarChecker.close`) that returns immediately when `self.min_lines == 0`. This prevents any similarity data collection and message emission when the option is set to zero, effectively disabling the checker.",
+        "regression_risks": [
+          "If the guard is placed only in `process_module`, map\u2011reduce paths that combine data without calling `process_module` might still emit messages; therefore `close` should also skip reporting when `self.min_lines == 0`.",
+          "Ensuring that statistics (`nb_duplicated_lines`, `percent_duplicated_lines`) are not incorrectly set when the checker is disabled.",
+          "Potential side\u2011effects on parallel execution (map\u2011reduce) where the flag must be propagated correctly; the guard must respect the flag in the recombined checker created in `reduce_map_data`."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Anchor ambiguous within target scope 'SimilarChecker.process_module' in 'pylint/checkers/similar.py' (2 matches).."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": true,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_diagnosis": "Maximum attempts reached.",
+      "should_retry": false
+    }
+  ],
+  "candidate_patch": "--- a/pylint/checkers/similar.py\n+++ b/pylint/checkers/similar.py\n@@ -830,6 +830,12 @@\n \n     def close(self):\n         \"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"\n+        if self.config.min_similarity_lines == 0:\n+            # Disabled similarity checking: do not emit any R0801 messages\n+            if self.stats is not None:\n+                self.stats[\"nb_duplicated_lines\"] = 0\n+                self.stats[\"percent_duplicated_lines\"] = 0\n+            return\n         total = sum(len(lineset) for lineset in self.linesets)\n         duplicated = 0\n         stats = self.stats\n",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase7_ablation\\pylint-dev__pylint-4970__full_ddiv_memory_on\\pylint-dev__pylint-4970__full_ddiv_memory_on.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": true,
+    "recovery_success": false,
+    "repair_time_seconds": 439.08,
+    "input_tokens": 40579,
+    "output_tokens": 14745,
+    "total_tokens": 55324,
+    "inference_calls": 16,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 10.2582106590271,
+      "coder": 181.59565043449402,
+      "tester": 81.54510855674744,
+      "supervisor": 19.28439950942993
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1718,
+        "completion_tokens": 160,
+        "total_tokens": 1878,
+        "latency_seconds": 3.419403553009033
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2625,
+        "completion_tokens": 1217,
+        "total_tokens": 3842,
+        "latency_seconds": 6.32044792175293
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 4499,
+        "completion_tokens": 1031,
+        "total_tokens": 5530,
+        "latency_seconds": 5.68686842918396
+      },
+      {
+        "agent": "PatchCritic",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 884,
+        "completion_tokens": 428,
+        "total_tokens": 1312,
+        "latency_seconds": 1.061870813369751
+      },
+      {
+        "agent": "Tester",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2539,
+        "completion_tokens": 1337,
+        "total_tokens": 3876,
+        "latency_seconds": 32.65894675254822
+      },
+      {
+        "agent": "Supervisor",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 1921,
+        "completion_tokens": 615,
+        "total_tokens": 2536,
+        "latency_seconds": 5.041107177734375
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1718,
+        "completion_tokens": 160,
+        "total_tokens": 1878,
+        "latency_seconds": 3.419403553009033
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 3017,
+        "completion_tokens": 1480,
+        "total_tokens": 4497,
+        "latency_seconds": 6.753520965576172
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 5237,
+        "completion_tokens": 2225,
+        "total_tokens": 7462,
+        "latency_seconds": 120.01133227348328
+      },
+      {
+        "agent": "PatchCritic",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 1292,
+        "completion_tokens": 1008,
+        "total_tokens": 2300,
+        "latency_seconds": 21.642925262451172
+      },
+      {
+        "agent": "Tester",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "latency_seconds": 22.79532790184021
+      },
+      {
+        "agent": "Supervisor",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2044,
+        "completion_tokens": 1008,
+        "total_tokens": 3052,
+        "latency_seconds": 14.243292331695557
+      },
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1718,
+        "completion_tokens": 160,
+        "total_tokens": 1878,
+        "latency_seconds": 3.419403553009033
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 3103,
+        "completion_tokens": 1232,
+        "total_tokens": 4335,
+        "latency_seconds": 29.88624906539917
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 5871,
+        "completion_tokens": 2110,
+        "total_tokens": 7981,
+        "latency_seconds": 55.89744973182678
+      },
+      {
+        "agent": "Tester",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2393,
+        "completion_tokens": 574,
+        "total_tokens": 2967,
+        "latency_seconds": 26.09083390235901
+      }
+    ],
+    "context_characters": 7591,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": true
+  },
+  "failure_detection": {
+    "predicted_category": "F2",
+    "actual_category": "F2",
+    "precision": null,
+    "recall": null,
+    "f1": null
+  },
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.19,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": {
+    "Locator": 0.87,
+    "Coder": 0.58,
+    "Tester": 0.91,
+    "Supervisor": 0.84
+  },
+  "execution_duration_seconds": 439.1,
+  "worker_pid": 33944,
+  "worker_exit_code": 0,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\v2_2_development\\phase7_memory_ablation_20261015_pilot\\logs\\pylint-dev__pylint-4970__full_ddiv_memory_on.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase7_ablation\\pylint-dev__pylint-4970__full_ddiv_memory_on",
+  "error_message": null,
+  "started_at": "2026-10-15T10:05:17.552738+00:00",
+  "completed_at": "2026-10-15T10:12:36.636453+00:00",
+  "protocol_type": "SEQUENTIAL_ACCUMULATION_TRANSFER",
+  "telemetry_coder_prompts": [
+    {
+      "attempt": 1,
+      "has_memory": true,
+      "memory_chars": 86,
+      "prompt_chars": 13533
+    },
+    {
+      "attempt": 2,
+      "has_memory": true,
+      "memory_chars": 348,
+      "prompt_chars": 16684
+    },
+    {
+      "attempt": 3,
+      "has_memory": true,
+      "memory_chars": 610,
+      "prompt_chars": 19400
+    }
+  ],
+  "telemetry_loc_prompts": [
+    {
+      "attempt": 1,
+      "has_memory": true,
+      "len": 4408
+    }
+  ],
+  "telemetry_sup_prompts": [
+    {
+      "attempt": 1,
+      "matches_count": 1,
+      "len": 3234
+    },
+    {
+      "attempt": 2,
+      "matches_count": 2,
+      "len": 3770
+    }
+  ]
+}

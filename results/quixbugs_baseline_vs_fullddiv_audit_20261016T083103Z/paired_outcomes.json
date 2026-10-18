@@ -1,0 +1,56 @@
+{
+  "both_resolved_tasks": [
+    "bucketsort",
+    "find_first_in_sorted",
+    "flatten",
+    "is_valid_parenthesization",
+    "max_sublist_sum",
+    "pascal",
+    "rpn_eval",
+    "to_base"
+  ],
+  "full_ddiv_only_tasks": [
+    "breadth_first_search",
+    "kth",
+    "levenshtein",
+    "quicksort",
+    "reverse_linked_list"
+  ],
+  "baseline_only_tasks": [],
+  "neither_resolved_tasks": [
+    "bitcount",
+    "depth_first_search",
+    "detect_cycle",
+    "find_in_sorted",
+    "gcd",
+    "get_factors",
+    "hanoi",
+    "kheapsort",
+    "knapsack",
+    "lcs_length",
+    "lis",
+    "longest_common_subsequence",
+    "mergesort",
+    "minimum_spanning_tree",
+    "next_palindrome",
+    "next_permutation",
+    "possible_change",
+    "powerset",
+    "shortest_path_length",
+    "shortest_path_lengths",
+    "shortest_paths",
+    "shunting_yard",
+    "sieve",
+    "sqrt",
+    "subsequences",
+    "topological_ordering",
+    "wrap"
+  ],
+  "counts": {
+    "both_resolved": 8,
+    "full_ddiv_only": 5,
+    "baseline_only": 0,
+    "neither_resolved": 27,
+    "total": 40
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-get_factors",
+  "program_name": "get_factors",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7647,
+  "prompt_tokens": 7332,
+  "completion_tokens": 315,
+  "token_breakdown": {
+    "total_tokens": 7647,
+    "prompt_tokens": 7332,
+    "completion_tokens": 315,
+    "by_role": {
+      "Coder": {
+        "prompt": 7332,
+        "completion": 315,
+        "total": 7647
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 7332,
+        "completion": 315,
+        "total": 7647
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:06:01Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1505,
+        "completion_tokens": 102,
+        "total_tokens": 1607
+      },
+      {
+        "timestamp": "2026-10-16T18:06:15Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2914,
+        "completion_tokens": 107,
+        "total_tokens": 3021
+      },
+      {
+        "timestamp": "2026-10-16T18:06:29Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2913,
+        "completion_tokens": 106,
+        "total_tokens": 3019
+      }
+    ]
+  },
+  "total_duration_seconds": 39.462,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 10.866,
+      "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 14.133,
+      "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 14.464,
+      "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+    }
+  ]
+}

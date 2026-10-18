@@ -1,0 +1,20 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2971,
+  "completion_tokens": 87,
+  "latency_seconds": 6.4410221,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The function does not handle the case where no next permutation exists, returning None instead of the original permutation.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/next_permutation.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"return next_perm\",\n      \"code\": \"return next_perm if next_perm else perm\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The function does not handle the case where no next permutation exists, returning None instead of the original permutation.",
+    "modifications": [
+      {
+        "path": "python_programs/next_permutation.py",
+        "operation": "replace",
+        "anchor": "return next_perm",
+        "code": "return next_perm if next_perm else perm"
+      }
+    ]
+  }
+}

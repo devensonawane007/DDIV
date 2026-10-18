@@ -1,0 +1,16 @@
+--- a/python_programs/reverse_linked_list.py
++++ b/python_programs/reverse_linked_list.py
+@@ -1,4 +1,13 @@
+ def reverse_linked_list(node):
++    if node is None:
++        return None
++    prevnode = None
++    while node:
++        nextnode = node.successor
++        node.successor = prevnode
++        prevnode = node
++        node = nextnode
++    return prevnode
+     prevnode = None
+     while node:
+         nextnode = node.successor

@@ -1,0 +1,141 @@
+{
+  "BASELINE": {
+    "transaction_count": 27,
+    "total_prompt": 42143,
+    "total_completion": 3663,
+    "total_tokens": 45806,
+    "sum_check": true,
+    "batches": {
+      "batch_1": {
+        "prompt": 13806,
+        "completion": 856,
+        "total": 14662
+      },
+      "batch_2": {
+        "prompt": 14112,
+        "completion": 1417,
+        "total": 15529
+      },
+      "batch_3": {
+        "prompt": 14225,
+        "completion": 1390,
+        "total": 15615
+      }
+    },
+    "roles": {
+      "Coder": {
+        "prompt": 42143,
+        "completion": 3663,
+        "total": 45806
+      }
+    },
+    "providers": {
+      "ollama": {
+        "prompt": 42143,
+        "completion": 3663,
+        "total": 45806
+      }
+    }
+  },
+  "RETRY_ONLY": {
+    "transaction_count": 78,
+    "total_prompt": 155949,
+    "total_completion": 10706,
+    "total_tokens": 166655,
+    "sum_check": true,
+    "batches": {
+      "batch_1": {
+        "prompt": 55940,
+        "completion": 2563,
+        "total": 58503
+      },
+      "batch_2": {
+        "prompt": 47156,
+        "completion": 3816,
+        "total": 50972
+      },
+      "batch_3": {
+        "prompt": 52853,
+        "completion": 4327,
+        "total": 57180
+      }
+    },
+    "roles": {
+      "Coder": {
+        "prompt": 155949,
+        "completion": 10706,
+        "total": 166655
+      }
+    },
+    "providers": {
+      "ollama": {
+        "prompt": 155949,
+        "completion": 10706,
+        "total": 166655
+      }
+    }
+  },
+  "FULL_DDIV": {
+    "transaction_count": 101,
+    "total_prompt": 117526,
+    "total_completion": 29980,
+    "total_tokens": 147506,
+    "sum_check": true,
+    "batches": {
+      "batch_1": {
+        "prompt": 32709,
+        "completion": 12030,
+        "total": 44739
+      },
+      "batch_2": {
+        "prompt": 36296,
+        "completion": 8484,
+        "total": 44780
+      },
+      "batch_3": {
+        "prompt": 48521,
+        "completion": 9466,
+        "total": 57987
+      }
+    },
+    "roles": {
+      "Locator": {
+        "prompt": 8037,
+        "completion": 14199,
+        "total": 22236
+      },
+      "Coder": {
+        "prompt": 101464,
+        "completion": 6783,
+        "total": 108247
+      },
+      "Tester": {
+        "prompt": 3334,
+        "completion": 8199,
+        "total": 11533
+      },
+      "Supervisor": {
+        "prompt": 4691,
+        "completion": 799,
+        "total": 5490
+      }
+    },
+    "providers": {
+      "gemini": {
+        "prompt": 8037,
+        "completion": 14199,
+        "total": 22236
+      },
+      "ollama": {
+        "prompt": 101464,
+        "completion": 6783,
+        "total": 108247
+      },
+      "groq": {
+        "prompt": 8025,
+        "completion": 8998,
+        "total": 17023
+      }
+    }
+  }
+}

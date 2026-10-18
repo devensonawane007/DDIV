@@ -1,0 +1,106 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-kheapsort",
+  "program_name": "kheapsort",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6630,
+  "prompt_tokens": 6267,
+  "completion_tokens": 363,
+  "token_breakdown": {
+    "total_tokens": 6630,
+    "prompt_tokens": 6267,
+    "completion_tokens": 363,
+    "by_role": {
+      "Coder": {
+        "prompt": 6267,
+        "completion": 363,
+        "total": 6630
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 6267,
+        "completion": 363,
+        "total": 6630
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:07:53Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-kheapsort",
+        "program_name": "kheapsort",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1652,
+        "completion_tokens": 123,
+        "total_tokens": 1775
+      },
+      {
+        "timestamp": "2026-10-16T18:08:09Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-kheapsort",
+        "program_name": "kheapsort",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2367,
+        "completion_tokens": 126,
+        "total_tokens": 2493
+      },
+      {
+        "timestamp": "2026-10-16T18:08:25Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-kheapsort",
+        "program_name": "kheapsort",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2248,
+        "completion_tokens": 114,
+        "total_tokens": 2362
+      }
+    ]
+  },
+  "total_duration_seconds": 41.599,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.803,
+      "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -5,7 +5,8 @@\n     heapq.heapify(heap)\n \n     for x in arr:\n-        yield heapq.heappushpop(heap, x)\n+        heapq.heappush(heap, x)\n+        yield heapq.heappop(heap)\n \n     while heap:\n         yield heapq.heappop(heap)\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor not found in 'python_programs/kheapsort.py': yield heapq.heappush(heap, x)",
+      "resolved": false,
+      "duration_seconds": 14.016
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/kheapsort.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+      "resolved": false,
+      "duration_seconds": 15.778
+    }
+  ]
+}

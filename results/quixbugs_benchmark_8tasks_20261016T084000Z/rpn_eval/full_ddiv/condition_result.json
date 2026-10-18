@@ -1,0 +1,39 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-rpn_eval",
+  "program_name": "rpn_eval",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5555,
+  "prompt_tokens": 5167,
+  "completion_tokens": 388,
+  "total_duration_seconds": 28.937,
+  "history": [
+    {
+      "attempt": 1,
+      "patch_extracted": false,
+      "extraction_message": "Failed to extract valid patch or code modifications from model output",
+      "raw_response": "{\n  \"reasoning_summary\": \"The current implementation of `rpn_eval` is incorrectly passing the second popped operand as the first argument to the `op` function, which reverses non-commutative operations like subtraction and division. The fix involves swapping the order of `a` and `b` in the `stack.ap",
+      "resolved": false,
+      "duration_seconds": 10.187
+    },
+    {
+      "attempt": 2,
+      "patch_extracted": false,
+      "extraction_message": "Failed to extract valid patch or code modifications from model output",
+      "raw_response": "{\n  \"reasoning_summary\": \"The current code pops the stack in reverse order, passing the second popped operand as the first argument to the op() function. This reverses non-commutative operations like subtraction and division. The fix is to pop the stack in the correct order, passing the first popped",
+      "resolved": false,
+      "duration_seconds": 10.093
+    },
+    {
+      "attempt": 3,
+      "patch_extracted": false,
+      "extraction_message": "Failed to extract valid patch or code modifications from model output",
+      "raw_response": "{\n  \"reasoning_summary\": \"The current code pops the stack twice before applying the operation, which reverses the order of operands for non-commutative operations like subtraction and division. The fix involves swapping the order of the two pops.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_pr",
+      "resolved": false,
+      "duration_seconds": 8.655
+    }
+  ]
+}

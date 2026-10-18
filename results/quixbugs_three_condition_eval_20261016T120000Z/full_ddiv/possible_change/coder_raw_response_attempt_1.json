@@ -1,0 +1,19 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 2182,
+  "completion_tokens": 90,
+  "latency_seconds": 10.3642169,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is fixed by ensuring the base case handles an empty list of coins and by correctly updating the recursive calls.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/possible_change.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if total < 0:\",\n      \"code\": \"if total < 0 or not coins:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is fixed by ensuring the base case handles an empty list of coins and by correctly updating the recursive calls.",
+    "modifications": [
+      {
+        "path": "python_programs/possible_change.py",
+        "operation": "replace",
+        "anchor": "if total < 0:",
+        "code": "if total < 0 or not coins:"
+      }
+    ]
+  }
+}

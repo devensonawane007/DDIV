@@ -1,0 +1,4187 @@
+{
+  "manifest_version": "1.0",
+  "total_tasks": 27,
+  "total_observations": 81,
+  "batches": {
+    "batch_1": {
+      "programs": [
+        "bitcount",
+        "depth_first_search",
+        "detect_cycle",
+        "find_in_sorted",
+        "gcd",
+        "get_factors",
+        "hanoi",
+        "kheapsort",
+        "knapsack"
+      ],
+      "metrics_by_task": {
+        "bitcount": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1471,
+            "prompt_tokens": 1444,
+            "completion_tokens": 27,
+            "total_duration_seconds": 16.329,
+            "by_role": {
+              "Coder": {
+                "prompt": 1444,
+                "completion": 27,
+                "total": 1471
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1444,
+                "completion": 27,
+                "total": 1471
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 16.329,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 4459,
+            "prompt_tokens": 4378,
+            "completion_tokens": 81,
+            "total_duration_seconds": 14.801,
+            "by_role": {
+              "Coder": {
+                "prompt": 4378,
+                "completion": 81,
+                "total": 4459
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4378,
+                "completion": 81,
+                "total": 4459
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 4.081,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.481,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.239,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3110,
+            "prompt_tokens": 2133,
+            "completion_tokens": 977,
+            "total_duration_seconds": 37.123,
+            "by_role": {
+              "Locator": {
+                "prompt": 162,
+                "completion": 449,
+                "total": 611
+              },
+              "Coder": {
+                "prompt": 1856,
+                "completion": 92,
+                "total": 1948
+              },
+              "Tester": {
+                "prompt": 115,
+                "completion": 436,
+                "total": 551
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 162,
+                "completion": 449,
+                "total": 611
+              },
+              "ollama": {
+                "prompt": 1856,
+                "completion": 92,
+                "total": 1948
+              },
+              "groq": {
+                "prompt": 115,
+                "completion": 436,
+                "total": 551
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 20.159,
+                "patch_diff": "--- a/python_programs/bitcount.py\n+++ b/python_programs/bitcount.py\n@@ -2,7 +2,7 @@\n def bitcount(n):\n     count = 0\n     while n:\n-        n ^= n - 1\n+        n &= n - 1\n         count += 1\n     return count\n \n"
+              }
+            ]
+          }
+        },
+        "depth_first_search": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1594,
+            "prompt_tokens": 1468,
+            "completion_tokens": 126,
+            "total_duration_seconds": 9.538,
+            "by_role": {
+              "Coder": {
+                "prompt": 1468,
+                "completion": 126,
+                "total": 1594
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1468,
+                "completion": 126,
+                "total": 1594
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/depth_first_search.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 7)",
+                "duration_seconds": 9.538,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 4795,
+            "prompt_tokens": 4484,
+            "completion_tokens": 311,
+            "total_duration_seconds": 25.517,
+            "by_role": {
+              "Coder": {
+                "prompt": 4484,
+                "completion": 311,
+                "total": 4795
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4484,
+                "completion": 311,
+                "total": 4795
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/depth_first_search.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 7)",
+                "duration_seconds": 8.711,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+                "duration_seconds": 8.008,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/depth_first_search.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 7)",
+                "duration_seconds": 8.796,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 13273,
+            "prompt_tokens": 10338,
+            "completion_tokens": 2935,
+            "total_duration_seconds": 128.088,
+            "by_role": {
+              "Locator": {
+                "prompt": 196,
+                "completion": 477,
+                "total": 673
+              },
+              "Coder": {
+                "prompt": 7313,
+                "completion": 343,
+                "total": 7656
+              },
+              "Tester": {
+                "prompt": 351,
+                "completion": 1710,
+                "total": 2061
+              },
+              "Supervisor": {
+                "prompt": 2478,
+                "completion": 405,
+                "total": 2883
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 196,
+                "completion": 477,
+                "total": 673
+              },
+              "ollama": {
+                "prompt": 7313,
+                "completion": 343,
+                "total": 7656
+              },
+              "groq": {
+                "prompt": 2829,
+                "completion": 2115,
+                "total": 4944
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 22.096,
+                "patch_diff": "--- a/python_programs/depth_first_search.py\n+++ b/python_programs/depth_first_search.py\n@@ -2,6 +2,7 @@\n     nodesvisited = set()\n \n     def search_from(node):\n+        nodesvisited.add(node)\n         if node in nodesvisited:\n             return False\n         elif node is goalnode:\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 22.861,
+                "patch_diff": "--- a/python_programs/depth_first_search.py\n+++ b/python_programs/depth_first_search.py\n@@ -2,6 +2,7 @@\n     nodesvisited = set()\n \n     def search_from(node):\n+        nodesvisited.add(node)\n         if node in nodesvisited:\n             return False\n         elif node is goalnode:\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 23.307,
+                "patch_diff": "--- a/python_programs/depth_first_search.py\n+++ b/python_programs/depth_first_search.py\n@@ -2,6 +2,7 @@\n     nodesvisited = set()\n \n     def search_from(node):\n+        nodesvisited.add(node)\n         if node in nodesvisited:\n             return False\n         elif node is goalnode:\n"
+              }
+            ]
+          }
+        },
+        "detect_cycle": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1570,
+            "prompt_tokens": 1458,
+            "completion_tokens": 112,
+            "total_duration_seconds": 12.502,
+            "by_role": {
+              "Coder": {
+                "prompt": 1458,
+                "completion": 112,
+                "total": 1570
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1458,
+                "completion": 112,
+                "total": 1570
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 12.501,
+                "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,6 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n+        if hare is None or hare.successor is None: return False\n         hare = hare.successor.successor\n \n         if hare is tortoise:\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 5692,
+            "prompt_tokens": 5367,
+            "completion_tokens": 325,
+            "total_duration_seconds": 35.188,
+            "by_role": {
+              "Coder": {
+                "prompt": 5367,
+                "completion": 325,
+                "total": 5692
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 5367,
+                "completion": 325,
+                "total": 5692
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.016,
+                "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,7 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n-        hare = hare.successor.successor\n+        hare = hare.successor if hare.successor else None\n \n         if hare is tortoise:\n             return True\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 12.172,
+                "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,7 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n-        hare = hare.successor.successor\n+        hare = hare.successor if hare else None\n \n         if hare is tortoise:\n             return True\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.999,
+                "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,7 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n-        hare = hare.successor.successor\n+        hare = hare.successor if hare else None\n \n         if hare is tortoise:\n             return True\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 4771,
+            "prompt_tokens": 2169,
+            "completion_tokens": 2602,
+            "total_duration_seconds": 49.276,
+            "by_role": {
+              "Locator": {
+                "prompt": 174,
+                "completion": 452,
+                "total": 626
+              },
+              "Coder": {
+                "prompt": 1874,
+                "completion": 102,
+                "total": 1976
+              },
+              "Tester": {
+                "prompt": 121,
+                "completion": 2048,
+                "total": 2169
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 174,
+                "completion": 452,
+                "total": 626
+              },
+              "ollama": {
+                "prompt": 1874,
+                "completion": 102,
+                "total": 1976
+              },
+              "groq": {
+                "prompt": 121,
+                "completion": 2048,
+                "total": 2169
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 24.549,
+                "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -2,7 +2,7 @@\n     hare = tortoise = node\n \n     while True:\n-        if hare.successor is None:\n+        if hare is None or hare.successor is None:\n             return False\n \n         tortoise = tortoise.successor\n"
+              }
+            ]
+          }
+        },
+        "find_in_sorted": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1645,
+            "prompt_tokens": 1524,
+            "completion_tokens": 121,
+            "total_duration_seconds": 12.613,
+            "by_role": {
+              "Coder": {
+                "prompt": 1524,
+                "completion": 121,
+                "total": 1645
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1524,
+                "completion": 121,
+                "total": 1645
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 12.612,
+                "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 8863,
+            "prompt_tokens": 8526,
+            "completion_tokens": 337,
+            "total_duration_seconds": 41.87,
+            "by_role": {
+              "Coder": {
+                "prompt": 8526,
+                "completion": 337,
+                "total": 8863
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 8526,
+                "completion": 337,
+                "total": 8863
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.268,
+                "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 15.326,
+                "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 15.274,
+                "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -1,6 +1,6 @@\n def find_in_sorted(arr, x):\n     def binsearch(start, end):\n-        if start == end:\n+        if start > end:\n             return -1\n         mid = start + (end - start) // 2\n         if x < arr[mid]:\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3377,
+            "prompt_tokens": 2309,
+            "completion_tokens": 1068,
+            "total_duration_seconds": 48.715,
+            "by_role": {
+              "Locator": {
+                "prompt": 258,
+                "completion": 461,
+                "total": 719
+              },
+              "Coder": {
+                "prompt": 1922,
+                "completion": 114,
+                "total": 2036
+              },
+              "Tester": {
+                "prompt": 129,
+                "completion": 493,
+                "total": 622
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 258,
+                "completion": 461,
+                "total": 719
+              },
+              "ollama": {
+                "prompt": 1922,
+                "completion": 114,
+                "total": 2036
+              },
+              "groq": {
+                "prompt": 129,
+                "completion": 493,
+                "total": 622
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 22.0,
+                "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -6,7 +6,7 @@\n         if x < arr[mid]:\n             return binsearch(start, mid)\n         elif x > arr[mid]:\n-            return binsearch(mid, end)\n+            return binsearch(mid + 1, end)\n         else:\n             return mid\n \n"
+              }
+            ]
+          }
+        },
+        "gcd": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1479,
+            "prompt_tokens": 1447,
+            "completion_tokens": 32,
+            "total_duration_seconds": 5.82,
+            "by_role": {
+              "Coder": {
+                "prompt": 1447,
+                "completion": 32,
+                "total": 1479
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1447,
+                "completion": 32,
+                "total": 1479
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.82,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 4479,
+            "prompt_tokens": 4387,
+            "completion_tokens": 92,
+            "total_duration_seconds": 16.008,
+            "by_role": {
+              "Coder": {
+                "prompt": 4387,
+                "completion": 92,
+                "total": 4479
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4387,
+                "completion": 92,
+                "total": 4479
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 4.111,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.849,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 6.047,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 2836,
+            "prompt_tokens": 1974,
+            "completion_tokens": 862,
+            "total_duration_seconds": 45.854,
+            "by_role": {
+              "Locator": {
+                "prompt": 173,
+                "completion": 281,
+                "total": 454
+              },
+              "Coder": {
+                "prompt": 1692,
+                "completion": 99,
+                "total": 1791
+              },
+              "Tester": {
+                "prompt": 109,
+                "completion": 482,
+                "total": 591
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 173,
+                "completion": 281,
+                "total": 454
+              },
+              "ollama": {
+                "prompt": 1692,
+                "completion": 99,
+                "total": 1791
+              },
+              "groq": {
+                "prompt": 109,
+                "completion": 482,
+                "total": 591
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 21.27,
+                "patch_diff": "--- a/python_programs/gcd.py\n+++ b/python_programs/gcd.py\n@@ -2,7 +2,7 @@\n     if b == 0:\n         return a\n     else:\n-        return gcd(a % b, b)\n+        return gcd(b, a % b)\n \n \n \"\"\"\n"
+              }
+            ]
+          }
+        },
+        "get_factors": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1607,
+            "prompt_tokens": 1505,
+            "completion_tokens": 102,
+            "total_duration_seconds": 12.684,
+            "by_role": {
+              "Coder": {
+                "prompt": 1505,
+                "completion": 102,
+                "total": 1607
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1505,
+                "completion": 102,
+                "total": 1607
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 12.683,
+                "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7647,
+            "prompt_tokens": 7332,
+            "completion_tokens": 315,
+            "total_duration_seconds": 39.462,
+            "by_role": {
+              "Coder": {
+                "prompt": 7332,
+                "completion": 315,
+                "total": 7647
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 7332,
+                "completion": 315,
+                "total": 7647
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 10.866,
+                "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 14.133,
+                "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 14.464,
+                "patch_diff": "--- a/python_programs/get_factors.py\n+++ b/python_programs/get_factors.py\n@@ -5,7 +5,8 @@\n \n     for i in range(2, int(n ** 0.5) + 1):\n         if n % i == 0:\n-            return [i] + get_factors(n // i)\n+            factors = [i] + get_factors(n // i)\n+            return factors\n \n     return []\n \n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6955,
+            "prompt_tokens": 6201,
+            "completion_tokens": 754,
+            "total_duration_seconds": 77.558,
+            "by_role": {
+              "Locator": {
+                "prompt": 245,
+                "completion": 510,
+                "total": 755
+              },
+              "Coder": {
+                "prompt": 5956,
+                "completion": 244,
+                "total": 6200
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 245,
+                "completion": 510,
+                "total": 755
+              },
+              "ollama": {
+                "prompt": 5956,
+                "completion": 244,
+                "total": 6200
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+                "duration_seconds": 7.921,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+                "duration_seconds": 7.079,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+                "duration_seconds": 7.473,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "hanoi": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1763,
+            "prompt_tokens": 1650,
+            "completion_tokens": 113,
+            "total_duration_seconds": 13.069,
+            "by_role": {
+              "Coder": {
+                "prompt": 1650,
+                "completion": 113,
+                "total": 1763
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1650,
+                "completion": 113,
+                "total": 1763
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 13.068,
+                "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -1,6 +1,8 @@\n def hanoi(height, start=1, end=3):\n     steps = []\n-    if height > 0:\n+    if height == 0:\n+        return []\n+    else:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n         steps.append((start, helper))\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6890,
+            "prompt_tokens": 6507,
+            "completion_tokens": 383,
+            "total_duration_seconds": 40.971,
+            "by_role": {
+              "Coder": {
+                "prompt": 6507,
+                "completion": 383,
+                "total": 6890
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6507,
+                "completion": 383,
+                "total": 6890
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.694,
+                "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -1,6 +1,8 @@\n def hanoi(height, start=1, end=3):\n     steps = []\n-    if height > 0:\n+    if height == 0:\n+        return []\n+    else:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n         steps.append((start, helper))\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 15.861,
+                "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -1,6 +1,8 @@\n def hanoi(height, start=1, end=3):\n     steps = []\n-    if height > 0:\n+    if height == 1:\n+        return [(start, end)]\n+    else:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n         steps.append((start, helper))\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 13.415,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3408,
+            "prompt_tokens": 2526,
+            "completion_tokens": 882,
+            "total_duration_seconds": 49.747,
+            "by_role": {
+              "Locator": {
+                "prompt": 385,
+                "completion": 384,
+                "total": 769
+              },
+              "Coder": {
+                "prompt": 1986,
+                "completion": 98,
+                "total": 2084
+              },
+              "Tester": {
+                "prompt": 155,
+                "completion": 400,
+                "total": 555
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 385,
+                "completion": 384,
+                "total": 769
+              },
+              "ollama": {
+                "prompt": 1986,
+                "completion": 98,
+                "total": 2084
+              },
+              "groq": {
+                "prompt": 155,
+                "completion": 400,
+                "total": 555
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 21.368,
+                "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -3,7 +3,7 @@\n     if height > 0:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n-        steps.append((start, helper))\n+        steps.append((start, end))\n         steps.extend(hanoi(height - 1, helper, end))\n \n     return steps\n"
+              }
+            ]
+          }
+        },
+        "kheapsort": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1775,
+            "prompt_tokens": 1652,
+            "completion_tokens": 123,
+            "total_duration_seconds": 14.291,
+            "by_role": {
+              "Coder": {
+                "prompt": 1652,
+                "completion": 123,
+                "total": 1775
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1652,
+                "completion": 123,
+                "total": 1775
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 14.29,
+                "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -5,7 +5,8 @@\n     heapq.heapify(heap)\n \n     for x in arr:\n-        yield heapq.heappushpop(heap, x)\n+        heapq.heappush(heap, x)\n+        yield heapq.heappop(heap)\n \n     while heap:\n         yield heapq.heappop(heap)\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6630,
+            "prompt_tokens": 6267,
+            "completion_tokens": 363,
+            "total_duration_seconds": 41.599,
+            "by_role": {
+              "Coder": {
+                "prompt": 6267,
+                "completion": 363,
+                "total": 6630
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6267,
+                "completion": 363,
+                "total": 6630
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.803,
+                "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -5,7 +5,8 @@\n     heapq.heapify(heap)\n \n     for x in arr:\n-        yield heapq.heappushpop(heap, x)\n+        heapq.heappush(heap, x)\n+        yield heapq.heappop(heap)\n \n     while heap:\n         yield heapq.heappop(heap)\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/kheapsort.py': yield heapq.heappush(heap, x)",
+                "duration_seconds": 14.016,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/kheapsort.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+                "duration_seconds": 15.778,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3490,
+            "prompt_tokens": 2539,
+            "completion_tokens": 951,
+            "total_duration_seconds": 59.544,
+            "by_role": {
+              "Locator": {
+                "prompt": 389,
+                "completion": 432,
+                "total": 821
+              },
+              "Coder": {
+                "prompt": 2024,
+                "completion": 91,
+                "total": 2115
+              },
+              "Tester": {
+                "prompt": 126,
+                "completion": 428,
+                "total": 554
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 389,
+                "completion": 432,
+                "total": 821
+              },
+              "ollama": {
+                "prompt": 2024,
+                "completion": 91,
+                "total": 2115
+              },
+              "groq": {
+                "prompt": 126,
+                "completion": 428,
+                "total": 554
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 21.852,
+                "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -4,7 +4,7 @@\n     heap = arr[:k]\n     heapq.heapify(heap)\n \n-    for x in arr:\n+    for x in arr[k:]:\n         yield heapq.heappushpop(heap, x)\n \n     while heap:\n"
+              }
+            ]
+          }
+        },
+        "knapsack": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1758,
+            "prompt_tokens": 1658,
+            "completion_tokens": 100,
+            "total_duration_seconds": 34.946,
+            "by_role": {
+              "Coder": {
+                "prompt": 1658,
+                "completion": 100,
+                "total": 1758
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1658,
+                "completion": 100,
+                "total": 1758
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "TIMEOUT",
+                "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+                "extraction_message": "",
+                "duration_seconds": 34.944,
+                "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -4,7 +4,7 @@\n     memo = defaultdict(int)\n \n     for i in range(1, len(items) + 1):\n-        weight, value = items[i - 1]\n+        weight, value = items[i]\n \n         for j in range(1, capacity + 1):\n             memo[i, j] = memo[i - 1, j]\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 9048,
+            "prompt_tokens": 8692,
+            "completion_tokens": 356,
+            "total_duration_seconds": 42.674,
+            "by_role": {
+              "Coder": {
+                "prompt": 8692,
+                "completion": 356,
+                "total": 9048
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 8692,
+                "completion": 356,
+                "total": 9048
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 10.978,
+                "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -4,7 +4,7 @@\n     memo = defaultdict(int)\n \n     for i in range(1, len(items) + 1):\n-        weight, value = items[i - 1]\n+        weight, value = items[i]\n \n         for j in range(1, capacity + 1):\n             memo[i, j] = memo[i - 1, j]\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/knapsack.py': weight, value = items[i]",
+                "duration_seconds": 13.593,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/knapsack.py': weight, value = items[i]",
+                "duration_seconds": 18.101,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3519,
+            "prompt_tokens": 2520,
+            "completion_tokens": 999,
+            "total_duration_seconds": 139.549,
+            "by_role": {
+              "Locator": {
+                "prompt": 381,
+                "completion": 375,
+                "total": 756
+              },
+              "Coder": {
+                "prompt": 1987,
+                "completion": 90,
+                "total": 2077
+              },
+              "Tester": {
+                "prompt": 152,
+                "completion": 534,
+                "total": 686
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 381,
+                "completion": 375,
+                "total": 756
+              },
+              "ollama": {
+                "prompt": 1987,
+                "completion": 90,
+                "total": 2077
+              },
+              "groq": {
+                "prompt": 152,
+                "completion": 534,
+                "total": 686
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 22.524,
+                "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -9,7 +9,7 @@\n         for j in range(1, capacity + 1):\n             memo[i, j] = memo[i - 1, j]\n \n-            if weight < j:\n+            if weight <= j:\n                 memo[i, j] = max(\n                     memo[i, j],\n                     value + memo[i - 1, j - weight]\n"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "batch_2": {
+      "batch_number": 2,
+      "programs": [
+        "lcs_length",
+        "lis",
+        "longest_common_subsequence",
+        "mergesort",
+        "minimum_spanning_tree",
+        "next_palindrome",
+        "next_permutation",
+        "possible_change",
+        "powerset"
+      ],
+      "metrics_by_task": {
+        "lcs_length": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1650,
+            "prompt_tokens": 1505,
+            "completion_tokens": 145,
+            "total_duration_seconds": 23.668,
+            "by_role": {
+              "Coder": {
+                "prompt": 1505,
+                "completion": 145,
+                "total": 1650
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1505,
+                "completion": 145,
+                "total": 1650
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 23.668,
+                "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 9109,
+            "prompt_tokens": 8491,
+            "completion_tokens": 618,
+            "total_duration_seconds": 48.978,
+            "by_role": {
+              "Coder": {
+                "prompt": 8491,
+                "completion": 618,
+                "total": 9109
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 8491,
+                "completion": 618,
+                "total": 9109
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.099,
+                "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 17.678,
+                "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,12 +1,12 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n             if s[i] == t[j]:\n-                dp[i, j] = dp[i - 1, j] + 1\n+                dp[i][j] = dp[i - 1][j] + 1\n \n     return max(dp.values()) if dp else 0\n \n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 20.2,
+                "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,14 +1,14 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n             if s[i] == t[j]:\n-                dp[i, j] = dp[i - 1, j] + 1\n+                dp[i][j] = dp[i - 1][j] + 1\n \n-    return max(dp.values()) if dp else 0\n+    return max(max(row) for row in dp) if dp else 0\n \n \n \n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3285,
+            "prompt_tokens": 2405,
+            "completion_tokens": 880,
+            "total_duration_seconds": 76.57,
+            "by_role": {
+              "Locator": {
+                "prompt": 236,
+                "completion": 563,
+                "total": 799
+              },
+              "Coder": {
+                "prompt": 2001,
+                "completion": 139,
+                "total": 2140
+              },
+              "Tester": {
+                "prompt": 168,
+                "completion": 178,
+                "total": 346
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 236,
+                "completion": 563,
+                "total": 799
+              },
+              "ollama": {
+                "prompt": 2001,
+                "completion": 139,
+                "total": 2140
+              },
+              "groq": {
+                "prompt": 168,
+                "completion": 178,
+                "total": 346
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 30.279,
+                "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -6,7 +6,7 @@\n     for i in range(len(s)):\n         for j in range(len(t)):\n             if s[i] == t[j]:\n-                dp[i, j] = dp[i - 1, j] + 1\n+                dp[i, j] = dp[i - 1, j - 1] + 1\n \n     return max(dp.values()) if dp else 0\n \n"
+              }
+            ]
+          }
+        },
+        "lis": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 2014,
+            "prompt_tokens": 1531,
+            "completion_tokens": 483,
+            "total_duration_seconds": 26.756,
+            "by_role": {
+              "Coder": {
+                "prompt": 1531,
+                "completion": 483,
+                "total": 2014
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1531,
+                "completion": 483,
+                "total": 2014
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 26.754,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,16 +1,16 @@\n \n def lis(arr):\n-    ends = {}\n-    longest = 0\n+    ends = [-1] * (len(arr) + 1)\n+    longest = 1\n \n     for i, val in enumerate(arr):\n \n-        prefix_lengths = [j for j in range(1, longest + 1) if arr[ends[j]] < val]\n+        prefix_lengths = [j for j in range(1, longest) if arr[ends[j]] < val]\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 8536,
+            "prompt_tokens": 7570,
+            "completion_tokens": 966,
+            "total_duration_seconds": 67.997,
+            "by_role": {
+              "Coder": {
+                "prompt": 7570,
+                "completion": 966,
+                "total": 8536
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 7570,
+                "completion": 966,
+                "total": 8536
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 25.0,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,16 +1,16 @@\n \n def lis(arr):\n-    ends = {}\n-    longest = 0\n+    ends = [-1] * (len(arr) + 1)\n+    longest = 1\n \n     for i, val in enumerate(arr):\n \n-        prefix_lengths = [j for j in range(1, longest + 1) if arr[ends[j]] < val]\n+        prefix_lengths = [j for j in range(1, longest) if arr[ends[j]] < val]\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 21.537,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,6 +1,6 @@\n \n def lis(arr):\n-    ends = {}\n+    ends = [-1] * (len(arr) + 1)\n     longest = 0\n \n     for i, val in enumerate(arr):\n@@ -9,8 +9,8 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 21.458,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -1,6 +1,6 @@\n \n def lis(arr):\n-    ends = {}\n+    ends = [-1] * (len(arr) + 1)\n     longest = 0\n \n     for i, val in enumerate(arr):\n@@ -9,8 +9,8 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n-            ends[length + 1] = i\n+        if length == longest - 1 or val < arr[ends[length + 1]]:\n+            ends[length] = i\n             longest = length + 1\n \n     return longest\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 13494,
+            "prompt_tokens": 11580,
+            "completion_tokens": 1914,
+            "total_duration_seconds": 141.496,
+            "by_role": {
+              "Locator": {
+                "prompt": 260,
+                "completion": 666,
+                "total": 926
+              },
+              "Coder": {
+                "prompt": 8650,
+                "completion": 413,
+                "total": 9063
+              },
+              "Tester": {
+                "prompt": 457,
+                "completion": 441,
+                "total": 898
+              },
+              "Supervisor": {
+                "prompt": 2213,
+                "completion": 394,
+                "total": 2607
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 260,
+                "completion": 666,
+                "total": 926
+              },
+              "ollama": {
+                "prompt": 8650,
+                "completion": 413,
+                "total": 9063
+              },
+              "groq": {
+                "prompt": 2670,
+                "completion": 835,
+                "total": 3505
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 29.073,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -9,7 +9,7 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n+        if length == longest or (length + 1 in ends and val < arr[ends[length + 1]]):\n             ends[length + 1] = i\n             longest = length + 1\n \n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 31.72,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -9,7 +9,7 @@\n \n         length = max(prefix_lengths) if prefix_lengths else 0\n \n-        if length == longest or val < arr[ends[length + 1]]:\n+        if length == longest or (length + 1 in ends and val < arr[ends[length + 1]]):\n             ends[length + 1] = i\n             longest = length + 1\n \n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 30.027,
+                "patch_diff": "--- a/python_programs/lis.py\n+++ b/python_programs/lis.py\n@@ -11,6 +11,7 @@\n \n         if length == longest or val < arr[ends[length + 1]]:\n             ends[length + 1] = i\n+            longest = max(longest, length + 1)\n             longest = length + 1\n \n     return longest\n"
+              }
+            ]
+          }
+        },
+        "longest_common_subsequence": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1693,
+            "prompt_tokens": 1570,
+            "completion_tokens": 123,
+            "total_duration_seconds": 10.034,
+            "by_role": {
+              "Coder": {
+                "prompt": 1570,
+                "completion": 123,
+                "total": 1693
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1570,
+                "completion": 123,
+                "total": 1693
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/longest_common_subsequence.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 10)",
+                "duration_seconds": 10.032,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 5224,
+            "prompt_tokens": 4806,
+            "completion_tokens": 418,
+            "total_duration_seconds": 30.879,
+            "by_role": {
+              "Coder": {
+                "prompt": 4806,
+                "completion": 418,
+                "total": 5224
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4806,
+                "completion": 418,
+                "total": 5224
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/longest_common_subsequence.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 10)",
+                "duration_seconds": 9.747,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/longest_common_subsequence.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 10)",
+                "duration_seconds": 10.326,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/longest_common_subsequence.py' failed Python AST syntax verification: invalid syntax. Maybe you meant '==' or ':=' instead of '='? (<unknown>, line 17)",
+                "duration_seconds": 10.805,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3157,
+            "prompt_tokens": 2432,
+            "completion_tokens": 725,
+            "total_duration_seconds": 48.587,
+            "by_role": {
+              "Locator": {
+                "prompt": 298,
+                "completion": 473,
+                "total": 771
+              },
+              "Coder": {
+                "prompt": 1976,
+                "completion": 144,
+                "total": 2120
+              },
+              "Tester": {
+                "prompt": 158,
+                "completion": 108,
+                "total": 266
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 298,
+                "completion": 473,
+                "total": 771
+              },
+              "ollama": {
+                "prompt": 1976,
+                "completion": 144,
+                "total": 2120
+              },
+              "groq": {
+                "prompt": 158,
+                "completion": 108,
+                "total": 266
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 30.179,
+                "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -3,7 +3,7 @@\n         return ''\n \n     elif a[0] == b[0]:\n-        return a[0] + longest_common_subsequence(a[1:], b)\n+        return a[0] + longest_common_subsequence(a[1:], b[1:])\n \n     else:\n         return max(\n"
+              }
+            ]
+          }
+        },
+        "mergesort": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1555,
+            "prompt_tokens": 1524,
+            "completion_tokens": 31,
+            "total_duration_seconds": 5.919,
+            "by_role": {
+              "Coder": {
+                "prompt": 1524,
+                "completion": 31,
+                "total": 1555
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1524,
+                "completion": 31,
+                "total": 1555
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.918,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 4710,
+            "prompt_tokens": 4618,
+            "completion_tokens": 92,
+            "total_duration_seconds": 15.864,
+            "by_role": {
+              "Coder": {
+                "prompt": 4618,
+                "completion": 92,
+                "total": 4710
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4618,
+                "completion": 92,
+                "total": 4710
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 4.491,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.686,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 5.685,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3158,
+            "prompt_tokens": 2412,
+            "completion_tokens": 746,
+            "total_duration_seconds": 45.42,
+            "by_role": {
+              "Locator": {
+                "prompt": 267,
+                "completion": 567,
+                "total": 834
+              },
+              "Coder": {
+                "prompt": 2003,
+                "completion": 92,
+                "total": 2095
+              },
+              "Tester": {
+                "prompt": 142,
+                "completion": 87,
+                "total": 229
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 267,
+                "completion": 567,
+                "total": 834
+              },
+              "ollama": {
+                "prompt": 2003,
+                "completion": 92,
+                "total": 2095
+              },
+              "groq": {
+                "prompt": 142,
+                "completion": 87,
+                "total": 229
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 26.987,
+                "patch_diff": "--- a/python_programs/mergesort.py\n+++ b/python_programs/mergesort.py\n@@ -14,7 +14,7 @@\n         result.extend(left[i:] or right[j:])\n         return result\n \n-    if len(arr) == 0:\n+    if len(arr) <= 1:\n         return arr\n     else:\n         middle = len(arr) // 2\n"
+              }
+            ]
+          }
+        },
+        "minimum_spanning_tree": {
+          "BASELINE": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 1801,
+            "prompt_tokens": 1637,
+            "completion_tokens": 164,
+            "total_duration_seconds": 14.862,
+            "by_role": {
+              "Coder": {
+                "prompt": 1637,
+                "completion": 164,
+                "total": 1801
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1637,
+                "completion": 164,
+                "total": 1801
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 14.86,
+                "patch_diff": "--- a/python_programs/minimum_spanning_tree.py\n+++ b/python_programs/minimum_spanning_tree.py\n@@ -8,6 +8,8 @@\n         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):\n             mst_edges.add(edge)\n             group_by_node[u].update(group_by_node[v])\n+            for node in group_by_node[v]:\n+                group_by_node[node] = group_by_node[u]\n             for node in group_by_node[v]:\n                 group_by_node[node].update(group_by_node[u])\n \n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 1801,
+            "prompt_tokens": 1637,
+            "completion_tokens": 164,
+            "total_duration_seconds": 12.878,
+            "by_role": {
+              "Coder": {
+                "prompt": 1637,
+                "completion": 164,
+                "total": 1801
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1637,
+                "completion": 164,
+                "total": 1801
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 12.877,
+                "patch_diff": "--- a/python_programs/minimum_spanning_tree.py\n+++ b/python_programs/minimum_spanning_tree.py\n@@ -8,6 +8,8 @@\n         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):\n             mst_edges.add(edge)\n             group_by_node[u].update(group_by_node[v])\n+            for node in group_by_node[v]:\n+                group_by_node[node] = group_by_node[u]\n             for node in group_by_node[v]:\n                 group_by_node[node].update(group_by_node[u])\n \n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 8259,
+            "prompt_tokens": 7170,
+            "completion_tokens": 1089,
+            "total_duration_seconds": 49.984,
+            "by_role": {
+              "Locator": {
+                "prompt": 402,
+                "completion": 713,
+                "total": 1115
+              },
+              "Coder": {
+                "prompt": 6768,
+                "completion": 376,
+                "total": 7144
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 402,
+                "completion": 713,
+                "total": 1115
+              },
+              "ollama": {
+                "prompt": 6768,
+                "completion": 376,
+                "total": 7144
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+                "duration_seconds": 11.007,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+                "duration_seconds": 10.026,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/minimum_spanning_tree.py' failed variable definition verification: Undefined local variable 'set_v' referenced before assignment in function 'minimum_spanning_tree' (line 10).",
+                "duration_seconds": 10.926,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "next_palindrome": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1832,
+            "prompt_tokens": 1620,
+            "completion_tokens": 212,
+            "total_duration_seconds": 15.355,
+            "by_role": {
+              "Coder": {
+                "prompt": 1620,
+                "completion": 212,
+                "total": 1832
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1620,
+                "completion": 212,
+                "total": 1832
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+                "duration_seconds": 15.354,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": true,
+            "attempts_used": 2,
+            "total_tokens": 3620,
+            "prompt_tokens": 3268,
+            "completion_tokens": 352,
+            "total_duration_seconds": 45.533,
+            "by_role": {
+              "Coder": {
+                "prompt": 3268,
+                "completion": 352,
+                "total": 3620
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 3268,
+                "completion": 352,
+                "total": 3620
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+                "duration_seconds": 19.697,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 25.835,
+                "patch_diff": "--- a/python_programs/next_palindrome.py\n+++ b/python_programs/next_palindrome.py\n@@ -12,7 +12,7 @@\n             if low_mid != high_mid:\n                 digit_list[low_mid] += 1\n             return digit_list\n-    return [1] + (len(digit_list)) * [0] + [1]\n+    return [1] + [0] * (len(digit_list) - 1) + [1]\n \n \"\"\"\n Finds the next palindromic integer when given the current integer\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3870,
+            "prompt_tokens": 2857,
+            "completion_tokens": 1013,
+            "total_duration_seconds": 52.079,
+            "by_role": {
+              "Locator": {
+                "prompt": 361,
+                "completion": 784,
+                "total": 1145
+              },
+              "Coder": {
+                "prompt": 2318,
+                "completion": 124,
+                "total": 2442
+              },
+              "Tester": {
+                "prompt": 178,
+                "completion": 105,
+                "total": 283
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 361,
+                "completion": 784,
+                "total": 1145
+              },
+              "ollama": {
+                "prompt": 2318,
+                "completion": 124,
+                "total": 2442
+              },
+              "groq": {
+                "prompt": 178,
+                "completion": 105,
+                "total": 283
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 29.638,
+                "patch_diff": "--- a/python_programs/next_palindrome.py\n+++ b/python_programs/next_palindrome.py\n@@ -12,7 +12,7 @@\n             if low_mid != high_mid:\n                 digit_list[low_mid] += 1\n             return digit_list\n-    return [1] + (len(digit_list)) * [0] + [1]\n+    return [1] + (len(digit_list) - 1) * [0] + [1]\n \n \"\"\"\n Finds the next palindromic integer when given the current integer\n"
+              }
+            ]
+          }
+        },
+        "next_permutation": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1644,
+            "prompt_tokens": 1547,
+            "completion_tokens": 97,
+            "total_duration_seconds": 12.41,
+            "by_role": {
+              "Coder": {
+                "prompt": 1547,
+                "completion": 97,
+                "total": 1644
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1547,
+                "completion": 97,
+                "total": 1644
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 12.408,
+                "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -7,7 +7,7 @@\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n-                    return next_perm\n+                    return perm\n \n \n \n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7135,
+            "prompt_tokens": 6736,
+            "completion_tokens": 399,
+            "total_duration_seconds": 52.684,
+            "by_role": {
+              "Coder": {
+                "prompt": 6736,
+                "completion": 399,
+                "total": 7135
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6736,
+                "completion": 399,
+                "total": 7135
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.181,
+                "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -7,7 +7,7 @@\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n-                    return next_perm\n+                    return perm[::-1]\n \n \n \n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 22.17,
+                "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -5,6 +5,13 @@\n             for j in range(len(perm) - 1, i, -1):\n                 if perm[j] < perm[i]:\n                     next_perm = list(perm)\n+                    if i >= 0:\n+                        j = next(j for j in range(len(perm) - 1, i, -1) if perm[j] > perm[i])\n+                        next_perm[i], next_perm[j] = next_perm[j], next_perm[i]\n+                        next_perm[i + 1:] = reversed(next_perm[i + 1:])\n+                    else:\n+                        next_perm.reverse()\n+                    return next_perm\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n                     return next_perm\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 19.329,
+                "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -7,7 +7,7 @@\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n-                    return next_perm\n+                    return next_perm if next_perm else list(reversed(perm))\n \n \n \n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3156,
+            "prompt_tokens": 2429,
+            "completion_tokens": 727,
+            "total_duration_seconds": 57.653,
+            "by_role": {
+              "Locator": {
+                "prompt": 285,
+                "completion": 462,
+                "total": 747
+              },
+              "Coder": {
+                "prompt": 1940,
+                "completion": 105,
+                "total": 2045
+              },
+              "Tester": {
+                "prompt": 204,
+                "completion": 160,
+                "total": 364
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 285,
+                "completion": 462,
+                "total": 747
+              },
+              "ollama": {
+                "prompt": 1940,
+                "completion": 105,
+                "total": 2045
+              },
+              "groq": {
+                "prompt": 204,
+                "completion": 160,
+                "total": 364
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 28.357,
+                "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -3,7 +3,7 @@\n     for i in range(len(perm) - 2, -1, -1):\n         if perm[i] < perm[i + 1]:\n             for j in range(len(perm) - 1, i, -1):\n-                if perm[j] < perm[i]:\n+                if perm[j] > perm[i]:\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n"
+              }
+            ]
+          }
+        },
+        "possible_change": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1785,
+            "prompt_tokens": 1654,
+            "completion_tokens": 131,
+            "total_duration_seconds": 10.919,
+            "by_role": {
+              "Coder": {
+                "prompt": 1654,
+                "completion": 131,
+                "total": 1785
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1654,
+                "completion": 131,
+                "total": 1785
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/possible_change.py' failed variable definition verification: Undefined local variable 'dp' referenced before assignment in function 'possible_change' (line 9).",
+                "duration_seconds": 10.918,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6108,
+            "prompt_tokens": 5412,
+            "completion_tokens": 696,
+            "total_duration_seconds": 89.669,
+            "by_role": {
+              "Coder": {
+                "prompt": 5412,
+                "completion": 696,
+                "total": 6108
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 5412,
+                "completion": 696,
+                "total": 6108
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/possible_change.py' failed variable definition verification: Undefined local variable 'dp' referenced before assignment in function 'possible_change' (line 9).",
+                "duration_seconds": 9.091,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 23.983,
+                "patch_diff": "--- a/python_programs/possible_change.py\n+++ b/python_programs/possible_change.py\n@@ -1,4 +1,5 @@\n # Python 3\n+dp = {}\n def possible_change(coins, total):\n     if total == 0:\n         return 1\n@@ -6,7 +7,10 @@\n         return 0\n \n     first, *rest = coins\n-    return possible_change(coins, total - first) + possible_change(rest, total)\n+    if (first, total) in dp:\n+        return dp[(first, total)]\n+    dp[(first, total)] = possible_change(coins, total - first) + possible_change(rest, total)\n+    return dp[(first, total)]\n \n \n \n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/possible_change.py' failed Python bytecode compilation: 'return' outside function (python_programs/possible_change.py, line 3)",
+                "duration_seconds": 56.592,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3448,
+            "prompt_tokens": 2699,
+            "completion_tokens": 749,
+            "total_duration_seconds": 60.029,
+            "by_role": {
+              "Locator": {
+                "prompt": 378,
+                "completion": 572,
+                "total": 950
+              },
+              "Coder": {
+                "prompt": 2182,
+                "completion": 90,
+                "total": 2272
+              },
+              "Tester": {
+                "prompt": 139,
+                "completion": 87,
+                "total": 226
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 378,
+                "completion": 572,
+                "total": 950
+              },
+              "ollama": {
+                "prompt": 2182,
+                "completion": 90,
+                "total": 2272
+              },
+              "groq": {
+                "prompt": 139,
+                "completion": 87,
+                "total": 226
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 31.208,
+                "patch_diff": "--- a/python_programs/possible_change.py\n+++ b/python_programs/possible_change.py\n@@ -2,7 +2,7 @@\n def possible_change(coins, total):\n     if total == 0:\n         return 1\n-    if total < 0:\n+    if total < 0 or not coins:\n         return 0\n \n     first, *rest = coins\n"
+              }
+            ]
+          }
+        },
+        "powerset": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1555,
+            "prompt_tokens": 1524,
+            "completion_tokens": 31,
+            "total_duration_seconds": 6.301,
+            "by_role": {
+              "Coder": {
+                "prompt": 1524,
+                "completion": 31,
+                "total": 1555
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1524,
+                "completion": 31,
+                "total": 1555
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 6.299,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 4729,
+            "prompt_tokens": 4618,
+            "completion_tokens": 111,
+            "total_duration_seconds": 18.718,
+            "by_role": {
+              "Coder": {
+                "prompt": 4618,
+                "completion": 111,
+                "total": 4729
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4618,
+                "completion": 111,
+                "total": 4729
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 4.589,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 7.784,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "JSON response contained no modifications",
+                "duration_seconds": 6.344,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 2953,
+            "prompt_tokens": 2312,
+            "completion_tokens": 641,
+            "total_duration_seconds": 44.857,
+            "by_role": {
+              "Locator": {
+                "prompt": 252,
+                "completion": 424,
+                "total": 676
+              },
+              "Coder": {
+                "prompt": 1894,
+                "completion": 105,
+                "total": 1999
+              },
+              "Tester": {
+                "prompt": 166,
+                "completion": 112,
+                "total": 278
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 252,
+                "completion": 424,
+                "total": 676
+              },
+              "ollama": {
+                "prompt": 1894,
+                "completion": 105,
+                "total": 1999
+              },
+              "groq": {
+                "prompt": 166,
+                "completion": 112,
+                "total": 278
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 27.768,
+                "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -3,7 +3,7 @@\n     if arr:\n         first, *rest = arr #python3 just like car and cdr (in this case anyway..)\n         rest_subsets = powerset(rest)\n-        return [[first] + subset for subset in rest_subsets]\n+        return rest_subsets + [[first] + subset for subset in rest_subsets]\n     else:\n         return [[]]\n \n"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "batch_3": {
+      "batch_number": 3,
+      "programs": [
+        "shortest_path_length",
+        "shortest_path_lengths",
+        "shortest_paths",
+        "shunting_yard",
+        "sieve",
+        "sqrt",
+        "subsequences",
+        "topological_ordering",
+        "wrap"
+      ],
+      "metrics_by_task": {
+        "shortest_path_length": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1938,
+            "prompt_tokens": 1745,
+            "completion_tokens": 193,
+            "total_duration_seconds": 22.025,
+            "by_role": {
+              "Coder": {
+                "prompt": 1745,
+                "completion": 193,
+                "total": 1938
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1745,
+                "completion": 193,
+                "total": 1938
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 22.025,
+                "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7416,
+            "prompt_tokens": 6942,
+            "completion_tokens": 474,
+            "total_duration_seconds": 40.983,
+            "by_role": {
+              "Coder": {
+                "prompt": 6942,
+                "completion": 474,
+                "total": 7416
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6942,
+                "completion": 474,
+                "total": 7416
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 13.86,
+                "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 15.479,
+                "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "2 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 11.643,
+                "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -36,7 +36,7 @@\n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n     for i, tpl in enumerate(node_heap):\n-        a, b = tpl\n+        dist, node = dist_node\n         if b == node:\n             node_heap[i] = dist_node #heapq retains sorted property\n             return None\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 9794,
+            "prompt_tokens": 8012,
+            "completion_tokens": 1782,
+            "total_duration_seconds": 122.959,
+            "by_role": {
+              "Locator": {
+                "prompt": 536,
+                "completion": 838,
+                "total": 1374
+              },
+              "Coder": {
+                "prompt": 7476,
+                "completion": 944,
+                "total": 8420
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 536,
+                "completion": 838,
+                "total": 1374
+              },
+              "ollama": {
+                "prompt": 7476,
+                "completion": 944,
+                "total": 8420
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/shortest_path_length.py' failed Python AST syntax verification: unmatched ')' (<unknown>, line 32)",
+                "duration_seconds": 17.848,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_path_length.py': new_dist = distance + length_by_edge[(node, nextnode)]",
+                "duration_seconds": 20.043,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_path_length.py': new_dist = distance + length_by_edge[(node, nextnode)]",
+                "duration_seconds": 17.445,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "shortest_path_lengths": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1788,
+            "prompt_tokens": 1598,
+            "completion_tokens": 190,
+            "total_duration_seconds": 14.804,
+            "by_role": {
+              "Coder": {
+                "prompt": 1598,
+                "completion": 190,
+                "total": 1788
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1598,
+                "completion": 190,
+                "total": 1788
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 14.803,
+                "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,6 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6758,
+            "prompt_tokens": 6240,
+            "completion_tokens": 518,
+            "total_duration_seconds": 52.65,
+            "by_role": {
+              "Coder": {
+                "prompt": 6240,
+                "completion": 518,
+                "total": 6758
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6240,
+                "completion": 518,
+                "total": 6758
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 14.081,
+                "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,6 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 21.02,
+                "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -2,7 +2,7 @@\n \n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n-    length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, i): 0 for i in range(n)}); length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_path})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "4 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 17.547,
+                "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,7 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n-    length_by_path.update(length_by_edge)\n+    length_by_path.update(length_by_edge); length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_path})\n \n     for k in range(n):\n         for i in range(n):\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7593,
+            "prompt_tokens": 6498,
+            "completion_tokens": 1095,
+            "total_duration_seconds": 83.75,
+            "by_role": {
+              "Locator": {
+                "prompt": 356,
+                "completion": 521,
+                "total": 877
+              },
+              "Coder": {
+                "prompt": 6142,
+                "completion": 574,
+                "total": 6716
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 356,
+                "completion": 521,
+                "total": 877
+              },
+              "ollama": {
+                "prompt": 6142,
+                "completion": 574,
+                "total": 6716
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+                "duration_seconds": 14.33,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+                "duration_seconds": 18.169,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/shortest_path_lengths.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 15)",
+                "duration_seconds": 29.66,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "shortest_paths": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1821,
+            "prompt_tokens": 1713,
+            "completion_tokens": 108,
+            "total_duration_seconds": 29.565,
+            "by_role": {
+              "Coder": {
+                "prompt": 1713,
+                "completion": 108,
+                "total": 1821
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1713,
+                "completion": 108,
+                "total": 1821
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+                "duration_seconds": 29.564,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 5586,
+            "prompt_tokens": 5217,
+            "completion_tokens": 369,
+            "total_duration_seconds": 82.841,
+            "by_role": {
+              "Coder": {
+                "prompt": 5217,
+                "completion": 369,
+                "total": 5586
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 5217,
+                "completion": 369,
+                "total": 5586
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+                "duration_seconds": 19.434,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+                "duration_seconds": 37.025,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+                "duration_seconds": 26.379,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 8691,
+            "prompt_tokens": 7265,
+            "completion_tokens": 1426,
+            "total_duration_seconds": 180.786,
+            "by_role": {
+              "Locator": {
+                "prompt": 477,
+                "completion": 636,
+                "total": 1113
+              },
+              "Coder": {
+                "prompt": 6788,
+                "completion": 790,
+                "total": 7578
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 477,
+                "completion": 636,
+                "total": 1113
+              },
+              "ollama": {
+                "prompt": 6788,
+                "completion": 790,
+                "total": 7578
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])",
+                "duration_seconds": 50.069,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = float('inf')",
+                "duration_seconds": 59.726,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])",
+                "duration_seconds": 51.871,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "shunting_yard": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1805,
+            "prompt_tokens": 1675,
+            "completion_tokens": 130,
+            "total_duration_seconds": 36.339,
+            "by_role": {
+              "Coder": {
+                "prompt": 1675,
+                "completion": 130,
+                "total": 1805
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1675,
+                "completion": 130,
+                "total": 1805
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 36.338,
+                "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6894,
+            "prompt_tokens": 6527,
+            "completion_tokens": 367,
+            "total_duration_seconds": 105.742,
+            "by_role": {
+              "Coder": {
+                "prompt": 6527,
+                "completion": 367,
+                "total": 6894
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6527,
+                "completion": 367,
+                "total": 6894
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 27.323,
+                "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/shunting_yard.py' failed Python AST syntax verification: expected ':' (<unknown>, line 16)",
+                "duration_seconds": 45.487,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 32.931,
+                "patch_diff": "--- a/python_programs/shunting_yard.py\n+++ b/python_programs/shunting_yard.py\n@@ -13,7 +13,7 @@\n         if isinstance(token, int):\n             rpntokens.append(token)\n         else:\n-            while opstack and precedence[token] <= precedence[opstack[-1]]:\n+            while opstack and precedence[token] < precedence[opstack[-1]]:\n                 rpntokens.append(opstack.pop())\n \n     while opstack:\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7473,
+            "prompt_tokens": 6711,
+            "completion_tokens": 762,
+            "total_duration_seconds": 87.625,
+            "by_role": {
+              "Locator": {
+                "prompt": 424,
+                "completion": 466,
+                "total": 890
+              },
+              "Coder": {
+                "prompt": 6287,
+                "completion": 296,
+                "total": 6583
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 424,
+                "completion": 466,
+                "total": 890
+              },
+              "ollama": {
+                "prompt": 6287,
+                "completion": 296,
+                "total": 6583
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+                "duration_seconds": 25.698,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+                "duration_seconds": 21.539,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Anchor ambiguous in 'python_programs/shunting_yard.py' (2 matches).",
+                "duration_seconds": 21.246,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "sieve": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1559,
+            "prompt_tokens": 1434,
+            "completion_tokens": 125,
+            "total_duration_seconds": 31.379,
+            "by_role": {
+              "Coder": {
+                "prompt": 1434,
+                "completion": 125,
+                "total": 1559
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1434,
+                "completion": 125,
+                "total": 1559
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Modifications resulted in an empty diff (no changes made).",
+                "duration_seconds": 31.378,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 5725,
+            "prompt_tokens": 5265,
+            "completion_tokens": 460,
+            "total_duration_seconds": 129.327,
+            "by_role": {
+              "Coder": {
+                "prompt": 5265,
+                "completion": 460,
+                "total": 5725
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 5265,
+                "completion": 460,
+                "total": 5725
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/sieve.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 6)",
+                "duration_seconds": 33.815,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 66.337,
+                "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,8 +1,8 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n-            primes.append(n)\n+        if any(n % p == 0 for p in primes):\n+            primes.append(n)  # This line is incorrect. It should mark multiples of n as non-prime instead of appending n to the list of primes.\n     return primes\n \n \"\"\"\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 29.172,
+                "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,7 +1,7 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n+        if any(n % p == 0 for p in primes):\n             primes.append(n)\n     return primes\n \n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3056,
+            "prompt_tokens": 2242,
+            "completion_tokens": 814,
+            "total_duration_seconds": 64.914,
+            "by_role": {
+              "Locator": {
+                "prompt": 159,
+                "completion": 536,
+                "total": 695
+              },
+              "Coder": {
+                "prompt": 1936,
+                "completion": 126,
+                "total": 2062
+              },
+              "Tester": {
+                "prompt": 147,
+                "completion": 152,
+                "total": 299
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 159,
+                "completion": 536,
+                "total": 695
+              },
+              "ollama": {
+                "prompt": 1936,
+                "completion": 126,
+                "total": 2062
+              },
+              "groq": {
+                "prompt": 147,
+                "completion": 152,
+                "total": 299
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 44.749,
+                "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,7 +1,7 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n+        if all(n % p != 0 for p in primes):\n             primes.append(n)\n     return primes\n \n"
+              }
+            ]
+          }
+        },
+        "sqrt": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1636,
+            "prompt_tokens": 1485,
+            "completion_tokens": 151,
+            "total_duration_seconds": 43.671,
+            "by_role": {
+              "Coder": {
+                "prompt": 1485,
+                "completion": 151,
+                "total": 1636
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1485,
+                "completion": 151,
+                "total": 1636
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "TIMEOUT",
+                "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+                "extraction_message": "",
+                "duration_seconds": 43.671,
+                "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = 1 if x >= 1 else x / 2\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6890,
+            "prompt_tokens": 6513,
+            "completion_tokens": 377,
+            "total_duration_seconds": 88.078,
+            "by_role": {
+              "Coder": {
+                "prompt": 6513,
+                "completion": 377,
+                "total": 6890
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 6513,
+                "completion": 377,
+                "total": 6890
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 24.038,
+                "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = x if x >= 1 else 1\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 32.109,
+                "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = x if x >= 1 else 1\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 31.932,
+                "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,6 +1,6 @@\n \n def sqrt(x, epsilon):\n-    approx = x / 2\n+    approx = x if x >= 1 else 1\n     while abs(x - approx) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 2853,
+            "prompt_tokens": 2219,
+            "completion_tokens": 634,
+            "total_duration_seconds": 62.744,
+            "by_role": {
+              "Locator": {
+                "prompt": 213,
+                "completion": 410,
+                "total": 623
+              },
+              "Coder": {
+                "prompt": 1862,
+                "completion": 92,
+                "total": 1954
+              },
+              "Tester": {
+                "prompt": 144,
+                "completion": 132,
+                "total": 276
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 213,
+                "completion": 410,
+                "total": 623
+              },
+              "ollama": {
+                "prompt": 1862,
+                "completion": 92,
+                "total": 1954
+              },
+              "groq": {
+                "prompt": 144,
+                "completion": 132,
+                "total": 276
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 41.613,
+                "patch_diff": "--- a/python_programs/sqrt.py\n+++ b/python_programs/sqrt.py\n@@ -1,7 +1,7 @@\n \n def sqrt(x, epsilon):\n     approx = x / 2\n-    while abs(x - approx) > epsilon:\n+    while abs(approx * approx - x) > epsilon:\n         approx = 0.5 * (approx + x / approx)\n     return approx\n \n"
+              }
+            ]
+          }
+        },
+        "subsequences": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1672,
+            "prompt_tokens": 1519,
+            "completion_tokens": 153,
+            "total_duration_seconds": 31.55,
+            "by_role": {
+              "Coder": {
+                "prompt": 1519,
+                "completion": 153,
+                "total": 1672
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1519,
+                "completion": 153,
+                "total": 1672
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 31.55,
+                "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -4,9 +4,7 @@\n \n     ret = []\n     for i in range(a, b + 1 - k):\n-        ret.extend(\n-            [i] + rest for rest in subsequences(i + 1, b, k - 1)\n-        )\n+        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])\n \n     return ret\n \n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6178,
+            "prompt_tokens": 5398,
+            "completion_tokens": 780,
+            "total_duration_seconds": 179.341,
+            "by_role": {
+              "Coder": {
+                "prompt": 5398,
+                "completion": 780,
+                "total": 6178
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 5398,
+                "completion": 780,
+                "total": 6178
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "1 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 25.542,
+                "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -4,9 +4,7 @@\n \n     ret = []\n     for i in range(a, b + 1 - k):\n-        ret.extend(\n-            [i] + rest for rest in subsequences(i + 1, b, k - 1)\n-        )\n+        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])\n \n     return ret\n \n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "TIMEOUT",
+                "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+                "extraction_message": "",
+                "duration_seconds": 120.398,
+                "patch_diff": "--- a/python_programs/subsequences.py\n+++ b/python_programs/subsequences.py\n@@ -4,9 +4,7 @@\n \n     ret = []\n     for i in range(a, b + 1 - k):\n-        ret.extend(\n-            [i] + rest for rest in subsequences(i + 1, b, k - 1)\n-        )\n+        ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1)) if k > 1 else ret.extend([i])\n \n     return ret\n \n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unmatched ']' (<unknown>, line 7)",
+                "duration_seconds": 33.401,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7658,
+            "prompt_tokens": 6595,
+            "completion_tokens": 1063,
+            "total_duration_seconds": 106.96,
+            "by_role": {
+              "Locator": {
+                "prompt": 252,
+                "completion": 616,
+                "total": 868
+              },
+              "Coder": {
+                "prompt": 6343,
+                "completion": 447,
+                "total": 6790
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 252,
+                "completion": 616,
+                "total": 868
+              },
+              "ollama": {
+                "prompt": 6343,
+                "completion": 447,
+                "total": 6790
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4)",
+                "duration_seconds": 30.644,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4)",
+                "duration_seconds": 28.329,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/subsequences.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 4)",
+                "duration_seconds": 28.719,
+                "patch_diff": ""
+              }
+            ]
+          }
+        },
+        "topological_ordering": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1689,
+            "prompt_tokens": 1491,
+            "completion_tokens": 198,
+            "total_duration_seconds": 72.887,
+            "by_role": {
+              "Coder": {
+                "prompt": 1491,
+                "completion": 198,
+                "total": 1689
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1491,
+                "completion": 198,
+                "total": 1689
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "TIMEOUT",
+                "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+                "extraction_message": "",
+                "duration_seconds": 72.883,
+                "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,17 @@\n def topological_ordering(nodes):\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.pop(0)\n+        if node not in visited:\n+            visited.add(node)\n+            for nextnode in node.outgoing_nodes:\n+                nextnode.incoming_nodes.remove(node)\n+                if not nextnode.incoming_nodes:\n+                    ordered_nodes.append(nextnode)\n+\n+    return visited\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 6565,
+            "prompt_tokens": 5944,
+            "completion_tokens": 621,
+            "total_duration_seconds": 142.186,
+            "by_role": {
+              "Coder": {
+                "prompt": 5944,
+                "completion": 621,
+                "total": 6565
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 5944,
+                "completion": 621,
+                "total": 6565
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "3 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 31.083,
+                "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,14 @@\n def topological_ordering(nodes):\n     ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.pop(0)\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return visited\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "ASSERTION_FAILURE",
+                "failure_summary": "3 test(s) failed assertion check.",
+                "extraction_message": "",
+                "duration_seconds": 41.522,
+                "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,16 @@\n def topological_ordering(nodes):\n-    ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    from collections import deque\n+\n+    ordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.popleft()\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return list(visited)\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": true,
+                "failure_category": "TIMEOUT",
+                "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+                "extraction_message": "",
+                "duration_seconds": 69.578,
+                "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -1,5 +1,16 @@\n def topological_ordering(nodes):\n-    ordered_nodes = [node for node in nodes if not node.incoming_nodes]\n+    from collections import deque\n+\n+    ordered_nodes = deque([node for node in nodes if not node.incoming_nodes])\n+    visited = set()\n+\n+    while ordered_nodes:\n+        node = ordered_nodes.popleft()\n+        if node not in visited:\n+            visited.add(node)\n+            ordered_nodes.extend(nextnode for nextnode in node.outgoing_nodes if nextnode not in visited)\n+\n+    return list(visited)\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n"
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": true,
+            "attempts_used": 1,
+            "total_tokens": 3177,
+            "prompt_tokens": 2375,
+            "completion_tokens": 802,
+            "total_duration_seconds": 68.055,
+            "by_role": {
+              "Locator": {
+                "prompt": 217,
+                "completion": 565,
+                "total": 782
+              },
+              "Coder": {
+                "prompt": 1985,
+                "completion": 131,
+                "total": 2116
+              },
+              "Tester": {
+                "prompt": 173,
+                "completion": 106,
+                "total": 279
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 217,
+                "completion": 565,
+                "total": 782
+              },
+              "ollama": {
+                "prompt": 1985,
+                "completion": 131,
+                "total": 2116
+              },
+              "groq": {
+                "prompt": 173,
+                "completion": 106,
+                "total": 279
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": true,
+                "patch_extracted": true,
+                "failure_category": "NONE",
+                "failure_summary": "All tests passed successfully.",
+                "extraction_message": "",
+                "duration_seconds": 45.878,
+                "patch_diff": "--- a/python_programs/topological_ordering.py\n+++ b/python_programs/topological_ordering.py\n@@ -3,7 +3,7 @@\n \n     for node in ordered_nodes:\n         for nextnode in node.outgoing_nodes:\n-            if set(ordered_nodes).issuperset(nextnode.outgoing_nodes) and nextnode not in ordered_nodes:\n+            if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:\n                 ordered_nodes.append(nextnode)\n \n     return ordered_nodes\n"
+              }
+            ]
+          }
+        },
+        "wrap": {
+          "BASELINE": {
+            "resolved": false,
+            "attempts_used": 1,
+            "total_tokens": 1707,
+            "prompt_tokens": 1565,
+            "completion_tokens": 142,
+            "total_duration_seconds": 27.603,
+            "by_role": {
+              "Coder": {
+                "prompt": 1565,
+                "completion": 142,
+                "total": 1707
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 1565,
+                "completion": 142,
+                "total": 1707
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+                "duration_seconds": 27.601,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "RETRY_ONLY": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 5168,
+            "prompt_tokens": 4807,
+            "completion_tokens": 361,
+            "total_duration_seconds": 69.106,
+            "by_role": {
+              "Coder": {
+                "prompt": 4807,
+                "completion": 361,
+                "total": 5168
+              }
+            },
+            "by_provider": {
+              "ollama": {
+                "prompt": 4807,
+                "completion": 361,
+                "total": 5168
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+                "duration_seconds": 21.417,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+                "duration_seconds": 23.189,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:7\nerror: python_programs/wrap.py: patch does not apply",
+                "duration_seconds": 24.499,
+                "patch_diff": ""
+              }
+            ]
+          },
+          "FULL_DDIV": {
+            "resolved": false,
+            "attempts_used": 3,
+            "total_tokens": 7692,
+            "prompt_tokens": 6604,
+            "completion_tokens": 1088,
+            "total_duration_seconds": 150.724,
+            "by_role": {
+              "Locator": {
+                "prompt": 301,
+                "completion": 566,
+                "total": 867
+              },
+              "Coder": {
+                "prompt": 6303,
+                "completion": 522,
+                "total": 6825
+              }
+            },
+            "by_provider": {
+              "gemini": {
+                "prompt": 301,
+                "completion": 566,
+                "total": 867
+              },
+              "ollama": {
+                "prompt": 6303,
+                "completion": 522,
+                "total": 6825
+              }
+            },
+            "attempts": [
+              {
+                "attempt": 1,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/wrap.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+                "duration_seconds": 50.933,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 2,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:4\nerror: python_programs/wrap.py: patch does not apply",
+                "duration_seconds": 51.257,
+                "patch_diff": ""
+              },
+              {
+                "attempt": 3,
+                "resolved": false,
+                "patch_extracted": false,
+                "failure_category": "",
+                "failure_summary": "",
+                "extraction_message": "Patched file 'python_programs/wrap.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+                "duration_seconds": 29.659,
+                "patch_diff": ""
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "all_programs": [
+    "bitcount",
+    "depth_first_search",
+    "detect_cycle",
+    "find_in_sorted",
+    "gcd",
+    "get_factors",
+    "hanoi",
+    "kheapsort",
+    "knapsack",
+    "lcs_length",
+    "lis",
+    "longest_common_subsequence",
+    "mergesort",
+    "minimum_spanning_tree",
+    "next_palindrome",
+    "next_permutation",
+    "possible_change",
+    "powerset",
+    "shortest_path_length",
+    "shortest_path_lengths",
+    "shortest_paths",
+    "shunting_yard",
+    "sieve",
+    "sqrt",
+    "subsequences",
+    "topological_ordering",
+    "wrap"
+  ],
+  "aggregate_by_condition": {
+    "BASELINE": {
+      "total_tasks": 27,
+      "total_resolved": 1,
+      "overall_resolution_rate_pct": 3.7,
+      "total_tokens": 45806,
+      "mean_tokens_per_task": 1696.5,
+      "mean_tokens_per_resolved": 45806.0,
+      "total_duration_seconds": 567.84,
+      "mean_duration_per_task": 21.03,
+      "total_attempts": 27,
+      "mean_attempts_per_task": 1.0,
+      "by_batch": {
+        "batch_1": {
+          "tasks": 9,
+          "resolved": 0,
+          "resolution_rate_pct": 0.0,
+          "tokens": 14662,
+          "duration_seconds": 131.79,
+          "attempts": 9
+        },
+        "batch_2": {
+          "tasks": 9,
+          "resolved": 1,
+          "resolution_rate_pct": 11.11,
+          "tokens": 15529,
+          "duration_seconds": 126.22,
+          "attempts": 9
+        },
+        "batch_3": {
+          "tasks": 9,
+          "resolved": 0,
+          "resolution_rate_pct": 0.0,
+          "tokens": 15615,
+          "duration_seconds": 309.82,
+          "attempts": 9
+        }
+      }
+    },
+    "RETRY_ONLY": {
+      "total_tasks": 27,
+      "total_resolved": 2,
+      "overall_resolution_rate_pct": 7.41,
+      "total_tokens": 166655,
+      "mean_tokens_per_task": 6172.4,
+      "mean_tokens_per_resolved": 83327.5,
+      "total_duration_seconds": 1571.54,
+      "mean_duration_per_task": 58.21,
+      "total_attempts": 78,
+      "mean_attempts_per_task": 2.89,
+      "by_batch": {
+        "batch_1": {
+          "tasks": 9,
+          "resolved": 0,
+          "resolution_rate_pct": 0.0,
+          "tokens": 58503,
+          "duration_seconds": 298.09,
+          "attempts": 27
+        },
+        "batch_2": {
+          "tasks": 9,
+          "resolved": 2,
+          "resolution_rate_pct": 22.22,
+          "tokens": 50972,
+          "duration_seconds": 383.2,
+          "attempts": 24
+        },
+        "batch_3": {
+          "tasks": 9,
+          "resolved": 0,
+          "resolution_rate_pct": 0.0,
+          "tokens": 57180,
+          "duration_seconds": 890.25,
+          "attempts": 27
+        }
+      }
+    },
+    "FULL_DDIV": {
+      "total_tasks": 27,
+      "total_resolved": 17,
+      "overall_resolution_rate_pct": 62.96,
+      "total_tokens": 147506,
+      "mean_tokens_per_task": 5463.2,
+      "mean_tokens_per_resolved": 8676.8,
+      "total_duration_seconds": 2140.65,
+      "mean_duration_per_task": 79.28,
+      "total_attempts": 47,
+      "mean_attempts_per_task": 1.74,
+      "by_batch": {
+        "batch_1": {
+          "tasks": 9,
+          "resolved": 7,
+          "resolution_rate_pct": 77.78,
+          "tokens": 44739,
+          "duration_seconds": 635.45,
+          "attempts": 13
+        },
+        "batch_2": {
+          "tasks": 9,
+          "resolved": 7,
+          "resolution_rate_pct": 77.78,
+          "tokens": 44780,
+          "duration_seconds": 576.68,
+          "attempts": 13
+        },
+        "batch_3": {
+          "tasks": 9,
+          "resolved": 3,
+          "resolution_rate_pct": 33.33,
+          "tokens": 57987,
+          "duration_seconds": 928.52,
+          "attempts": 21
+        }
+      }
+    }
+  }
+}

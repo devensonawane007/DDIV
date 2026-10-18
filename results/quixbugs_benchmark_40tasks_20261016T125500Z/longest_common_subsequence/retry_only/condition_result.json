@@ -1,0 +1,49 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-longest_common_subsequence",
+  "program_name": "longest_common_subsequence",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7006,
+  "prompt_tokens": 6650,
+  "completion_tokens": 356,
+  "total_duration_seconds": 38.366,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/longest_common_subsequence.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 10) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 10.7
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 12.793,
+      "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -6,7 +6,7 @@\n         return a[0] + longest_common_subsequence(a[1:], b)\n \n     else:\n-        return max(\n+        return a[0] + max(\n             longest_common_subsequence(a, b[1:]),\n             longest_common_subsequence(a[1:], b),\n             key=len\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 14.874,
+      "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -6,7 +6,7 @@\n         return a[0] + longest_common_subsequence(a[1:], b)\n \n     else:\n-        return max(\n+        return a[0] + max(\n             longest_common_subsequence(a, b[1:]),\n             longest_common_subsequence(a[1:], b),\n             key=len\n"
+    }
+  ]
+}

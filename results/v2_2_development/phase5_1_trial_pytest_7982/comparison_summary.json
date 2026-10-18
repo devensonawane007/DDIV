@@ -1,0 +1,1986 @@
+{
+  "experiment_id": "local_ollama_coder_comparison",
+  "started_at": "2026-10-14T20:54:54Z",
+  "coder_provider": "ollama",
+  "coder_model": "qwen2.5-coder:7b",
+  "ollama_base_url": "http://localhost:11434",
+  "tasks": [
+    "pytest-dev__pytest-7982"
+  ],
+  "conditions": [
+    "full_ddiv"
+  ],
+  "runs": [
+    {
+      "experiment_id": "local_ollama_coder",
+      "task_id": "pytest-dev__pytest-7982",
+      "condition": "full_ddiv",
+      "status": "COMPLETED",
+      "resolved": false,
+      "workflow_completed": true,
+      "patch_generated": false,
+      "patch_applied": false,
+      "failed_stage": null,
+      "error_code": null,
+      "provider_failure": null,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "attempts": 3,
+      "attempt_history": [
+        {
+          "attempt": 1,
+          "coder_proposals": [
+            {
+              "path": "src/_pytest/python.py",
+              "target_symbol": "Module.collect",
+              "target_class": null,
+              "target_method": null,
+              "node_type": null,
+              "line_range": null,
+              "surrounding_context": null,
+              "source_fingerprint": null,
+              "operation": "insert_before",
+              "anchor": "def make_numbered_dir(root: Path, prefix: str) -> Path:",
+              "code": "if new_path.exists():\n    continue\n",
+              "reason": "Check if the directory already exists before attempting to create it. If the directory exists, skip the creation attempt."
+            }
+          ],
+          "patch_operations": [
+            "insert_before"
+          ],
+          "generated_patch": "",
+          "patch_generated": false,
+          "patch_valid": false,
+          "patch_validation_error": "Patch is empty.",
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "coder_error_detail": "PatchBuilder failed: Anchor not found in 'src/_pytest/python.py': def make_numbered_dir(root: Path, prefix: str) -> Path:",
+          "agent_apply_success": false,
+          "agent_test_status": "",
+          "internal_resolved": false,
+          "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "final_patch_correct": false,
+          "regression_detected": false,
+          "located_files": [
+            "src/_pytest/python.py",
+            "src/_pytest/pathlib.py",
+            "testing/test_collection.py"
+          ],
+          "latency_seconds": 0.12289690971374512,
+          "agent_timings": {
+            "locator": 3.22308087348938,
+            "coder": 32.0446588,
+            "tester": 1.107518196105957,
+            "supervisor": 2.742940902709961
+          },
+          "token_usage": {
+            "prompt_tokens": 14142,
+            "completion_tokens": 2062,
+            "total_tokens": 16204
+          },
+          "model_invocations": [
+            {
+              "agent": "Locator",
+              "model": "gemini-3.1-flash-lite",
+              "provider": "gemini",
+              "prompt_tokens": 1549,
+              "completion_tokens": 207,
+              "total_tokens": 1756,
+              "latency_seconds": 3.22308087348938
+            },
+            {
+              "agent": "TestUnderstanding",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 4268,
+              "completion_tokens": 394,
+              "total_tokens": 4662,
+              "latency_seconds": 1.3192086219787598
+            },
+            {
+              "agent": "Coder",
+              "model": "qwen2.5-coder:7b",
+              "provider": "ollama",
+              "prompt_tokens": 2050,
+              "completion_tokens": 498,
+              "total_tokens": 2548,
+              "latency_seconds": 32.0446588
+            },
+            {
+              "agent": "Tester",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 3824,
+              "completion_tokens": 326,
+              "total_tokens": 4150,
+              "latency_seconds": 1.107518196105957
+            },
+            {
+              "agent": "Supervisor",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 2451,
+              "completion_tokens": 637,
+              "total_tokens": 3088,
+              "latency_seconds": 2.742940902709961
+            }
+          ],
+          "context_characters": 14523,
+          "root_cause_analysis": {
+            "root_cause": "The introduction of `follow_symlinks=False` in the directory iteration logic (specifically within the collection mechanism, likely in `src/_pytest/main.py` or `src/_pytest/pathlib.py` where `os.scandir` or `Path.iterdir` is used) causes pytest to skip symlinked directories during test collection, preventing them from being traversed and collected as regular directories.",
+            "behavioral_contract": "Pytest must treat symlinked directories within the test collection path as regular directories, following the link to collect any test files or subdirectories contained within the target directory.",
+            "expected_behavior": "When a symlink to a directory exists in a test directory, pytest should follow the symlink and collect tests from the target directory as if it were a regular directory.",
+            "current_behavior": "Symlinked directories are skipped during collection, resulting in tests within the target directory not being discovered or executed.",
+            "relevant_symbols": [
+              "pytest.Collector.collect",
+              "pytest.Module.collect",
+              "pytest.Package.collect",
+              "os.scandir",
+              "Path.iterdir"
+            ],
+            "relevant_tests": [
+              "testing/test_collection.py",
+              "testing/test_pathlib.py"
+            ],
+            "required_change": "Remove the `follow_symlinks=False` argument from the directory iteration call (e.g., `os.scandir` or `Path.iterdir`) used during test collection to restore the previous behavior of following symlinks.",
+            "regression_risks": [
+              "Potential infinite loops if there are circular symlinks in the test directory structure.",
+              "Performance degradation if symlinked directories contain a large number of files.",
+              "Changes in test collection order if symlinks are resolved differently across platforms."
+            ]
+          },
+          "test_understanding_error": null,
+          "test_understanding_error_code": null,
+          "patch_critic": null,
+          "patch_critic_error": null,
+          "patch_critic_error_code": null,
+          "tester_error": null,
+          "tester_error_code": null,
+          "failure_detector": {
+            "is_failure": true,
+            "candidate_failure_type": "F4",
+            "granular_failure_type": "PATCH_INVALID",
+            "confidence": 0.98,
+            "evidence_reasons": [
+              "Pristine repository base failed pre-existing PASS_TO_PASS tests (environment failure).",
+              "Disambiguated root cause: [PATCH_INVALID] PatchBuilder failed: Anchor not found in 'src/_pytest/python.py': def make_numbered_dir(root: Path, prefix: str) -> Path:"
+            ],
+            "deterministic": true,
+            "objective_failure_evidence": {
+              "patch_valid": false,
+              "patch_applied": false,
+              "test_passed": false,
+              "coder_error_code": "PATCH_BUILDER_FAILED",
+              "clean_base_passed": false,
+              "f2p_passed": false,
+              "p2p_passed": false,
+              "failed_f2p_tests": [],
+              "failed_p2p_tests": [],
+              "timed_out": false,
+              "disambiguated_failure_type": "PATCH_INVALID",
+              "disambiguated_explanation": "PatchBuilder failed: Anchor not found in 'src/_pytest/python.py': def make_numbered_dir(root: Path, prefix: str) -> Path:"
+            }
+          },
+          "memory_retrieved": false,
+          "degraded_execution": false,
+          "degraded_reason": null,
+          "failure_category": "F3",
+          "recovery_strategy": "A3",
+          "supervisor_diagnosis": "The Coder generated a patch with an invalid anchor point. It tried to modify `src/_pytest/python.py` using a non-existent function signature as an anchor. This is a tool/patch generation failure (F3) because the patch itself is malformed/invalid relative to the codebase structure, preventing application. While the localization might also be suspect (F1), the immediate blocker is the invalid patch construction.",
+          "supervisor_instructions": "CRITICAL EXECUTION-PATH CONSISTENCY DIRECTIVE:\n- The Supervisor suggested modifying 'Path.iterdir', 'exact', 'invent', 'iter_directories', 'os.scandir', 'visit', which is outside the verified controlling execution path.\n- The controlling behavior resides in 'Module.collect' along execution path: ['Module.collect', 'Instance.collect', 'PyCollector.collect', 'pytest_pycollect_makeitem'].\n- You MUST prioritize modifying the controlling execution path ['Module.collect', 'Instance.collect', 'PyCollector.collect', 'pytest_pycollect_makeitem'] rather than ungrounded wrapper methods.\n\n1. Re-evaluate the correct file for the fix. The issue mentions `follow_symlinks=False` was added in a commit related to collection. Check `src/_pytest/pathlib.py` for functions like `visit` or `iter_directories` or similar that handle directory traversal with symlink options. Also check `src/_pytest/main.py` for `Session._collectfile` or similar. \n2. If the fix is indeed in `src/_pytest/pathlib.py`, locate the exact function and line where `follow_symlinks=False` is passed to `os.scandir` or `Path.iterdir` or similar.\n3. Generate a valid unified diff patch. Ensure the anchor lines (context lines) exactly match the current content of the file. Do not invent function signatures. Use the actual code lines as anchors.\n4. If the fix is in `src/_pytest/python.py`, verify the exact function name and signature before using it as an anchor.",
+          "avoid_previous_mistake": "DO NOT modify ungrounded wrapper method(s) 'Path.iterdir', 'exact', 'invent', 'iter_directories', 'os.scandir', 'visit' unless source code inspection proves they directly control the shared execution path.\n\nDo NOT use `def make_numbered_dir(root: Path, prefix: str) -> Path:` as an anchor in `src/_pytest/python.py` because this function does not exist in that file. Always verify that anchor lines exist in the target file before generating the patch.\n\nCRITICAL ANCHOR GROUNDING RULES:\n1. The 'anchor' string MUST be copied VERBATIM from '=== SOURCE CODE IN RELEVANT FILES ==='.\n2. Do NOT invent, simplify, or reformat function signatures or parameters.\n3. Do NOT collapse multi-line definitions into a single line.\n4. Select 1 to 3 unique lines that appear EXACTLY as written in the target file.\n5. Target ONLY the relevant implementation files, NEVER test files.\n6. If the target method or anchor exists in multiple classes, specify 'target_symbol': 'ClassName.method_name' or 'target_class': 'ClassName' to bind the edit to the intended AST scope.\n\nCRITICAL SCOPE DIRECTIVE:\n1. Do NOT insert statements before 'def' or at class body level.\n2. To place statements inside a method, use 'operation': 'insert_after' with the 'def ...:' method header as anchor, NOT 'insert_before'.\n3. 'return' is strictly illegal outside functions/methods.\n\nCRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:\n- Attempt 1: Modified 'src/_pytest/python.py' (target: 'Module.collect') (op: insert_before) at anchor 'def make_numbered_dir(root: Path, prefix: str) -> Path:'. Result: [ANCHOR_NOT_FOUND] Anchor not found in 'src/_pytest/python.py': def make_numbered_dir(root: Path, prefix: str) -> Path:. You MUST NOT generate this identical modification again.",
+          "should_retry": true
+        },
+        {
+          "attempt": 2,
+          "coder_proposals": [
+            {
+              "path": "src/_pytest/python.py",
+              "target_symbol": "Module.collect",
+              "target_class": null,
+              "target_method": null,
+              "node_type": null,
+              "line_range": null,
+              "surrounding_context": null,
+              "source_fingerprint": null,
+              "operation": "insert_after",
+              "anchor": "def collect(self, d, *args, **kwargs):",
+              "code": "\n        if 'directories' in kwargs:\n            for directory in kwargs['directories']:\n                self.collect(directory, *args, **kwargs)",
+              "reason": "This modification ensures that all directories specified in the 'directories' parameter are collected and processed by the 'Module.collect' method."
+            }
+          ],
+          "patch_operations": [
+            "insert_after"
+          ],
+          "generated_patch": "",
+          "patch_generated": false,
+          "patch_valid": false,
+          "patch_validation_error": "Patch is empty.",
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "coder_error_detail": "PatchBuilder failed: Anchor not found in target scope 'Module.collect' in 'src/_pytest/python.py': def collect(self, d, *args, **kwargs):",
+          "agent_apply_success": false,
+          "agent_test_status": "",
+          "internal_resolved": false,
+          "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "final_patch_correct": false,
+          "regression_detected": false,
+          "located_files": [
+            "src/_pytest/python.py",
+            "src/_pytest/pathlib.py",
+            "testing/test_collection.py"
+          ],
+          "latency_seconds": 0.12549662590026855,
+          "agent_timings": {
+            "locator": 3.22308087348938,
+            "coder": 23.7602112,
+            "tester": 1.2793679237365723,
+            "supervisor": 1.8665268421173096
+          },
+          "token_usage": {
+            "prompt_tokens": 14492,
+            "completion_tokens": 2967,
+            "total_tokens": 17459
+          },
+          "model_invocations": [
+            {
+              "agent": "Locator",
+              "model": "gemini-3.1-flash-lite",
+              "provider": "gemini",
+              "prompt_tokens": 1549,
+              "completion_tokens": 207,
+              "total_tokens": 1756,
+              "latency_seconds": 3.22308087348938
+            },
+            {
+              "agent": "TestUnderstanding",
+              "model": "openai/gpt-oss-120b",
+              "provider": "groq",
+              "prompt_tokens": 4606,
+              "completion_tokens": 1149,
+              "total_tokens": 5755,
+              "latency_seconds": 36.6898410320282
+            },
+            {
+              "agent": "Coder",
+              "model": "qwen2.5-coder:7b",
+              "provider": "ollama",
+              "prompt_tokens": 2050,
+              "completion_tokens": 510,
+              "total_tokens": 2560,
+              "latency_seconds": 23.7602112
+            },
+            {
+              "agent": "Tester",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 3824,
+              "completion_tokens": 326,
+              "total_tokens": 4150,
+              "latency_seconds": 1.2793679237365723
+            },
+            {
+              "agent": "Supervisor",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 2463,
+              "completion_tokens": 775,
+              "total_tokens": 3238,
+              "latency_seconds": 1.8665268421173096
+            }
+          ],
+          "context_characters": 14523,
+          "root_cause_analysis": {
+            "root_cause": "In pytest 6.1.0 the Collector.collect implementation was changed to call the underlying path\u2011listing API with `follow_symlinks=False`. This causes directories that are symbolic links to be ignored during test discovery, whereas previously they were traversed like normal directories.",
+            "behavioral_contract": "The pytest collection system must treat a directory symlink as a regular directory and descend into it to discover test modules, unless the user explicitly disables following symlinks via configuration. Collector.collect (and its subclasses Module.collect and Package.collect) must therefore follow symlinks when walking the filesystem.",
+            "expected_behavior": "When a test root contains a symlink that points to another directory containing test files, pytest should discover and collect those test files exactly as if the directory were present directly in the tree.",
+            "current_behavior": "Because `follow_symlinks=False` is passed during directory traversal, pytest skips over symlinked directories entirely, resulting in the tests inside those directories not being collected.",
+            "relevant_symbols": [
+              "pytest.Collector.collect",
+              "pytest.Module.collect",
+              "pytest.Package.collect"
+            ],
+            "relevant_tests": [
+              "testing/test_collect.py::test_collect_symlinked_dir",
+              "testing/test_pathlib.py (indirectly, via bestrelpath handling of symlinks)",
+              "any test that creates a temporary directory, symlinks it into the test tree and asserts that its tests are run"
+            ],
+            "required_change": "Remove the explicit `follow_symlinks=False` argument (or change it to `True`) in the directory\u2011listing call inside `Collector.collect` so that symlinked directories are traversed. Ensure the default behavior matches the pre\u20116.1.0 version, i.e., follow symlinks unless the user opts out.",
+            "regression_risks": [
+              "Introducing infinite recursion when a symlink creates a cycle (e.g., a directory symlinks to one of its ancestors). The collector must guard against revisiting already visited real paths.",
+              "Potential duplicate collection of the same test module if multiple symlinks point to the same directory; deduplication logic may be needed.",
+              "Changing the default may affect users who relied on the newer behaviour of ignoring symlinks; ensure that an explicit configuration option (e.g., `--no-follow-symlinks`) can still suppress following.",
+              "Performance impact on very large directory trees with many symlinks, though likely negligible."
+            ]
+          },
+          "test_understanding_error": null,
+          "test_understanding_error_code": null,
+          "patch_critic": null,
+          "patch_critic_error": null,
+          "patch_critic_error_code": null,
+          "tester_error": null,
+          "tester_error_code": null,
+          "failure_detector": {
+            "is_failure": true,
+            "candidate_failure_type": "F4",
+            "granular_failure_type": "PATCH_INVALID",
+            "confidence": 0.98,
+            "evidence_reasons": [
+              "Pristine repository base failed pre-existing PASS_TO_PASS tests (environment failure).",
+              "Disambiguated root cause: [PATCH_INVALID] PatchBuilder failed: Anchor not found in target scope 'Module.collect' in 'src/_pytest/python.py': def collect(self, d, *args, **kwargs):"
+            ],
+            "deterministic": true,
+            "objective_failure_evidence": {
+              "patch_valid": false,
+              "patch_applied": false,
+              "test_passed": false,
+              "coder_error_code": "PATCH_BUILDER_FAILED",
+              "clean_base_passed": false,
+              "f2p_passed": false,
+              "p2p_passed": false,
+              "failed_f2p_tests": [],
+              "failed_p2p_tests": [],
+              "timed_out": false,
+              "disambiguated_failure_type": "PATCH_INVALID",
+              "disambiguated_explanation": "PatchBuilder failed: Anchor not found in target scope 'Module.collect' in 'src/_pytest/python.py': def collect(self, d, *args, **kwargs):"
+            }
+          },
+          "memory_retrieved": true,
+          "degraded_execution": false,
+          "degraded_reason": null,
+          "failure_category": "F3",
+          "recovery_strategy": "A3",
+          "supervisor_diagnosis": "The Coder attempted to generate a patch anchored to `Module.collect` in `src/_pytest/python.py`, but the actual code change required (removing `follow_symlinks=False`) is located in the directory traversal logic, likely in `src/_pytest/pathlib.py` (function `visit` or similar) or `src/_pytest/main.py`. The anchor string provided by the Coder did not match the source code, causing the patch builder to fail. This is a tool/execution failure due to incorrect patch generation targeting the wrong symbol/file combination.",
+          "supervisor_instructions": "CRITICAL EXECUTION-PATH CONSISTENCY DIRECTIVE:\n- The Supervisor suggested modifying 'correct', 'iter_directories', 'visit', which is outside the verified controlling execution path.\n- The controlling behavior resides in 'Module.collect' along execution path: ['Module.collect', 'Instance.collect', 'PyCollector.collect', 'pytest_pycollect_makeitem'].\n- You MUST prioritize modifying the controlling execution path ['Module.collect', 'Instance.collect', 'PyCollector.collect', 'pytest_pycollect_makeitem'] rather than ungrounded wrapper methods.\n\n1. Search the codebase for `follow_symlinks=False`. It is likely in `src/_pytest/pathlib.py` within a function that iterates over directories (e.g., `visit` or `iter_directories`).\n2. Remove the `follow_symlinks=False` argument or change it to `True` (or remove the parameter if it defaults to True) to restore the previous behavior.\n3. Ensure the patch is anchored to the correct function and file where this parameter exists.\n4. Do not modify `Module.collect` in `src/_pytest/python.py` as it is not the location of the symlink handling logic.",
+          "avoid_previous_mistake": "DO NOT modify ungrounded wrapper method(s) 'correct', 'iter_directories', 'visit' unless source code inspection proves they directly control the shared execution path.\n\nDo not attempt to patch `Module.collect` in `src/_pytest/python.py`. The symlink collection logic is not in that function. Locate the actual `follow_symlinks=False` usage in the directory traversal code (likely `src/_pytest/pathlib.py`) and patch that instead.\n\nCRITICAL ANCHOR GROUNDING RULES:\n1. The 'anchor' string MUST be copied VERBATIM from '=== SOURCE CODE IN RELEVANT FILES ==='.\n2. Do NOT invent, simplify, or reformat function signatures or parameters.\n3. Do NOT collapse multi-line definitions into a single line.\n4. Select 1 to 3 unique lines that appear EXACTLY as written in the target file.\n5. Target ONLY the relevant implementation files, NEVER test files.\n6. If the target method or anchor exists in multiple classes, specify 'target_symbol': 'ClassName.method_name' or 'target_class': 'ClassName' to bind the edit to the intended AST scope.\n\nCRITICAL SCOPE DIRECTIVE:\n1. Do NOT insert statements before 'def' or at class body level.\n2. To place statements inside a method, use 'operation': 'insert_after' with the 'def ...:' method header as anchor, NOT 'insert_before'.\n3. 'return' is strictly illegal outside functions/methods.\n\nCRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS:\n- Attempt 1: Modified 'src/_pytest/python.py' (target: 'Module.collect') (op: insert_before) at anchor 'def make_numbered_dir(root: Path, prefix: str) -> Path:'. Result: [ANCHOR_NOT_FOUND] Anchor not found in 'src/_pytest/python.py': def make_numbered_dir(root: Path, prefix: str) -> Path:. You MUST NOT generate this identical modification again.\n- Attempt 2: Modified 'src/_pytest/python.py' (target: 'Module.collect') (op: insert_after) at anchor 'def collect(self, d, *args, **kwargs):'. Result: [ANCHOR_NOT_IN_TARGET_SCOPE] Anchor not found in target scope 'Module.collect' in 'src/_pytest/python.py': def collect(self, d, *args, **kwargs):. You MUST NOT generate this identical modification again.",
+          "should_retry": true
+        },
+        {
+          "attempt": 3,
+          "coder_proposals": [
+            {
+              "path": "src/_pytest/pathlib.py",
+              "target_symbol": null,
+              "target_class": null,
+              "target_method": null,
+              "node_type": null,
+              "line_range": null,
+              "surrounding_context": null,
+              "source_fingerprint": null,
+              "operation": "insert_after",
+              "anchor": "def iter_directories(path, followlinks=True):",
+              "code": "    if not followlinks:\n        yield from path.iterdir()\n    else:",
+              "reason": "Insert logic to handle symlink collection by not following symlinks during directory traversal."
+            }
+          ],
+          "patch_operations": [
+            "insert_after"
+          ],
+          "generated_patch": "",
+          "patch_generated": false,
+          "patch_valid": false,
+          "patch_validation_error": "Patch is empty.",
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "coder_error_detail": "PatchBuilder failed: Anchor not found in 'src/_pytest/pathlib.py': def iter_directories(path, followlinks=True):",
+          "agent_apply_success": false,
+          "agent_test_status": "",
+          "internal_resolved": false,
+          "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "final_patch_correct": false,
+          "regression_detected": false,
+          "located_files": [
+            "src/_pytest/python.py",
+            "src/_pytest/pathlib.py",
+            "testing/test_collection.py"
+          ],
+          "latency_seconds": 0.21718192100524902,
+          "agent_timings": {
+            "locator": 3.22308087348938,
+            "coder": 23.0560422,
+            "tester": 1.3512370586395264,
+            "supervisor": 0.0
+          },
+          "token_usage": {
+            "prompt_tokens": 12341,
+            "completion_tokens": 1509,
+            "total_tokens": 13850
+          },
+          "model_invocations": [
+            {
+              "agent": "Locator",
+              "model": "gemini-3.1-flash-lite",
+              "provider": "gemini",
+              "prompt_tokens": 1549,
+              "completion_tokens": 207,
+              "total_tokens": 1756,
+              "latency_seconds": 3.22308087348938
+            },
+            {
+              "agent": "TestUnderstanding",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 4918,
+              "completion_tokens": 488,
+              "total_tokens": 5406,
+              "latency_seconds": 47.30078077316284
+            },
+            {
+              "agent": "Coder",
+              "model": "qwen2.5-coder:7b",
+              "provider": "ollama",
+              "prompt_tokens": 2050,
+              "completion_tokens": 488,
+              "total_tokens": 2538,
+              "latency_seconds": 23.0560422
+            },
+            {
+              "agent": "Tester",
+              "model": "qwen/qwen3.8-27b",
+              "provider": "groq",
+              "prompt_tokens": 3824,
+              "completion_tokens": 326,
+              "total_tokens": 4150,
+              "latency_seconds": 1.3512370586395264
+            }
+          ],
+          "context_characters": 14523,
+          "root_cause_analysis": {
+            "root_cause": "The directory traversal logic used for test collection (likely in `src/_pytest/pathlib.py` or `src/_pytest/main.py`) was modified in commit b473e515bc57ff1133fe650f1e7e6d7e22e5d841 to include `follow_symlinks=False` when iterating over directories. This prevents pytest from following symbolic links to directories, causing them to be skipped during collection, which is a regression from previous behavior where symlinks were followed.",
+            "behavioral_contract": "When pytest collects tests, it must traverse the specified test directories. If a symbolic link points to a directory, it must be treated as a directory and its contents collected, just like a regular directory. This ensures that test files located in symlinked directories are discovered and executed.",
+            "expected_behavior": "Symlinked directories within the test path should be followed, and any test files inside them should be collected and executed as if they were in a regular directory.",
+            "current_behavior": "Symlinked directories are skipped during collection because the directory iteration uses `follow_symlinks=False`. As a result, test files inside symlinked directories are not discovered or executed.",
+            "relevant_symbols": [
+              "src/_pytest/pathlib.py:visit",
+              "src/_pytest/main.py:Session._collect_one_arg",
+              "src/_pytest/main.py:Session.genitems"
+            ],
+            "relevant_tests": [
+              "testing/test_collection.py::test_symlinked_directory",
+              "testing/test_pathlib.py::TestVisit"
+            ],
+            "required_change": "Remove the `follow_symlinks=False` argument from the directory iteration call in the test collection logic (likely in `src/_pytest/pathlib.py` or `src/_pytest/main.py`) to restore the previous behavior of following symbolic links to directories.",
+            "regression_risks": [
+              "Infinite loops if there are circular symbolic links (though this was a pre-existing risk before the regression).",
+              "Performance impact if symlinked directories contain a large number of files.",
+              "Potential collection of unintended test files if symlinked directories point outside the intended test scope."
+            ]
+          },
+          "test_understanding_error": null,
+          "test_understanding_error_code": null,
+          "patch_critic": null,
+          "patch_critic_error": null,
+          "patch_critic_error_code": null,
+          "tester_error": null,
+          "tester_error_code": null,
+          "failure_detector": {
+            "is_failure": true,
+            "candidate_failure_type": "F4",
+            "granular_failure_type": "PATCH_INVALID",
+            "confidence": 0.98,
+            "evidence_reasons": [
+              "Pristine repository base failed pre-existing PASS_TO_PASS tests (environment failure).",
+              "Disambiguated root cause: [PATCH_INVALID] PatchBuilder failed: Anchor not found in 'src/_pytest/pathlib.py': def iter_directories(path, followlinks=True):"
+            ],
+            "deterministic": true,
+            "objective_failure_evidence": {
+              "patch_valid": false,
+              "patch_applied": false,
+              "test_passed": false,
+              "coder_error_code": "PATCH_BUILDER_FAILED",
+              "clean_base_passed": false,
+              "f2p_passed": false,
+              "p2p_passed": false,
+              "failed_f2p_tests": [],
+              "failed_p2p_tests": [],
+              "timed_out": false,
+              "disambiguated_failure_type": "PATCH_INVALID",
+              "disambiguated_explanation": "PatchBuilder failed: Anchor not found in 'src/_pytest/pathlib.py': def iter_directories(path, followlinks=True):"
+            }
+          },
+          "memory_retrieved": true,
+          "degraded_execution": false,
+          "degraded_reason": null,
+          "supervisor_diagnosis": "Maximum attempts reached.",
+          "should_retry": false
+        }
+      ],
+      "candidate_patch": "",
+      "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase5_1_trial_pytest_7982\\pytest-dev__pytest-7982__full_ddiv\\pytest-dev__pytest-7982__full_ddiv.patch",
+      "pass_at_1": false,
+      "metrics": {
+        "pass_at_1": false,
+        "repair_accuracy": false,
+        "regression_detected": false,
+        "recovery_triggered": true,
+        "recovery_success": false,
+        "repair_time_seconds": 207.72,
+        "input_tokens": 40975,
+        "output_tokens": 6538,
+        "total_tokens": 47513,
+        "inference_calls": 14,
+        "inference_cost_usd": null,
+        "agent_timings": {
+          "locator": 9.66924262046814,
+          "coder": 78.8609122,
+          "tester": 3.7381231784820557,
+          "supervisor": 4.6094677448272705
+        },
+        "model_invocations": [
+          {
+            "agent": "Locator",
+            "model": "gemini-3.1-flash-lite",
+            "provider": "gemini",
+            "prompt_tokens": 1549,
+            "completion_tokens": 207,
+            "total_tokens": 1756,
+            "latency_seconds": 3.22308087348938
+          },
+          {
+            "agent": "TestUnderstanding",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 4268,
+            "completion_tokens": 394,
+            "total_tokens": 4662,
+            "latency_seconds": 1.3192086219787598
+          },
+          {
+            "agent": "Coder",
+            "model": "qwen2.5-coder:7b",
+            "provider": "ollama",
+            "prompt_tokens": 2050,
+            "completion_tokens": 498,
+            "total_tokens": 2548,
+            "latency_seconds": 32.0446588
+          },
+          {
+            "agent": "Tester",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 3824,
+            "completion_tokens": 326,
+            "total_tokens": 4150,
+            "latency_seconds": 1.107518196105957
+          },
+          {
+            "agent": "Supervisor",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 2451,
+            "completion_tokens": 637,
+            "total_tokens": 3088,
+            "latency_seconds": 2.742940902709961
+          },
+          {
+            "agent": "Locator",
+            "model": "gemini-3.1-flash-lite",
+            "provider": "gemini",
+            "prompt_tokens": 1549,
+            "completion_tokens": 207,
+            "total_tokens": 1756,
+            "latency_seconds": 3.22308087348938
+          },
+          {
+            "agent": "TestUnderstanding",
+            "model": "openai/gpt-oss-120b",
+            "provider": "groq",
+            "prompt_tokens": 4606,
+            "completion_tokens": 1149,
+            "total_tokens": 5755,
+            "latency_seconds": 36.6898410320282
+          },
+          {
+            "agent": "Coder",
+            "model": "qwen2.5-coder:7b",
+            "provider": "ollama",
+            "prompt_tokens": 2050,
+            "completion_tokens": 510,
+            "total_tokens": 2560,
+            "latency_seconds": 23.7602112
+          },
+          {
+            "agent": "Tester",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 3824,
+            "completion_tokens": 326,
+            "total_tokens": 4150,
+            "latency_seconds": 1.2793679237365723
+          },
+          {
+            "agent": "Supervisor",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 2463,
+            "completion_tokens": 775,
+            "total_tokens": 3238,
+            "latency_seconds": 1.8665268421173096
+          },
+          {
+            "agent": "Locator",
+            "model": "gemini-3.1-flash-lite",
+            "provider": "gemini",
+            "prompt_tokens": 1549,
+            "completion_tokens": 207,
+            "total_tokens": 1756,
+            "latency_seconds": 3.22308087348938
+          },
+          {
+            "agent": "TestUnderstanding",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 4918,
+            "completion_tokens": 488,
+            "total_tokens": 5406,
+            "latency_seconds": 47.30078077316284
+          },
+          {
+            "agent": "Coder",
+            "model": "qwen2.5-coder:7b",
+            "provider": "ollama",
+            "prompt_tokens": 2050,
+            "completion_tokens": 488,
+            "total_tokens": 2538,
+            "latency_seconds": 23.0560422
+          },
+          {
+            "agent": "Tester",
+            "model": "qwen/qwen3.8-27b",
+            "provider": "groq",
+            "prompt_tokens": 3824,
+            "completion_tokens": 326,
+            "total_tokens": 4150,
+            "latency_seconds": 1.3512370586395264
+          }
+        ],
+        "context_characters": 14523,
+        "critic_approved": null,
+        "critic_risk_level": null,
+        "memory_retrieved": true
+      },
+      "failure_detection": {
+        "predicted_category": "F3",
+        "actual_category": "F3",
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
+      "internal_evaluation": {
+        "tier": "tier_1_internal",
+        "backend_name": "internal_targeted_evaluator",
+        "outcome": "UNRESOLVED",
+        "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+        "duration_seconds": 0.22,
+        "all_f2p_passed": false,
+        "all_p2p_passed": false,
+        "internal_resolved": false,
+        "fail_to_pass_results": {},
+        "pass_to_pass_results": {}
+      },
+      "official_evaluation": {
+        "tier": "tier_2_official",
+        "backend_name": "official_swebench_harness",
+        "available": false,
+        "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+        "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+        "duration_seconds": 0.0,
+        "details": {
+          "docker_available": false,
+          "swebench_package_available": false,
+          "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+          "resolution_claim": "NOT_EVALUATED"
+        },
+        "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+      },
+      "trust_scores": {
+        "Locator": 0.87,
+        "Coder": 0.54,
+        "Tester": 0.91,
+        "Supervisor": 0.84
+      },
+      "execution_duration_seconds": 207.72,
+      "worker_pid": 37636,
+      "worker_exit_code": 0,
+      "log_file_path": "D:\\PROJECTS\\DDIV\\logs\\phase5_1_trial_pytest_7982\\pytest-dev__pytest-7982__full_ddiv.log",
+      "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase5_1_trial_pytest_7982\\pytest-dev__pytest-7982__full_ddiv",
+      "error_message": null,
+      "started_at": "2026-10-14T20:54:57.317885+00:00",
+      "completed_at": "2026-10-14T20:58:25.040753+00:00",
+      "coder_provider": "ollama",
+      "coder_model": "qwen2.5-coder:7b",
+      "coder_base_url": "http://localhost:11434",
+      "total_tokens": 47513,
+      "prompt_tokens": 40975,
+      "completion_tokens": 6538,
+      "localization_decision": {
+        "target_file": "src/_pytest/python.py",
+        "primary_symbol": "Module.collect",
+        "primary_role": "UTILITY_STANDARD",
+        "controlling_symbols": [
+          "Module.collect",
+          "Instance.collect",
+          "PyCollector.collect",
+          "pytest_pycollect_makeitem",
+          "Package.collect",
+          "Package._collectfile",
+          "pytest_collect_file",
+          "PyCollector.istestfunction"
+        ],
+        "enriched_target_symbols": [
+          "collect",
+          "Module.collect",
+          "Instance.collect",
+          "PyCollector.collect",
+          "pytest_pycollect_makeitem",
+          "Package.collect",
+          "_collectfile",
+          "Package._collectfile",
+          "pytest_collect_file",
+          "istestfunction",
+          "PyCollector.istestfunction",
+          "Module",
+          "PyCollector",
+          "Instance",
+          "Package"
+        ],
+        "status": "RESOLVED",
+        "confidence": 0.99,
+        "evidence_rationale": "Localized controlling execution path to file 'src/_pytest/python.py'.\nPrimary controlling symbol: 'Module.collect' (role: UTILITY_STANDARD, score: 24.8).\nMatched concepts: ['added', 'b473e515bc57ff1133fe650f1e7e6d7e22e5d841', 'behavior', 'collected', 'coming', 'directories', 'directory', 'don']\nEvidence trace: partial_attr:collect~collected, in_initial_candidates, reaches_controlling:PyCollector.collect(d=1), reaches_controlling:Module._inject_setup_module_fixture(d=1), reaches_controlling:Package.collect(d=1)\nControlling symbols along execution path: ['Module.collect', 'Instance.collect', 'PyCollector.collect', 'pytest_pycollect_makeitem', 'Package.collect']\nShared downstream convergence points: ['PyCollector.collect', 'pytest_pycollect_makeitem', 'Package.collect', 'Package._collectfile', 'pytest_collect_file', 'PyCollector.istestfunction', 'path_matches_patterns', 'pytest_pycollect_makemodule', 'PyCollector.funcnamefilter', 'PyCollector.isnosetest', 'PyCollector.classnamefilter', 'PyCollector.istestclass', 'PyCollector._matches_prefix_or_glob_option', 'PyCollector._genfunctions', 'Module._getobj', 'Module._inject_setup_module_fixture', 'Module._inject_setup_function_fixture', 'Module._importtestmodule', 'Class.collect', 'Class._inject_setup_class_fixture', 'Class._inject_setup_method_fixture', '_idval']",
+        "extracted_concepts": [
+          "added",
+          "b473e515bc57ff1133fe650f1e7e6d7e22e5d841",
+          "behavior",
+          "collected",
+          "coming",
+          "directories",
+          "directory",
+          "don",
+          "false",
+          "follow",
+          "follow_symlinks",
+          "follow_symlinks=false",
+          "followed",
+          "included",
+          "match",
+          "previous",
+          "pytest",
+          "reason",
+          "regressed",
+          "remember",
+          "removed",
+          "since",
+          "skipped",
+          "symlink",
+          "symlinked",
+          "symlinks",
+          "symlinks=false",
+          "test",
+          "usual"
+        ],
+        "symbol_roles": {
+          "Module.collect": "UTILITY_STANDARD",
+          "Instance.collect": "DELEGATOR_FORWARDER",
+          "PyCollector.collect": "BEHAVIOR_CONTROLLER",
+          "pytest_pycollect_makeitem": "BEHAVIOR_CONTROLLER",
+          "Package.collect": "BEHAVIOR_CONTROLLER",
+          "Package._collectfile": "BEHAVIOR_CONTROLLER",
+          "pytest_collect_file": "BEHAVIOR_CONTROLLER",
+          "PyCollector.istestfunction": "BEHAVIOR_CONTROLLER"
+        },
+        "shared_convergence_points": [
+          "PyCollector.collect",
+          "pytest_pycollect_makeitem",
+          "Package.collect",
+          "Package._collectfile",
+          "pytest_collect_file",
+          "PyCollector.istestfunction",
+          "path_matches_patterns",
+          "pytest_pycollect_makemodule",
+          "PyCollector.funcnamefilter",
+          "PyCollector.isnosetest",
+          "PyCollector.classnamefilter",
+          "PyCollector.istestclass",
+          "PyCollector._matches_prefix_or_glob_option",
+          "PyCollector._genfunctions",
+          "Module._getobj",
+          "Module._inject_setup_module_fixture",
+          "Module._inject_setup_function_fixture",
+          "Module._importtestmodule",
+          "Class.collect",
+          "Class._inject_setup_class_fixture",
+          "Class._inject_setup_method_fixture",
+          "_idval"
+        ],
+        "call_graph": {
+          "pytest_cmdline_main": [
+            "show_fixtures_per_test",
+            "showfixtures"
+          ],
+          "pytest_generate_tests": [
+            "Metafunc.parametrize"
+          ],
+          "pytest_pyfunc_call": [
+            "async_warn_and_skip"
+          ],
+          "pytest_collect_file": [
+            "Package.gethookproxy",
+            "Package.isinitpath",
+            "path_matches_patterns",
+            "pytest_pycollect_makemodule"
+          ],
+          "pytest_pycollect_makemodule": [
+            "Class.from_parent",
+            "Function.from_parent"
+          ],
+          "pytest_pycollect_makeitem": [
+            "Class.from_parent",
+            "Function.from_parent",
+            "PyCollector._genfunctions",
+            "PyCollector.istestclass",
+            "PyCollector.istestfunction"
+          ],
+          "PyobjMixin.reportinfo": [
+            "PyobjMixin.getmodpath"
+          ],
+          "PyCollector.funcnamefilter": [
+            "PyCollector._matches_prefix_or_glob_option"
+          ],
+          "PyCollector.classnamefilter": [
+            "PyCollector._matches_prefix_or_glob_option"
+          ],
+          "PyCollector.istestfunction": [
+            "PyCollector.funcnamefilter",
+            "PyCollector.isnosetest"
+          ],
+          "PyCollector.istestclass": [
+            "PyCollector.classnamefilter",
+            "PyCollector.isnosetest"
+          ],
+          "PyCollector.collect": [
+            "PyobjMixin.reportinfo",
+            "pytest_pycollect_makeitem"
+          ],
+          "PyCollector._genfunctions": [
+            "Class.from_parent",
+            "Function.from_parent",
+            "Metafunc",
+            "PyobjMixin.cls"
+          ],
+          "Module._getobj": [
+            "Module._importtestmodule"
+          ],
+          "Module.collect": [
+            "Class.collect",
+            "Instance.collect",
+            "Module._inject_setup_function_fixture",
+            "Module._inject_setup_module_fixture",
+            "Module.collect",
+            "Package.collect",
+            "PyCollector.collect"
+          ],
+          "Module._inject_setup_module_fixture": [
+            "_call_with_optional_argument",
+            "_get_first_non_fixture_func"
+          ],
+          "Module._inject_setup_function_fixture": [
+            "_call_with_optional_argument",
+            "_get_first_non_fixture_func"
+          ],
+          "Package.__init__": [
+            "CallSpec2.__init__",
+            "Function.__init__",
+            "Metafunc.__init__",
+            "Package.__init__"
+          ],
+          "Package.setup": [
+            "_call_with_optional_argument",
+            "_get_first_non_fixture_func"
+          ],
+          "Package.gethookproxy": [
+            "Package.gethookproxy"
+          ],
+          "Package.isinitpath": [
+            "Package.isinitpath"
+          ],
+          "Package._recurse": [
+            "Package.gethookproxy"
+          ],
+          "Package._collectfile": [
+            "Package.gethookproxy",
+            "Package.isinitpath",
+            "pytest_collect_file"
+          ],
+          "Package.collect": [
+            "Class.from_parent",
+            "Function.from_parent",
+            "Package._collectfile",
+            "path_matches_patterns"
+          ],
+          "Class.from_parent": [
+            "Class.from_parent",
+            "Function.from_parent"
+          ],
+          "Class.collect": [
+            "Class._inject_setup_class_fixture",
+            "Class._inject_setup_method_fixture",
+            "Class.from_parent",
+            "Function.from_parent",
+            "hasinit",
+            "hasnew"
+          ],
+          "Class._inject_setup_class_fixture": [
+            "_call_with_optional_argument",
+            "_get_first_non_fixture_func"
+          ],
+          "Class._inject_setup_method_fixture": [
+            "_call_with_optional_argument",
+            "_get_first_non_fixture_func"
+          ],
+          "Instance._getobj": [
+            "PyobjMixin.obj"
+          ],
+          "Instance.collect": [
+            "Class.collect",
+            "Instance.collect",
+            "Module.collect",
+            "Package.collect",
+            "PyCollector.collect"
+          ],
+          "Instance.newinstance": [
+            "Function._getobj",
+            "Instance._getobj",
+            "Module._getobj",
+            "PyobjMixin._getobj"
+          ],
+          "CallSpec2.copy": [
+            "CallSpec2"
+          ],
+          "CallSpec2.setmulti2": [
+            "CallSpec2._checkargnotcontained"
+          ],
+          "Metafunc.parametrize": [
+            "CallSpec2",
+            "CallSpec2.copy",
+            "CallSpec2.setmulti2",
+            "Metafunc._resolve_arg_ids",
+            "Metafunc._resolve_arg_value_types",
+            "Metafunc._validate_if_using_arg_names",
+            "_find_parametrized_scope"
+          ],
+          "Metafunc._resolve_arg_ids": [
+            "Metafunc._validate_ids",
+            "idmaker"
+          ],
+          "_idval": [
+            "_ascii_escaped_by_config"
+          ],
+          "_idvalset": [
+            "_ascii_escaped_by_config",
+            "_idval"
+          ],
+          "idmaker": [
+            "_idvalset"
+          ],
+          "_show_fixtures_per_test": [
+            "write_docstring"
+          ],
+          "_showfixtures_main": [
+            "write_docstring"
+          ],
+          "Function.__init__": [
+            "CallSpec2.__init__",
+            "Function.__init__",
+            "Function._initrequest",
+            "Metafunc.__init__",
+            "Package.__init__"
+          ],
+          "Function.from_parent": [
+            "Class.from_parent",
+            "Function.from_parent"
+          ],
+          "Function.runtest": [
+            "pytest_pyfunc_call"
+          ],
+          "Function.setup": [
+            "Function._getobj",
+            "Instance._getobj",
+            "Instance.newinstance",
+            "Module._getobj",
+            "PyobjMixin._getobj"
+          ]
+        },
+        "reverse_call_graph": {
+          "showfixtures": [
+            "pytest_cmdline_main"
+          ],
+          "show_fixtures_per_test": [
+            "pytest_cmdline_main"
+          ],
+          "Metafunc.parametrize": [
+            "pytest_generate_tests"
+          ],
+          "async_warn_and_skip": [
+            "pytest_pyfunc_call"
+          ],
+          "pytest_pycollect_makemodule": [
+            "pytest_collect_file"
+          ],
+          "Package.isinitpath": [
+            "Package._collectfile",
+            "Package.isinitpath",
+            "pytest_collect_file"
+          ],
+          "Package.gethookproxy": [
+            "Package._collectfile",
+            "Package._recurse",
+            "Package.gethookproxy",
+            "pytest_collect_file"
+          ],
+          "path_matches_patterns": [
+            "Package.collect",
+            "pytest_collect_file"
+          ],
+          "Class.from_parent": [
+            "Class.collect",
+            "Class.from_parent",
+            "Function.from_parent",
+            "Package.collect",
+            "PyCollector._genfunctions",
+            "pytest_pycollect_makeitem",
+            "pytest_pycollect_makemodule"
+          ],
+          "Function.from_parent": [
+            "Class.collect",
+            "Class.from_parent",
+            "Function.from_parent",
+            "Package.collect",
+            "PyCollector._genfunctions",
+            "pytest_pycollect_makeitem",
+            "pytest_pycollect_makemodule"
+          ],
+          "PyCollector.istestclass": [
+            "pytest_pycollect_makeitem"
+          ],
+          "PyCollector._genfunctions": [
+            "pytest_pycollect_makeitem"
+          ],
+          "PyCollector.istestfunction": [
+            "pytest_pycollect_makeitem"
+          ],
+          "PyobjMixin.getmodpath": [
+            "PyobjMixin.reportinfo"
+          ],
+          "PyCollector._matches_prefix_or_glob_option": [
+            "PyCollector.classnamefilter",
+            "PyCollector.funcnamefilter"
+          ],
+          "PyCollector.funcnamefilter": [
+            "PyCollector.istestfunction"
+          ],
+          "PyCollector.isnosetest": [
+            "PyCollector.istestclass",
+            "PyCollector.istestfunction"
+          ],
+          "PyCollector.classnamefilter": [
+            "PyCollector.istestclass"
+          ],
+          "PyobjMixin.reportinfo": [
+            "PyCollector.collect"
+          ],
+          "pytest_pycollect_makeitem": [
+            "PyCollector.collect"
+          ],
+          "Metafunc": [
+            "PyCollector._genfunctions"
+          ],
+          "PyobjMixin.cls": [
+            "PyCollector._genfunctions"
+          ],
+          "Module._importtestmodule": [
+            "Module._getobj"
+          ],
+          "Module._inject_setup_function_fixture": [
+            "Module.collect"
+          ],
+          "Module.collect": [
+            "Instance.collect",
+            "Module.collect"
+          ],
+          "PyCollector.collect": [
+            "Instance.collect",
+            "Module.collect"
+          ],
+          "Package.collect": [
+            "Instance.collect",
+            "Module.collect"
+          ],
+          "Class.collect": [
+            "Instance.collect",
+            "Module.collect"
+          ],
+          "Instance.collect": [
+            "Instance.collect",
+            "Module.collect"
+          ],
+          "Module._inject_setup_module_fixture": [
+            "Module.collect"
+          ],
+          "_get_first_non_fixture_func": [
+            "Class._inject_setup_class_fixture",
+            "Class._inject_setup_method_fixture",
+            "Module._inject_setup_function_fixture",
+            "Module._inject_setup_module_fixture",
+            "Package.setup"
+          ],
+          "_call_with_optional_argument": [
+            "Class._inject_setup_class_fixture",
+            "Class._inject_setup_method_fixture",
+            "Module._inject_setup_function_fixture",
+            "Module._inject_setup_module_fixture",
+            "Package.setup"
+          ],
+          "Package.__init__": [
+            "Function.__init__",
+            "Package.__init__"
+          ],
+          "CallSpec2.__init__": [
+            "Function.__init__",
+            "Package.__init__"
+          ],
+          "Metafunc.__init__": [
+            "Function.__init__",
+            "Package.__init__"
+          ],
+          "Function.__init__": [
+            "Function.__init__",
+            "Package.__init__"
+          ],
+          "pytest_collect_file": [
+            "Package._collectfile"
+          ],
+          "Package._collectfile": [
+            "Package.collect"
+          ],
+          "Class._inject_setup_method_fixture": [
+            "Class.collect"
+          ],
+          "hasinit": [
+            "Class.collect"
+          ],
+          "hasnew": [
+            "Class.collect"
+          ],
+          "Class._inject_setup_class_fixture": [
+            "Class.collect"
+          ],
+          "PyobjMixin.obj": [
+            "Instance._getobj"
+          ],
+          "Instance._getobj": [
+            "Function.setup",
+            "Instance.newinstance"
+          ],
+          "PyobjMixin._getobj": [
+            "Function.setup",
+            "Instance.newinstance"
+          ],
+          "Module._getobj": [
+            "Function.setup",
+            "Instance.newinstance"
+          ],
+          "Function._getobj": [
+            "Function.setup",
+            "Instance.newinstance"
+          ],
+          "CallSpec2": [
+            "CallSpec2.copy",
+            "Metafunc.parametrize"
+          ],
+          "CallSpec2._checkargnotcontained": [
+            "CallSpec2.setmulti2"
+          ],
+          "Metafunc._resolve_arg_ids": [
+            "Metafunc.parametrize"
+          ],
+          "CallSpec2.copy": [
+            "Metafunc.parametrize"
+          ],
+          "Metafunc._validate_if_using_arg_names": [
+            "Metafunc.parametrize"
+          ],
+          "Metafunc._resolve_arg_value_types": [
+            "Metafunc.parametrize"
+          ],
+          "CallSpec2.setmulti2": [
+            "Metafunc.parametrize"
+          ],
+          "_find_parametrized_scope": [
+            "Metafunc.parametrize"
+          ],
+          "Metafunc._validate_ids": [
+            "Metafunc._resolve_arg_ids"
+          ],
+          "idmaker": [
+            "Metafunc._resolve_arg_ids"
+          ],
+          "_ascii_escaped_by_config": [
+            "_idval",
+            "_idvalset"
+          ],
+          "_idval": [
+            "_idvalset"
+          ],
+          "_idvalset": [
+            "idmaker"
+          ],
+          "write_docstring": [
+            "_show_fixtures_per_test",
+            "_showfixtures_main"
+          ],
+          "Function._initrequest": [
+            "Function.__init__"
+          ],
+          "pytest_pyfunc_call": [
+            "Function.runtest"
+          ],
+          "Instance.newinstance": [
+            "Function.setup"
+          ]
+        },
+        "inheritance": {
+          "PyobjMixin": [],
+          "_EmptyClass": [],
+          "PyCollector": [
+            "PyobjMixin",
+            "Collector"
+          ],
+          "Module": [
+            "File",
+            "PyCollector"
+          ],
+          "Package": [
+            "Module"
+          ],
+          "Class": [
+            "PyCollector"
+          ],
+          "Instance": [
+            "PyCollector"
+          ],
+          "CallSpec2": [],
+          "Metafunc": [],
+          "Function": [
+            "PyobjMixin",
+            "Item"
+          ],
+          "FunctionDefinition": [
+            "Function"
+          ]
+        },
+        "known_symbols": [
+          "pytest_addoption",
+          "pytest_cmdline_main",
+          "pytest_generate_tests",
+          "pytest_configure",
+          "async_warn_and_skip",
+          "pytest_pyfunc_call",
+          "pytest_collect_file",
+          "path_matches_patterns",
+          "pytest_pycollect_makemodule",
+          "pytest_pycollect_makeitem",
+          "PyobjMixin",
+          "PyobjMixin.module",
+          "PyobjMixin.cls",
+          "PyobjMixin.instance",
+          "PyobjMixin.obj",
+          "PyobjMixin._getobj",
+          "PyobjMixin.getmodpath",
+          "PyobjMixin.reportinfo",
+          "_EmptyClass",
+          "PyCollector",
+          "PyCollector.funcnamefilter",
+          "PyCollector.isnosetest",
+          "PyCollector.classnamefilter",
+          "PyCollector.istestfunction",
+          "PyCollector.istestclass",
+          "PyCollector._matches_prefix_or_glob_option",
+          "PyCollector.collect",
+          "PyCollector._genfunctions",
+          "Module",
+          "Module._getobj",
+          "Module.collect",
+          "Module._inject_setup_module_fixture",
+          "Module._inject_setup_function_fixture",
+          "Module._importtestmodule",
+          "Package",
+          "Package.__init__",
+          "Package.setup",
+          "Package.gethookproxy",
+          "Package.isinitpath",
+          "Package._recurse",
+          "Package._collectfile",
+          "Package.collect",
+          "_call_with_optional_argument",
+          "_get_first_non_fixture_func",
+          "Class",
+          "Class.from_parent",
+          "Class.collect",
+          "Class._inject_setup_class_fixture",
+          "Class._inject_setup_method_fixture",
+          "Instance",
+          "Instance._getobj",
+          "Instance.collect",
+          "Instance.newinstance",
+          "hasinit",
+          "hasnew",
+          "CallSpec2",
+          "CallSpec2.__init__",
+          "CallSpec2.copy",
+          "CallSpec2._checkargnotcontained",
+          "CallSpec2.getparam",
+          "CallSpec2.id",
+          "CallSpec2.setmulti2",
+          "Metafunc",
+          "Metafunc.__init__",
+          "Metafunc.parametrize",
+          "Metafunc._resolve_arg_ids",
+          "Metafunc._validate_ids",
+          "Metafunc._resolve_arg_value_types",
+          "Metafunc._validate_if_using_arg_names",
+          "_find_parametrized_scope",
+          "_ascii_escaped_by_config",
+          "_idval",
+          "_idvalset",
+          "idmaker",
+          "show_fixtures_per_test",
+          "_show_fixtures_per_test",
+          "showfixtures",
+          "_showfixtures_main",
+          "write_docstring",
+          "Function",
+          "Function.__init__",
+          "Function.from_parent",
+          "Function._initrequest",
+          "Function.function",
+          "Function._getobj",
+          "Function._pyfuncitem",
+          "Function.runtest",
+          "Function.setup",
+          "Function._prunetraceback",
+          "Function.repr_failure",
+          "FunctionDefinition",
+          "FunctionDefinition.runtest"
+        ],
+        "known_attributes": [
+          "Code",
+          "CollectError",
+          "Collector",
+          "Enum",
+          "Exception",
+          "FSCollector",
+          "FixtureDef",
+          "FixtureRequest",
+          "FuncFixtureInfo",
+          "Item",
+          "__class__",
+          "__code__",
+          "__dict__",
+          "__file__",
+          "__init__",
+          "__module__",
+          "__mro__",
+          "__name__",
+          "__new__",
+          "__pytest_setup_class",
+          "__pytest_setup_function",
+          "__pytest_setup_method",
+          "__pytest_setup_module",
+          "__qualname__",
+          "__setattr__",
+          "_arg2fixturedefs",
+          "_arg2scopenum",
+          "_calls",
+          "_checkargnotcontained",
+          "_code",
+          "_collectfile",
+          "_duplicatepaths",
+          "_fillfixtures",
+          "_fixtureinfo",
+          "_fixturemanager",
+          "_for_parametrize",
+          "_genfunctions",
+          "_getobj",
+          "_idlist",
+          "_importtestmodule",
+          "_initrequest",
+          "_inject_setup_class_fixture",
+          "_inject_setup_function_fixture",
+          "_inject_setup_method_fixture",
+          "_inject_setup_module_fixture",
+          "_matches_prefix_or_glob_option",
+          "_obj",
+          "_param_ids_from",
+          "_param_ids_generated",
+          "_recurse",
+          "_repr_failure_py",
+          "_request",
+          "_resolve_arg_ids",
+          "_resolve_arg_value_types",
+          "_validate_ids",
+          "_validate_if_using_arg_names",
+          "add",
+          "add_funcarg_pseudo_fixture_def",
+          "add_marker",
+          "addfinalizer",
+          "addini",
+          "addinivalue_line",
+          "addoption",
+          "allow_module_level",
+          "append",
+          "argname",
+          "argnames",
+          "args",
+          "baseid",
+          "basename",
+          "bestrelpath",
+          "call_extra",
+          "callspec",
+          "check",
+          "classnamefilter",
+          "cls",
+          "co_argcount",
+          "collect",
+          "config",
+          "consider_module",
+          "copy",
+          "create_terminal_writer",
+          "cut",
+          "definition",
+          "dirname",
+          "dirpath",
+          "endswith",
+          "exconly",
+          "exists",
+          "ext",
+          "extend",
+          "filter",
+          "firstlineno",
+          "fixture",
+          "fixturenames",
+          "fnmatch",
+          "format",
+          "from_current",
+          "from_parent",
+          "fromkeys",
+          "fspath",
+          "func",
+          "funcargs",
+          "funcnamefilter",
+          "function",
+          "getdoc",
+          "getfixtureinfo",
+          "getfixturemarker",
+          "getgroup",
+          "gethookproxy",
+          "getini",
+          "getmodpath",
+          "getoption",
+          "getparent",
+          "getrepr",
+          "getvalue",
+          "hook",
+          "id",
+          "ihook",
+          "indices",
+          "instance",
+          "is_dir",
+          "is_file",
+          "isdir",
+          "isfile",
+          "isfunction",
+          "isinitpath",
+          "islice",
+          "islink",
+          "ismethod",
+          "isnosetest",
+          "istestclass",
+          "istestfunction",
+          "items",
+          "iter_markers",
+          "join",
+          "keywords",
+          "kwargs",
+          "line",
+          "listchain",
+          "local",
+          "marks",
+          "metafunc",
+          "module",
+          "modules",
+          "name",
+          "name2fixturedefs",
+          "names_closure",
+          "newinstance",
+          "nodeid",
+          "obj",
+          "option",
+          "originalname",
+          "own_markers",
+          "parametrize",
+          "params",
+          "parent",
+          "parsefactories",
+          "path",
+          "pattern",
+          "perform_collect",
+          "pluginmanager",
+          "prune_dependency_tree",
+          "pytest_collect_file",
+          "pytest_generate_tests",
+          "pytest_ignore_collect",
+          "pytest_make_parametrize_id",
+          "pytest_pycollect_makeitem",
+          "pytest_pycollect_makemodule",
+          "pytest_pyfunc_call",
+          "reportinfo",
+          "reverse",
+          "scope",
+          "scopes",
+          "sep",
+          "session",
+          "set_repr_style",
+          "setmulti2",
+          "setter",
+          "show_fixtures_per_test",
+          "showfixtures",
+          "sort",
+          "split",
+          "splitext",
+          "startswith",
+          "traceback",
+          "update",
+          "values",
+          "warn",
+          "warn_explicit",
+          "write",
+          "xfail"
+        ],
+        "symbol_locations": {
+          "pytest_addoption": {
+            "start_line": 80,
+            "end_line": 123
+          },
+          "pytest_cmdline_main": {
+            "start_line": 126,
+            "end_line": 133
+          },
+          "pytest_generate_tests": {
+            "start_line": 136,
+            "end_line": 139
+          },
+          "pytest_configure": {
+            "start_line": 142,
+            "end_line": 159
+          },
+          "async_warn_and_skip": {
+            "start_line": 162,
+            "end_line": 173
+          },
+          "pytest_pyfunc_call": {
+            "start_line": 177,
+            "end_line": 186
+          },
+          "pytest_collect_file": {
+            "start_line": 189,
+            "end_line": 202
+          },
+          "path_matches_patterns": {
+            "start_line": 205,
+            "end_line": 207
+          },
+          "pytest_pycollect_makemodule": {
+            "start_line": 210,
+            "end_line": 215
+          },
+          "pytest_pycollect_makeitem": {
+            "start_line": 219,
+            "end_line": 250
+          },
+          "PyobjMixin": {
+            "start_line": 253,
+            "end_line": 343
+          },
+          "PyobjMixin.module": {
+            "start_line": 269,
+            "end_line": 272
+          },
+          "PyobjMixin.cls": {
+            "start_line": 275,
+            "end_line": 278
+          },
+          "PyobjMixin.instance": {
+            "start_line": 281,
+            "end_line": 284
+          },
+          "PyobjMixin.obj": {
+            "start_line": 299,
+            "end_line": 300
+          },
+          "PyobjMixin._getobj": {
+            "start_line": 302,
+            "end_line": 307
+          },
+          "PyobjMixin.getmodpath": {
+            "start_line": 309,
+            "end_line": 326
+          },
+          "PyobjMixin.reportinfo": {
+            "start_line": 328,
+            "end_line": 343
+          },
+          "_EmptyClass": {
+            "start_line": 350,
+            "end_line": 350
+          },
+          "PyCollector": {
+            "start_line": 366,
+            "end_line": 493
+          },
+          "PyCollector.funcnamefilter": {
+            "start_line": 367,
+            "end_line": 368
+          },
+          "PyCollector.isnosetest": {
+            "start_line": 370,
+            "end_line": 377
+          },
+          "PyCollector.classnamefilter": {
+            "start_line": 379,
+            "end_line": 380
+          },
+          "PyCollector.istestfunction": {
+            "start_line": 382,
+            "end_line": 392
+          },
+          "PyCollector.istestclass": {
+            "start_line": 394,
+            "end_line": 395
+          },
+          "PyCollector._matches_prefix_or_glob_option": {
+            "start_line": 397,
+            "end_line": 410
+          },
+          "PyCollector.collect": {
+            "start_line": 412,
+            "end_line": 448
+          },
+          "PyCollector._genfunctions": {
+            "start_line": 450,
+            "end_line": 493
+          },
+          "Module": {
+            "start_line": 496,
+            "end_line": 619
+          },
+          "Module._getobj": {
+            "start_line": 499,
+            "end_line": 500
+          },
+          "Module.collect": {
+            "start_line": 502,
+            "end_line": 506
+          },
+          "Module._inject_setup_module_fixture": {
+            "start_line": 508,
+            "end_line": 538
+          },
+          "Module._inject_setup_function_fixture": {
+            "start_line": 540,
+            "end_line": 572
+          },
+          "Module._importtestmodule": {
+            "start_line": 574,
+            "end_line": 619
+          },
+          "Package": {
+            "start_line": 622,
+            "end_line": 729
+          },
+          "Package.__init__": {
+            "start_line": 623,
+            "end_line": 638
+          },
+          "Package.setup": {
+            "start_line": 640,
+            "end_line": 654
+          },
+          "Package.gethookproxy": {
+            "start_line": 656,
+            "end_line": 658
+          },
+          "Package.isinitpath": {
+            "start_line": 660,
+            "end_line": 662
+          },
+          "Package._recurse": {
+            "start_line": 664,
+            "end_line": 674
+          },
+          "Package._collectfile": {
+            "start_line": 676,
+            "end_line": 698
+          },
+          "Package.collect": {
+            "start_line": 700,
+            "end_line": 729
+          },
+          "_call_with_optional_argument": {
+            "start_line": 732,
+            "end_line": 741
+          },
+          "_get_first_non_fixture_func": {
+            "start_line": 744,
+            "end_line": 750
+          },
+          "Class": {
+            "start_line": 753,
+            "end_line": 847
+          },
+          "Class.from_parent": {
+            "start_line": 757,
+            "end_line": 759
+          },
+          "Class.collect": {
+            "start_line": 761,
+            "end_line": 788
+          },
+          "Class._inject_setup_class_fixture": {
+            "start_line": 790,
+            "end_line": 817
+          },
+          "Class._inject_setup_method_fixture": {
+            "start_line": 819,
+            "end_line": 847
+          },
+          "Instance": {
+            "start_line": 850,
+            "end_line": 868
+          },
+          "Instance._getobj": {
+            "start_line": 856,
+            "end_line": 860
+          },
+          "Instance.collect": {
+            "start_line": 862,
+            "end_line": 864
+          },
+          "Instance.newinstance": {
+            "start_line": 866,
+            "end_line": 868
+          },
+          "hasinit": {
+            "start_line": 871,
+            "end_line": 875
+          },
+          "hasnew": {
+            "start_line": 878,
+            "end_line": 882
+          },
+          "CallSpec2": {
+            "start_line": 886,
+            "end_line": 943
+          },
+          "CallSpec2.__init__": {
+            "start_line": 887,
+            "end_line": 895
+          },
+          "CallSpec2.copy": {
+            "start_line": 897,
+            "end_line": 905
+          },
+          "CallSpec2._checkargnotcontained": {
+            "start_line": 907,
+            "end_line": 909
+          },
+          "CallSpec2.getparam": {
+            "start_line": 911,
+            "end_line": 915
+          },
+          "CallSpec2.id": {
+            "start_line": 918,
+            "end_line": 919
+          },
+          "CallSpec2.setmulti2": {
+            "start_line": 921,
+            "end_line": 943
+          },
+          "Metafunc": {
+            "start_line": 947,
+            "end_line": 1247
+          },
+          "Metafunc.__init__": {
+            "start_line": 955,
+            "end_line": 981
+          },
+          "Metafunc.parametrize": {
+            "start_line": 983,
+            "end_line": 1109
+          },
+          "Metafunc._resolve_arg_ids": {
+            "start_line": 1111,
+            "end_line": 1142
+          },
+          "Metafunc._validate_ids": {
+            "start_line": 1144,
+            "end_line": 1179
+          },
+          "Metafunc._resolve_arg_value_types": {
+            "start_line": 1181,
+            "end_line": 1217
+          },
+          "Metafunc._validate_if_using_arg_names": {
+            "start_line": 1219,
+            "end_line": 1247
+          },
+          "_find_parametrized_scope": {
+            "start_line": 1250,
+            "end_line": 1282
+          },
+          "_ascii_escaped_by_config": {
+            "start_line": 1285,
+            "end_line": 1295
+          },
+          "_idval": {
+            "start_line": 1298,
+            "end_line": 1338
+          },
+          "_idvalset": {
+            "start_line": 1341,
+            "end_line": 1360
+          },
+          "idmaker": {
+            "start_line": 1363,
+            "end_line": 1394
+          },
+          "show_fixtures_per_test": {
+            "start_line": 1397,
+            "end_line": 1400
+          },
+          "_show_fixtures_per_test": {
+            "start_line": 1403,
+            "end_line": 1450
+          },
+          "showfixtures": {
+            "start_line": 1453,
+            "end_line": 1456
+          },
+          "_showfixtures_main": {
+            "start_line": 1459,
+            "end_line": 1513
+          },
+          "write_docstring": {
+            "start_line": 1516,
+            "end_line": 1518
+          },
+          "Function": {
+            "start_line": 1521,
+            "end_line": 1676
+          },
+          "Function.__init__": {
+            "start_line": 1553,
+            "end_line": 1613
+          },
+          "Function.from_parent": {
+            "start_line": 1616,
+            "end_line": 1618
+          },
+          "Function._initrequest": {
+            "start_line": 1620,
+            "end_line": 1622
+          },
+          "Function.function": {
+            "start_line": 1625,
+            "end_line": 1627
+          },
+          "Function._getobj": {
+            "start_line": 1629,
+            "end_line": 1631
+          },
+          "Function._pyfuncitem": {
+            "start_line": 1634,
+            "end_line": 1636
+          },
+          "Function.runtest": {
+            "start_line": 1638,
+            "end_line": 1640
+          },
+          "Function.setup": {
+            "start_line": 1642,
+            "end_line": 1646
+          },
+          "Function._prunetraceback": {
+            "start_line": 1648,
+            "end_line": 1667
+          },
+          "Function.repr_failure": {
+            "start_line": 1670,
+            "end_line": 1676
+          },
+          "FunctionDefinition": {
+            "start_line": 1679,
+            "end_line": 1686
+          },
+          "FunctionDefinition.runtest": {
+            "start_line": 1683,
+            "end_line": 1684
+          }
+        },
+        "graph_coverage_complete": true
+      },
+      "decision_consistency": {
+        "status": "CONTRADICTORY",
+        "recommended_symbols": [
+          "correct",
+          "iter_directories",
+          "visit"
+        ],
+        "controlling_symbols": [
+          "Module.collect",
+          "Instance.collect",
+          "PyCollector.collect",
+          "pytest_pycollect_makeitem",
+          "Package.collect",
+          "Package._collectfile",
+          "pytest_collect_file",
+          "PyCollector.istestfunction"
+        ],
+        "unsupported_symbols": [
+          "correct",
+          "iter_directories",
+          "visit"
+        ],
+        "has_justification": false,
+        "justification_detail": "No structural relationship or source-based justification found.",
+        "reconciliation_message": "Supervisor recommended symbol(s) ['correct', 'iter_directories', 'visit'] outside verified execution path without adequate AST call-chain or inheritance evidence.",
+        "supporting_relationship": "",
+        "source_location": "",
+        "referenced_attributes": [],
+        "referenced_paths": [
+          "src/_pytest/pathlib.py",
+          "src/_pytest/python.py"
+        ]
+      }
+    }
+  ],
+  "completed_at": "2026-10-14T20:58:25Z"
+}

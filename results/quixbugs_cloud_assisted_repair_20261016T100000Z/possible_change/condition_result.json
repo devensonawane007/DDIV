@@ -1,0 +1,121 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-possible_change",
+  "program_name": "possible_change",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 8053,
+  "prompt_tokens": 7096,
+  "completion_tokens": 957,
+  "token_breakdown": {
+    "total_tokens": 8053,
+    "prompt_tokens": 7096,
+    "completion_tokens": 957,
+    "by_role": {
+      "Locator": {
+        "prompt": 378,
+        "completion": 572,
+        "total": 950
+      },
+      "Coder": {
+        "prompt": 6718,
+        "completion": 385,
+        "total": 7103
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 378,
+        "completion": 572,
+        "total": 950
+      },
+      "ollama": {
+        "prompt": 6718,
+        "completion": 385,
+        "total": 7103
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T11:25:28Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 378,
+        "completion_tokens": 572,
+        "total_tokens": 950
+      },
+      {
+        "timestamp": "2026-10-16T11:25:39Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2182,
+        "completion_tokens": 129,
+        "total_tokens": 2311
+      },
+      {
+        "timestamp": "2026-10-16T11:25:50Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2268,
+        "completion_tokens": 128,
+        "total_tokens": 2396
+      },
+      {
+        "timestamp": "2026-10-16T11:26:01Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-possible_change",
+        "program_name": "possible_change",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2268,
+        "completion_tokens": 128,
+        "total_tokens": 2396
+      }
+    ]
+  },
+  "total_duration_seconds": 52.595,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Anchor not found in 'python_programs/possible_change.py': return possible_change(coins, total - first) + possible_change(coins, total) (candidate return statement(s) in file: ['return 1', 'return 0', 'return possible_change(coins, total - first) + possible_change(rest, total)'])",
+      "resolved": false,
+      "duration_seconds": 11.849
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor not found in 'python_programs/possible_change.py': return possible_change(coins, total - first) + possible_change(coins, total) (candidate return statement(s) in file: ['return 1', 'return 0', 'return possible_change(coins, total - first) + possible_change(rest, total)'])",
+      "resolved": false,
+      "duration_seconds": 10.946
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor not found in 'python_programs/possible_change.py': return possible_change(coins, total - first) + possible_change(coins, total) (candidate return statement(s) in file: ['return 1', 'return 0', 'return possible_change(coins, total - first) + possible_change(rest, total)'])",
+      "resolved": false,
+      "duration_seconds": 10.982
+    }
+  ]
+}

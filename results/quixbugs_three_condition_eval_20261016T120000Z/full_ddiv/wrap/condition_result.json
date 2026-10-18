@@ -1,0 +1,125 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-wrap",
+  "program_name": "wrap",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7692,
+  "prompt_tokens": 6604,
+  "completion_tokens": 1088,
+  "token_breakdown": {
+    "total_tokens": 7692,
+    "prompt_tokens": 6604,
+    "completion_tokens": 1088,
+    "by_role": {
+      "Locator": {
+        "prompt": 301,
+        "completion": 566,
+        "total": 867
+      },
+      "Coder": {
+        "prompt": 6303,
+        "completion": 522,
+        "total": 6825
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 301,
+        "completion": 566,
+        "total": 867
+      },
+      "ollama": {
+        "prompt": 6303,
+        "completion": 522,
+        "total": 6825
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T09:04:56Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 301,
+        "completion_tokens": 566,
+        "total_tokens": 867
+      },
+      {
+        "timestamp": "2026-10-17T09:05:47Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2068,
+        "completion_tokens": 159,
+        "total_tokens": 2227
+      },
+      {
+        "timestamp": "2026-10-17T09:06:38Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "FULL_DDIV",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2111,
+        "completion_tokens": 210,
+        "total_tokens": 2321
+      },
+      {
+        "timestamp": "2026-10-17T09:07:08Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "FULL_DDIV",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2124,
+        "completion_tokens": 153,
+        "total_tokens": 2277
+      }
+    ]
+  },
+  "total_duration_seconds": 150.724,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/wrap.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+      "resolved": false,
+      "duration_seconds": 50.933
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:4\nerror: python_programs/wrap.py: patch does not apply",
+      "resolved": false,
+      "duration_seconds": 51.257
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/wrap.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 9)",
+      "resolved": false,
+      "duration_seconds": 29.659
+    }
+  ]
+}

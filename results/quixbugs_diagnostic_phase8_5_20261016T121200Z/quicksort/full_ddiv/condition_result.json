@@ -1,0 +1,41 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-quicksort",
+  "program_name": "quicksort",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 2,
+  "max_attempts": 3,
+  "total_tokens": 4211,
+  "prompt_tokens": 3903,
+  "completion_tokens": 308,
+  "total_duration_seconds": 30.066,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.918,
+      "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 14.066,
+      "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,7 +3,7 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n     greater = quicksort([x for x in arr[1:] if x > pivot])\n     return lesser + [pivot] + greater\n \n"
+    }
+  ]
+}

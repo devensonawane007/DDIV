@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-next_permutation",
+  "program_name": "next_permutation",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1765,
+  "prompt_tokens": 1671,
+  "completion_tokens": 94,
+  "total_duration_seconds": 9.79,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 9.79,
+      "patch_diff": "--- a/python_programs/next_permutation.py\n+++ b/python_programs/next_permutation.py\n@@ -7,7 +7,7 @@\n                     next_perm = list(perm)\n                     next_perm[i], next_perm[j] = perm[j], perm[i]\n                     next_perm[i + 1:] = reversed(next_perm[i + 1:])\n-                    return next_perm\n+                    return next_perm if next_perm else perm\n \n \n \n"
+    }
+  ]
+}

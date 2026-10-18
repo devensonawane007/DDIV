@@ -1,0 +1,111 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-hanoi",
+  "program_name": "hanoi",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6890,
+  "prompt_tokens": 6507,
+  "completion_tokens": 383,
+  "token_breakdown": {
+    "total_tokens": 6890,
+    "prompt_tokens": 6507,
+    "completion_tokens": 383,
+    "by_role": {
+      "Coder": {
+        "prompt": 6507,
+        "completion": 383,
+        "total": 6890
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 6507,
+        "completion": 383,
+        "total": 6890
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:06:55Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-hanoi",
+        "program_name": "hanoi",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1650,
+        "completion_tokens": 123,
+        "total_tokens": 1773
+      },
+      {
+        "timestamp": "2026-10-16T18:07:11Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-hanoi",
+        "program_name": "hanoi",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2807,
+        "completion_tokens": 127,
+        "total_tokens": 2934
+      },
+      {
+        "timestamp": "2026-10-16T18:07:27Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-hanoi",
+        "program_name": "hanoi",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2050,
+        "completion_tokens": 133,
+        "total_tokens": 2183
+      }
+    ]
+  },
+  "total_duration_seconds": 40.971,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 11.694,
+      "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -1,6 +1,8 @@\n def hanoi(height, start=1, end=3):\n     steps = []\n-    if height > 0:\n+    if height == 0:\n+        return []\n+    else:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n         steps.append((start, helper))\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 15.861,
+      "patch_diff": "--- a/python_programs/hanoi.py\n+++ b/python_programs/hanoi.py\n@@ -1,6 +1,8 @@\n def hanoi(height, start=1, end=3):\n     steps = []\n-    if height > 0:\n+    if height == 1:\n+        return [(start, end)]\n+    else:\n         helper = ({1, 2, 3} - {start} - {end}).pop()\n         steps.extend(hanoi(height - 1, start, helper))\n         steps.append((start, helper))\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 13.415
+    }
+  ]
+}

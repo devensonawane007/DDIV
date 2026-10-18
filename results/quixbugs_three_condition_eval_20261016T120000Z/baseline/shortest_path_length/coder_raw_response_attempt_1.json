@@ -1,0 +1,25 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1745,
+  "completion_tokens": 193,
+  "latency_seconds": 16.7427182,
+  "raw_text": "{\n  \"reasoning_summary\": \"The issue lies in the `insert_or_update` function where the heap is not being updated correctly. The `get` function is not used properly to find the index of the node in the heap, and the heap is not being updated correctly when the node is found.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"for i, tpl in enumerate(node_heap):\",\n      \"code\": \"for i, (dist, node) in enumerate(node_heap):\"\n    },\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"node_heap[i] = dist_node\",\n      \"code\": \"node_heap[i] = (dist_node[0], dist_node[1])\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The issue lies in the `insert_or_update` function where the heap is not being updated correctly. The `get` function is not used properly to find the index of the node in the heap, and the heap is not being updated correctly when the node is found.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "for i, tpl in enumerate(node_heap):",
+        "code": "for i, (dist, node) in enumerate(node_heap):"
+      },
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "node_heap[i] = dist_node",
+        "code": "node_heap[i] = (dist_node[0], dist_node[1])"
+      }
+    ]
+  }
+}

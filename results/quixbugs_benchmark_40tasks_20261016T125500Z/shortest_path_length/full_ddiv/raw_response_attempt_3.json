@@ -1,0 +1,20 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 2436,
+  "completion_tokens": 124,
+  "latency_seconds": 7.3586626,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug is in the `insert_or_update` function where the `heapq` property is not maintained after updating an element. The fix is to ensure that the `heapq.heapify` function is called after updating an element.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"node_heap[i] = dist_node\",\n      \"code\": \"node_heap[i] = dist_node\\nheapq.heapify(node_heap)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug is in the `insert_or_update` function where the `heapq` property is not maintained after updating an element. The fix is to ensure that the `heapq.heapify` function is called after updating an element.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "node_heap[i] = dist_node",
+        "code": "node_heap[i] = dist_node\nheapq.heapify(node_heap)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+--- a/python_programs/is_valid_parenthesization.py
++++ b/python_programs/is_valid_parenthesization.py
+@@ -5,6 +5,8 @@
+         if paren == '(':
+             depth += 1
+         else:
++            if depth < 0:
++                return False
+             depth -= 1
+             if depth < 0:
+                 return False

@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-shortest_path_lengths",
+  "program_name": "shortest_path_lengths",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1788,
+  "prompt_tokens": 1598,
+  "completion_tokens": 190,
+  "token_breakdown": {
+    "total_tokens": 1788,
+    "prompt_tokens": 1598,
+    "completion_tokens": 190,
+    "by_role": {
+      "Coder": {
+        "prompt": 1598,
+        "completion": 190,
+        "total": 1788
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1598,
+        "completion": 190,
+        "total": 1788
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:34:30Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_lengths",
+        "program_name": "shortest_path_lengths",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1598,
+        "completion_tokens": 190,
+        "total_tokens": 1788
+      }
+    ]
+  },
+  "total_duration_seconds": 14.804,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "4 test(s) failed assertion check.",
+      "duration_seconds": 14.803,
+      "patch_diff": "--- a/python_programs/shortest_path_lengths.py\n+++ b/python_programs/shortest_path_lengths.py\n@@ -3,6 +3,7 @@\n def shortest_path_lengths(n, length_by_edge):\n     length_by_path = defaultdict(lambda: float('inf'))\n     length_by_path.update({(i, i): 0 for i in range(n)})\n+    length_by_path.update({(i, j): float('inf') for i in range(n) for j in range(n) if (i, j) not in length_by_edge})\n     length_by_path.update(length_by_edge)\n \n     for k in range(n):\n"
+    }
+  ]
+}

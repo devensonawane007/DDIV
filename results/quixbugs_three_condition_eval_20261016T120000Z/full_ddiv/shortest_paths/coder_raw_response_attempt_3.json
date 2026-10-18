@@ -1,0 +1,25 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 2273,
+  "completion_tokens": 253,
+  "latency_seconds": 49.1577047,
+  "raw_text": "{\n  \"reasoning_summary\": \"The Bellman-Ford algorithm was incorrectly updating edge weights instead of node weights. The initialization was also missing nodes that were only sources.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_paths.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"weight_by_node = {v: float('inf') for u, v in weight_by_edge}\",\n      \"code\": \"weight_by_node = {v: float('inf') for u, v in weight_by_edge}\\nfor u, v in weight_by_edge:\\n    weight_by_node[u] = float('inf')\\n    weight_by_node[v] = float('inf')\\nweight_by_node[source] = 0\"\n    },\n    {\n      \"path\": \"python_programs/shortest_paths.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])\",\n      \"code\": \"if weight_by_node[u] + weight < weight_by_node[v]:\\n    weight_by_node[v] = weight_by_node[u] + weight\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The Bellman-Ford algorithm was incorrectly updating edge weights instead of node weights. The initialization was also missing nodes that were only sources.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_paths.py",
+        "operation": "replace",
+        "anchor": "weight_by_node = {v: float('inf') for u, v in weight_by_edge}",
+        "code": "weight_by_node = {v: float('inf') for u, v in weight_by_edge}\nfor u, v in weight_by_edge:\n    weight_by_node[u] = float('inf')\n    weight_by_node[v] = float('inf')\nweight_by_node[source] = 0"
+      },
+      {
+        "path": "python_programs/shortest_paths.py",
+        "operation": "replace",
+        "anchor": "weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])",
+        "code": "if weight_by_node[u] + weight < weight_by_node[v]:\n    weight_by_node[v] = weight_by_node[u] + weight"
+      }
+    ]
+  }
+}

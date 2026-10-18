@@ -1,0 +1,164 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-longest_common_subsequence",
+  "program_name": "longest_common_subsequence",
+  "resolved": true,
+  "attempts_used": 2,
+  "max_attempts": 3,
+  "total_tokens": 6202,
+  "prompt_tokens": 5153,
+  "completion_tokens": 1049,
+  "token_breakdown": {
+    "total_tokens": 6202,
+    "prompt_tokens": 5153,
+    "completion_tokens": 1049,
+    "by_role": {
+      "Locator": {
+        "prompt": 298,
+        "completion": 473,
+        "total": 771
+      },
+      "Coder": {
+        "prompt": 4228,
+        "completion": 259,
+        "total": 4487
+      },
+      "Tester": {
+        "prompt": 316,
+        "completion": 216,
+        "total": 532
+      },
+      "Supervisor": {
+        "prompt": 311,
+        "completion": 101,
+        "total": 412
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 298,
+        "completion": 473,
+        "total": 771
+      },
+      "ollama": {
+        "prompt": 4228,
+        "completion": 259,
+        "total": 4487
+      },
+      "groq": {
+        "prompt": 627,
+        "completion": 317,
+        "total": 944
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T11:18:42Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-longest_common_subsequence",
+        "program_name": "longest_common_subsequence",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 298,
+        "completion_tokens": 473,
+        "total_tokens": 771
+      },
+      {
+        "timestamp": "2026-10-16T11:18:55Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-longest_common_subsequence",
+        "program_name": "longest_common_subsequence",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1976,
+        "completion_tokens": 144,
+        "total_tokens": 2120
+      },
+      {
+        "timestamp": "2026-10-16T11:19:10Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-longest_common_subsequence",
+        "program_name": "longest_common_subsequence",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 158,
+        "completion_tokens": 108,
+        "total_tokens": 266
+      },
+      {
+        "timestamp": "2026-10-16T11:19:41Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-longest_common_subsequence",
+        "program_name": "longest_common_subsequence",
+        "attempt": 1,
+        "role": "Supervisor",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 311,
+        "completion_tokens": 101,
+        "total_tokens": 412
+      },
+      {
+        "timestamp": "2026-10-16T11:19:52Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-longest_common_subsequence",
+        "program_name": "longest_common_subsequence",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2252,
+        "completion_tokens": 115,
+        "total_tokens": 2367
+      },
+      {
+        "timestamp": "2026-10-16T11:20:07Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-longest_common_subsequence",
+        "program_name": "longest_common_subsequence",
+        "attempt": 2,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 158,
+        "completion_tokens": 108,
+        "total_tokens": 266
+      }
+    ]
+  },
+  "total_duration_seconds": 151.016,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 43.48,
+      "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -3,7 +3,7 @@\n         return ''\n \n     elif a[0] == b[0]:\n-        return a[0] + longest_common_subsequence(a[1:], b)\n+        return a[0] + longest_common_subsequence(a[1:], b[1:])\n \n     else:\n         return max(\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 32.87,
+      "patch_diff": "--- a/python_programs/longest_common_subsequence.py\n+++ b/python_programs/longest_common_subsequence.py\n@@ -3,7 +3,7 @@\n         return ''\n \n     elif a[0] == b[0]:\n-        return a[0] + longest_common_subsequence(a[1:], b)\n+        return a[0] + longest_common_subsequence(a[1:], b[1:])\n \n     else:\n         return max(\n"
+    }
+  ]
+}

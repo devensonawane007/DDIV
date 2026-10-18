@@ -1,0 +1,19 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 1829,
+  "completion_tokens": 172,
+  "latency_seconds": 30.065737,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original implementation was inefficient and caused a timeout for large inputs. The issue was that the recursive call was not properly optimized, leading to redundant calculations. The fix involves using memoization to store intermediate results and avoid recalculating them.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/subsequences.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1))\",\n      \"code\": \"if (i, k) not in memo: memo[(i, k)] = [i] + rest for rest in subsequences(i + 1, b, k - 1)]; ret.extend(memo[(i, k)])\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original implementation was inefficient and caused a timeout for large inputs. The issue was that the recursive call was not properly optimized, leading to redundant calculations. The fix involves using memoization to store intermediate results and avoid recalculating them.",
+    "modifications": [
+      {
+        "path": "python_programs/subsequences.py",
+        "operation": "replace",
+        "anchor": "ret.extend([i] + rest for rest in subsequences(i + 1, b, k - 1))",
+        "code": "if (i, k) not in memo: memo[(i, k)] = [i] + rest for rest in subsequences(i + 1, b, k - 1)]; ret.extend(memo[(i, k)])"
+      }
+    ]
+  }
+}

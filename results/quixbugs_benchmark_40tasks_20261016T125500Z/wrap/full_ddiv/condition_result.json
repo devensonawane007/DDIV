@@ -1,0 +1,39 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-wrap",
+  "program_name": "wrap",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5618,
+  "prompt_tokens": 5197,
+  "completion_tokens": 421,
+  "total_duration_seconds": 27.895,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:5\nerror: python_programs/wrap.py: patch does not apply (category: PATCH_REVISION_MISMATCH)",
+      "resolved": false,
+      "duration_seconds": 7.896
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply (category: PATCH_REVISION_MISMATCH)",
+      "resolved": false,
+      "duration_seconds": 8.706
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:1\nerror: python_programs/wrap.py: patch does not apply (category: PATCH_REVISION_MISMATCH)",
+      "resolved": false,
+      "duration_seconds": 11.286
+    }
+  ]
+}

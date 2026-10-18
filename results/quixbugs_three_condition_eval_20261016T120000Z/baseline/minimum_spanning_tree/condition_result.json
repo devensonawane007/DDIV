@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-minimum_spanning_tree",
+  "program_name": "minimum_spanning_tree",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1801,
+  "prompt_tokens": 1637,
+  "completion_tokens": 164,
+  "token_breakdown": {
+    "total_tokens": 1801,
+    "prompt_tokens": 1637,
+    "completion_tokens": 164,
+    "by_role": {
+      "Coder": {
+        "prompt": 1637,
+        "completion": 164,
+        "total": 1801
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1637,
+        "completion": 164,
+        "total": 1801
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T07:08:15Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-minimum_spanning_tree",
+        "program_name": "minimum_spanning_tree",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1637,
+        "completion_tokens": 164,
+        "total_tokens": 1801
+      }
+    ]
+  },
+  "total_duration_seconds": 14.862,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 14.86,
+      "patch_diff": "--- a/python_programs/minimum_spanning_tree.py\n+++ b/python_programs/minimum_spanning_tree.py\n@@ -8,6 +8,8 @@\n         if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):\n             mst_edges.add(edge)\n             group_by_node[u].update(group_by_node[v])\n+            for node in group_by_node[v]:\n+                group_by_node[node] = group_by_node[u]\n             for node in group_by_node[v]:\n                 group_by_node[node].update(group_by_node[u])\n \n"
+    }
+  ]
+}

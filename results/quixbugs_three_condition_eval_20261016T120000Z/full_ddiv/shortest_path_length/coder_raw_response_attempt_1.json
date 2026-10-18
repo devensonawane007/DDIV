@@ -1,0 +1,25 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 2461,
+  "completion_tokens": 289,
+  "latency_seconds": 15.3056059,
+  "raw_text": "{\n  \"reasoning_summary\": \"The `get` function returns 0 for unvisited nodes, causing incorrect distance calculations. The `insert_or_update` function does not re-heapify the list, violating the heap invariant. Corrected these issues by updating `get` to return `float('inf')`, fixing the distance calculation, and re-heapifying in `insert_or_update`.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"def get(node_heap, wanted_node):\",\n      \"code\": \"def get(node_heap, wanted_node):\\n    for dist, node in node_heap:\\n        if node == wanted_node:\\n            return dist\\n    return float('inf')\"\n    },\n    {\n      \"path\": \"python_programs/shortest_path_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"insert_or_update(unvisited_nodes,\",\n      \"code\": \"def insert_or_update(node_heap, dist_node):\\n    dist, node = dist_node\\n    for i, (d, n) in enumerate(node_heap):\\n        if n == node:\\n            node_heap[i] = dist_node\\n            heapq.heapify(node_heap)\\n            return None\\n    heappush(node_heap, dist_node)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The `get` function returns 0 for unvisited nodes, causing incorrect distance calculations. The `insert_or_update` function does not re-heapify the list, violating the heap invariant. Corrected these issues by updating `get` to return `float('inf')`, fixing the distance calculation, and re-heapifying in `insert_or_update`.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "def get(node_heap, wanted_node):",
+        "code": "def get(node_heap, wanted_node):\n    for dist, node in node_heap:\n        if node == wanted_node:\n            return dist\n    return float('inf')"
+      },
+      {
+        "path": "python_programs/shortest_path_length.py",
+        "operation": "replace",
+        "anchor": "insert_or_update(unvisited_nodes,",
+        "code": "def insert_or_update(node_heap, dist_node):\n    dist, node = dist_node\n    for i, (d, n) in enumerate(node_heap):\n        if n == node:\n            node_heap[i] = dist_node\n            heapq.heapify(node_heap)\n            return None\n    heappush(node_heap, dist_node)"
+      }
+    ]
+  }
+}

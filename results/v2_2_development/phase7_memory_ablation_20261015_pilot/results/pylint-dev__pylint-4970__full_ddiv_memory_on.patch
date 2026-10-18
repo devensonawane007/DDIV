@@ -1,0 +1,15 @@
+--- a/pylint/checkers/similar.py
++++ b/pylint/checkers/similar.py
+@@ -830,6 +830,12 @@
+ 
+     def close(self):
+         """compute and display similarities on closing (i.e. end of parsing)"""
++        if self.config.min_similarity_lines == 0:
++            # Disabled similarity checking: do not emit any R0801 messages
++            if self.stats is not None:
++                self.stats["nb_duplicated_lines"] = 0
++                self.stats["percent_duplicated_lines"] = 0
++            return
+         total = sum(len(lineset) for lineset in self.linesets)
+         duplicated = 0
+         stats = self.stats

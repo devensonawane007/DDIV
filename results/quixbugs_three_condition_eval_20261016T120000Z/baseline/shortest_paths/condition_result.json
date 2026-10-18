@@ -1,0 +1,57 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-shortest_paths",
+  "program_name": "shortest_paths",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1821,
+  "prompt_tokens": 1713,
+  "completion_tokens": 108,
+  "token_breakdown": {
+    "total_tokens": 1821,
+    "prompt_tokens": 1713,
+    "completion_tokens": 108,
+    "by_role": {
+      "Coder": {
+        "prompt": 1713,
+        "completion": 108,
+        "total": 1821
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1713,
+        "completion": 108,
+        "total": 1821
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:37:20Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_paths",
+        "program_name": "shortest_paths",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1713,
+        "completion_tokens": 108,
+        "total_tokens": 1821
+      }
+    ]
+  },
+  "total_duration_seconds": 29.565,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Anchor not found in 'python_programs/shortest_paths.py': weight_by_node[v] = min",
+      "resolved": false,
+      "duration_seconds": 29.564
+    }
+  ]
+}

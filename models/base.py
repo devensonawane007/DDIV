@@ -17,6 +17,7 @@ class ModelConfig(BaseModel):
     max_tokens: int = 2048
     timeout: int = 120
     max_retries: int = 2
+    disable_fallback: bool = True
 
 
 class ProviderResponse(BaseModel):
@@ -31,6 +32,7 @@ class ProviderResponse(BaseModel):
     request_id: Optional[str] = None
     error: Optional[str] = None
     error_category: Optional[str] = None
+    rate_limit_headers: Optional[Dict[str, Any]] = None
 
 
 class ModelProvider(ABC):

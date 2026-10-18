@@ -1,0 +1,1254 @@
+{
+  "manifest_version": "1.0",
+  "benchmark": "QuixBugs",
+  "language": "python",
+  "upstream_repository": "https://github.com/jkoppel/QuixBugs.git",
+  "commit_hash": "4257f44b0ff1181dedaedee6a447e133219fcebf",
+  "dataset_path": "data/quixbugs",
+  "discovery_timestamp": "2026-10-16T05:00:00Z",
+  "total_tasks_discovered": 40,
+  "graph_based_tasks_count": 9,
+  "json_based_tasks_count": 31,
+  "tasks": [
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-bitcount",
+      "program_name": "bitcount",
+      "language": "python",
+      "target_file": "python_programs/bitcount.py",
+      "test_files": [
+        "python_testcases/test_bitcount.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/bitcount.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_bitcount.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'bitcount' in 'python_programs/bitcount.py' so that all test cases in 'python_testcases/test_bitcount.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-breadth_first_search",
+      "program_name": "breadth_first_search",
+      "language": "python",
+      "target_file": "python_programs/breadth_first_search.py",
+      "test_files": [
+        "python_testcases/test_breadth_first_search.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_breadth_first_search.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'breadth_first_search' in 'python_programs/breadth_first_search.py' so that all test cases in 'python_testcases/test_breadth_first_search.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-bucketsort",
+      "program_name": "bucketsort",
+      "language": "python",
+      "target_file": "python_programs/bucketsort.py",
+      "test_files": [
+        "python_testcases/test_bucketsort.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/bucketsort.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_bucketsort.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'bucketsort' in 'python_programs/bucketsort.py' so that all test cases in 'python_testcases/test_bucketsort.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-depth_first_search",
+      "program_name": "depth_first_search",
+      "language": "python",
+      "target_file": "python_programs/depth_first_search.py",
+      "test_files": [
+        "python_testcases/test_depth_first_search.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_depth_first_search.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'depth_first_search' in 'python_programs/depth_first_search.py' so that all test cases in 'python_testcases/test_depth_first_search.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-detect_cycle",
+      "program_name": "detect_cycle",
+      "language": "python",
+      "target_file": "python_programs/detect_cycle.py",
+      "test_files": [
+        "python_testcases/test_detect_cycle.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_detect_cycle.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'detect_cycle' in 'python_programs/detect_cycle.py' so that all test cases in 'python_testcases/test_detect_cycle.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-find_first_in_sorted",
+      "program_name": "find_first_in_sorted",
+      "language": "python",
+      "target_file": "python_programs/find_first_in_sorted.py",
+      "test_files": [
+        "python_testcases/test_find_first_in_sorted.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/find_first_in_sorted.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_find_first_in_sorted.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'find_first_in_sorted' in 'python_programs/find_first_in_sorted.py' so that all test cases in 'python_testcases/test_find_first_in_sorted.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-find_in_sorted",
+      "program_name": "find_in_sorted",
+      "language": "python",
+      "target_file": "python_programs/find_in_sorted.py",
+      "test_files": [
+        "python_testcases/test_find_in_sorted.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/find_in_sorted.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_find_in_sorted.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'find_in_sorted' in 'python_programs/find_in_sorted.py' so that all test cases in 'python_testcases/test_find_in_sorted.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-flatten",
+      "program_name": "flatten",
+      "language": "python",
+      "target_file": "python_programs/flatten.py",
+      "test_files": [
+        "python_testcases/test_flatten.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/flatten.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_flatten.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'flatten' in 'python_programs/flatten.py' so that all test cases in 'python_testcases/test_flatten.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-gcd",
+      "program_name": "gcd",
+      "language": "python",
+      "target_file": "python_programs/gcd.py",
+      "test_files": [
+        "python_testcases/test_gcd.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/gcd.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_gcd.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'gcd' in 'python_programs/gcd.py' so that all test cases in 'python_testcases/test_gcd.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-get_factors",
+      "program_name": "get_factors",
+      "language": "python",
+      "target_file": "python_programs/get_factors.py",
+      "test_files": [
+        "python_testcases/test_get_factors.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/get_factors.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_get_factors.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'get_factors' in 'python_programs/get_factors.py' so that all test cases in 'python_testcases/test_get_factors.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-hanoi",
+      "program_name": "hanoi",
+      "language": "python",
+      "target_file": "python_programs/hanoi.py",
+      "test_files": [
+        "python_testcases/test_hanoi.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/hanoi.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_hanoi.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'hanoi' in 'python_programs/hanoi.py' so that all test cases in 'python_testcases/test_hanoi.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-is_valid_parenthesization",
+      "program_name": "is_valid_parenthesization",
+      "language": "python",
+      "target_file": "python_programs/is_valid_parenthesization.py",
+      "test_files": [
+        "python_testcases/test_is_valid_parenthesization.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/is_valid_parenthesization.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_is_valid_parenthesization.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'is_valid_parenthesization' in 'python_programs/is_valid_parenthesization.py' so that all test cases in 'python_testcases/test_is_valid_parenthesization.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-kheapsort",
+      "program_name": "kheapsort",
+      "language": "python",
+      "target_file": "python_programs/kheapsort.py",
+      "test_files": [
+        "python_testcases/test_kheapsort.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/kheapsort.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_kheapsort.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'kheapsort' in 'python_programs/kheapsort.py' so that all test cases in 'python_testcases/test_kheapsort.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-knapsack",
+      "program_name": "knapsack",
+      "language": "python",
+      "target_file": "python_programs/knapsack.py",
+      "test_files": [
+        "python_testcases/test_knapsack.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/knapsack.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_knapsack.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'knapsack' in 'python_programs/knapsack.py' so that all test cases in 'python_testcases/test_knapsack.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-kth",
+      "program_name": "kth",
+      "language": "python",
+      "target_file": "python_programs/kth.py",
+      "test_files": [
+        "python_testcases/test_kth.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/kth.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_kth.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'kth' in 'python_programs/kth.py' so that all test cases in 'python_testcases/test_kth.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-lcs_length",
+      "program_name": "lcs_length",
+      "language": "python",
+      "target_file": "python_programs/lcs_length.py",
+      "test_files": [
+        "python_testcases/test_lcs_length.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/lcs_length.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_lcs_length.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'lcs_length' in 'python_programs/lcs_length.py' so that all test cases in 'python_testcases/test_lcs_length.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-levenshtein",
+      "program_name": "levenshtein",
+      "language": "python",
+      "target_file": "python_programs/levenshtein.py",
+      "test_files": [
+        "python_testcases/test_levenshtein.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/levenshtein.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_levenshtein.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'levenshtein' in 'python_programs/levenshtein.py' so that all test cases in 'python_testcases/test_levenshtein.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-lis",
+      "program_name": "lis",
+      "language": "python",
+      "target_file": "python_programs/lis.py",
+      "test_files": [
+        "python_testcases/test_lis.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/lis.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_lis.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'lis' in 'python_programs/lis.py' so that all test cases in 'python_testcases/test_lis.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-longest_common_subsequence",
+      "program_name": "longest_common_subsequence",
+      "language": "python",
+      "target_file": "python_programs/longest_common_subsequence.py",
+      "test_files": [
+        "python_testcases/test_longest_common_subsequence.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/longest_common_subsequence.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_longest_common_subsequence.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'longest_common_subsequence' in 'python_programs/longest_common_subsequence.py' so that all test cases in 'python_testcases/test_longest_common_subsequence.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-max_sublist_sum",
+      "program_name": "max_sublist_sum",
+      "language": "python",
+      "target_file": "python_programs/max_sublist_sum.py",
+      "test_files": [
+        "python_testcases/test_max_sublist_sum.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/max_sublist_sum.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_max_sublist_sum.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'max_sublist_sum' in 'python_programs/max_sublist_sum.py' so that all test cases in 'python_testcases/test_max_sublist_sum.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-mergesort",
+      "program_name": "mergesort",
+      "language": "python",
+      "target_file": "python_programs/mergesort.py",
+      "test_files": [
+        "python_testcases/test_mergesort.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/mergesort.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_mergesort.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'mergesort' in 'python_programs/mergesort.py' so that all test cases in 'python_testcases/test_mergesort.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-minimum_spanning_tree",
+      "program_name": "minimum_spanning_tree",
+      "language": "python",
+      "target_file": "python_programs/minimum_spanning_tree.py",
+      "test_files": [
+        "python_testcases/test_minimum_spanning_tree.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_minimum_spanning_tree.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'minimum_spanning_tree' in 'python_programs/minimum_spanning_tree.py' so that all test cases in 'python_testcases/test_minimum_spanning_tree.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-next_palindrome",
+      "program_name": "next_palindrome",
+      "language": "python",
+      "target_file": "python_programs/next_palindrome.py",
+      "test_files": [
+        "python_testcases/test_next_palindrome.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/next_palindrome.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_next_palindrome.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'next_palindrome' in 'python_programs/next_palindrome.py' so that all test cases in 'python_testcases/test_next_palindrome.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-next_permutation",
+      "program_name": "next_permutation",
+      "language": "python",
+      "target_file": "python_programs/next_permutation.py",
+      "test_files": [
+        "python_testcases/test_next_permutation.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/next_permutation.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_next_permutation.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'next_permutation' in 'python_programs/next_permutation.py' so that all test cases in 'python_testcases/test_next_permutation.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-pascal",
+      "program_name": "pascal",
+      "language": "python",
+      "target_file": "python_programs/pascal.py",
+      "test_files": [
+        "python_testcases/test_pascal.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/pascal.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_pascal.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'pascal' in 'python_programs/pascal.py' so that all test cases in 'python_testcases/test_pascal.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-possible_change",
+      "program_name": "possible_change",
+      "language": "python",
+      "target_file": "python_programs/possible_change.py",
+      "test_files": [
+        "python_testcases/test_possible_change.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/possible_change.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_possible_change.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'possible_change' in 'python_programs/possible_change.py' so that all test cases in 'python_testcases/test_possible_change.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-powerset",
+      "program_name": "powerset",
+      "language": "python",
+      "target_file": "python_programs/powerset.py",
+      "test_files": [
+        "python_testcases/test_powerset.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/powerset.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_powerset.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'powerset' in 'python_programs/powerset.py' so that all test cases in 'python_testcases/test_powerset.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-quicksort",
+      "program_name": "quicksort",
+      "language": "python",
+      "target_file": "python_programs/quicksort.py",
+      "test_files": [
+        "python_testcases/test_quicksort.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/quicksort.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_quicksort.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'quicksort' in 'python_programs/quicksort.py' so that all test cases in 'python_testcases/test_quicksort.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-reverse_linked_list",
+      "program_name": "reverse_linked_list",
+      "language": "python",
+      "target_file": "python_programs/reverse_linked_list.py",
+      "test_files": [
+        "python_testcases/test_reverse_linked_list.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_reverse_linked_list.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'reverse_linked_list' in 'python_programs/reverse_linked_list.py' so that all test cases in 'python_testcases/test_reverse_linked_list.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-rpn_eval",
+      "program_name": "rpn_eval",
+      "language": "python",
+      "target_file": "python_programs/rpn_eval.py",
+      "test_files": [
+        "python_testcases/test_rpn_eval.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/rpn_eval.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_rpn_eval.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'rpn_eval' in 'python_programs/rpn_eval.py' so that all test cases in 'python_testcases/test_rpn_eval.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-shortest_path_length",
+      "program_name": "shortest_path_length",
+      "language": "python",
+      "target_file": "python_programs/shortest_path_length.py",
+      "test_files": [
+        "python_testcases/test_shortest_path_length.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_shortest_path_length.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'shortest_path_length' in 'python_programs/shortest_path_length.py' so that all test cases in 'python_testcases/test_shortest_path_length.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-shortest_path_lengths",
+      "program_name": "shortest_path_lengths",
+      "language": "python",
+      "target_file": "python_programs/shortest_path_lengths.py",
+      "test_files": [
+        "python_testcases/test_shortest_path_lengths.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_shortest_path_lengths.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'shortest_path_lengths' in 'python_programs/shortest_path_lengths.py' so that all test cases in 'python_testcases/test_shortest_path_lengths.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-shortest_paths",
+      "program_name": "shortest_paths",
+      "language": "python",
+      "target_file": "python_programs/shortest_paths.py",
+      "test_files": [
+        "python_testcases/test_shortest_paths.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_shortest_paths.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'shortest_paths' in 'python_programs/shortest_paths.py' so that all test cases in 'python_testcases/test_shortest_paths.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-shunting_yard",
+      "program_name": "shunting_yard",
+      "language": "python",
+      "target_file": "python_programs/shunting_yard.py",
+      "test_files": [
+        "python_testcases/test_shunting_yard.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/shunting_yard.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_shunting_yard.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'shunting_yard' in 'python_programs/shunting_yard.py' so that all test cases in 'python_testcases/test_shunting_yard.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-sieve",
+      "program_name": "sieve",
+      "language": "python",
+      "target_file": "python_programs/sieve.py",
+      "test_files": [
+        "python_testcases/test_sieve.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/sieve.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_sieve.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'sieve' in 'python_programs/sieve.py' so that all test cases in 'python_testcases/test_sieve.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-sqrt",
+      "program_name": "sqrt",
+      "language": "python",
+      "target_file": "python_programs/sqrt.py",
+      "test_files": [
+        "python_testcases/test_sqrt.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/sqrt.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_sqrt.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'sqrt' in 'python_programs/sqrt.py' so that all test cases in 'python_testcases/test_sqrt.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-subsequences",
+      "program_name": "subsequences",
+      "language": "python",
+      "target_file": "python_programs/subsequences.py",
+      "test_files": [
+        "python_testcases/test_subsequences.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/subsequences.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_subsequences.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'subsequences' in 'python_programs/subsequences.py' so that all test cases in 'python_testcases/test_subsequences.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-to_base",
+      "program_name": "to_base",
+      "language": "python",
+      "target_file": "python_programs/to_base.py",
+      "test_files": [
+        "python_testcases/test_to_base.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/to_base.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_to_base.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'to_base' in 'python_programs/to_base.py' so that all test cases in 'python_testcases/test_to_base.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-topological_ordering",
+      "program_name": "topological_ordering",
+      "language": "python",
+      "target_file": "python_programs/topological_ordering.py",
+      "test_files": [
+        "python_testcases/test_topological_ordering.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_programs/node.py",
+        "python_testcases/node.py"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_topological_ordering.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'topological_ordering' in 'python_programs/topological_ordering.py' so that all test cases in 'python_testcases/test_topological_ordering.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": true,
+        "has_json_testdata": false
+      }
+    },
+    {
+      "benchmark": "quixbugs",
+      "task_id": "quixbugs-python-wrap",
+      "program_name": "wrap",
+      "language": "python",
+      "target_file": "python_programs/wrap.py",
+      "test_files": [
+        "python_testcases/test_wrap.py"
+      ],
+      "support_files": [
+        "conftest.py",
+        "python_testcases/load_testdata.py",
+        "json_testcases/wrap.json"
+      ],
+      "test_command": [
+        "C:\\Users\\deven\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\python.exe",
+        "-m",
+        "pytest",
+        "-v",
+        "--tb=short",
+        "python_testcases/test_wrap.py"
+      ],
+      "workspace_policy": "isolated_copy_without_reference",
+      "problem_description": "Repair the implementation of 'wrap' in 'python_programs/wrap.py' so that all test cases in 'python_testcases/test_wrap.py' pass without introducing regressions.",
+      "baseline_status": "NOT_RUN",
+      "eligibility_status": "UNKNOWN",
+      "result_metadata": {
+        "is_graph_based": false,
+        "has_json_testdata": true
+      }
+    }
+  ]
+}

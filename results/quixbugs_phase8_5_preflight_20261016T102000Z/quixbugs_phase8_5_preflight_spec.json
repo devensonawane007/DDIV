@@ -1,0 +1,77 @@
+{
+  "experiment_phase": "Phase 8.5: Targeted Diagnostic Repair Experiment",
+  "preflight_timestamp": "2026-10-16T04:51:55Z",
+  "preflight_verdict": "READY",
+  "model_configuration": {
+    "model": "qwen2.5-coder:7b",
+    "provider": "ollama (local-only)",
+    "endpoint": "http://localhost:11434",
+    "temperature_schedule": {
+      "attempt_1": 0.0,
+      "attempt_2": 0.2,
+      "attempt_3": 0.2
+    },
+    "max_tokens": 2048,
+    "timeout_seconds": 120
+  },
+  "experimental_scope": {
+    "nature": "Targeted diagnostic experiment (investigating 2 persistent failures from Phase 8.4)",
+    "tasks": [
+      "quixbugs-python-quicksort",
+      "quixbugs-python-rpn_eval"
+    ],
+    "conditions": [
+      "BASELINE",
+      "RETRY_ONLY",
+      "FULL_DDIV"
+    ],
+    "total_planned_runs": 6
+  },
+  "architectural_enhancements": [
+    "Prior-patch diff injection into retry prompts (Attempt > 1)",
+    "Anti-repetition detection gate across attempts",
+    "Dynamic retry temperature exploration (T=0.0 -> T=0.2)",
+    "Transparent extraction error propagation (preserving PatchBuilder error messages)",
+    "Uncapped raw response JSON logging for full auditability",
+    "Concise reasoning directive (under 40 words) for JSON schema"
+  ],
+  "state_protection": {
+    "production_memory_db": "data/ddiv_memory.db (PRISTINE, untouched)",
+    "swebench_historical_results": "PRISTINE, untouched",
+    "phase8_4_results_directory": "results/quixbugs_benchmark_8tasks_20261016T084000Z (FROZEN)"
+  },
+  "checks": {
+    "tasks_discovered": true,
+    "task_details": {
+      "quixbugs-python-quicksort": {
+        "program_name": "quicksort",
+        "target_file": "python_programs/quicksort.py",
+        "test_file": "python_testcases/test_quicksort.py",
+        "has_defect": false
+      },
+      "quixbugs-python-rpn_eval": {
+        "program_name": "rpn_eval",
+        "target_file": "python_programs/rpn_eval.py",
+        "test_file": "python_testcases/test_rpn_eval.py",
+        "has_defect": false
+      }
+    },
+    "workspace_isolation_verified": true,
+    "empty_patch_rejected": true,
+    "invalid_patch_rejected": true,
+    "malicious_patch_rejected": true,
+    "security_gates_verified": true,
+    "ollama_reachable": true,
+    "model_available": true,
+    "runner_instantiated": true,
+    "tasks_configured": true,
+    "ollama_provider_temperature_override_supported": true,
+    "extraction_error_transparent": true,
+    "production_memory_exists": true,
+    "production_memory_mtime": "Mon Oct  5 18:07:07 2026",
+    "phase8_4_frozen_dir_exists": true,
+    "phase8_4_summary_exists": true,
+    "phase8_4_memory_exists": true,
+    "preflight_verdict": "READY"
+  }
+}

@@ -1,0 +1,11 @@
+--- a/pylint/checkers/similar.py
++++ b/pylint/checkers/similar.py
+@@ -819,6 +819,8 @@
+         )
+ 
+     def process_module(self, node):
++        if self.linter.config.min_similarity_lines == 0:
++            return
+         """process a module
+ 
+         the module's content is accessible via the stream object

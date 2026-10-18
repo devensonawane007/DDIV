@@ -1,0 +1,11 @@
+--- a/python_programs/kth.py
++++ b/python_programs/kth.py
+@@ -4,7 +4,7 @@
+     above = [x for x in arr if x > pivot]
+ 
+     num_less = len(below)
+-    num_lessoreq = len(arr) - len(above)
++    num_lessoreq = len(arr) - num_less - 1
+ 
+     if k < num_less:
+         return kth(below, k)

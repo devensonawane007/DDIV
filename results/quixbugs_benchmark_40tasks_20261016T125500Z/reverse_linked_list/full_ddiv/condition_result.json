@@ -1,0 +1,49 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-reverse_linked_list",
+  "program_name": "reverse_linked_list",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5788,
+  "prompt_tokens": 5406,
+  "completion_tokens": 382,
+  "total_duration_seconds": 29.919,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Modifications resulted in an empty diff (no changes made). (category: EMPTY_DIFF)",
+      "resolved": false,
+      "duration_seconds": 6.333
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 11.109,
+      "patch_diff": "--- a/python_programs/reverse_linked_list.py\n+++ b/python_programs/reverse_linked_list.py\n@@ -1,4 +1,12 @@\n def reverse_linked_list(node):\n+    if node is None:\n+        return None\n+    prevnode = None\n+    while node:\n+        nextnode = node.successor\n+        node.successor = prevnode\n+        node = nextnode\n+    return prevnode\n     prevnode = None\n     while node:\n         nextnode = node.successor\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 12.471,
+      "patch_diff": "--- a/python_programs/reverse_linked_list.py\n+++ b/python_programs/reverse_linked_list.py\n@@ -1,4 +1,13 @@\n def reverse_linked_list(node):\n+    if node is None:\n+        return None\n+    prevnode = None\n+    while node:\n+        nextnode = node.successor\n+        node.successor = prevnode\n+        prevnode = node\n+        node = nextnode\n+    return prevnode\n     prevnode = None\n     while node:\n         nextnode = node.successor\n"
+    }
+  ]
+}

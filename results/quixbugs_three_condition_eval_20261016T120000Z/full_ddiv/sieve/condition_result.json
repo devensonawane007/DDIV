@@ -1,0 +1,110 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-sieve",
+  "program_name": "sieve",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3056,
+  "prompt_tokens": 2242,
+  "completion_tokens": 814,
+  "token_breakdown": {
+    "total_tokens": 3056,
+    "prompt_tokens": 2242,
+    "completion_tokens": 814,
+    "by_role": {
+      "Locator": {
+        "prompt": 159,
+        "completion": 536,
+        "total": 695
+      },
+      "Coder": {
+        "prompt": 1936,
+        "completion": 126,
+        "total": 2062
+      },
+      "Tester": {
+        "prompt": 147,
+        "completion": 152,
+        "total": 299
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 159,
+        "completion": 536,
+        "total": 695
+      },
+      "ollama": {
+        "prompt": 1936,
+        "completion": 126,
+        "total": 2062
+      },
+      "groq": {
+        "prompt": 147,
+        "completion": 152,
+        "total": 299
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:48:42Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "condition": "FULL_DDIV",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 159,
+        "completion_tokens": 536,
+        "total_tokens": 695
+      },
+      {
+        "timestamp": "2026-10-17T08:49:08Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1936,
+        "completion_tokens": 126,
+        "total_tokens": 2062
+      },
+      {
+        "timestamp": "2026-10-17T08:49:24Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-sieve",
+        "program_name": "sieve",
+        "condition": "FULL_DDIV",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 147,
+        "completion_tokens": 152,
+        "total_tokens": 299
+      }
+    ]
+  },
+  "total_duration_seconds": 64.914,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 44.749,
+      "patch_diff": "--- a/python_programs/sieve.py\n+++ b/python_programs/sieve.py\n@@ -1,7 +1,7 @@\n def sieve(max):\n     primes = []\n     for n in range(2, max + 1):\n-        if any(n % p > 0 for p in primes):\n+        if all(n % p != 0 for p in primes):\n             primes.append(n)\n     return primes\n \n"
+    }
+  ]
+}

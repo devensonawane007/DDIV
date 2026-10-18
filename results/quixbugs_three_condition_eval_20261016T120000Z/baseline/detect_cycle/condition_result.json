@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-detect_cycle",
+  "program_name": "detect_cycle",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1570,
+  "prompt_tokens": 1458,
+  "completion_tokens": 112,
+  "token_breakdown": {
+    "total_tokens": 1570,
+    "prompt_tokens": 1458,
+    "completion_tokens": 112,
+    "by_role": {
+      "Coder": {
+        "prompt": 1458,
+        "completion": 112,
+        "total": 1570
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1458,
+        "completion": 112,
+        "total": 1570
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:03:41Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-detect_cycle",
+        "program_name": "detect_cycle",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1458,
+        "completion_tokens": 112,
+        "total_tokens": 1570
+      }
+    ]
+  },
+  "total_duration_seconds": 12.502,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 12.501,
+      "patch_diff": "--- a/python_programs/detect_cycle.py\n+++ b/python_programs/detect_cycle.py\n@@ -6,6 +6,7 @@\n             return False\n \n         tortoise = tortoise.successor\n+        if hare is None or hare.successor is None: return False\n         hare = hare.successor.successor\n \n         if hare is tortoise:\n"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+--- a/python_programs/longest_common_subsequence.py
++++ b/python_programs/longest_common_subsequence.py
+@@ -6,7 +6,7 @@
+         return a[0] + longest_common_subsequence(a[1:], b)
+ 
+     else:
+-        return max(
++        return a[0] + max(
+             longest_common_subsequence(a, b[1:]),
+             longest_common_subsequence(a[1:], b),
+             key=len

@@ -1,0 +1,26 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-to_base",
+  "program_name": "to_base",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1707,
+  "prompt_tokens": 1617,
+  "completion_tokens": 90,
+  "total_duration_seconds": 12.12,
+  "history": [
+    {
+      "attempt": 1,
+      "candidate_patch_applied": true,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 12.12,
+      "patch_diff": "--- a/python_programs/to_base.py\n+++ b/python_programs/to_base.py\n@@ -6,7 +6,7 @@\n     while num > 0:\n         i = num % b\n         num = num // b\n-        result = result + alphabet[i]\n+        result = alphabet[i] + result\n     return result\n \n \n"
+    }
+  ]
+}

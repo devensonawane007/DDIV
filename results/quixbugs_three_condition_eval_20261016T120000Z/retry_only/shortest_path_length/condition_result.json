@@ -1,0 +1,116 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-shortest_path_length",
+  "program_name": "shortest_path_length",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 7416,
+  "prompt_tokens": 6942,
+  "completion_tokens": 474,
+  "token_breakdown": {
+    "total_tokens": 7416,
+    "prompt_tokens": 6942,
+    "completion_tokens": 474,
+    "by_role": {
+      "Coder": {
+        "prompt": 6942,
+        "completion": 474,
+        "total": 7416
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 6942,
+        "completion": 474,
+        "total": 7416
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T08:31:44Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_length",
+        "program_name": "shortest_path_length",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1745,
+        "completion_tokens": 193,
+        "total_tokens": 1938
+      },
+      {
+        "timestamp": "2026-10-17T08:31:59Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_length",
+        "program_name": "shortest_path_length",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2599,
+        "completion_tokens": 182,
+        "total_tokens": 2781
+      },
+      {
+        "timestamp": "2026-10-17T08:32:11Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-shortest_path_length",
+        "program_name": "shortest_path_length",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 2598,
+        "completion_tokens": 99,
+        "total_tokens": 2697
+      }
+    ]
+  },
+  "total_duration_seconds": 40.983,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 13.86,
+      "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 15.479,
+      "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -35,10 +35,11 @@\n \n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n-    for i, tpl in enumerate(node_heap):\n+    for i, (dist, node) in enumerate(node_heap):\n         a, b = tpl\n         if b == node:\n-            node_heap[i] = dist_node #heapq retains sorted property\n+            node_heap[i] = (dist_node[0], dist_node[1])\n+ #heapq retains sorted property\n             return None\n \n     heappush(node_heap, dist_node)\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "2 test(s) failed assertion check.",
+      "duration_seconds": 11.643,
+      "patch_diff": "--- a/python_programs/shortest_path_length.py\n+++ b/python_programs/shortest_path_length.py\n@@ -36,7 +36,7 @@\n def insert_or_update(node_heap, dist_node):\n     dist, node = dist_node\n     for i, tpl in enumerate(node_heap):\n-        a, b = tpl\n+        dist, node = dist_node\n         if b == node:\n             node_heap[i] = dist_node #heapq retains sorted property\n             return None\n"
+    }
+  ]
+}

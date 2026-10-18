@@ -1,0 +1,121 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-get_factors",
+  "program_name": "get_factors",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6955,
+  "prompt_tokens": 6201,
+  "completion_tokens": 754,
+  "token_breakdown": {
+    "total_tokens": 6955,
+    "prompt_tokens": 6201,
+    "completion_tokens": 754,
+    "by_role": {
+      "Locator": {
+        "prompt": 245,
+        "completion": 510,
+        "total": 755
+      },
+      "Coder": {
+        "prompt": 5956,
+        "completion": 244,
+        "total": 6200
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 245,
+        "completion": 510,
+        "total": 755
+      },
+      "ollama": {
+        "prompt": 5956,
+        "completion": 244,
+        "total": 6200
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T10:50:26Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 245,
+        "completion_tokens": 510,
+        "total_tokens": 755
+      },
+      {
+        "timestamp": "2026-10-16T10:50:34Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1964,
+        "completion_tokens": 82,
+        "total_tokens": 2046
+      },
+      {
+        "timestamp": "2026-10-16T10:50:41Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1996,
+        "completion_tokens": 77,
+        "total_tokens": 2073
+      },
+      {
+        "timestamp": "2026-10-16T10:50:48Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-get_factors",
+        "program_name": "get_factors",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1996,
+        "completion_tokens": 85,
+        "total_tokens": 2081
+      }
+    ]
+  },
+  "total_duration_seconds": 77.558,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+      "resolved": false,
+      "duration_seconds": 7.921
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+      "resolved": false,
+      "duration_seconds": 7.079
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor ambiguous in 'python_programs/get_factors.py' (2 matches).",
+      "resolved": false,
+      "duration_seconds": 7.473
+    }
+  ]
+}

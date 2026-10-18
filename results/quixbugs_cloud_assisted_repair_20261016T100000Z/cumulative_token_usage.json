@@ -1,0 +1,102 @@
+{
+  "last_updated": "2026-10-16T11:27:16Z",
+  "session_count": 3,
+  "usage_by_date": {
+    "2026-10-16": {
+      "gemini": {
+        "prompt": 5126,
+        "completion": 9148,
+        "total": 14274
+      },
+      "ollama": {
+        "prompt": 72720,
+        "completion": 4495,
+        "total": 77215
+      },
+      "groq": {
+        "prompt": 11276,
+        "completion": 12134,
+        "total": 23410
+      }
+    }
+  },
+  "totals_by_provider": {
+    "gemini": {
+      "prompt": 5126,
+      "completion": 9148,
+      "total": 14274
+    },
+    "groq": {
+      "prompt": 11276,
+      "completion": 12134,
+      "total": 23410
+    },
+    "ollama": {
+      "prompt": 72720,
+      "completion": 4495,
+      "total": 77215
+    }
+  },
+  "totals_by_role": {
+    "Locator": {
+      "prompt": 5126,
+      "completion": 9148,
+      "total": 14274
+    },
+    "Supervisor": {
+      "prompt": 8243,
+      "completion": 1460,
+      "total": 9703
+    },
+    "Tester": {
+      "prompt": 3033,
+      "completion": 10674,
+      "total": 13707
+    },
+    "Coder": {
+      "prompt": 72720,
+      "completion": 4495,
+      "total": 77215
+    }
+  },
+  "grand_total_tokens": 114899,
+  "current_session_provider_tokens": {
+    "gemini": {
+      "prompt": 2503,
+      "completion": 4661,
+      "total": 7164
+    },
+    "groq": {
+      "prompt": 4010,
+      "completion": 1641,
+      "total": 5651
+    },
+    "ollama": {
+      "prompt": 34504,
+      "completion": 1841,
+      "total": 36345
+    }
+  },
+  "current_session_role_tokens": {
+    "Locator": {
+      "prompt": 2503,
+      "completion": 4661,
+      "total": 7164
+    },
+    "Supervisor": {
+      "prompt": 2524,
+      "completion": 481,
+      "total": 3005
+    },
+    "Tester": {
+      "prompt": 1486,
+      "completion": 1160,
+      "total": 2646
+    },
+    "Coder": {
+      "prompt": 34504,
+      "completion": 1841,
+      "total": 36345
+    }
+  }
+}

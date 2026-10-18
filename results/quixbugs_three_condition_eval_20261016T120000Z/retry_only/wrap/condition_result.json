@@ -1,0 +1,101 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-wrap",
+  "program_name": "wrap",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 5168,
+  "prompt_tokens": 4807,
+  "completion_tokens": 361,
+  "token_breakdown": {
+    "total_tokens": 5168,
+    "prompt_tokens": 4807,
+    "completion_tokens": 361,
+    "by_role": {
+      "Coder": {
+        "prompt": 4807,
+        "completion": 361,
+        "total": 5168
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 4807,
+        "completion": 361,
+        "total": 5168
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-17T09:03:45Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1565,
+        "completion_tokens": 142,
+        "total_tokens": 1707
+      },
+      {
+        "timestamp": "2026-10-17T09:04:08Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1621,
+        "completion_tokens": 109,
+        "total_tokens": 1730
+      },
+      {
+        "timestamp": "2026-10-17T09:04:32Z",
+        "date_utc": "2026-10-17",
+        "task_id": "quixbugs-python-wrap",
+        "program_name": "wrap",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1621,
+        "completion_tokens": 110,
+        "total_tokens": 1731
+      }
+    ]
+  },
+  "total_duration_seconds": 69.106,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+      "resolved": false,
+      "duration_seconds": 21.417
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:3\nerror: python_programs/wrap.py: patch does not apply",
+      "resolved": false,
+      "duration_seconds": 23.189
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Generated patch failed git apply --check against base revision: error: patch failed: python_programs/wrap.py:7\nerror: python_programs/wrap.py: patch does not apply",
+      "resolved": false,
+      "duration_seconds": 24.499
+    }
+  ]
+}

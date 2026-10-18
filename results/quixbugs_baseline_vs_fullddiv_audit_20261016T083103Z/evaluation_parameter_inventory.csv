@@ -1,0 +1,20 @@
+Parameter Name,Definition,Data Type,Units,Source File / Field,Available Observations,Condition Comparable,Level,Missing Count,Known Limitations
+task_id,Canonical QuixBugs identifier,string,identifier,condition_result.json,80,Yes,Task,0,None
+program_name,Target QuixBugs program name,string,name,condition_result.json,80,Yes,Task,0,None
+resolved,Whether patch passed 100% of specification tests,boolean,boolean,condition_result.json,80,Yes,Task,0,Authoritative test suite verdict
+attempts_used,Number of repair attempts executed,integer,count,condition_result.json,80,Yes,Task,0,BASELINE capped at 1; FULL_DDIV capped at 3
+total_tokens,Sum of prompt and completion tokens across attempts,integer,tokens,condition_result.json,80,Yes,Task,0,Ollama local API token counter
+prompt_tokens,Total tokens in input prompts,integer,tokens,condition_result.json,80,Yes,Task,0,None
+completion_tokens,Total tokens in generated outputs,integer,tokens,condition_result.json,80,Yes,Task,0,None
+total_duration_seconds,Total wall-clock duration of repair loop,float,seconds,condition_result.json,80,Yes,Task,0,"Includes model inference, patching, and pytest"
+patch_extracted,Whether unified diff was successfully generated,boolean,boolean,history[].patch_extracted,136,Yes,Attempt,0,AST syntax checking verified
+candidate_patch_applied,Whether patch applied cleanly via git apply,boolean,boolean,history[].candidate_patch_applied,136,Yes,Attempt,0,Checked against pristine git base
+is_repeated_patch,Whether candidate patch is byte-identical to prior attempt,boolean,boolean,history[].is_repeated_patch,136,Yes,Attempt,0,Detected across attempts
+evaluation_verdict,Evaluator execution verdict,string,categorical,history[].evaluation_verdict,136,Yes,Attempt,0,"RESOLVED, UNRESOLVED (Tests failed), etc."
+failure_category,Detailed failure categorization,string,categorical,history[].failure_category,136,Yes,Attempt,0,"ASSERTION_FAILURE, TIMEOUT, SYNTAX_ERROR, etc."
+temperature,Model sampling temperature,float,scalar,history[].temperature,136,Yes,Attempt,0,0.0 for att 1; 0.2 for att 2+
+model_latency,Model inference latency per attempt,float,seconds,raw_response_attempt_*.json,136,Yes,Attempt,0,Local Ollama generation latency
+memory_record_id,Primary key in SQLite memory store,integer,id,quixbugs_40tasks_memory.db,46,No (FULL_DDIV only),Attempt,90,Recorded only for failed FULL_DDIV attempts
+trust_event_id,Trust update event identifier,integer,id,quixbugs_40tasks_memory.db,0,No,Event,136,NOT RECORDED in standalone QuixBugs runner
+gpu_energy_joules,GPU energy consumption during inference,float,joules,N/A,0,No,Run,136,NOT MEASURED / UNRECORDED
+vram_utilization_mb,VRAM memory allocation during inference,float,MB,N/A,0,No,Run,136,NOT MEASURED / UNRECORDED

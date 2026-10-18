@@ -1,0 +1,22 @@
+diff --git a/requests/utils.py b/requests/utils.py
+--- a/requests/utils.py
++++ b/requests/utils.py
+@@ -683,10 +683,15 @@ def to_native_string(string, encoding='ascii'):
+     """Given a string object, regardless of type, returns a representation of that
+     string in the native string type, encoding and decoding where necessary.
+     This assumes ASCII unless told otherwise.
+     """
+     out = None
+
+-    if isinstance(string, builtin_str):
++    if isinstance(string, bytes):
++        return string
++    elif isinstance(string, builtin_str):
++        return string.encode(encoding, errors='replace')
++    else:
+         if is_py2:
+             out = string.encode(encoding)
+         else:
+             out = string.encode(encoding, errors='replace')
+
+     return out

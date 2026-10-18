@@ -1,0 +1,107 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-find_in_sorted",
+  "program_name": "find_in_sorted",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3377,
+  "prompt_tokens": 2309,
+  "completion_tokens": 1068,
+  "token_breakdown": {
+    "total_tokens": 3377,
+    "prompt_tokens": 2309,
+    "completion_tokens": 1068,
+    "by_role": {
+      "Locator": {
+        "prompt": 258,
+        "completion": 461,
+        "total": 719
+      },
+      "Coder": {
+        "prompt": 1922,
+        "completion": 114,
+        "total": 2036
+      },
+      "Tester": {
+        "prompt": 129,
+        "completion": 493,
+        "total": 622
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 258,
+        "completion": 461,
+        "total": 719
+      },
+      "ollama": {
+        "prompt": 1922,
+        "completion": 114,
+        "total": 2036
+      },
+      "groq": {
+        "prompt": 129,
+        "completion": 493,
+        "total": 622
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T10:48:22Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-find_in_sorted",
+        "program_name": "find_in_sorted",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 258,
+        "completion_tokens": 461,
+        "total_tokens": 719
+      },
+      {
+        "timestamp": "2026-10-16T10:48:32Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-find_in_sorted",
+        "program_name": "find_in_sorted",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1922,
+        "completion_tokens": 114,
+        "total_tokens": 2036
+      },
+      {
+        "timestamp": "2026-10-16T10:48:43Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-find_in_sorted",
+        "program_name": "find_in_sorted",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 129,
+        "completion_tokens": 493,
+        "total_tokens": 622
+      }
+    ]
+  },
+  "total_duration_seconds": 48.715,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 22.0,
+      "patch_diff": "--- a/python_programs/find_in_sorted.py\n+++ b/python_programs/find_in_sorted.py\n@@ -6,7 +6,7 @@\n         if x < arr[mid]:\n             return binsearch(start, mid)\n         elif x > arr[mid]:\n-            return binsearch(mid, end)\n+            return binsearch(mid + 1, end)\n         else:\n             return mid\n \n"
+    }
+  ]
+}

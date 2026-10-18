@@ -1,0 +1,14 @@
+--- a/sympy/physics/hep/gamma_matrices.py
++++ b/sympy/physics/hep/gamma_matrices.py
+@@ -72,7 +72,10 @@
+     return new_expr, residual_expr
+ 
+ 
+-def simplify_gamma_expression(expression):
++def simplify_gamma_expression(expr):
++    # Implement a new simplification algorithm for gamma matrix expressions
++    # This is a placeholder for the actual implementation
++    return expr
+     extracted_expr, residual_expr = extract_type_tens(expression, GammaMatrix)
+     res_expr = _simplify_single_line(extracted_expr)
+     return res_expr * residual_expr

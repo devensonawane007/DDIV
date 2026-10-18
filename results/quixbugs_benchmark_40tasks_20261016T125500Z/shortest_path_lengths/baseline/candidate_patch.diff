@@ -1,0 +1,11 @@
+--- a/python_programs/shortest_path_lengths.py
++++ b/python_programs/shortest_path_lengths.py
+@@ -3,7 +3,7 @@
+ def shortest_path_lengths(n, length_by_edge):
+     length_by_path = defaultdict(lambda: float('inf'))
+     length_by_path.update({(i, i): 0 for i in range(n)})
+-    length_by_path.update(length_by_edge)
++    length_by_path.update({(i, j): length_by_edge[(i, j)] for i, j in length_by_edge if length_by_path[(i, j)] > length_by_edge[(i, j)]})
+ 
+     for k in range(n):
+         for i in range(n):

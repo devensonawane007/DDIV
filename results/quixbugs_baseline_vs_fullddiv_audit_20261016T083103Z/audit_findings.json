@@ -1,0 +1,52 @@
+{
+  "audit_timestamp": "2026-10-16T08:31:16Z",
+  "source_directory": "D:\\PROJECTS\\DDIV\\results\\quixbugs_benchmark_40tasks_20261016T125500Z",
+  "output_directory": "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z",
+  "source_immutability_verified": true,
+  "source_files_count_pre": 4186,
+  "source_files_count_post": 4186,
+  "discrepancies": [],
+  "production_memory_untouched": true,
+  "zero_cloud_cost_verified": true,
+  "zero_inference_calls_during_audit": true,
+  "deliverables": {
+    "comprehensive_report": "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\quixbugs_baseline_vs_fullddiv_comprehensive_report.md",
+    "executive_summary": "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\executive_summary.md",
+    "html_dashboard": "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\quixbugs_baseline_vs_fullddiv_report.html",
+    "figure_captions": "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figure_captions.md",
+    "csv_files": [
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\task_level_comparison.csv",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\aggregate_metrics_comparison.csv",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\attempt_level_comparison.csv",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\mechanism_evidence.csv",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\evaluation_parameter_inventory.csv"
+    ],
+    "json_files": [
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\paired_outcomes.json",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\statistical_analysis.json",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\source_artifact_manifest.json",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\audit_findings.json"
+    ],
+    "figures": [
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_1_overall_resolution.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_1_overall_resolution.svg",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_2_task_outcomes_matrix.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_2_task_outcomes_matrix.svg",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_3_paired_distribution.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_3_paired_distribution.svg",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_4_attempts_and_recovery.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_4_attempts_and_recovery.svg",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_5_resource_efficiency.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_5_resource_efficiency.svg",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_6_patch_evaluator_outcomes.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_6_patch_evaluator_outcomes.svg",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_7_mechanism_evidence.png",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\figures\\figure_7_mechanism_evidence.svg"
+    ],
+    "diagrams": [
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\diagrams\\diagram_a_experimental_architecture.mmd",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\diagrams\\diagram_b_ddiv_recovery_sequence.mmd",
+      "D:\\PROJECTS\\DDIV\\results\\quixbugs_baseline_vs_fullddiv_audit_20261016T083103Z\\diagrams\\diagram_c_evaluation_pipeline.mmd"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1671,
+  "completion_tokens": 94,
+  "latency_seconds": 4.2165874,
+  "error": null,
+  "raw_text": "{\n  \"reasoning_summary\": \"The function does not handle the case where no next permutation exists, i.e., when the input permutation is the largest lexicographical permutation.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/next_permutation.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"return next_perm\",\n      \"code\": \"return next_perm if next_perm else perm\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The function does not handle the case where no next permutation exists, i.e., when the input permutation is the largest lexicographical permutation.",
+    "modifications": [
+      {
+        "path": "python_programs/next_permutation.py",
+        "operation": "replace",
+        "anchor": "return next_perm",
+        "code": "return next_perm if next_perm else perm"
+      }
+    ]
+  }
+}

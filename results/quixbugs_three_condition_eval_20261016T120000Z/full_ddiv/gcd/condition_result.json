@@ -1,0 +1,107 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-gcd",
+  "program_name": "gcd",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 2836,
+  "prompt_tokens": 1974,
+  "completion_tokens": 862,
+  "token_breakdown": {
+    "total_tokens": 2836,
+    "prompt_tokens": 1974,
+    "completion_tokens": 862,
+    "by_role": {
+      "Locator": {
+        "prompt": 173,
+        "completion": 281,
+        "total": 454
+      },
+      "Coder": {
+        "prompt": 1692,
+        "completion": 99,
+        "total": 1791
+      },
+      "Tester": {
+        "prompt": 109,
+        "completion": 482,
+        "total": 591
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 173,
+        "completion": 281,
+        "total": 454
+      },
+      "ollama": {
+        "prompt": 1692,
+        "completion": 99,
+        "total": 1791
+      },
+      "groq": {
+        "prompt": 109,
+        "completion": 482,
+        "total": 591
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T10:49:09Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 173,
+        "completion_tokens": 281,
+        "total_tokens": 454
+      },
+      {
+        "timestamp": "2026-10-16T10:49:18Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1692,
+        "completion_tokens": 99,
+        "total_tokens": 1791
+      },
+      {
+        "timestamp": "2026-10-16T10:49:29Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 109,
+        "completion_tokens": 482,
+        "total_tokens": 591
+      }
+    ]
+  },
+  "total_duration_seconds": 45.854,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 21.27,
+      "patch_diff": "--- a/python_programs/gcd.py\n+++ b/python_programs/gcd.py\n@@ -2,7 +2,7 @@\n     if b == 0:\n         return a\n     else:\n-        return gcd(a % b, b)\n+        return gcd(b, a % b)\n \n \n \"\"\"\n"
+    }
+  ]
+}

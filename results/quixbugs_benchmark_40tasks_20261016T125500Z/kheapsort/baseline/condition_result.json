@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-kheapsort",
+  "program_name": "kheapsort",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1916,
+  "prompt_tokens": 1777,
+  "completion_tokens": 139,
+  "total_duration_seconds": 13.854,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 13.854,
+      "patch_diff": "--- a/python_programs/kheapsort.py\n+++ b/python_programs/kheapsort.py\n@@ -5,7 +5,7 @@\n     heapq.heapify(heap)\n \n     for x in arr:\n-        yield heapq.heappushpop(heap, x)\n+        heapq.heappushpop(heap, x)\n \n     while heap:\n         yield heapq.heappop(heap)\n"
+    }
+  ]
+}

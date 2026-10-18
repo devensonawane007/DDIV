@@ -1,0 +1,167 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-lcs_length",
+  "program_name": "lcs_length",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 15874,
+  "prompt_tokens": 12840,
+  "completion_tokens": 3034,
+  "token_breakdown": {
+    "total_tokens": 15874,
+    "prompt_tokens": 12840,
+    "completion_tokens": 3034,
+    "by_role": {
+      "Locator": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0
+      },
+      "Coder": {
+        "prompt": 9458,
+        "completion": 1265,
+        "total": 10723
+      },
+      "Tester": {
+        "prompt": 141,
+        "completion": 1195,
+        "total": 1336
+      },
+      "Supervisor": {
+        "prompt": 3241,
+        "completion": 574,
+        "total": 3815
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 0,
+        "completion": 0,
+        "total": 0
+      },
+      "ollama": {
+        "prompt": 9458,
+        "completion": 1265,
+        "total": 10723
+      },
+      "groq": {
+        "prompt": 3382,
+        "completion": 1769,
+        "total": 5151
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T11:07:20Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-lcs_length",
+        "program_name": "lcs_length",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "timestamp": "2026-10-16T11:07:36Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-lcs_length",
+        "program_name": "lcs_length",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1479,
+        "completion_tokens": 113,
+        "total_tokens": 1592
+      },
+      {
+        "timestamp": "2026-10-16T11:07:51Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-lcs_length",
+        "program_name": "lcs_length",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 141,
+        "completion_tokens": 1195,
+        "total_tokens": 1336
+      },
+      {
+        "timestamp": "2026-10-16T11:08:05Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-lcs_length",
+        "program_name": "lcs_length",
+        "attempt": 1,
+        "role": "Supervisor",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 3241,
+        "completion_tokens": 574,
+        "total_tokens": 3815
+      },
+      {
+        "timestamp": "2026-10-16T11:08:54Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-lcs_length",
+        "program_name": "lcs_length",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 4052,
+        "completion_tokens": 924,
+        "total_tokens": 4976
+      },
+      {
+        "timestamp": "2026-10-16T11:09:12Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-lcs_length",
+        "program_name": "lcs_length",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 3927,
+        "completion_tokens": 228,
+        "total_tokens": 4155
+      }
+    ]
+  },
+  "total_duration_seconds": 212.463,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 33.438,
+      "patch_diff": "--- a/python_programs/lcs_length.py\n+++ b/python_programs/lcs_length.py\n@@ -1,7 +1,7 @@\n def lcs_length(s, t):\n     from collections import Counter\n \n-    dp = Counter()\n+    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\n \n     for i in range(len(s)):\n         for j in range(len(t)):\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Anchor not found in 'python_programs/lcs_length.py': dp[i, j] = max(dp[i-1, j], dp[i, j-1])",
+      "resolved": false,
+      "duration_seconds": 49.206
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "Patched file 'python_programs/lcs_length.py' failed Python AST syntax verification: unindent does not match any outer indentation level (<unknown>, line 12)",
+      "resolved": false,
+      "duration_seconds": 17.808
+    }
+  ]
+}

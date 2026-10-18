@@ -1,0 +1,72 @@
+{
+  "manifest_version": "1.0",
+  "screening_type": "DDIV_SWEbench_Candidate_Screening",
+  "dataset_path": "D:\\DDIV\\data\\swebench\\test-00000-of-00001.parquet",
+  "dataset_rows": 500,
+  "dataset_schema_version": "SWE-bench Verified (HuggingFace)",
+  "screening_date": "2026-10-15T15:19:01.342820+00:00",
+  "screening_criteria": {
+    "platform": "Windows 10/11",
+    "python_version": "3.11.9",
+    "no_docker": true,
+    "no_external_services": true,
+    "requires_test_patch": true,
+    "requires_fail_to_pass": true,
+    "preferred_repos": [
+      "pylint-dev/pylint",
+      "mwaskom/seaborn",
+      "sympy/sympy",
+      "psf/requests",
+      "pallets/flask",
+      "sphinx-doc/sphinx"
+    ]
+  },
+  "excluded_tasks": [
+    "astropy__astropy-12907",
+    "astropy__astropy-13033",
+    "astropy__astropy-14508",
+    "astropy__astropy-8872",
+    "django__django-11141",
+    "django__django-16429",
+    "matplotlib__matplotlib-20676",
+    "matplotlib__matplotlib-26342",
+    "mwaskom__seaborn-3187",
+    "pallets__flask-5014",
+    "psf__requests-2148",
+    "psf__requests-2931",
+    "pydata__xarray-4966",
+    "pydata__xarray-7393",
+    "pylint-dev__pylint-4970",
+    "pylint-dev__pylint-6903",
+    "pytest-dev__pytest-5221",
+    "pytest-dev__pytest-7982",
+    "pytest-dev__pytest-8399",
+    "scikit-learn__scikit-learn-13496",
+    "scikit-learn__scikit-learn-26323",
+    "sphinx-doc__sphinx-8269",
+    "sphinx-doc__sphinx-8638",
+    "sympy__sympy-13878",
+    "sympy__sympy-22914",
+    "sympy__sympy-23262",
+    "sympy__sympy-23413",
+    "sympy__sympy-23950",
+    "sympy__sympy-24443",
+    "sympy__sympy-24539",
+    "sympy__sympy-24562",
+    "sympy__sympy-24661"
+  ],
+  "total_candidates_screened": 470,
+  "classification_distribution": {
+    "promising_not_verified": 424,
+    "blocked": 34,
+    "ineligible": 12
+  },
+  "phase3_candidates_verified": 9,
+  "phase3_verified_eligible": 4,
+  "output_files": {
+    "report": "D:\\DDIV\\results\\candidate_screening_20261015T144611Z\\candidate_screening_report.md",
+    "csv": "D:\\DDIV\\results\\candidate_screening_20261015T144611Z\\candidate_screening_results.csv",
+    "json": "D:\\DDIV\\results\\candidate_screening_20261015T144611Z\\candidate_screening_results.json",
+    "manifest": "D:\\DDIV\\results\\candidate_screening_20261015T144611Z\\candidate_screening_manifest.json"
+  }
+}

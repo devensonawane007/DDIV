@@ -1,0 +1,350 @@
+{
+  "experiment_id": "phase7_ablation_1792056462",
+  "task_id": "pylint-dev__pylint-4970",
+  "condition": "full_ddiv_memory_off",
+  "status": "ABORTED_QUOTA_EXHAUSTED",
+  "resolved": false,
+  "workflow_completed": false,
+  "patch_generated": false,
+  "patch_applied": false,
+  "failed_stage": "Supervisor",
+  "error_code": "SUPERVISOR_QUOTA_EXHAUSTED",
+  "provider_failure": {
+    "stage": "Supervisor",
+    "error_code": "SUPERVISOR_RATE_LIMITED",
+    "error_message": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m3kpvj89efpapkc1fcqhmgb1` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198591, Requested 1852. Please try again in 3m11.376s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+    "attempt": 1,
+    "quota_exhausted": true
+  },
+  "degraded_execution": false,
+  "degraded_reason": null,
+  "attempts": 1,
+  "attempt_history": [
+    {
+      "attempt": 1,
+      "coder_proposals": [
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.open",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "self.stats = self.linter.add_stats(",
+          "code": "        if self.min_lines == 0:\n            # Disable similarity checking when threshold is zero\n            self.disabled = True\n            return",
+          "reason": "Set a disabled flag and skip further initialization when min-similarity-lines is 0."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.process_module",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "\"\"\"process a module",
+          "code": "        if getattr(self, \"disabled\", False):\n            return",
+          "reason": "Avoid processing modules when the checker is disabled."
+        },
+        {
+          "path": "pylint/checkers/similar.py",
+          "target_symbol": "SimilarChecker.close",
+          "target_class": null,
+          "target_method": null,
+          "node_type": null,
+          "line_range": null,
+          "surrounding_context": null,
+          "source_fingerprint": null,
+          "operation": "insert_after",
+          "anchor": "\"\"\"compute and display similarities on closing (i.e. end of parsing)\"\"\"",
+          "code": "        if getattr(self, \"disabled\", False):\n            return",
+          "reason": "Skip similarity computation and message emission when disabled."
+        }
+      ],
+      "patch_operations": [
+        "insert_after",
+        "insert_after",
+        "insert_after"
+      ],
+      "generated_patch": "",
+      "patch_generated": false,
+      "patch_valid": false,
+      "patch_validation_error": "Patch is empty.",
+      "coder_error_code": "PATCH_BUILDER_FAILED",
+      "coder_error_detail": "PatchBuilder failed: Target symbol 'SimilarChecker.process_module' not found in 'pylint/checkers/similar.py'.",
+      "agent_apply_success": false,
+      "agent_test_status": "",
+      "internal_resolved": false,
+      "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+      "f2p_passed": false,
+      "p2p_passed": false,
+      "failed_f2p_tests": [],
+      "failed_p2p_tests": [],
+      "final_patch_correct": false,
+      "regression_detected": false,
+      "located_files": [
+        "pylint/checkers/similar.py"
+      ],
+      "latency_seconds": 0.18642330169677734,
+      "agent_timings": {
+        "locator": 4.421942472457886,
+        "coder": 3.743940830230713,
+        "tester": 4.751564264297485,
+        "supervisor": 12.973995208740234
+      },
+      "token_usage": {
+        "prompt_tokens": 11059,
+        "completion_tokens": 2613,
+        "total_tokens": 13672
+      },
+      "model_invocations": [
+        {
+          "agent": "Locator",
+          "model": "gemini-3.1-flash-lite",
+          "provider": "gemini",
+          "prompt_tokens": 1682,
+          "completion_tokens": 160,
+          "total_tokens": 1842,
+          "latency_seconds": 4.421942472457886
+        },
+        {
+          "agent": "TestUnderstanding",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 2800,
+          "completion_tokens": 439,
+          "total_tokens": 3239,
+          "latency_seconds": 1.2009162902832031
+        },
+        {
+          "agent": "Coder",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 4184,
+          "completion_tokens": 1494,
+          "total_tokens": 5678,
+          "latency_seconds": 3.743940830230713
+        },
+        {
+          "agent": "Tester",
+          "model": "openai/gpt-oss-120b",
+          "provider": "groq",
+          "prompt_tokens": 2393,
+          "completion_tokens": 520,
+          "total_tokens": 2913,
+          "latency_seconds": 4.751564264297485
+        },
+        {
+          "agent": "Supervisor",
+          "model": "qwen/qwen3.8-27b",
+          "provider": "groq",
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "total_tokens": 0,
+          "latency_seconds": 12.973995208740234
+        }
+      ],
+      "context_characters": 7591,
+      "root_cause_analysis": {
+        "root_cause": "The `SimilarChecker` class does not check if `min_similarity_lines` is 0 (or less than 1) to disable the similarity check. When `min_lines` is 0, the `Similar` class logic treats every line as a potential duplicate because the threshold for matching is effectively zero, leading to excessive false positives instead of disabling the check.",
+        "behavioral_contract": "The `min-similarity-lines` option should allow users to disable the duplicate code check by setting it to 0. When disabled, the checker should not report any R0801 messages and should not perform similarity computations.",
+        "expected_behavior": "Setting `min-similarity-lines` to 0 in the configuration should disable the duplicate code check, resulting in no R0801 messages being emitted.",
+        "current_behavior": "Setting `min-similarity-lines` to 0 causes the checker to treat every line of code as duplicate, raising many R0801 errors.",
+        "relevant_symbols": [
+          "SimilarChecker",
+          "SimilarChecker.open",
+          "SimilarChecker.process_module",
+          "SimilarChecker.close",
+          "Similar"
+        ],
+        "relevant_tests": [
+          "test_similar.py",
+          "test_min_similarity_lines"
+        ],
+        "required_change": "Modify `SimilarChecker` to check if `min_similarity_lines` is 0 (or less than 1) and skip the similarity check entirely if so. This can be done by overriding `open` or `process_module` to return early if the check is disabled.",
+        "regression_risks": [
+          "Ensuring that setting `min-similarity-lines` to a positive value still works correctly.",
+          "Verifying that the statistics (`nb_duplicated_lines`, `percent_duplicated_lines`) are correctly set to 0 when the check is disabled.",
+          "Confirming that the `close` method does not attempt to compute similarities if the check was disabled."
+        ]
+      },
+      "test_understanding_error": null,
+      "test_understanding_error_code": null,
+      "patch_critic": null,
+      "patch_critic_error": null,
+      "patch_critic_error_code": null,
+      "tester_error": null,
+      "tester_error_code": null,
+      "failure_detector": {
+        "is_failure": true,
+        "candidate_failure_type": "F3",
+        "granular_failure_type": "ANCHOR_NOT_FOUND",
+        "confidence": 0.95,
+        "evidence_reasons": [
+          "PatchBuilder anchor matching failed: PatchBuilder failed: Target symbol 'SimilarChecker.process_module' not found in 'pylint/checkers/similar.py'.."
+        ],
+        "deterministic": true,
+        "objective_failure_evidence": {
+          "patch_valid": false,
+          "patch_applied": false,
+          "test_passed": false,
+          "coder_error_code": "PATCH_BUILDER_FAILED",
+          "clean_base_passed": true,
+          "f2p_passed": false,
+          "p2p_passed": false,
+          "failed_f2p_tests": [],
+          "failed_p2p_tests": [],
+          "timed_out": false
+        }
+      },
+      "memory_retrieved": false,
+      "degraded_execution": false,
+      "degraded_reason": null,
+      "supervisor_error": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m3kpvj89efpapkc1fcqhmgb1` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198591, Requested 1852. Please try again in 3m11.376s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+      "supervisor_error_code": "SUPERVISOR_RATE_LIMITED"
+    }
+  ],
+  "candidate_patch": "",
+  "candidate_patch_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase7_ablation\\pylint-dev__pylint-4970__full_ddiv_memory_off\\pylint-dev__pylint-4970__full_ddiv_memory_off.patch",
+  "pass_at_1": false,
+  "metrics": {
+    "pass_at_1": false,
+    "repair_accuracy": false,
+    "regression_detected": false,
+    "recovery_triggered": false,
+    "recovery_success": null,
+    "repair_time_seconds": 56.1,
+    "input_tokens": 11059,
+    "output_tokens": 2613,
+    "total_tokens": 13672,
+    "inference_calls": 5,
+    "inference_cost_usd": null,
+    "agent_timings": {
+      "locator": 4.421942472457886,
+      "coder": 3.743940830230713,
+      "tester": 4.751564264297485,
+      "supervisor": 12.973995208740234
+    },
+    "model_invocations": [
+      {
+        "agent": "Locator",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "prompt_tokens": 1682,
+        "completion_tokens": 160,
+        "total_tokens": 1842,
+        "latency_seconds": 4.421942472457886
+      },
+      {
+        "agent": "TestUnderstanding",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 2800,
+        "completion_tokens": 439,
+        "total_tokens": 3239,
+        "latency_seconds": 1.2009162902832031
+      },
+      {
+        "agent": "Coder",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 4184,
+        "completion_tokens": 1494,
+        "total_tokens": 5678,
+        "latency_seconds": 3.743940830230713
+      },
+      {
+        "agent": "Tester",
+        "model": "openai/gpt-oss-120b",
+        "provider": "groq",
+        "prompt_tokens": 2393,
+        "completion_tokens": 520,
+        "total_tokens": 2913,
+        "latency_seconds": 4.751564264297485
+      },
+      {
+        "agent": "Supervisor",
+        "model": "qwen/qwen3.8-27b",
+        "provider": "groq",
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "total_tokens": 0,
+        "latency_seconds": 12.973995208740234
+      }
+    ],
+    "context_characters": 7591,
+    "critic_approved": null,
+    "critic_risk_level": null,
+    "memory_retrieved": false
+  },
+  "failure_detection": null,
+  "internal_evaluation": {
+    "tier": "tier_1_internal",
+    "backend_name": "internal_targeted_evaluator",
+    "outcome": "UNRESOLVED",
+    "verdict": "UNRESOLVED_INTERNALLY (Candidate patch application failed)",
+    "duration_seconds": 0.19,
+    "all_f2p_passed": false,
+    "all_p2p_passed": false,
+    "internal_resolved": false,
+    "fail_to_pass_results": {},
+    "pass_to_pass_results": {}
+  },
+  "official_evaluation": {
+    "tier": "tier_2_official",
+    "backend_name": "official_swebench_harness",
+    "available": false,
+    "outcome": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "verdict": "OFFICIAL_HARNESS_UNAVAILABLE",
+    "duration_seconds": 0.0,
+    "details": {
+      "docker_available": false,
+      "swebench_package_available": false,
+      "diagnostic": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed.",
+      "resolution_claim": "NOT_EVALUATED"
+    },
+    "error_message": "Official harness cannot run: 'swebench' python package not installed; Docker daemon unreachable or not installed."
+  },
+  "trust_scores": {
+    "Locator": 0.87,
+    "Coder": 0.74,
+    "Tester": 0.91,
+    "Supervisor": 0.84
+  },
+  "execution_duration_seconds": 56.14,
+  "worker_pid": 33944,
+  "worker_exit_code": 3,
+  "log_file_path": "D:\\PROJECTS\\DDIV\\results\\v2_2_development\\phase7_memory_ablation_20261015_pilot\\logs\\pylint-dev__pylint-4970__full_ddiv_memory_off.log",
+  "workspace_path": "D:\\PROJECTS\\DDIV\\data\\workspaces\\phase7_ablation\\pylint-dev__pylint-4970__full_ddiv_memory_off",
+  "error_message": "RATE_LIMITED after 2 retries: Error code: 429 - {'error': {'message': 'Rate limit reached for model `qwen/qwen3.8-27b` in organization `org_01m3kpvj89efpapkc1fcqhmgb1` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198591, Requested 1852. Please try again in 3m11.376s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
+  "started_at": "2026-10-15T10:04:04.563981+00:00",
+  "completed_at": "2026-10-15T10:05:00.665895+00:00",
+  "protocol_type": "SEQUENTIAL_ACCUMULATION_TRANSFER",
+  "telemetry_coder_prompts": [
+    {
+      "attempt": 1,
+      "has_memory": false,
+      "memory_chars": 0,
+      "prompt_chars": 12080
+    }
+  ],
+  "telemetry_loc_prompts": [
+    {
+      "attempt": 1,
+      "has_memory": false,
+      "len": 4271
+    }
+  ],
+  "telemetry_sup_prompts": [
+    {
+      "attempt": 1,
+      "matches_count": 0,
+      "len": 2485
+    }
+  ]
+}

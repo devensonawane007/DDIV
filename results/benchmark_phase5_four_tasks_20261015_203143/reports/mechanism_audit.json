@@ -1,0 +1,148 @@
+{
+  "timestamp": "2026-10-15T16:17:44.949408+00:00",
+  "total_jobs": 12,
+  "conditions_evaluated": [
+    "baseline",
+    "retry_only",
+    "full_ddiv"
+  ],
+  "memory_mechanism": {
+    "condition_isolation_verified": true,
+    "baseline_memory_calls": 0,
+    "retry_only_memory_calls": 0,
+    "full_ddiv_seed_records": 11,
+    "anti_contamination_target_overlap": 0
+  },
+  "recovery_mechanism": {
+    "anti_repetition_tracking": "ProposalHistory active in FULL_DDIV",
+    "negative_constraint_injection": "CRITICAL DIRECTIVE: DO NOT REPEAT PREVIOUS FAILED PROPOSALS injected on retry",
+    "failure_disambiguation": "FailureDisambiguator categorized test failures without leaking gold data"
+  },
+  "trust_mechanism": {
+    "threshold": 0.7,
+    "low_trust_critique_enabled": true,
+    "high_trust_unaltered": true
+  },
+  "per_job_mechanisms": [
+    {
+      "job_key": "pylint-dev__pylint-6903__baseline",
+      "condition": "baseline",
+      "attempts": 1,
+      "resolved": false,
+      "coder_prompts_captured": 1,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "pylint-dev__pylint-6903__retry_only",
+      "condition": "retry_only",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "pylint-dev__pylint-6903__full_ddiv",
+      "condition": "full_ddiv",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": true,
+      "recovery_guidance_injected": true,
+      "supervisor_invocations": 2
+    },
+    {
+      "job_key": "pylint-dev__pylint-4970__baseline",
+      "condition": "baseline",
+      "attempts": 1,
+      "resolved": false,
+      "coder_prompts_captured": 1,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "pylint-dev__pylint-4970__retry_only",
+      "condition": "retry_only",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "pylint-dev__pylint-4970__full_ddiv",
+      "condition": "full_ddiv",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": true,
+      "recovery_guidance_injected": true,
+      "supervisor_invocations": 2
+    },
+    {
+      "job_key": "sympy__sympy-23413__baseline",
+      "condition": "baseline",
+      "attempts": 1,
+      "resolved": false,
+      "coder_prompts_captured": 1,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "sympy__sympy-23413__retry_only",
+      "condition": "retry_only",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "sympy__sympy-23413__full_ddiv",
+      "condition": "full_ddiv",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": true,
+      "recovery_guidance_injected": true,
+      "supervisor_invocations": 2
+    },
+    {
+      "job_key": "mwaskom__seaborn-3187__baseline",
+      "condition": "baseline",
+      "attempts": 1,
+      "resolved": false,
+      "coder_prompts_captured": 1,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "mwaskom__seaborn-3187__retry_only",
+      "condition": "retry_only",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": false,
+      "recovery_guidance_injected": false,
+      "supervisor_invocations": 0
+    },
+    {
+      "job_key": "mwaskom__seaborn-3187__full_ddiv",
+      "condition": "full_ddiv",
+      "attempts": 3,
+      "resolved": false,
+      "coder_prompts_captured": 3,
+      "memory_injected": true,
+      "recovery_guidance_injected": true,
+      "supervisor_invocations": 2
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "condition": "RETRY_ONLY",
+  "task_id": "quixbugs-python-gcd",
+  "program_name": "gcd",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 4479,
+  "prompt_tokens": 4387,
+  "completion_tokens": 92,
+  "token_breakdown": {
+    "total_tokens": 4479,
+    "prompt_tokens": 4387,
+    "completion_tokens": 92,
+    "by_role": {
+      "Coder": {
+        "prompt": 4387,
+        "completion": 92,
+        "total": 4479
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 4387,
+        "completion": 92,
+        "total": 4479
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:05:27Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "condition": "RETRY_ONLY",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1447,
+        "completion_tokens": 32,
+        "total_tokens": 1479
+      },
+      {
+        "timestamp": "2026-10-16T18:05:32Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "condition": "RETRY_ONLY",
+        "attempt": 2,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1470,
+        "completion_tokens": 30,
+        "total_tokens": 1500
+      },
+      {
+        "timestamp": "2026-10-16T18:05:38Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-gcd",
+        "program_name": "gcd",
+        "condition": "RETRY_ONLY",
+        "attempt": 3,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1470,
+        "completion_tokens": 30,
+        "total_tokens": 1500
+      }
+    ]
+  },
+  "total_duration_seconds": 16.008,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 4.111
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 5.849
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "JSON response contained no modifications",
+      "resolved": false,
+      "duration_seconds": 6.047
+    }
+  ]
+}

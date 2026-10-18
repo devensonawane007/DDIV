@@ -8,11 +8,65 @@ from pathlib import Path
 from typing import Optional
 from pydantic import BaseModel, Field
 
+def get_project_root() -> Path:
+    """Return the absolute Path to the DDIV project root directory."""
+    curr = Path(__file__).resolve().parent
+    while curr != curr.parent:
+        if (curr / "pyproject.toml").exists() and (curr / ".gitignore").exists():
+            return curr
+        curr = curr.parent
+    return Path(__file__).resolve().parent.parent
+
+
+def load_project_env(env_path: Optional[Path] = None, override: bool = False) -> bool:
+    """Load project .env file with optional path override."""
+    target = env_path or (get_project_root() / ".env")
+    if target.exists():
+        try:
+            from dotenv import load_dotenv
+            return load_dotenv(dotenv_path=target, override=override)
+        except ImportError:
+            for line in target.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                k = k.strip()
+                v = v.strip().strip("'\"")
+                if override or k not in os.environ:
+                    os.environ[k] = v
+            return True
+    return False
+
+
+def get_groq_api_key(required: bool = False, env_path: Optional[Path] = None) -> Optional[str]:
+    """Retrieve and validate GROQ_API_KEY without leaking secret contents."""
+    if env_path is not None:
+        if env_path.exists():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line.startswith("GROQ_API_KEY="):
+                    val = line.split("=", 1)[1].strip().strip("'\"")
+                    if val and not val.startswith("your_") and not val.startswith("REPLACE_"):
+                        return val
+        if required:
+            raise ValueError("Missing or invalid GROQ_API_KEY in specified environment file")
+        return None
+
+    key = os.getenv("GROQ_API_KEY")
+    if not key or key.startswith("your_") or key.startswith("REPLACE_"):
+        if required:
+            raise ValueError("Missing or invalid GROQ_API_KEY")
+        return None
+    return key
+
+
 try:
     from dotenv import load_dotenv
-    load_dotenv(override=True)
+    load_project_env(override=True)
 except ImportError:
     pass
+
 
 
 class ExecutionMode(str, Enum):
@@ -31,6 +85,7 @@ class ExecutionMode(str, Enum):
 TRUST_SUCCESS_DELTA: float = float(os.getenv("TRUST_SUCCESS_DELTA", "0.05"))
 TRUST_FAILURE_DELTA: float = float(os.getenv("TRUST_FAILURE_DELTA", "0.08"))
 TRUST_REGRESSION_DELTA: float = float(os.getenv("TRUST_REGRESSION_DELTA", "0.10"))
+CODER_TRUST_CRITIQUE_THRESHOLD: float = float(os.getenv("CODER_TRUST_CRITIQUE_THRESHOLD", "0.70"))
 
 
 class ProviderType(str, Enum):
@@ -173,6 +228,13 @@ class DDIVConfig(BaseModel):
     init_trust_supervisor: float = Field(
         default_factory=lambda: float(os.getenv("INIT_TRUST_SUPERVISOR", "0.84"))
     )
+    coder_trust_critique_threshold: float = Field(
+        default_factory=lambda: float(os.getenv("CODER_TRUST_CRITIQUE_THRESHOLD", "0.70"))
+    )
+
+    @property
+    def CODER_TRUST_CRITIQUE_THRESHOLD(self) -> float:
+        return self.coder_trust_critique_threshold
 
     # Workflow constraints
     max_recovery_attempts: int = Field(

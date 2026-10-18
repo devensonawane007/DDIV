@@ -1,0 +1,131 @@
+{
+  "manifest_version": "1.0",
+  "audit_name": "DDIV_Phase7_Candidate_Pool_Expansion_and_Evidence_Audit",
+  "audit_timestamp": "2026-10-16T04:35:00Z",
+  "dataset": {
+    "path": "D:/DDIV/data/swebench/test-00000-of-00001.parquet",
+    "total_rows": 500,
+    "unique_task_ids": 500,
+    "unique_repositories": 12
+  },
+  "accounting_reconciliation": {
+    "total_dataset_rows": 500,
+    "exclusion_filter_set_size": 32,
+    "excluded_duplicates_present_in_dataset": 30,
+    "excluded_duplicates_absent_from_dataset": 2,
+    "absent_duplicate_ids": [
+      "psf__requests-2148",
+      "pytest-dev__pytest-5221"
+    ],
+    "actual_rows_screened": 470,
+    "mathematical_formula": "500 - 30 = 470 (The 32 in the historical report header was the cardinality of the exclusion list, of which only 30 matched dataset rows)",
+    "static_classification_counts": {
+      "promising_not_verified": 424,
+      "promising_score_ge_6": 330,
+      "blocked": 34,
+      "ineligible": 12,
+      "sum": 470
+    }
+  },
+  "empirical_verification_audit": {
+    "total_empirically_checked": 9,
+    "verified_eligible": [
+      {
+        "instance_id": "pylint-dev__pylint-6386",
+        "repo": "pylint-dev/pylint",
+        "version": "2.14",
+        "base_commit": "754b487f4d892e3d4872b6fc7468a71db4e31c13",
+        "fail_to_pass": ["tests/config/test_config.py::test_short_verbose"],
+        "baseline_outcome": "FAILED (RC 1)",
+        "runtime_seconds": 2.89,
+        "logs_directory": "results/candidate_screening_20261015T144611Z/verification_logs/pylint-dev__pylint-6386"
+      },
+      {
+        "instance_id": "pylint-dev__pylint-8898",
+        "repo": "pylint-dev/pylint",
+        "version": "3.0",
+        "base_commit": "1f8c4d9eb185c16a2c1d881c054f015e1c2eb334",
+        "fail_to_pass": ["tests/config/test_config.py::test_csv_regex_error"],
+        "baseline_outcome": "FAILED (RC 1)",
+        "runtime_seconds": 2.41,
+        "logs_directory": "results/candidate_screening_20261015T144611Z/verification_logs/pylint-dev__pylint-8898"
+      },
+      {
+        "instance_id": "psf__requests-5414",
+        "repo": "psf/requests",
+        "version": "2.26",
+        "base_commit": "39d0fdd9096f867bc5828dbd6c6e75a9b9a52865",
+        "fail_to_pass": ["tests/test_requests.py::TestRequests::test_invalid_url[InvalidURL-http://.example.com]"],
+        "baseline_outcome": "FAILED (RC 1)",
+        "runtime_seconds": 2.00,
+        "logs_directory": "results/candidate_screening_20261015T144611Z/verification_logs/psf__requests-5414"
+      },
+      {
+        "instance_id": "psf__requests-6028",
+        "repo": "psf/requests",
+        "version": "2.27",
+        "base_commit": "0192aac2412389657053be416208579434e38e58",
+        "fail_to_pass": [
+          "tests/test_utils.py::test_prepend_scheme_if_needed[http://user:pass@example.com/path?query-http://user:pass@example.com/path?query]",
+          "tests/test_utils.py::test_prepend_scheme_if_needed[http://user@example.com/path?query-http://user@example.com/path?query]"
+        ],
+        "baseline_outcome": "FAILED (RC 1)",
+        "runtime_seconds": 1.27,
+        "logs_directory": "results/candidate_screening_20261015T144611Z/verification_logs/psf__requests-6028"
+      }
+    ],
+    "needs_recheck": [
+      {
+        "instance_id": "sphinx-doc__sphinx-10323",
+        "repo": "sphinx-doc/sphinx",
+        "version": "5.0",
+        "base_commit": "31eba1a76dd485dc633cae48227b46879eda5df4",
+        "baseline_outcome": "XFAIL (RC 0)",
+        "reason": "Test decorated with @pytest.mark.xfail(os.name != 'posix'); suppresses failure on Windows host"
+      }
+    ],
+    "blocked": [
+      {
+        "instance_id": "pylint-dev__pylint-4661",
+        "repo": "pylint-dev/pylint",
+        "version": "2.10",
+        "reason": "ImportError: cannot import name 'formatargspec' from 'inspect' (Python 3.11 removal)"
+      },
+      {
+        "instance_id": "pylint-dev__pylint-4604",
+        "repo": "pylint-dev/pylint",
+        "version": "2.9",
+        "reason": "ImportError: cannot import name 'formatargspec' from 'inspect' (Python 3.11 removal)"
+      },
+      {
+        "instance_id": "pylint-dev__pylint-7277",
+        "repo": "pylint-dev/pylint",
+        "version": "2.15",
+        "reason": "ModuleNotFoundError: No module named 'py._path' (pytest/py decoupling)"
+      },
+      {
+        "instance_id": "sphinx-doc__sphinx-8721",
+        "repo": "sphinx-doc/sphinx",
+        "version": "3.5",
+        "reason": "ImportError: cannot import name 'environmentfilter' from 'jinja2' (Jinja2 3.1+ removal)"
+      }
+    ]
+  },
+  "shortlisted_candidates_count": 25,
+  "proposed_batch1_count": 5,
+  "proposed_batch1_candidates": [
+    "mwaskom__seaborn-3069",
+    "sympy__sympy-21847",
+    "sympy__sympy-21612",
+    "pydata__xarray-7233",
+    "django__django-16485"
+  ],
+  "verification_gate_status": "PAUSED_PENDING_USER_APPROVAL",
+  "audit_artifacts": {
+    "accounting_report": "D:/DDIV/results/candidate_audit_20261016T043500Z/reconciled_dataset_accounting.md",
+    "evidence_audit": "D:/DDIV/results/candidate_audit_20261016T043500Z/candidate_evidence_audit.md",
+    "ranked_shortlist": "D:/DDIV/results/candidate_audit_20261016T043500Z/ranked_shortlist.md",
+    "preflight_plan": "D:/DDIV/results/candidate_audit_20261016T043500Z/preflight_verification_plan.md",
+    "manifest": "D:/DDIV/results/candidate_audit_20261016T043500Z/candidate_audit_manifest.json"
+  }
+}

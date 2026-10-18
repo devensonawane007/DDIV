@@ -1,0 +1,11 @@
+--- a/python_programs/powerset.py
++++ b/python_programs/powerset.py
+@@ -5,7 +5,7 @@
+         rest_subsets = powerset(rest)
+         return [[first] + subset for subset in rest_subsets]
+     else:
+-        return [[]]
++        return [[]] if arr else [[]]
+ 
+ 
+ """

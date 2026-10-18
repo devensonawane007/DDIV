@@ -1,0 +1,107 @@
+{
+  "condition": "CLOUD_ASSISTED_DDIV",
+  "task_id": "quixbugs-python-bitcount",
+  "program_name": "bitcount",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 3,
+  "total_tokens": 3110,
+  "prompt_tokens": 2133,
+  "completion_tokens": 977,
+  "token_breakdown": {
+    "total_tokens": 3110,
+    "prompt_tokens": 2133,
+    "completion_tokens": 977,
+    "by_role": {
+      "Locator": {
+        "prompt": 162,
+        "completion": 449,
+        "total": 611
+      },
+      "Coder": {
+        "prompt": 1856,
+        "completion": 92,
+        "total": 1948
+      },
+      "Tester": {
+        "prompt": 115,
+        "completion": 436,
+        "total": 551
+      }
+    },
+    "by_provider": {
+      "gemini": {
+        "prompt": 162,
+        "completion": 449,
+        "total": 611
+      },
+      "ollama": {
+        "prompt": 1856,
+        "completion": 92,
+        "total": 1948
+      },
+      "groq": {
+        "prompt": 115,
+        "completion": 436,
+        "total": 551
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T10:44:37Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "attempt": 0,
+        "role": "Locator",
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-lite",
+        "prompt_tokens": 162,
+        "completion_tokens": 449,
+        "total_tokens": 611
+      },
+      {
+        "timestamp": "2026-10-16T10:44:44Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1856,
+        "completion_tokens": 92,
+        "total_tokens": 1948
+      },
+      {
+        "timestamp": "2026-10-16T10:44:55Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-bitcount",
+        "program_name": "bitcount",
+        "attempt": 1,
+        "role": "Tester",
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "prompt_tokens": 115,
+        "completion_tokens": 436,
+        "total_tokens": 551
+      }
+    ]
+  },
+  "total_duration_seconds": 37.123,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 20.159,
+      "patch_diff": "--- a/python_programs/bitcount.py\n+++ b/python_programs/bitcount.py\n@@ -2,7 +2,7 @@\n def bitcount(n):\n     count = 0\n     while n:\n-        n ^= n - 1\n+        n &= n - 1\n         count += 1\n     return count\n \n"
+    }
+  ]
+}

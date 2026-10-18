@@ -1,0 +1,10 @@
+--- a/python_programs/detect_cycle.py
++++ b/python_programs/detect_cycle.py
+@@ -6,6 +6,7 @@
+             return False
+ 
+         tortoise = tortoise.successor
++        if hare is None or hare.successor is None: return False
+         hare = hare.successor.successor
+ 
+         if hare is tortoise:

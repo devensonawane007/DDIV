@@ -1,0 +1,31 @@
+{
+  "attempt": 3,
+  "temperature": 0.2,
+  "prompt_tokens": 3927,
+  "completion_tokens": 228,
+  "latency_seconds": 14.9216762,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original code used a dictionary for dynamic programming, but the patch replaced it with a list, breaking the indexing and retrieval logic.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/lcs_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"dp = Counter()\",\n      \"code\": \"dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]\"\n    },\n    {\n      \"path\": \"python_programs/lcs_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"dp[i, j] = dp[i - 1, j] + 1\",\n      \"code\": \"dp[i][j] = dp[i - 1][j] + 1\"\n    },\n    {\n      \"path\": \"python_programs/lcs_length.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"return max(dp.values())\",\n      \"code\": \"return dp[len(s)][len(t)]\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original code used a dictionary for dynamic programming, but the patch replaced it with a list, breaking the indexing and retrieval logic.",
+    "modifications": [
+      {
+        "path": "python_programs/lcs_length.py",
+        "operation": "replace",
+        "anchor": "dp = Counter()",
+        "code": "dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]"
+      },
+      {
+        "path": "python_programs/lcs_length.py",
+        "operation": "replace",
+        "anchor": "dp[i, j] = dp[i - 1, j] + 1",
+        "code": "dp[i][j] = dp[i - 1][j] + 1"
+      },
+      {
+        "path": "python_programs/lcs_length.py",
+        "operation": "replace",
+        "anchor": "return max(dp.values())",
+        "code": "return dp[len(s)][len(t)]"
+      }
+    ]
+  }
+}

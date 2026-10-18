@@ -1,0 +1,49 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-possible_change",
+  "program_name": "possible_change",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6736,
+  "prompt_tokens": 5861,
+  "completion_tokens": 875,
+  "total_duration_seconds": 52.022,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 9.741,
+      "patch_diff": "--- a/python_programs/possible_change.py\n+++ b/python_programs/possible_change.py\n@@ -1,6 +1,7 @@\n # Python 3\n def possible_change(coins, total):\n     if total == 0:\n+        return 1\n         return 1\n     if total < 0:\n         return 0\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": false,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Patch application failed)",
+      "failure_category": "PATCH_APPLICATION_FAILED",
+      "failure_summary": "git apply failed to apply candidate patch to workspace.",
+      "duration_seconds": 32.482,
+      "patch_diff": "diff --git a/python_programs/possible_change.py b/python_programs/possible_change.py\nindex 1234567..89abcde 100644\n--- a/python_programs/possible_change.py\n+++ b/python_programs/possible_change.py\n@@ -1,6 +1,7 @@\n # Python 3\n def possible_change(coins, total):\n+    if not coins:\n+        return 0\n     if total == 0:\n         return 1\n     if total < 0:\n         return 0\n     first, *rest = coins\n     return possible_change(coins, total - first) + possible_change(rest, total)\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "patch_extracted": false,
+      "extraction_message": "PatchBuilder failed: Patched file 'python_programs/possible_change.py' failed Python AST syntax verification: unexpected indent (<unknown>, line 11) (category: SYNTAX_ERROR_INDENTATION)",
+      "resolved": false,
+      "duration_seconds": 9.78
+    }
+  ]
+}

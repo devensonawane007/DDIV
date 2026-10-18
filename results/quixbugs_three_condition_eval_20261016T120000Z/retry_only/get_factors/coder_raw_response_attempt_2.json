@@ -1,0 +1,19 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2914,
+  "completion_tokens": 107,
+  "latency_seconds": 8.8128133,
+  "raw_text": "{\n  \"reasoning_summary\": \"The original implementation only returns the first factor found, instead of all factors. The patch should accumulate all factors in a list and return it.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/get_factors.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"return [i] + get_factors(n // i)\",\n      \"code\": \"factors = [i] + get_factors(n // i)\\nreturn factors\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The original implementation only returns the first factor found, instead of all factors. The patch should accumulate all factors in a list and return it.",
+    "modifications": [
+      {
+        "path": "python_programs/get_factors.py",
+        "operation": "replace",
+        "anchor": "return [i] + get_factors(n // i)",
+        "code": "factors = [i] + get_factors(n // i)\nreturn factors"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+--- a/python_programs/find_in_sorted.py
++++ b/python_programs/find_in_sorted.py
+@@ -1,6 +1,6 @@
+ def find_in_sorted(arr, x):
+     def binsearch(start, end):
+-        if start == end:
++        if start > end:
+             return -1
+         mid = start + (end - start) // 2
+         if x < arr[mid]:

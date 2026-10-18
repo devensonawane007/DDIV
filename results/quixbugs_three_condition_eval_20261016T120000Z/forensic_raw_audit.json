@@ -1,0 +1,1884 @@
+{
+  "BASELINE": {
+    "bitcount": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1471,
+      "recomputed_total": 1471,
+      "task_prompt_tokens": 1444,
+      "recomputed_prompt": 1444,
+      "task_completion_tokens": 27,
+      "recomputed_completion": 27,
+      "by_role": {
+        "Coder": 1471
+      },
+      "by_provider": {
+        "ollama": 1471
+      },
+      "duration_seconds": 16.329,
+      "tokens_match": true
+    },
+    "depth_first_search": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1594,
+      "recomputed_total": 1594,
+      "task_prompt_tokens": 1468,
+      "recomputed_prompt": 1468,
+      "task_completion_tokens": 126,
+      "recomputed_completion": 126,
+      "by_role": {
+        "Coder": 1594
+      },
+      "by_provider": {
+        "ollama": 1594
+      },
+      "duration_seconds": 9.538,
+      "tokens_match": true
+    },
+    "detect_cycle": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1570,
+      "recomputed_total": 1570,
+      "task_prompt_tokens": 1458,
+      "recomputed_prompt": 1458,
+      "task_completion_tokens": 112,
+      "recomputed_completion": 112,
+      "by_role": {
+        "Coder": 1570
+      },
+      "by_provider": {
+        "ollama": 1570
+      },
+      "duration_seconds": 12.502,
+      "tokens_match": true
+    },
+    "find_in_sorted": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1645,
+      "recomputed_total": 1645,
+      "task_prompt_tokens": 1524,
+      "recomputed_prompt": 1524,
+      "task_completion_tokens": 121,
+      "recomputed_completion": 121,
+      "by_role": {
+        "Coder": 1645
+      },
+      "by_provider": {
+        "ollama": 1645
+      },
+      "duration_seconds": 12.613,
+      "tokens_match": true
+    },
+    "gcd": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1479,
+      "recomputed_total": 1479,
+      "task_prompt_tokens": 1447,
+      "recomputed_prompt": 1447,
+      "task_completion_tokens": 32,
+      "recomputed_completion": 32,
+      "by_role": {
+        "Coder": 1479
+      },
+      "by_provider": {
+        "ollama": 1479
+      },
+      "duration_seconds": 5.82,
+      "tokens_match": true
+    },
+    "get_factors": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1607,
+      "recomputed_total": 1607,
+      "task_prompt_tokens": 1505,
+      "recomputed_prompt": 1505,
+      "task_completion_tokens": 102,
+      "recomputed_completion": 102,
+      "by_role": {
+        "Coder": 1607
+      },
+      "by_provider": {
+        "ollama": 1607
+      },
+      "duration_seconds": 12.684,
+      "tokens_match": true
+    },
+    "hanoi": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1763,
+      "recomputed_total": 1763,
+      "task_prompt_tokens": 1650,
+      "recomputed_prompt": 1650,
+      "task_completion_tokens": 113,
+      "recomputed_completion": 113,
+      "by_role": {
+        "Coder": 1763
+      },
+      "by_provider": {
+        "ollama": 1763
+      },
+      "duration_seconds": 13.069,
+      "tokens_match": true
+    },
+    "kheapsort": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1775,
+      "recomputed_total": 1775,
+      "task_prompt_tokens": 1652,
+      "recomputed_prompt": 1652,
+      "task_completion_tokens": 123,
+      "recomputed_completion": 123,
+      "by_role": {
+        "Coder": 1775
+      },
+      "by_provider": {
+        "ollama": 1775
+      },
+      "duration_seconds": 14.291,
+      "tokens_match": true
+    },
+    "knapsack": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1758,
+      "recomputed_total": 1758,
+      "task_prompt_tokens": 1658,
+      "recomputed_prompt": 1658,
+      "task_completion_tokens": 100,
+      "recomputed_completion": 100,
+      "by_role": {
+        "Coder": 1758
+      },
+      "by_provider": {
+        "ollama": 1758
+      },
+      "duration_seconds": 34.946,
+      "tokens_match": true
+    },
+    "lcs_length": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1650,
+      "recomputed_total": 1650,
+      "task_prompt_tokens": 1505,
+      "recomputed_prompt": 1505,
+      "task_completion_tokens": 145,
+      "recomputed_completion": 145,
+      "by_role": {
+        "Coder": 1650
+      },
+      "by_provider": {
+        "ollama": 1650
+      },
+      "duration_seconds": 23.668,
+      "tokens_match": true
+    },
+    "lis": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 2014,
+      "recomputed_total": 2014,
+      "task_prompt_tokens": 1531,
+      "recomputed_prompt": 1531,
+      "task_completion_tokens": 483,
+      "recomputed_completion": 483,
+      "by_role": {
+        "Coder": 2014
+      },
+      "by_provider": {
+        "ollama": 2014
+      },
+      "duration_seconds": 26.756,
+      "tokens_match": true
+    },
+    "longest_common_subsequence": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1693,
+      "recomputed_total": 1693,
+      "task_prompt_tokens": 1570,
+      "recomputed_prompt": 1570,
+      "task_completion_tokens": 123,
+      "recomputed_completion": 123,
+      "by_role": {
+        "Coder": 1693
+      },
+      "by_provider": {
+        "ollama": 1693
+      },
+      "duration_seconds": 10.034,
+      "tokens_match": true
+    },
+    "mergesort": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1555,
+      "recomputed_total": 1555,
+      "task_prompt_tokens": 1524,
+      "recomputed_prompt": 1524,
+      "task_completion_tokens": 31,
+      "recomputed_completion": 31,
+      "by_role": {
+        "Coder": 1555
+      },
+      "by_provider": {
+        "ollama": 1555
+      },
+      "duration_seconds": 5.919,
+      "tokens_match": true
+    },
+    "minimum_spanning_tree": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1801,
+      "recomputed_total": 1801,
+      "task_prompt_tokens": 1637,
+      "recomputed_prompt": 1637,
+      "task_completion_tokens": 164,
+      "recomputed_completion": 164,
+      "by_role": {
+        "Coder": 1801
+      },
+      "by_provider": {
+        "ollama": 1801
+      },
+      "duration_seconds": 14.862,
+      "tokens_match": true
+    },
+    "next_palindrome": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1832,
+      "recomputed_total": 1832,
+      "task_prompt_tokens": 1620,
+      "recomputed_prompt": 1620,
+      "task_completion_tokens": 212,
+      "recomputed_completion": 212,
+      "by_role": {
+        "Coder": 1832
+      },
+      "by_provider": {
+        "ollama": 1832
+      },
+      "duration_seconds": 15.355,
+      "tokens_match": true
+    },
+    "next_permutation": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1644,
+      "recomputed_total": 1644,
+      "task_prompt_tokens": 1547,
+      "recomputed_prompt": 1547,
+      "task_completion_tokens": 97,
+      "recomputed_completion": 97,
+      "by_role": {
+        "Coder": 1644
+      },
+      "by_provider": {
+        "ollama": 1644
+      },
+      "duration_seconds": 12.41,
+      "tokens_match": true
+    },
+    "possible_change": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1785,
+      "recomputed_total": 1785,
+      "task_prompt_tokens": 1654,
+      "recomputed_prompt": 1654,
+      "task_completion_tokens": 131,
+      "recomputed_completion": 131,
+      "by_role": {
+        "Coder": 1785
+      },
+      "by_provider": {
+        "ollama": 1785
+      },
+      "duration_seconds": 10.919,
+      "tokens_match": true
+    },
+    "powerset": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1555,
+      "recomputed_total": 1555,
+      "task_prompt_tokens": 1524,
+      "recomputed_prompt": 1524,
+      "task_completion_tokens": 31,
+      "recomputed_completion": 31,
+      "by_role": {
+        "Coder": 1555
+      },
+      "by_provider": {
+        "ollama": 1555
+      },
+      "duration_seconds": 6.301,
+      "tokens_match": true
+    },
+    "shortest_path_length": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1938,
+      "recomputed_total": 1938,
+      "task_prompt_tokens": 1745,
+      "recomputed_prompt": 1745,
+      "task_completion_tokens": 193,
+      "recomputed_completion": 193,
+      "by_role": {
+        "Coder": 1938
+      },
+      "by_provider": {
+        "ollama": 1938
+      },
+      "duration_seconds": 22.025,
+      "tokens_match": true
+    },
+    "shortest_path_lengths": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1788,
+      "recomputed_total": 1788,
+      "task_prompt_tokens": 1598,
+      "recomputed_prompt": 1598,
+      "task_completion_tokens": 190,
+      "recomputed_completion": 190,
+      "by_role": {
+        "Coder": 1788
+      },
+      "by_provider": {
+        "ollama": 1788
+      },
+      "duration_seconds": 14.804,
+      "tokens_match": true
+    },
+    "shortest_paths": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1821,
+      "recomputed_total": 1821,
+      "task_prompt_tokens": 1713,
+      "recomputed_prompt": 1713,
+      "task_completion_tokens": 108,
+      "recomputed_completion": 108,
+      "by_role": {
+        "Coder": 1821
+      },
+      "by_provider": {
+        "ollama": 1821
+      },
+      "duration_seconds": 29.565,
+      "tokens_match": true
+    },
+    "shunting_yard": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1805,
+      "recomputed_total": 1805,
+      "task_prompt_tokens": 1675,
+      "recomputed_prompt": 1675,
+      "task_completion_tokens": 130,
+      "recomputed_completion": 130,
+      "by_role": {
+        "Coder": 1805
+      },
+      "by_provider": {
+        "ollama": 1805
+      },
+      "duration_seconds": 36.339,
+      "tokens_match": true
+    },
+    "sieve": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1559,
+      "recomputed_total": 1559,
+      "task_prompt_tokens": 1434,
+      "recomputed_prompt": 1434,
+      "task_completion_tokens": 125,
+      "recomputed_completion": 125,
+      "by_role": {
+        "Coder": 1559
+      },
+      "by_provider": {
+        "ollama": 1559
+      },
+      "duration_seconds": 31.379,
+      "tokens_match": true
+    },
+    "sqrt": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1636,
+      "recomputed_total": 1636,
+      "task_prompt_tokens": 1485,
+      "recomputed_prompt": 1485,
+      "task_completion_tokens": 151,
+      "recomputed_completion": 151,
+      "by_role": {
+        "Coder": 1636
+      },
+      "by_provider": {
+        "ollama": 1636
+      },
+      "duration_seconds": 43.671,
+      "tokens_match": true
+    },
+    "subsequences": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1672,
+      "recomputed_total": 1672,
+      "task_prompt_tokens": 1519,
+      "recomputed_prompt": 1519,
+      "task_completion_tokens": 153,
+      "recomputed_completion": 153,
+      "by_role": {
+        "Coder": 1672
+      },
+      "by_provider": {
+        "ollama": 1672
+      },
+      "duration_seconds": 31.55,
+      "tokens_match": true
+    },
+    "topological_ordering": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1689,
+      "recomputed_total": 1689,
+      "task_prompt_tokens": 1491,
+      "recomputed_prompt": 1491,
+      "task_completion_tokens": 198,
+      "recomputed_completion": 198,
+      "by_role": {
+        "Coder": 1689
+      },
+      "by_provider": {
+        "ollama": 1689
+      },
+      "duration_seconds": 72.887,
+      "tokens_match": true
+    },
+    "wrap": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1707,
+      "recomputed_total": 1707,
+      "task_prompt_tokens": 1565,
+      "recomputed_prompt": 1565,
+      "task_completion_tokens": 142,
+      "recomputed_completion": 142,
+      "by_role": {
+        "Coder": 1707
+      },
+      "by_provider": {
+        "ollama": 1707
+      },
+      "duration_seconds": 27.603,
+      "tokens_match": true
+    }
+  },
+  "RETRY_ONLY": {
+    "bitcount": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 4459,
+      "recomputed_total": 4459,
+      "task_prompt_tokens": 4378,
+      "recomputed_prompt": 4378,
+      "task_completion_tokens": 81,
+      "recomputed_completion": 81,
+      "by_role": {
+        "Coder": 4459
+      },
+      "by_provider": {
+        "ollama": 4459
+      },
+      "duration_seconds": 14.801,
+      "tokens_match": true
+    },
+    "depth_first_search": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 4795,
+      "recomputed_total": 4795,
+      "task_prompt_tokens": 4484,
+      "recomputed_prompt": 4484,
+      "task_completion_tokens": 311,
+      "recomputed_completion": 311,
+      "by_role": {
+        "Coder": 4795
+      },
+      "by_provider": {
+        "ollama": 4795
+      },
+      "duration_seconds": 25.517,
+      "tokens_match": true
+    },
+    "detect_cycle": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 5692,
+      "recomputed_total": 5692,
+      "task_prompt_tokens": 5367,
+      "recomputed_prompt": 5367,
+      "task_completion_tokens": 325,
+      "recomputed_completion": 325,
+      "by_role": {
+        "Coder": 5692
+      },
+      "by_provider": {
+        "ollama": 5692
+      },
+      "duration_seconds": 35.188,
+      "tokens_match": true
+    },
+    "find_in_sorted": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 8863,
+      "recomputed_total": 8863,
+      "task_prompt_tokens": 8526,
+      "recomputed_prompt": 8526,
+      "task_completion_tokens": 337,
+      "recomputed_completion": 337,
+      "by_role": {
+        "Coder": 8863
+      },
+      "by_provider": {
+        "ollama": 8863
+      },
+      "duration_seconds": 41.87,
+      "tokens_match": true
+    },
+    "gcd": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 4479,
+      "recomputed_total": 4479,
+      "task_prompt_tokens": 4387,
+      "recomputed_prompt": 4387,
+      "task_completion_tokens": 92,
+      "recomputed_completion": 92,
+      "by_role": {
+        "Coder": 4479
+      },
+      "by_provider": {
+        "ollama": 4479
+      },
+      "duration_seconds": 16.008,
+      "tokens_match": true
+    },
+    "get_factors": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7647,
+      "recomputed_total": 7647,
+      "task_prompt_tokens": 7332,
+      "recomputed_prompt": 7332,
+      "task_completion_tokens": 315,
+      "recomputed_completion": 315,
+      "by_role": {
+        "Coder": 7647
+      },
+      "by_provider": {
+        "ollama": 7647
+      },
+      "duration_seconds": 39.462,
+      "tokens_match": true
+    },
+    "hanoi": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6890,
+      "recomputed_total": 6890,
+      "task_prompt_tokens": 6507,
+      "recomputed_prompt": 6507,
+      "task_completion_tokens": 383,
+      "recomputed_completion": 383,
+      "by_role": {
+        "Coder": 6890
+      },
+      "by_provider": {
+        "ollama": 6890
+      },
+      "duration_seconds": 40.971,
+      "tokens_match": true
+    },
+    "kheapsort": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6630,
+      "recomputed_total": 6630,
+      "task_prompt_tokens": 6267,
+      "recomputed_prompt": 6267,
+      "task_completion_tokens": 363,
+      "recomputed_completion": 363,
+      "by_role": {
+        "Coder": 6630
+      },
+      "by_provider": {
+        "ollama": 6630
+      },
+      "duration_seconds": 41.599,
+      "tokens_match": true
+    },
+    "knapsack": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 9048,
+      "recomputed_total": 9048,
+      "task_prompt_tokens": 8692,
+      "recomputed_prompt": 8692,
+      "task_completion_tokens": 356,
+      "recomputed_completion": 356,
+      "by_role": {
+        "Coder": 9048
+      },
+      "by_provider": {
+        "ollama": 9048
+      },
+      "duration_seconds": 42.674,
+      "tokens_match": true
+    },
+    "lcs_length": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 9109,
+      "recomputed_total": 9109,
+      "task_prompt_tokens": 8491,
+      "recomputed_prompt": 8491,
+      "task_completion_tokens": 618,
+      "recomputed_completion": 618,
+      "by_role": {
+        "Coder": 9109
+      },
+      "by_provider": {
+        "ollama": 9109
+      },
+      "duration_seconds": 48.978,
+      "tokens_match": true
+    },
+    "lis": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 8536,
+      "recomputed_total": 8536,
+      "task_prompt_tokens": 7570,
+      "recomputed_prompt": 7570,
+      "task_completion_tokens": 966,
+      "recomputed_completion": 966,
+      "by_role": {
+        "Coder": 8536
+      },
+      "by_provider": {
+        "ollama": 8536
+      },
+      "duration_seconds": 67.997,
+      "tokens_match": true
+    },
+    "longest_common_subsequence": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 5224,
+      "recomputed_total": 5224,
+      "task_prompt_tokens": 4806,
+      "recomputed_prompt": 4806,
+      "task_completion_tokens": 418,
+      "recomputed_completion": 418,
+      "by_role": {
+        "Coder": 5224
+      },
+      "by_provider": {
+        "ollama": 5224
+      },
+      "duration_seconds": 30.879,
+      "tokens_match": true
+    },
+    "mergesort": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 4710,
+      "recomputed_total": 4710,
+      "task_prompt_tokens": 4618,
+      "recomputed_prompt": 4618,
+      "task_completion_tokens": 92,
+      "recomputed_completion": 92,
+      "by_role": {
+        "Coder": 4710
+      },
+      "by_provider": {
+        "ollama": 4710
+      },
+      "duration_seconds": 15.864,
+      "tokens_match": true
+    },
+    "minimum_spanning_tree": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 1801,
+      "recomputed_total": 1801,
+      "task_prompt_tokens": 1637,
+      "recomputed_prompt": 1637,
+      "task_completion_tokens": 164,
+      "recomputed_completion": 164,
+      "by_role": {
+        "Coder": 1801
+      },
+      "by_provider": {
+        "ollama": 1801
+      },
+      "duration_seconds": 12.878,
+      "tokens_match": true
+    },
+    "next_palindrome": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 2,
+      "recomputed_attempts": 2,
+      "task_total_tokens": 3620,
+      "recomputed_total": 3620,
+      "task_prompt_tokens": 3268,
+      "recomputed_prompt": 3268,
+      "task_completion_tokens": 352,
+      "recomputed_completion": 352,
+      "by_role": {
+        "Coder": 3620
+      },
+      "by_provider": {
+        "ollama": 3620
+      },
+      "duration_seconds": 45.533,
+      "tokens_match": true
+    },
+    "next_permutation": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7135,
+      "recomputed_total": 7135,
+      "task_prompt_tokens": 6736,
+      "recomputed_prompt": 6736,
+      "task_completion_tokens": 399,
+      "recomputed_completion": 399,
+      "by_role": {
+        "Coder": 7135
+      },
+      "by_provider": {
+        "ollama": 7135
+      },
+      "duration_seconds": 52.684,
+      "tokens_match": true
+    },
+    "possible_change": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6108,
+      "recomputed_total": 6108,
+      "task_prompt_tokens": 5412,
+      "recomputed_prompt": 5412,
+      "task_completion_tokens": 696,
+      "recomputed_completion": 696,
+      "by_role": {
+        "Coder": 6108
+      },
+      "by_provider": {
+        "ollama": 6108
+      },
+      "duration_seconds": 89.669,
+      "tokens_match": true
+    },
+    "powerset": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 4729,
+      "recomputed_total": 4729,
+      "task_prompt_tokens": 4618,
+      "recomputed_prompt": 4618,
+      "task_completion_tokens": 111,
+      "recomputed_completion": 111,
+      "by_role": {
+        "Coder": 4729
+      },
+      "by_provider": {
+        "ollama": 4729
+      },
+      "duration_seconds": 18.718,
+      "tokens_match": true
+    },
+    "shortest_path_length": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7416,
+      "recomputed_total": 7416,
+      "task_prompt_tokens": 6942,
+      "recomputed_prompt": 6942,
+      "task_completion_tokens": 474,
+      "recomputed_completion": 474,
+      "by_role": {
+        "Coder": 7416
+      },
+      "by_provider": {
+        "ollama": 7416
+      },
+      "duration_seconds": 40.983,
+      "tokens_match": true
+    },
+    "shortest_path_lengths": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6758,
+      "recomputed_total": 6758,
+      "task_prompt_tokens": 6240,
+      "recomputed_prompt": 6240,
+      "task_completion_tokens": 518,
+      "recomputed_completion": 518,
+      "by_role": {
+        "Coder": 6758
+      },
+      "by_provider": {
+        "ollama": 6758
+      },
+      "duration_seconds": 52.65,
+      "tokens_match": true
+    },
+    "shortest_paths": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 5586,
+      "recomputed_total": 5586,
+      "task_prompt_tokens": 5217,
+      "recomputed_prompt": 5217,
+      "task_completion_tokens": 369,
+      "recomputed_completion": 369,
+      "by_role": {
+        "Coder": 5586
+      },
+      "by_provider": {
+        "ollama": 5586
+      },
+      "duration_seconds": 82.841,
+      "tokens_match": true
+    },
+    "shunting_yard": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6894,
+      "recomputed_total": 6894,
+      "task_prompt_tokens": 6527,
+      "recomputed_prompt": 6527,
+      "task_completion_tokens": 367,
+      "recomputed_completion": 367,
+      "by_role": {
+        "Coder": 6894
+      },
+      "by_provider": {
+        "ollama": 6894
+      },
+      "duration_seconds": 105.742,
+      "tokens_match": true
+    },
+    "sieve": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 5725,
+      "recomputed_total": 5725,
+      "task_prompt_tokens": 5265,
+      "recomputed_prompt": 5265,
+      "task_completion_tokens": 460,
+      "recomputed_completion": 460,
+      "by_role": {
+        "Coder": 5725
+      },
+      "by_provider": {
+        "ollama": 5725
+      },
+      "duration_seconds": 129.327,
+      "tokens_match": true
+    },
+    "sqrt": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6890,
+      "recomputed_total": 6890,
+      "task_prompt_tokens": 6513,
+      "recomputed_prompt": 6513,
+      "task_completion_tokens": 377,
+      "recomputed_completion": 377,
+      "by_role": {
+        "Coder": 6890
+      },
+      "by_provider": {
+        "ollama": 6890
+      },
+      "duration_seconds": 88.078,
+      "tokens_match": true
+    },
+    "subsequences": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6178,
+      "recomputed_total": 6178,
+      "task_prompt_tokens": 5398,
+      "recomputed_prompt": 5398,
+      "task_completion_tokens": 780,
+      "recomputed_completion": 780,
+      "by_role": {
+        "Coder": 6178
+      },
+      "by_provider": {
+        "ollama": 6178
+      },
+      "duration_seconds": 179.341,
+      "tokens_match": true
+    },
+    "topological_ordering": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6565,
+      "recomputed_total": 6565,
+      "task_prompt_tokens": 5944,
+      "recomputed_prompt": 5944,
+      "task_completion_tokens": 621,
+      "recomputed_completion": 621,
+      "by_role": {
+        "Coder": 6565
+      },
+      "by_provider": {
+        "ollama": 6565
+      },
+      "duration_seconds": 142.186,
+      "tokens_match": true
+    },
+    "wrap": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 5168,
+      "recomputed_total": 5168,
+      "task_prompt_tokens": 4807,
+      "recomputed_prompt": 4807,
+      "task_completion_tokens": 361,
+      "recomputed_completion": 361,
+      "by_role": {
+        "Coder": 5168
+      },
+      "by_provider": {
+        "ollama": 5168
+      },
+      "duration_seconds": 69.106,
+      "tokens_match": true
+    }
+  },
+  "FULL_DDIV": {
+    "bitcount": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3110,
+      "recomputed_total": 3110,
+      "task_prompt_tokens": 2133,
+      "recomputed_prompt": 2133,
+      "task_completion_tokens": 977,
+      "recomputed_completion": 977,
+      "by_role": {
+        "Locator": 611,
+        "Coder": 1948,
+        "Tester": 551
+      },
+      "by_provider": {
+        "gemini": 611,
+        "ollama": 1948,
+        "groq": 551
+      },
+      "duration_seconds": 37.123,
+      "tokens_match": true
+    },
+    "depth_first_search": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 13273,
+      "recomputed_total": 13273,
+      "task_prompt_tokens": 10338,
+      "recomputed_prompt": 10338,
+      "task_completion_tokens": 2935,
+      "recomputed_completion": 2935,
+      "by_role": {
+        "Locator": 673,
+        "Coder": 7656,
+        "Tester": 2061,
+        "Supervisor": 2883
+      },
+      "by_provider": {
+        "gemini": 673,
+        "ollama": 7656,
+        "groq": 4944
+      },
+      "duration_seconds": 128.088,
+      "tokens_match": true
+    },
+    "detect_cycle": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 4771,
+      "recomputed_total": 4771,
+      "task_prompt_tokens": 2169,
+      "recomputed_prompt": 2169,
+      "task_completion_tokens": 2602,
+      "recomputed_completion": 2602,
+      "by_role": {
+        "Locator": 626,
+        "Coder": 1976,
+        "Tester": 2169
+      },
+      "by_provider": {
+        "gemini": 626,
+        "ollama": 1976,
+        "groq": 2169
+      },
+      "duration_seconds": 49.276,
+      "tokens_match": true
+    },
+    "find_in_sorted": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3377,
+      "recomputed_total": 3377,
+      "task_prompt_tokens": 2309,
+      "recomputed_prompt": 2309,
+      "task_completion_tokens": 1068,
+      "recomputed_completion": 1068,
+      "by_role": {
+        "Locator": 719,
+        "Coder": 2036,
+        "Tester": 622
+      },
+      "by_provider": {
+        "gemini": 719,
+        "ollama": 2036,
+        "groq": 622
+      },
+      "duration_seconds": 48.715,
+      "tokens_match": true
+    },
+    "gcd": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 2836,
+      "recomputed_total": 2836,
+      "task_prompt_tokens": 1974,
+      "recomputed_prompt": 1974,
+      "task_completion_tokens": 862,
+      "recomputed_completion": 862,
+      "by_role": {
+        "Locator": 454,
+        "Coder": 1791,
+        "Tester": 591
+      },
+      "by_provider": {
+        "gemini": 454,
+        "ollama": 1791,
+        "groq": 591
+      },
+      "duration_seconds": 45.854,
+      "tokens_match": true
+    },
+    "get_factors": {
+      "batch": 1,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 6955,
+      "recomputed_total": 6955,
+      "task_prompt_tokens": 6201,
+      "recomputed_prompt": 6201,
+      "task_completion_tokens": 754,
+      "recomputed_completion": 754,
+      "by_role": {
+        "Locator": 755,
+        "Coder": 6200
+      },
+      "by_provider": {
+        "gemini": 755,
+        "ollama": 6200
+      },
+      "duration_seconds": 77.558,
+      "tokens_match": true
+    },
+    "hanoi": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3408,
+      "recomputed_total": 3408,
+      "task_prompt_tokens": 2526,
+      "recomputed_prompt": 2526,
+      "task_completion_tokens": 882,
+      "recomputed_completion": 882,
+      "by_role": {
+        "Locator": 769,
+        "Coder": 2084,
+        "Tester": 555
+      },
+      "by_provider": {
+        "gemini": 769,
+        "ollama": 2084,
+        "groq": 555
+      },
+      "duration_seconds": 49.747,
+      "tokens_match": true
+    },
+    "kheapsort": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3490,
+      "recomputed_total": 3490,
+      "task_prompt_tokens": 2539,
+      "recomputed_prompt": 2539,
+      "task_completion_tokens": 951,
+      "recomputed_completion": 951,
+      "by_role": {
+        "Locator": 821,
+        "Coder": 2115,
+        "Tester": 554
+      },
+      "by_provider": {
+        "gemini": 821,
+        "ollama": 2115,
+        "groq": 554
+      },
+      "duration_seconds": 59.544,
+      "tokens_match": true
+    },
+    "knapsack": {
+      "batch": 1,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3519,
+      "recomputed_total": 3519,
+      "task_prompt_tokens": 2520,
+      "recomputed_prompt": 2520,
+      "task_completion_tokens": 999,
+      "recomputed_completion": 999,
+      "by_role": {
+        "Locator": 756,
+        "Coder": 2077,
+        "Tester": 686
+      },
+      "by_provider": {
+        "gemini": 756,
+        "ollama": 2077,
+        "groq": 686
+      },
+      "duration_seconds": 139.549,
+      "tokens_match": true
+    },
+    "lcs_length": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3285,
+      "recomputed_total": 3285,
+      "task_prompt_tokens": 2405,
+      "recomputed_prompt": 2405,
+      "task_completion_tokens": 880,
+      "recomputed_completion": 880,
+      "by_role": {
+        "Locator": 799,
+        "Coder": 2140,
+        "Tester": 346
+      },
+      "by_provider": {
+        "gemini": 799,
+        "ollama": 2140,
+        "groq": 346
+      },
+      "duration_seconds": 76.57,
+      "tokens_match": true
+    },
+    "lis": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 13494,
+      "recomputed_total": 13494,
+      "task_prompt_tokens": 11580,
+      "recomputed_prompt": 11580,
+      "task_completion_tokens": 1914,
+      "recomputed_completion": 1914,
+      "by_role": {
+        "Locator": 926,
+        "Coder": 9063,
+        "Tester": 898,
+        "Supervisor": 2607
+      },
+      "by_provider": {
+        "gemini": 926,
+        "ollama": 9063,
+        "groq": 3505
+      },
+      "duration_seconds": 141.496,
+      "tokens_match": true
+    },
+    "longest_common_subsequence": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3157,
+      "recomputed_total": 3157,
+      "task_prompt_tokens": 2432,
+      "recomputed_prompt": 2432,
+      "task_completion_tokens": 725,
+      "recomputed_completion": 725,
+      "by_role": {
+        "Locator": 771,
+        "Coder": 2120,
+        "Tester": 266
+      },
+      "by_provider": {
+        "gemini": 771,
+        "ollama": 2120,
+        "groq": 266
+      },
+      "duration_seconds": 48.587,
+      "tokens_match": true
+    },
+    "mergesort": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3158,
+      "recomputed_total": 3158,
+      "task_prompt_tokens": 2412,
+      "recomputed_prompt": 2412,
+      "task_completion_tokens": 746,
+      "recomputed_completion": 746,
+      "by_role": {
+        "Locator": 834,
+        "Coder": 2095,
+        "Tester": 229
+      },
+      "by_provider": {
+        "gemini": 834,
+        "ollama": 2095,
+        "groq": 229
+      },
+      "duration_seconds": 45.42,
+      "tokens_match": true
+    },
+    "minimum_spanning_tree": {
+      "batch": 2,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 8259,
+      "recomputed_total": 8259,
+      "task_prompt_tokens": 7170,
+      "recomputed_prompt": 7170,
+      "task_completion_tokens": 1089,
+      "recomputed_completion": 1089,
+      "by_role": {
+        "Locator": 1115,
+        "Coder": 7144
+      },
+      "by_provider": {
+        "gemini": 1115,
+        "ollama": 7144
+      },
+      "duration_seconds": 49.984,
+      "tokens_match": true
+    },
+    "next_palindrome": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3870,
+      "recomputed_total": 3870,
+      "task_prompt_tokens": 2857,
+      "recomputed_prompt": 2857,
+      "task_completion_tokens": 1013,
+      "recomputed_completion": 1013,
+      "by_role": {
+        "Locator": 1145,
+        "Coder": 2442,
+        "Tester": 283
+      },
+      "by_provider": {
+        "gemini": 1145,
+        "ollama": 2442,
+        "groq": 283
+      },
+      "duration_seconds": 52.079,
+      "tokens_match": true
+    },
+    "next_permutation": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3156,
+      "recomputed_total": 3156,
+      "task_prompt_tokens": 2429,
+      "recomputed_prompt": 2429,
+      "task_completion_tokens": 727,
+      "recomputed_completion": 727,
+      "by_role": {
+        "Locator": 747,
+        "Coder": 2045,
+        "Tester": 364
+      },
+      "by_provider": {
+        "gemini": 747,
+        "ollama": 2045,
+        "groq": 364
+      },
+      "duration_seconds": 57.653,
+      "tokens_match": true
+    },
+    "possible_change": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3448,
+      "recomputed_total": 3448,
+      "task_prompt_tokens": 2699,
+      "recomputed_prompt": 2699,
+      "task_completion_tokens": 749,
+      "recomputed_completion": 749,
+      "by_role": {
+        "Locator": 950,
+        "Coder": 2272,
+        "Tester": 226
+      },
+      "by_provider": {
+        "gemini": 950,
+        "ollama": 2272,
+        "groq": 226
+      },
+      "duration_seconds": 60.029,
+      "tokens_match": true
+    },
+    "powerset": {
+      "batch": 2,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 2953,
+      "recomputed_total": 2953,
+      "task_prompt_tokens": 2312,
+      "recomputed_prompt": 2312,
+      "task_completion_tokens": 641,
+      "recomputed_completion": 641,
+      "by_role": {
+        "Locator": 676,
+        "Coder": 1999,
+        "Tester": 278
+      },
+      "by_provider": {
+        "gemini": 676,
+        "ollama": 1999,
+        "groq": 278
+      },
+      "duration_seconds": 44.857,
+      "tokens_match": true
+    },
+    "shortest_path_length": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 9794,
+      "recomputed_total": 9794,
+      "task_prompt_tokens": 8012,
+      "recomputed_prompt": 8012,
+      "task_completion_tokens": 1782,
+      "recomputed_completion": 1782,
+      "by_role": {
+        "Locator": 1374,
+        "Coder": 8420
+      },
+      "by_provider": {
+        "gemini": 1374,
+        "ollama": 8420
+      },
+      "duration_seconds": 122.959,
+      "tokens_match": true
+    },
+    "shortest_path_lengths": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7593,
+      "recomputed_total": 7593,
+      "task_prompt_tokens": 6498,
+      "recomputed_prompt": 6498,
+      "task_completion_tokens": 1095,
+      "recomputed_completion": 1095,
+      "by_role": {
+        "Locator": 877,
+        "Coder": 6716
+      },
+      "by_provider": {
+        "gemini": 877,
+        "ollama": 6716
+      },
+      "duration_seconds": 83.75,
+      "tokens_match": true
+    },
+    "shortest_paths": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 8691,
+      "recomputed_total": 8691,
+      "task_prompt_tokens": 7265,
+      "recomputed_prompt": 7265,
+      "task_completion_tokens": 1426,
+      "recomputed_completion": 1426,
+      "by_role": {
+        "Locator": 1113,
+        "Coder": 7578
+      },
+      "by_provider": {
+        "gemini": 1113,
+        "ollama": 7578
+      },
+      "duration_seconds": 180.786,
+      "tokens_match": true
+    },
+    "shunting_yard": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7473,
+      "recomputed_total": 7473,
+      "task_prompt_tokens": 6711,
+      "recomputed_prompt": 6711,
+      "task_completion_tokens": 762,
+      "recomputed_completion": 762,
+      "by_role": {
+        "Locator": 890,
+        "Coder": 6583
+      },
+      "by_provider": {
+        "gemini": 890,
+        "ollama": 6583
+      },
+      "duration_seconds": 87.625,
+      "tokens_match": true
+    },
+    "sieve": {
+      "batch": 3,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3056,
+      "recomputed_total": 3056,
+      "task_prompt_tokens": 2242,
+      "recomputed_prompt": 2242,
+      "task_completion_tokens": 814,
+      "recomputed_completion": 814,
+      "by_role": {
+        "Locator": 695,
+        "Coder": 2062,
+        "Tester": 299
+      },
+      "by_provider": {
+        "gemini": 695,
+        "ollama": 2062,
+        "groq": 299
+      },
+      "duration_seconds": 64.914,
+      "tokens_match": true
+    },
+    "sqrt": {
+      "batch": 3,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 2853,
+      "recomputed_total": 2853,
+      "task_prompt_tokens": 2219,
+      "recomputed_prompt": 2219,
+      "task_completion_tokens": 634,
+      "recomputed_completion": 634,
+      "by_role": {
+        "Locator": 623,
+        "Coder": 1954,
+        "Tester": 276
+      },
+      "by_provider": {
+        "gemini": 623,
+        "ollama": 1954,
+        "groq": 276
+      },
+      "duration_seconds": 62.744,
+      "tokens_match": true
+    },
+    "subsequences": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7658,
+      "recomputed_total": 7658,
+      "task_prompt_tokens": 6595,
+      "recomputed_prompt": 6595,
+      "task_completion_tokens": 1063,
+      "recomputed_completion": 1063,
+      "by_role": {
+        "Locator": 868,
+        "Coder": 6790
+      },
+      "by_provider": {
+        "gemini": 868,
+        "ollama": 6790
+      },
+      "duration_seconds": 106.96,
+      "tokens_match": true
+    },
+    "topological_ordering": {
+      "batch": 3,
+      "resolved": true,
+      "history_resolved": true,
+      "tests_passed_history": true,
+      "attempts_used": 1,
+      "recomputed_attempts": 1,
+      "task_total_tokens": 3177,
+      "recomputed_total": 3177,
+      "task_prompt_tokens": 2375,
+      "recomputed_prompt": 2375,
+      "task_completion_tokens": 802,
+      "recomputed_completion": 802,
+      "by_role": {
+        "Locator": 782,
+        "Coder": 2116,
+        "Tester": 279
+      },
+      "by_provider": {
+        "gemini": 782,
+        "ollama": 2116,
+        "groq": 279
+      },
+      "duration_seconds": 68.055,
+      "tokens_match": true
+    },
+    "wrap": {
+      "batch": 3,
+      "resolved": false,
+      "history_resolved": false,
+      "tests_passed_history": false,
+      "attempts_used": 3,
+      "recomputed_attempts": 3,
+      "task_total_tokens": 7692,
+      "recomputed_total": 7692,
+      "task_prompt_tokens": 6604,
+      "recomputed_prompt": 6604,
+      "task_completion_tokens": 1088,
+      "recomputed_completion": 1088,
+      "by_role": {
+        "Locator": 867,
+        "Coder": 6825
+      },
+      "by_provider": {
+        "gemini": 867,
+        "ollama": 6825
+      },
+      "duration_seconds": 150.724,
+      "tokens_match": true
+    }
+  }
+}

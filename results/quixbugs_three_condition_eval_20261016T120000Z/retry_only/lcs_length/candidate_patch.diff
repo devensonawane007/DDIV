@@ -1,0 +1,20 @@
+--- a/python_programs/lcs_length.py
++++ b/python_programs/lcs_length.py
+@@ -1,14 +1,14 @@
+ def lcs_length(s, t):
+     from collections import Counter
+ 
+-    dp = Counter()
++    dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]
+ 
+     for i in range(len(s)):
+         for j in range(len(t)):
+             if s[i] == t[j]:
+-                dp[i, j] = dp[i - 1, j] + 1
++                dp[i][j] = dp[i - 1][j] + 1
+ 
+-    return max(dp.values()) if dp else 0
++    return max(max(row) for row in dp) if dp else 0
+ 
+ 
+ 

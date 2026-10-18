@@ -1,0 +1,62 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-knapsack",
+  "program_name": "knapsack",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1758,
+  "prompt_tokens": 1658,
+  "completion_tokens": 100,
+  "token_breakdown": {
+    "total_tokens": 1758,
+    "prompt_tokens": 1658,
+    "completion_tokens": 100,
+    "by_role": {
+      "Coder": {
+        "prompt": 1658,
+        "completion": 100,
+        "total": 1758
+      }
+    },
+    "by_provider": {
+      "ollama": {
+        "prompt": 1658,
+        "completion": 100,
+        "total": 1758
+      }
+    },
+    "transactions": [
+      {
+        "timestamp": "2026-10-16T18:08:45Z",
+        "date_utc": "2026-10-16",
+        "task_id": "quixbugs-python-knapsack",
+        "program_name": "knapsack",
+        "condition": "BASELINE",
+        "attempt": 1,
+        "role": "Coder",
+        "provider": "ollama",
+        "model": "qwen2.5-coder:7b",
+        "prompt_tokens": 1658,
+        "completion_tokens": 100,
+        "total_tokens": 1758
+      }
+    ]
+  },
+  "total_duration_seconds": 34.946,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Timeout)",
+      "failure_category": "TIMEOUT",
+      "failure_summary": "Test execution timed out after 15s (possible infinite loop).",
+      "duration_seconds": 34.944,
+      "patch_diff": "--- a/python_programs/knapsack.py\n+++ b/python_programs/knapsack.py\n@@ -4,7 +4,7 @@\n     memo = defaultdict(int)\n \n     for i in range(1, len(items) + 1):\n-        weight, value = items[i - 1]\n+        weight, value = items[i]\n \n         for j in range(1, capacity + 1):\n             memo[i, j] = memo[i - 1, j]\n"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 1621,
+  "completion_tokens": 109,
+  "latency_seconds": 20.3025796,
+  "raw_text": "{\n  \"reasoning_summary\": \"The function does not handle the case when the last word is longer than the column width correctly.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/wrap.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if end == -1:\",\n      \"code\": \"if end == -1:\\n    end = cols\\n    while end > 0 and text[end] != ' ':\\n        end -= 1\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The function does not handle the case when the last word is longer than the column width correctly.",
+    "modifications": [
+      {
+        "path": "python_programs/wrap.py",
+        "operation": "replace",
+        "anchor": "if end == -1:",
+        "code": "if end == -1:\n    end = cols\n    while end > 0 and text[end] != ' ':\n        end -= 1"
+      }
+    ]
+  }
+}

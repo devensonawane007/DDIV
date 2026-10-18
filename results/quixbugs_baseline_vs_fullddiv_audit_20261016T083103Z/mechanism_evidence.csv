@@ -1,0 +1,8 @@
+Mechanism,Configured,Invoked Count,Recorded Output,Demonstrably Affected Context,Associated Recoveries,Status / Evidence Description
+Supervisor Guidance,Yes,56,Diagnosis & Mistake-Avoidance Directives,Yes (Injected into retry prompts at Attempt 2+),5,"Active in all 56 multi-attempt runs; associated with recoveries in quicksort, kth, reverse_linked_list, bfs, levenshtein"
+FailureDetector,Yes,96,Failure Category & Sanitized Stdout,Yes (Steered supervisor diagnosis and retry prompt),5,"Classified test outcomes into ASSERTION_FAILURE, TIMEOUT, SYNTAX_ERROR, PATCH_APPLICATION_FAILED"
+Anti-Repetition Gate,Yes,18,CRITICAL REPETITION WARNING in prompt,Yes (Detected byte-identical patches and injected negative constraint),1,Detected 18 repeated patches across 8 tasks; broke quicksort greedy attractor
+Episodic Memory,Yes,46,46 failure records in quixbugs_40tasks_memory.db,Partial (Records logged to SQLite; rule-based supervisor prompt mapping applied),5,46 failure records inserted; vector similarity query not invoked in benchmark runner
+Trust Engine,Yes (Configured),0,NOT RECORDED (0 events in trust_events table),No (Standalone runner evaluated Coder directly),0,Trust tracking not hooked into standalone QuixBugs single-agent Coder loop
+Dynamic Retry Temperature,Yes,56,T=0.2 on Attempt 2 and Attempt 3,Yes (Passed to Ollama generate API),5,Permitted non-greedy exploration on retries (T=0.0 on Att 1 -> T=0.2 on Att 2+)
+Prior-Patch Diff Injection,Yes,56,Explicit failed unified diff in retry prompt,Yes (Negative diff anchor injected with DO NOT PROPOSE directive),5,Injected failed unified diff into Attempt 2 and Attempt 3 prompts across all retried tasks

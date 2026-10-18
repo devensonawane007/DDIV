@@ -1,0 +1,19 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 1940,
+  "completion_tokens": 105,
+  "latency_seconds": 7.240334,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug in the 'next_permutation' function is fixed by changing the condition to find the smallest element to the right of the pivot that is larger than the pivot.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/next_permutation.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"if perm[j] < perm[i]:\",\n      \"code\": \"if perm[j] > perm[i]:\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug in the 'next_permutation' function is fixed by changing the condition to find the smallest element to the right of the pivot that is larger than the pivot.",
+    "modifications": [
+      {
+        "path": "python_programs/next_permutation.py",
+        "operation": "replace",
+        "anchor": "if perm[j] < perm[i]:",
+        "code": "if perm[j] > perm[i]:"
+      }
+    ]
+  }
+}

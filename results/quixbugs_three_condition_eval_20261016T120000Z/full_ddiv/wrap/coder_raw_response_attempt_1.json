@@ -1,0 +1,25 @@
+{
+  "attempt": 1,
+  "temperature": 0.0,
+  "prompt_tokens": 2068,
+  "completion_tokens": 159,
+  "latency_seconds": 44.510364,
+  "raw_text": "{\n  \"reasoning_summary\": \"The bug in the 'wrap' function is fixed by ensuring the final segment of the text is appended to the lines list and by skipping the space when a space is found at the end of the line.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/wrap.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"lines.append(line)\",\n      \"code\": \"lines.append(line)\\n    if end != cols:\\n        text = text[end + 1:]\"\n    },\n    {\n      \"path\": \"python_programs/wrap.py\",\n      \"operation\": \"insert_after\",\n      \"anchor\": \"return lines\",\n      \"code\": \"lines.append(text)\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The bug in the 'wrap' function is fixed by ensuring the final segment of the text is appended to the lines list and by skipping the space when a space is found at the end of the line.",
+    "modifications": [
+      {
+        "path": "python_programs/wrap.py",
+        "operation": "replace",
+        "anchor": "lines.append(line)",
+        "code": "lines.append(line)\n    if end != cols:\n        text = text[end + 1:]"
+      },
+      {
+        "path": "python_programs/wrap.py",
+        "operation": "insert_after",
+        "anchor": "return lines",
+        "code": "lines.append(text)"
+      }
+    ]
+  }
+}

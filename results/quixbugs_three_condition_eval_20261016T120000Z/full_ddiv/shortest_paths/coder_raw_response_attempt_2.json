@@ -1,0 +1,31 @@
+{
+  "attempt": 2,
+  "temperature": 0.2,
+  "prompt_tokens": 2283,
+  "completion_tokens": 279,
+  "latency_seconds": 57.0165705,
+  "raw_text": "{\n  \"reasoning_summary\": \"The Bellman-Ford algorithm implementation incorrectly updates edge weights instead of node weights. Fixed by updating node weights and initializing with all unique nodes.\",\n  \"modifications\": [\n    {\n      \"path\": \"python_programs/shortest_paths.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"weight_by_node[v] = float('inf')\",\n      \"code\": \"weight_by_node[v] = float('inf')\"\n    },\n    {\n      \"path\": \"python_programs/shortest_paths.py\",\n      \"operation\": \"replace\",\n      \"anchor\": \"weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])\",\n      \"code\": \"weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])\"\n    },\n    {\n      \"path\": \"python_programs/shortest_paths.py\",\n      \"operation\": \"insert_before\",\n      \"anchor\": \"weight_by_node[v] = float('inf')\",\n      \"code\": \"nodes = set()\\nfor u, v in weight_by_edge:\\n    nodes.add(u)\\n    nodes.add(v)\\nweight_by_node = {v: float('inf') for v in nodes}\\nweight_by_node[source] = 0\"\n    }\n  ]\n}",
+  "parsed_json": {
+    "reasoning_summary": "The Bellman-Ford algorithm implementation incorrectly updates edge weights instead of node weights. Fixed by updating node weights and initializing with all unique nodes.",
+    "modifications": [
+      {
+        "path": "python_programs/shortest_paths.py",
+        "operation": "replace",
+        "anchor": "weight_by_node[v] = float('inf')",
+        "code": "weight_by_node[v] = float('inf')"
+      },
+      {
+        "path": "python_programs/shortest_paths.py",
+        "operation": "replace",
+        "anchor": "weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])",
+        "code": "weight_by_node[v] = min(weight_by_node[u] + weight, weight_by_node[v])"
+      },
+      {
+        "path": "python_programs/shortest_paths.py",
+        "operation": "insert_before",
+        "anchor": "weight_by_node[v] = float('inf')",
+        "code": "nodes = set()\nfor u, v in weight_by_edge:\n    nodes.add(u)\n    nodes.add(v)\nweight_by_node = {v: float('inf') for v in nodes}\nweight_by_node[source] = 0"
+      }
+    ]
+  }
+}

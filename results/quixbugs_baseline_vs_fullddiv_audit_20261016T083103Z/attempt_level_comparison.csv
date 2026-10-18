@@ -1,0 +1,141 @@
+Task ID,Program,Condition,Attempt,Temperature,Patch Extracted,Patch Applied,Is Repeated Patch,Resolved,Verdict,Failure Category,Duration (s),Prompt Tokens,Completion Tokens,Model Latency (s)
+quixbugs-python-bitcount,bitcount,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,16.801,1567,45,14.1731787
+quixbugs-python-bitcount,bitcount,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,6.047,1567,45,3.4429654
+quixbugs-python-bitcount,bitcount,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Timeout),TIMEOUT,24.706,1596,124,6.7509825
+quixbugs-python-bitcount,bitcount,FULL_DDIV,3,0.2,True,True,False,False,UNRESOLVED (Timeout),TIMEOUT,26.308,1924,106,8.0738039
+quixbugs-python-breadth_first_search,breadth_first_search,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,19.773,1623,219,14.4315854
+quixbugs-python-breadth_first_search,breadth_first_search,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,15.394,1623,221,10.4844987
+quixbugs-python-breadth_first_search,breadth_first_search,FULL_DDIV,2,0.2,True,True,False,True,RESOLVED,NONE,11.378,2219,129,7.2735279
+quixbugs-python-bucketsort,bucketsort,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,10.55,1601,114,6.3103291
+quixbugs-python-bucketsort,bucketsort,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,10.495,1601,114,4.9580367
+quixbugs-python-depth_first_search,depth_first_search,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.515,1592,100,5.9517858
+quixbugs-python-depth_first_search,depth_first_search,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.018,1592,108,5.3565521
+quixbugs-python-depth_first_search,depth_first_search,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.923,2270,103,7.0417553
+quixbugs-python-depth_first_search,depth_first_search,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.704,2258,127,7.9608461
+quixbugs-python-detect_cycle,detect_cycle,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.477,1582,112,6.7350206
+quixbugs-python-detect_cycle,detect_cycle,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.956,1582,125,6.1735923
+quixbugs-python-detect_cycle,detect_cycle,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.355,2135,123,7.6923052
+quixbugs-python-detect_cycle,detect_cycle,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.385,2169,120,7.602546
+quixbugs-python-find_first_in_sorted,find_first_in_sorted,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,11.911,1667,103,6.3183763
+quixbugs-python-find_first_in_sorted,find_first_in_sorted,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,10.664,1667,103,5.0954182
+quixbugs-python-find_in_sorted,find_in_sorted,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,11.736,1648,152,8.5300321
+quixbugs-python-find_in_sorted,find_in_sorted,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,10.525,1648,152,7.4433486
+quixbugs-python-find_in_sorted,find_in_sorted,FULL_DDIV,2,0.2,False,False,False,False,N/A,UNKNOWN,10.282,1704,152,7.3026511
+quixbugs-python-find_in_sorted,find_in_sorted,FULL_DDIV,3,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.347,1713,92,5.6778403
+quixbugs-python-flatten,flatten,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,11.479,1599,95,5.9747939
+quixbugs-python-flatten,flatten,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,10.044,1599,95,4.606789
+quixbugs-python-gcd,gcd,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,14.038,1570,150,8.3057287
+quixbugs-python-gcd,gcd,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.947,1570,151,7.3265727
+quixbugs-python-gcd,gcd,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,18.897,3231,192,13.0607421
+quixbugs-python-gcd,gcd,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,17.031,3236,167,11.5072136
+quixbugs-python-get_factors,get_factors,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.136,1628,100,6.126419
+quixbugs-python-get_factors,get_factors,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.781,1628,100,4.9676053
+quixbugs-python-get_factors,get_factors,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,14.631,3090,106,8.21164
+quixbugs-python-get_factors,get_factors,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.729,3123,105,8.0478981
+quixbugs-python-hanoi,hanoi,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,16.698,1773,192,10.7498068
+quixbugs-python-hanoi,hanoi,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,19.679,1773,289,13.891552
+quixbugs-python-hanoi,hanoi,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,15.422,3083,136,9.6052266
+quixbugs-python-hanoi,hanoi,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,15.405,2918,147,9.7591683
+quixbugs-python-is_valid_parenthesization,is_valid_parenthesization,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,11.848,1639,93,6.1697827
+quixbugs-python-is_valid_parenthesization,is_valid_parenthesization,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,10.111,1639,93,4.5468202
+quixbugs-python-kheapsort,kheapsort,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.854,1777,139,8.1661743
+quixbugs-python-kheapsort,kheapsort,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.695,1777,120,5.8872217
+quixbugs-python-kheapsort,kheapsort,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.392,2638,102,7.3436429
+quixbugs-python-kheapsort,kheapsort,FULL_DDIV,3,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.579,2633,94,6.8110263
+quixbugs-python-knapsack,knapsack,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.925,1783,132,7.8855918
+quixbugs-python-knapsack,knapsack,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.753,1783,132,6.6160636
+quixbugs-python-knapsack,knapsack,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,16.357,3189,149,10.4607235
+quixbugs-python-knapsack,knapsack,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,15.947,3222,136,10.0013385
+quixbugs-python-kth,kth,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.225,1635,115,7.0983533
+quixbugs-python-kth,kth,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.256,1635,115,5.6349805
+quixbugs-python-kth,kth,FULL_DDIV,2,0.2,True,True,False,True,RESOLVED,NONE,19.298,2964,227,13.927785
+quixbugs-python-lcs_length,lcs_length,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.682,1629,114,6.9516958
+quixbugs-python-lcs_length,lcs_length,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.084,1629,114,5.6126237
+quixbugs-python-lcs_length,lcs_length,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,15.166,3700,116,9.5163964
+quixbugs-python-lcs_length,lcs_length,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,14.845,3733,113,9.3570354
+quixbugs-python-levenshtein,levenshtein,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,8.614,1733,87,5.7624972
+quixbugs-python-levenshtein,levenshtein,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,7.309,1733,87,4.3824332
+quixbugs-python-levenshtein,levenshtein,FULL_DDIV,2,0.2,True,True,False,True,RESOLVED,NONE,14.722,1771,105,4.9360247
+quixbugs-python-lis,lis,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.828,1654,113,6.8155375
+quixbugs-python-lis,lis,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.233,1654,113,5.4476406
+quixbugs-python-lis,lis,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,16.227,3424,145,10.4883111
+quixbugs-python-lis,lis,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,14.64,2582,136,8.9249811
+quixbugs-python-longest_common_subsequence,longest_common_subsequence,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,11.901,1696,161,8.9716019
+quixbugs-python-longest_common_subsequence,longest_common_subsequence,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,10.595,1696,161,7.7251815
+quixbugs-python-longest_common_subsequence,longest_common_subsequence,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.466,1758,114,5.611131
+quixbugs-python-longest_common_subsequence,longest_common_subsequence,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,14.725,3243,114,8.5489927
+quixbugs-python-max_sublist_sum,max_sublist_sum,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,12.164,1654,103,6.5816417
+quixbugs-python-max_sublist_sum,max_sublist_sum,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,10.824,1654,111,5.3802662
+quixbugs-python-mergesort,mergesort,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,9.875,1649,122,7.0440806
+quixbugs-python-mergesort,mergesort,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,9.075,1649,122,5.916538
+quixbugs-python-mergesort,mergesort,FULL_DDIV,2,0.2,False,False,False,False,N/A,UNKNOWN,7.754,1687,99,4.8246808
+quixbugs-python-mergesort,mergesort,FULL_DDIV,3,0.2,False,False,False,False,N/A,UNKNOWN,9.013,1716,100,6.0405302
+quixbugs-python-minimum_spanning_tree,minimum_spanning_tree,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.33,1763,122,7.490028
+quixbugs-python-minimum_spanning_tree,minimum_spanning_tree,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.125,1763,122,6.0643757
+quixbugs-python-minimum_spanning_tree,minimum_spanning_tree,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.154,2619,111,7.6226549
+quixbugs-python-minimum_spanning_tree,minimum_spanning_tree,FULL_DDIV,3,0.2,False,False,False,False,N/A,UNKNOWN,12.023,2433,152,9.1961445
+quixbugs-python-next_palindrome,next_palindrome,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,9.008,1744,86,6.0214147
+quixbugs-python-next_palindrome,next_palindrome,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,6.483,1744,86,4.1245631
+quixbugs-python-next_palindrome,next_palindrome,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.397,1782,111,5.0257973
+quixbugs-python-next_palindrome,next_palindrome,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.002,2303,91,5.7836552
+quixbugs-python-next_permutation,next_permutation,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.79,1671,94,5.5774778
+quixbugs-python-next_permutation,next_permutation,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,8.645,1671,94,4.3724429
+quixbugs-python-next_permutation,next_permutation,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.714,2971,87,6.4410221
+quixbugs-python-next_permutation,next_permutation,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.861,3007,87,6.6036776
+quixbugs-python-pascal,pascal,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,9.758,1696,95,5.607209
+quixbugs-python-pascal,pascal,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,8.491,1696,95,4.3562655
+quixbugs-python-possible_change,possible_change,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.956,1778,108,6.2745854
+quixbugs-python-possible_change,possible_change,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.741,1778,108,5.0151618
+quixbugs-python-possible_change,possible_change,FULL_DDIV,2,0.2,True,False,False,False,UNRESOLVED (Patch application failed),PATCH_APPLICATION_FAILED,32.482,2050,632,29.8733242
+quixbugs-python-possible_change,possible_change,FULL_DDIV,3,0.2,False,False,False,False,N/A,UNKNOWN,9.78,2033,135,7.424595
+quixbugs-python-powerset,powerset,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.638,1648,87,5.3148788
+quixbugs-python-powerset,powerset,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,8.33,1648,87,4.0660675
+quixbugs-python-powerset,powerset,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.026,2451,82,5.7544209
+quixbugs-python-powerset,powerset,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.118,2485,85,5.8339226
+quixbugs-python-quicksort,quicksort,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,14.177,1562,192,9.816557
+quixbugs-python-quicksort,quicksort,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.727,1562,192,8.488845
+quixbugs-python-quicksort,quicksort,FULL_DDIV,2,0.2,True,True,False,True,RESOLVED,NONE,11.804,2339,130,7.7596008
+quixbugs-python-reverse_linked_list,reverse_linked_list,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,7.478,1589,84,5.1361467
+quixbugs-python-reverse_linked_list,reverse_linked_list,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,6.333,1589,84,3.9034282
+quixbugs-python-reverse_linked_list,reverse_linked_list,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.109,1627,150,6.7773757
+quixbugs-python-reverse_linked_list,reverse_linked_list,FULL_DDIV,3,0.2,True,True,False,True,RESOLVED,NONE,12.471,2190,148,8.3959746
+quixbugs-python-rpn_eval,rpn_eval,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,10.547,1706,110,6.4568747
+quixbugs-python-rpn_eval,rpn_eval,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,9.017,1706,110,4.9592764
+quixbugs-python-shortest_path_length,shortest_path_length,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.839,1870,112,6.5756814
+quixbugs-python-shortest_path_length,shortest_path_length,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.45,1870,112,5.1129395
+quixbugs-python-shortest_path_length,shortest_path_length,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.288,2594,112,7.0081284
+quixbugs-python-shortest_path_length,shortest_path_length,FULL_DDIV,3,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.63,2436,124,7.3586626
+quixbugs-python-shortest_path_lengths,shortest_path_lengths,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,13.011,1723,167,8.6879455
+quixbugs-python-shortest_path_lengths,shortest_path_lengths,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.83,1723,167,7.5227704
+quixbugs-python-shortest_path_lengths,shortest_path_lengths,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.549,2504,138,8.2396979
+quixbugs-python-shortest_path_lengths,shortest_path_lengths,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.788,2500,145,8.5284357
+quixbugs-python-shortest_paths,shortest_paths,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,9.324,1837,118,6.9729109
+quixbugs-python-shortest_paths,shortest_paths,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,7.835,1837,118,5.458234
+quixbugs-python-shortest_paths,shortest_paths,FULL_DDIV,2,0.2,False,False,False,False,N/A,UNKNOWN,7.654,1889,114,5.2764644
+quixbugs-python-shortest_paths,shortest_paths,FULL_DDIV,3,0.2,False,False,False,False,N/A,UNKNOWN,7.662,1889,115,5.2623163
+quixbugs-python-shunting_yard,shunting_yard,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.569,1800,126,7.2211666
+quixbugs-python-shunting_yard,shunting_yard,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.101,1800,126,5.7474744
+quixbugs-python-shunting_yard,shunting_yard,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.902,2669,118,7.5073786
+quixbugs-python-shunting_yard,shunting_yard,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.368,2702,111,7.1302692
+quixbugs-python-sieve,sieve,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.992,1557,118,6.6202824
+quixbugs-python-sieve,sieve,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.799,1557,119,5.4197988
+quixbugs-python-sieve,sieve,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.747,2493,135,8.3271519
+quixbugs-python-sieve,sieve,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,12.787,2526,135,8.3938303
+quixbugs-python-sqrt,sqrt,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Timeout),TIMEOUT,24.045,1608,115,6.4381177
+quixbugs-python-sqrt,sqrt,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Timeout),TIMEOUT,22.743,1608,115,5.1542382
+quixbugs-python-sqrt,sqrt,FULL_DDIV,2,0.2,True,True,True,False,UNRESOLVED (Timeout),TIMEOUT,23.705,1954,108,6.0634656
+quixbugs-python-sqrt,sqrt,FULL_DDIV,3,0.2,True,True,True,False,UNRESOLVED (Timeout),TIMEOUT,24.059,1972,114,6.4254284
+quixbugs-python-subsequences,subsequences,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,8.989,1642,122,6.611537
+quixbugs-python-subsequences,subsequences,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,7.83,1642,122,5.4495628
+quixbugs-python-subsequences,subsequences,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,9.724,1706,117,5.2501661
+quixbugs-python-subsequences,subsequences,FULL_DDIV,3,0.2,True,False,False,False,UNRESOLVED (Patch application failed),PATCH_APPLICATION_FAILED,43.25,2050,885,40.7419597
+quixbugs-python-to_base,to_base,BASELINE,1,0.0,True,True,False,True,RESOLVED,NONE,9.679,1630,87,5.5115365
+quixbugs-python-to_base,to_base,FULL_DDIV,1,0.0,True,True,False,True,RESOLVED,NONE,8.879,1630,87,4.0240894
+quixbugs-python-topological_ordering,topological_ordering,BASELINE,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,10.922,1616,112,6.4680371
+quixbugs-python-topological_ordering,topological_ordering,FULL_DDIV,1,0.0,True,True,False,False,UNRESOLVED (Tests failed),ASSERTION_FAILURE,11.769,1616,168,7.4983954
+quixbugs-python-topological_ordering,topological_ordering,FULL_DDIV,2,0.2,True,True,False,False,UNRESOLVED (Timeout),TIMEOUT,26.715,2361,160,9.0454861
+quixbugs-python-topological_ordering,topological_ordering,FULL_DDIV,3,0.2,False,False,False,False,N/A,UNKNOWN,9.239,2021,122,6.8620631
+quixbugs-python-wrap,wrap,BASELINE,1,0.0,False,False,False,False,N/A,UNKNOWN,8.903,1687,116,6.4589391
+quixbugs-python-wrap,wrap,FULL_DDIV,1,0.0,False,False,False,False,N/A,UNKNOWN,7.896,1687,116,5.4293674
+quixbugs-python-wrap,wrap,FULL_DDIV,2,0.2,False,False,False,False,N/A,UNKNOWN,8.706,1755,137,6.2499734
+quixbugs-python-wrap,wrap,FULL_DDIV,3,0.2,False,False,False,False,N/A,UNKNOWN,11.286,1755,168,8.8216861

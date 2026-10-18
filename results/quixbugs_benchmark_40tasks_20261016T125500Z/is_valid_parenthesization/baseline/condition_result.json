@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-is_valid_parenthesization",
+  "program_name": "is_valid_parenthesization",
+  "model": "qwen2.5-coder:7b",
+  "resolved": true,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1732,
+  "prompt_tokens": 1639,
+  "completion_tokens": 93,
+  "total_duration_seconds": 11.848,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": true,
+      "all_passed": true,
+      "evaluation_verdict": "RESOLVED",
+      "failure_category": "NONE",
+      "failure_summary": "All tests passed successfully.",
+      "duration_seconds": 11.848,
+      "patch_diff": "--- a/python_programs/is_valid_parenthesization.py\n+++ b/python_programs/is_valid_parenthesization.py\n@@ -9,7 +9,7 @@\n             if depth < 0:\n                 return False\n \n-    return True\n+    return depth == 0\n \n \n \"\"\"\n"
+    }
+  ]
+}

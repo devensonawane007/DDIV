@@ -1,0 +1,26 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-quicksort",
+  "program_name": "quicksort",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1774,
+  "prompt_tokens": 1565,
+  "completion_tokens": 209,
+  "total_duration_seconds": 17.678,
+  "history": [
+    {
+      "attempt": 1,
+      "candidate_patch_applied": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 17.678,
+      "patch_diff": "--- a/python_programs/quicksort.py\n+++ b/python_programs/quicksort.py\n@@ -3,8 +3,8 @@\n         return []\n \n     pivot = arr[0]\n-    lesser = quicksort([x for x in arr[1:] if x < pivot])\n-    greater = quicksort([x for x in arr[1:] if x > pivot])\n+    lesser = quicksort([x for x in arr[1:] if x <= pivot])\n+    greater = quicksort([x for x in arr[1:] if x >= pivot])\n     return lesser + [pivot] + greater\n \n \"\"\"\n"
+    }
+  ]
+}

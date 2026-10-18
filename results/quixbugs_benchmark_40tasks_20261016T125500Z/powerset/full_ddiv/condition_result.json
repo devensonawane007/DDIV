@@ -1,0 +1,54 @@
+{
+  "condition": "FULL_DDIV",
+  "task_id": "quixbugs-python-powerset",
+  "program_name": "powerset",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 3,
+  "max_attempts": 3,
+  "total_tokens": 6838,
+  "prompt_tokens": 6584,
+  "completion_tokens": 254,
+  "total_duration_seconds": 28.504,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 8.33,
+      "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -5,7 +5,7 @@\n         rest_subsets = powerset(rest)\n         return [[first] + subset for subset in rest_subsets]\n     else:\n-        return [[]]\n+        return [[]] if arr else [[]]\n \n \n \"\"\"\n"
+    },
+    {
+      "attempt": 2,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 10.026,
+      "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -5,7 +5,7 @@\n         rest_subsets = powerset(rest)\n         return [[first] + subset for subset in rest_subsets]\n     else:\n-        return [[]]\n+        return [[]] if arr else [[]]\n \n \n \"\"\"\n"
+    },
+    {
+      "attempt": 3,
+      "temperature": 0.2,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": true,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 10.118,
+      "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -5,7 +5,7 @@\n         rest_subsets = powerset(rest)\n         return [[first] + subset for subset in rest_subsets]\n     else:\n-        return [[]]\n+        return [[]] if arr else [[]]\n \n \n \"\"\"\n"
+    }
+  ]
+}

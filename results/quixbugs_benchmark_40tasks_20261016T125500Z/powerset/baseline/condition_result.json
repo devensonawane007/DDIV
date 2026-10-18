@@ -1,0 +1,28 @@
+{
+  "condition": "BASELINE",
+  "task_id": "quixbugs-python-powerset",
+  "program_name": "powerset",
+  "model": "qwen2.5-coder:7b",
+  "resolved": false,
+  "attempts_used": 1,
+  "max_attempts": 1,
+  "total_tokens": 1735,
+  "prompt_tokens": 1648,
+  "completion_tokens": 87,
+  "total_duration_seconds": 9.638,
+  "history": [
+    {
+      "attempt": 1,
+      "temperature": 0.0,
+      "candidate_patch_applied": true,
+      "is_repeated_patch": false,
+      "resolved": false,
+      "all_passed": false,
+      "evaluation_verdict": "UNRESOLVED (Tests failed)",
+      "failure_category": "ASSERTION_FAILURE",
+      "failure_summary": "1 test(s) failed assertion check.",
+      "duration_seconds": 9.638,
+      "patch_diff": "--- a/python_programs/powerset.py\n+++ b/python_programs/powerset.py\n@@ -5,7 +5,7 @@\n         rest_subsets = powerset(rest)\n         return [[first] + subset for subset in rest_subsets]\n     else:\n-        return [[]]\n+        return [[]] if arr else [[]]\n \n \n \"\"\"\n"
+    }
+  ]
+}

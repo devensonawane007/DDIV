@@ -1,0 +1,11 @@
+--- a/astropy/time/tests/test_quantity_interaction.py
++++ b/astropy/time/tests/test_quantity_interaction.py
+@@ -17,7 +17,7 @@
+ 
+     def test_valid_quantity_input(self):
+         """Test Time formats that are allowed to take quantity input."""
+-        q = 2450000.125*u.day
++        q = (2450000.125*u.day).to(u.jd)
+         t1 = Time(q, format='jd', scale='utc')
+         assert t1.value == q.value
+         q2 = q.to(u.second)
